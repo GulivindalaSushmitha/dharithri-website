@@ -16,7 +16,6 @@
             background-color: #f5f7fa;
         }
 
-        /* Header Section */
         .header {
             background: linear-gradient(135deg, #1a237e, #0d47a1);
             color: white;
@@ -40,7 +39,6 @@
             font-style: italic;
         }
 
-        /* Navigation - ONLY ONCE */
         .nav {
             background-color: #0d47a1;
             padding: 12px 0;
@@ -69,14 +67,12 @@
             color: #1a237e;
         }
 
-        /* Main Container */
         .container {
             max-width: 1100px;
             margin: 40px auto;
             padding: 0 20px;
         }
 
-        /* Back Button */
         .back-btn {
             display: inline-block;
             background: #0d47a1;
@@ -98,7 +94,6 @@
             content: "← ";
         }
 
-        /* Course Detail Card */
         .course-detail-card {
             background: white;
             border-radius: 15px;
@@ -135,7 +130,6 @@
             padding: 40px 50px;
         }
 
-        /* Course Overview */
         .overview-section {
             margin-bottom: 40px;
         }
@@ -156,7 +150,6 @@
             margin-top: 15px;
         }
 
-        /* Course Info Grid */
         .info-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -187,7 +180,6 @@
             margin-top: 5px;
         }
 
-        /* What You'll Learn */
         .learn-section {
             margin: 40px 0;
         }
@@ -233,7 +225,6 @@
             font-weight: 500;
         }
 
-        /* Career Opportunities */
         .career-section {
             margin: 40px 0;
             background: linear-gradient(135deg, #f8f9fc, #e8edf5);
@@ -270,7 +261,6 @@
             font-weight: 600;
         }
 
-        /* Course Curriculum */
         .curriculum-section {
             margin: 40px 0;
         }
@@ -318,7 +308,6 @@
             border-radius: 20px;
         }
 
-        /* Enroll Section */
         .enroll-section {
             background: linear-gradient(135deg, #1a237e, #0d47a1);
             color: white;
@@ -355,7 +344,6 @@
             transform: scale(1.05);
         }
 
-        /* Footer */
         .footer {
             background: #1a237e;
             color: white;
@@ -372,7 +360,6 @@
             color: #ffd700;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 1.8rem;
@@ -438,14 +425,14 @@
 </head>
 <body>
 
-    <!-- Header -->
+    <!-- ====== HEADER ====== -->
     <div class="header">
         <h1>DHARITHRI <span>MANPOWER</span></h1>
         <p>TRAINING & SUPPLY PVT. LTD.</p>
         <p style="font-size: 0.9rem; margin-top: 8px; opacity: 0.8;">WE SUPPLY THE WORTH. WE IMPROVE THE WORTH.</p>
     </div>
 
-    <!-- Navigation - ONLY ONCE -->
+    <!-- ====== NAVIGATION - ONLY ONE COPY ====== -->
     <div class="nav">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
@@ -457,16 +444,13 @@
         <a href="apply.html">Apply Now</a>
     </div>
 
-    <!-- Main Content -->
+    <!-- ====== MAIN CONTENT ====== -->
     <div class="container">
 
-        <!-- Back Button -->
         <a href="courses.html" class="back-btn">Back to Courses</a>
 
-        <!-- Course Detail Card -->
         <div class="course-detail-card">
             
-            <!-- Header -->
             <div class="course-detail-header">
                 <div class="course-badge">📚 Course</div>
                 <h2 id="courseTitle">Sales Manager</h2>
@@ -476,16 +460,13 @@
                 </div>
             </div>
 
-            <!-- Body -->
             <div class="course-detail-body">
 
-                <!-- Overview -->
                 <div class="overview-section">
                     <h3>📖 Course Overview</h3>
                     <p id="courseOverview">This Sales Manager course is designed to equip you with the skills and knowledge needed to excel in banking sales. You'll learn various product sales strategies, customer relationship management, and how to handle different loan products including Loan Against Property, Business Loans, Home Loans, and Professional Loans. The course combines theoretical knowledge with practical sales scenarios.</p>
                 </div>
 
-                <!-- Info Grid -->
                 <div class="info-grid">
                     <div class="info-item">
                         <span class="label">⏱️ Duration</span>
@@ -509,32 +490,22 @@
                     </div>
                 </div>
 
-                <!-- What You'll Learn -->
                 <div class="learn-section">
                     <h3>🎯 What You'll Learn</h3>
-                    <div class="learn-grid" id="courseLearn">
-                        <!-- Will be populated by JavaScript -->
-                    </div>
+                    <div class="learn-grid" id="courseLearn"></div>
                 </div>
 
-                <!-- Curriculum -->
                 <div class="curriculum-section">
                     <h3>📚 Course Curriculum</h3>
-                    <ul class="curriculum-list" id="courseCurriculum">
-                        <!-- Will be populated by JavaScript -->
-                    </ul>
+                    <ul class="curriculum-list" id="courseCurriculum"></ul>
                 </div>
 
-                <!-- Career Opportunities -->
                 <div class="career-section">
                     <h3>🚀 Career Opportunities</h3>
                     <p style="color: #555; margin-bottom: 15px;">After completing this course, you'll be eligible for the following roles:</p>
-                    <div class="career-grid" id="courseCareers">
-                        <!-- Will be populated by JavaScript -->
-                    </div>
+                    <div class="career-grid" id="courseCareers"></div>
                 </div>
 
-                <!-- Enroll Section -->
                 <div class="enroll-section">
                     <h3>🎓 Ready to Start Your Career?</h3>
                     <p>Join our course and take the first step towards a successful banking career.</p>
@@ -546,19 +517,14 @@
 
     </div>
 
-    <!-- Footer -->
+    <!-- ====== FOOTER ====== -->
     <div class="footer">
         <p>&copy; 2026 <span class="highlight">Dharithri Manpower Training & Supply Pvt. Ltd.</span></p>
         <p style="margin-top: 8px; font-size: 0.85rem;">WE SUPPLY THE WORTH. WE IMPROVE THE WORTH.</p>
     </div>
 
     <script>
-        // ================================================================
-        // COURSE DATA - All courses with 6 Months Duration
-        // ================================================================
         const courseData = {
-
-            // ==================== MANAGER TRAINING ====================
 
             'SM-101': {
                 title: 'Sales Manager',
@@ -1036,8 +1002,6 @@
                 ]
             },
 
-            // ==================== ACCOUNTS TRAINING ====================
-
             'ACC-1501': {
                 title: 'Accountant',
                 code: 'ACC-1501',
@@ -1174,8 +1138,6 @@
                 ]
             },
 
-            // ==================== BRANCH TRAINING ====================
-
             'TEL-1901': {
                 title: 'Teller / Cashier',
                 code: 'TEL-1901',
@@ -1277,8 +1239,6 @@
                     { role: 'Branch Customer Service Head' }
                 ]
             },
-
-            // ==================== LIABILITY BANKING ROLES ====================
 
             'LSM-2201': {
                 title: 'Liability Sales Manager',
@@ -1620,8 +1580,6 @@
                 ]
             },
 
-            // ==================== FLOOR MANAGER / TEAM SUPERVISOR ====================
-
             'FM-3201': {
                 title: 'Floor Manager',
                 code: 'FM-3201',
@@ -1692,19 +1650,12 @@
 
         };
 
-        // ================================================================
-        // FUNCTION TO LOAD COURSE DETAILS
-        // ================================================================
         function loadCourseDetails() {
-            // Get course code from URL parameter
             const urlParams = new URLSearchParams(window.location.search);
             const courseCode = urlParams.get('code');
-
-            // Get course data
             const course = courseData[courseCode];
 
             if (!course) {
-                // If course not found, show error
                 document.querySelector('.course-detail-card').innerHTML = `
                     <div style="padding: 50px; text-align: center;">
                         <h2 style="color: #1a237e;">Course Not Found</h2>
@@ -1715,63 +1666,44 @@
                 return;
             }
 
-            // Update page title
             document.title = `${course.title} - Dharithri Manpower Training`;
-
-            // Update header
             document.getElementById('courseTitle').textContent = course.title;
             document.getElementById('courseSubtitle').textContent = course.subtitle;
             document.getElementById('courseCode').textContent = `Course Code: ${course.code}`;
-
-            // Update overview
             document.getElementById('courseOverview').textContent = course.overview;
-
-            // Update info grid
             document.getElementById('courseDuration').textContent = course.duration;
             document.getElementById('courseMode').textContent = course.mode;
             document.getElementById('courseCertification').textContent = course.certification;
             document.getElementById('courseBatch').textContent = course.batch;
             document.getElementById('courseBatchDate').textContent = course.batchDate;
 
-            // Update what you'll learn
             const learnGrid = document.getElementById('courseLearn');
             learnGrid.innerHTML = '';
             course.learn.forEach(item => {
                 const div = document.createElement('div');
                 div.className = 'learn-item';
-                div.innerHTML = `
-                    <span class="icon">✓</span>
-                    <span class="text">${item}</span>
-                `;
+                div.innerHTML = `<span class="icon">✓</span><span class="text">${item}</span>`;
                 learnGrid.appendChild(div);
             });
 
-            // Update curriculum
             const curriculumList = document.getElementById('courseCurriculum');
             curriculumList.innerHTML = '';
             course.curriculum.forEach(item => {
                 const li = document.createElement('li');
-                li.innerHTML = `
-                    <span class="module">${item.module}</span>
-                    <span class="duration">${item.duration}</span>
-                `;
+                li.innerHTML = `<span class="module">${item.module}</span><span class="duration">${item.duration}</span>`;
                 curriculumList.appendChild(li);
             });
 
-            // Update careers
             const careersGrid = document.getElementById('courseCareers');
             careersGrid.innerHTML = '';
             course.careers.forEach(item => {
                 const div = document.createElement('div');
                 div.className = 'career-item';
-                div.innerHTML = `
-                    <div class="role">📌 ${item.role}</div>
-                `;
+                div.innerHTML = `<div class="role">📌 ${item.role}</div>`;
                 careersGrid.appendChild(div);
             });
         }
 
-        // Load course details when page loads
         window.onload = loadCourseDetails;
     </script>
 
