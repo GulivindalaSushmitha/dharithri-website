@@ -3,74 +3,87 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Courses · Dharithri</title>
+    <title>Training · Dharithri</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-    <nav class="navbar"><div class="container nav-flex">
-        <div class="logo-area"><img src="assets/images/logo.png" alt="Logo" onerror="this.src='https://via.placeholder.com/48x48?text=DH'" /><div class="logo-text">Dharithri<span>.</span></div></div>
-        <div class="nav-links" id="navLinks">
-            <a href="index.html">Home</a><a href="about.html">About</a><a href="courses.html" class="active">Courses</a>
-            <a href="training.html">Training</a><a href="questionnaire.html">Questionnaire</a><a href="contact.html">Contact</a>
-            <a href="apply.html" class="btn btn-gold" style="padding:8px 22px;">Apply Now</a>
-        </div>
-        <div class="hamburger" onclick="toggleNav()"><i class="fas fa-bars"></i></div>
-    </div></nav>
+    <!-- Navbar auto-loaded by navbar.js -->
 
     <section class="container" style="padding: 60px 0;">
-        <h1 class="section-title">Our Courses</h1>
-        <p class="section-sub">Comprehensive banking and management training programs designed to build successful careers.</p>
+        <h1 class="section-title">How Dharithri Training Builds Your Career</h1>
+        <p class="section-sub">Our training goes beyond theory — we prepare you for real-world challenges and opportunities.</p>
 
-        <div class="course-grid">
-            <!-- Sales Manager -->
-            <div class="course-card"><h4>Sales Manager</h4><ul><li>Loan Against Property (LAP)</li><li>Business Loan</li><li>Home Loan</li><li>Professional Loan</li></ul><a href="course-detail.html?course=Sales%20Manager" class="btn btn-outline">Read More</a> <a href="apply.html" class="btn btn-gold">Apply Now</a></div>
+        <!-- ===== HOW WE TRAIN ===== -->
+        <div class="training-section">
+            <h3><i class="fas fa-chalkboard-teacher" style="color:#c49a2b;"></i> How We Train</h3>
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap:20px; margin-top:16px;">
+                <div style="background:#f5f8fd; padding:20px; border-radius:16px;"><i class="fas fa-users" style="color:#c49a2b; font-size:1.8rem;"></i><h4>Classroom Training</h4><p style="color:#4a5d74;">Interactive sessions with industry experts.</p></div>
+                <div style="background:#f5f8fd; padding:20px; border-radius:16px;"><i class="fas fa-laptop" style="color:#c49a2b; font-size:1.8rem;"></i><h4>Practical Projects</h4><p style="color:#4a5d74;">Real-world case studies and simulations.</p></div>
+                <div style="background:#f5f8fd; padding:20px; border-radius:16px;"><i class="fas fa-file-alt" style="color:#c49a2b; font-size:1.8rem;"></i><h4>Documentation Training</h4><p style="color:#4a5d74;">Master banking forms and processes.</p></div>
+                <div style="background:#f5f8fd; padding:20px; border-radius:16px;"><i class="fas fa-handshake" style="color:#c49a2b; font-size:1.8rem;"></i><h4>Soft Skills</h4><p style="color:#4a5d74;">Communication, leadership, and ethics.</p></div>
+            </div>
+        </div>
+
+        <!-- ===== OPPORTUNITIES SECTION ===== -->
+        <div class="training-section" style="background:#0b2b4a; color:white;">
+            <h3 style="color:#c49a2b;"><i class="fas fa-bullseye" style="color:#c49a2b;"></i> We Don't Provide Jobs — We Create Career Pathways</h3>
+            <p style="color:#a0b8cf; font-size:1.1rem; margin-top:8px;">"We are not job providers. We are opportunity creators."</p>
             
-            <!-- Operations Manager -->
-            <div class="course-card"><h4>Operations Manager</h4><ul><li>File Analysis</li><li>Customer Profile Verification</li><li>Income Analysis</li><li>KYC Verification</li><li>Banking Documentation</li></ul><a href="course-detail.html?course=Operations%20Manager" class="btn btn-outline">Read More</a> <a href="apply.html" class="btn btn-gold">Apply Now</a></div>
-            
-            <!-- Risk Manager -->
-            <div class="course-card"><h4>Risk Manager <span style="font-size:0.7rem; color:#c49a2b; font-weight:600;">Certified</span></h4><ul><li>Credit Risk</li><li>Operational Risk</li><li>Financial Risk</li><li>Fraud Risk</li><li>Compliance Risk</li><li>RBI Guidelines</li></ul><a href="course-detail.html?course=Risk%20Manager" class="btn btn-outline">Read More</a> <a href="apply.html" class="btn btn-gold">Apply Now</a></div>
-            
-            <!-- Credit Manager -->
-            <div class="course-card"><h4>Credit Manager</h4><ul><li>Credit Appraisal</li><li>Financial Statement Analysis</li><li>CIBIL Analysis</li><li>Loan Approval Process</li><li>Banking Policies</li></ul><a href="course-detail.html?course=Credit%20Manager" class="btn btn-outline">Read More</a> <a href="apply.html" class="btn btn-gold">Apply Now</a></div>
-            
-            <!-- Legal Manager -->
-            <div class="course-card"><h4>Legal Manager</h4><ul><li>Property Legal Verification</li><li>Title Search</li><li>EC Verification</li><li>Mortgage Creation</li><li>SARFAESI Act</li></ul><a href="course-detail.html?course=Legal%20Manager" class="btn btn-outline">Read More</a> <a href="apply.html" class="btn btn-gold">Apply Now</a></div>
-            
-            <!-- Technical Manager -->
-            <div class="course-card"><h4>Technical Manager <span style="font-size:0.7rem; color:#c49a2b; font-weight:600;">Certified</span></h4><ul><li>Property Inspection</li><li>Construction Verification</li><li>Technical Valuation</li><li>Site Visit</li><li>Estimation</li></ul><a href="course-detail.html?course=Technical%20Manager" class="btn btn-outline">Read More</a> <a href="apply.html" class="btn btn-gold">Apply Now</a></div>
-            
-            <!-- Accounts & Finance -->
-            <div class="course-card"><h4>Accounts & Finance</h4><ul><li>Accountant</li><li>Auditor</li><li>Chartered Accountant Guidance</li><li>Company Secretary Guidance</li></ul><a href="course-detail.html?course=Accounts%20%26%20Finance" class="btn btn-outline">Read More</a> <a href="apply.html" class="btn btn-gold">Apply Now</a></div>
-            
-            <!-- Branch Banking -->
-            <div class="course-card"><h4>Branch Banking <span style="font-size:0.7rem; color:#c49a2b; font-weight:600;">Certified</span></h4><ul><li>Teller</li><li>Cashier</li><li>Branch Operations Executive</li><li>Customer Service Officer</li></ul><a href="course-detail.html?course=Branch%20Banking" class="btn btn-outline">Read More</a> <a href="apply.html" class="btn btn-gold">Apply Now</a></div>
-            
-            <!-- Liability Banking -->
-            <div class="course-card"><h4>Liability Banking</h4><ul><li>Liability Sales Manager</li><li>CASA Manager</li><li>Relationship Manager</li><li>Priority Banking Manager</li><li>Wealth Relationship Manager</li><li>Corporate Liability Manager</li><li>Deposit Mobilization Officer</li></ul><a href="course-detail.html?course=Liability%20Banking" class="btn btn-outline">Read More</a> <a href="apply.html" class="btn btn-gold">Apply Now</a></div>
-            
-            <!-- Asset Banking -->
-            <div class="course-card"><h4>Asset Banking</h4><ul><li>Asset Manager</li><li>Credit Manager</li><li>Loan Manager</li><li>Credit Analyst</li><li>Underwriting Manager</li><li>Portfolio Manager</li><li>Collections Manager</li><li>MSME Banking Manager</li></ul><a href="course-detail.html?course=Asset%20Banking" class="btn btn-outline">Read More</a> <a href="apply.html" class="btn btn-gold">Apply Now</a></div>
-            
-            <!-- Team Supervisor -->
-            <div class="course-card"><h4>Team Supervisor</h4><ul><li>Team Leadership</li><li>Performance Monitoring</li><li>Task Allocation</li><li>Reporting</li><li>Policy Compliance</li></ul><a href="course-detail.html?course=Team%20Supervisor" class="btn btn-outline">Read More</a> <a href="apply.html" class="btn btn-gold">Apply Now</a></div>
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap:20px; margin-top:24px;">
+                <div style="background:rgba(255,255,255,0.05); padding:20px; border-radius:16px; border:1px solid rgba(255,255,255,0.1);">
+                    <i class="fas fa-user-graduate" style="font-size:2rem; color:#c49a2b;"></i>
+                    <h4 style="color:white; margin-top:10px;">Career Guidance</h4>
+                    <p style="color:#a0b8cf; font-size:0.9rem;">We guide you toward the right career path based on your skills and interests.</p>
+                </div>
+                <div style="background:rgba(255,255,255,0.05); padding:20px; border-radius:16px; border:1px solid rgba(255,255,255,0.1);">
+                    <i class="fas fa-network-wired" style="font-size:2rem; color:#c49a2b;"></i>
+                    <h4 style="color:white; margin-top:10px;">Industry Connections</h4>
+                    <p style="color:#a0b8cf; font-size:0.9rem;">We connect you with top banking and financial institutions.</p>
+                </div>
+                <div style="background:rgba(255,255,255,0.05); padding:20px; border-radius:16px; border:1px solid rgba(255,255,255,0.1);">
+                    <i class="fas fa-certificate" style="font-size:2rem; color:#c49a2b;"></i>
+                    <h4 style="color:white; margin-top:10px;">Skill Certification</h4>
+                    <p style="color:#a0b8cf; font-size:0.9rem;">Get recognized certifications that employers trust and value.</p>
+                </div>
+                <div style="background:rgba(255,255,255,0.05); padding:20px; border-radius:16px; border:1px solid rgba(255,255,255,0.1);">
+                    <i class="fas fa-handshake" style="font-size:2rem; color:#c49a2b;"></i>
+                    <h4 style="color:white; margin-top:10px;">Placement Assistance</h4>
+                    <p style="color:#a0b8cf; font-size:0.9rem;">We help you find the right opportunities based on your performance and dedication.</p>
+                </div>
+            </div>
+
+            <div style="text-align:center; margin-top:24px; padding:20px; background:rgba(255,255,255,0.05); border-radius:16px; border:1px solid rgba(255,255,255,0.1);">
+                <p style="color:#c49a2b; font-size:1.2rem; font-weight:600;">"We don't promise jobs — we prepare professionals who attract opportunities."</p>
+            </div>
+        </div>
+
+        <!-- ===== CAREER OPPORTUNITIES ===== -->
+        <div class="training-section">
+            <h3><i class="fas fa-briefcase" style="color:#c49a2b;"></i> Career Opportunities After Training</h3>
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap:16px; margin-top:16px;">
+                <div style="background:#0b2b4a; color:white; padding:16px; border-radius:12px; text-align:center;"><i class="fas fa-building" style="font-size:1.6rem; color:#c49a2b;"></i><h4 style="color:white;">Banks</h4><p style="color:#a0b8cf; font-size:0.9rem;">HDFC, ICICI, SBI, Axis, etc.</p></div>
+                <div style="background:#0b2b4a; color:white; padding:16px; border-radius:12px; text-align:center;"><i class="fas fa-university" style="font-size:1.6rem; color:#c49a2b;"></i><h4 style="color:white;">NBFCs</h4><p style="color:#a0b8cf; font-size:0.9rem;">Bajaj, L&T, Tata Capital</p></div>
+                <div style="background:#0b2b4a; color:white; padding:16px; border-radius:12px; text-align:center;"><i class="fas fa-chart-line" style="font-size:1.6rem; color:#c49a2b;"></i><h4 style="color:white;">Fintech</h4><p style="color:#a0b8cf; font-size:0.9rem;">Paytm, Razorpay, Google Pay</p></div>
+                <div style="background:#0b2b4a; color:white; padding:16px; border-radius:12px; text-align:center;"><i class="fas fa-user-tie" style="font-size:1.6rem; color:#c49a2b;"></i><h4 style="color:white;">Management</h4><p style="color:#a0b8cf; font-size:0.9rem;">Team Lead, Branch Manager</p></div>
+            </div>
+        </div>
+
+        <!-- ===== OUR SPACE (GALLERY) ===== -->
+        <div class="training-section">
+            <h3><i class="fas fa-images" style="color:#c49a2b;"></i> Our Space — Inside Dharithri</h3>
+            <p style="color:#4a5d74; margin-bottom:16px;">State-of-the-art classrooms and training facilities designed for effective learning.</p>
+            <div class="gallery-grid">
+                <img src="assets/images/classroom1.jpg" alt="Classroom 1" onerror="this.src='https://i.pinimg.com/736x/be/eb/de/beebde045a4edcad232669579860e12b.jpg'" />
+                <img src="assets/images/classroom2.jpg" alt="Classroom 2" onerror="this.src='https://i.pinimg.com/736x/a0/be/97/a0be97578c8ffcdf9fce8702a3f7a708.jpg'" />
+                <img src="assets/images/classroom3.jpg" alt="Classroom 3" onerror="this.src='https://i.pinimg.com/736x/a1/5e/fa/a15efacae5229a3d31456eb9fd2988b9.jpg'" />
+                <img src="assets/images/classroom4.jpg" alt="Classroom 4" onerror="this.src='https://i.pinimg.com/736x/ec/1c/55/ec1c55aabb0f2590662d3ad58ccd31a8.jpg'" />
+            </div>
         </div>
     </section>
 
-    <footer style="background:#061c2f; color:white; padding:40px 0; margin-top:40px;">
-        <div class="container" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:20px;">
-            <div><h4>Dharithri Manpower Training & Supply Pvt. Ltd.</h4><p style="color:#7a94ae;">Building Worth. Inspiring Generations.</p></div>
-            <div>
-                <a href="#" style="color:#7a94ae; margin:0 10px; font-size:1.4rem;"><i class="fab fa-facebook"></i></a>
-                <a href="#" style="color:#7a94ae; margin:0 10px; font-size:1.4rem;"><i class="fab fa-instagram"></i></a>
-                <a href="#" style="color:#7a94ae; margin:0 10px; font-size:1.4rem;"><i class="fab fa-linkedin"></i></a>
-                <a href="#" style="color:#7a94ae; margin:0 10px; font-size:1.4rem;"><i class="fab fa-youtube"></i></a>
-                <a href="#" style="color:#7a94ae; margin:0 10px; font-size:1.4rem;"><i class="fab fa-whatsapp"></i></a>
-            </div>
-        </div>
-    </footer>
     <script src="js/main.js"></script>
+    <script src="js/navbar.js"></script>
 </body>
 </html>
