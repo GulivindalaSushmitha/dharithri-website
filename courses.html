@@ -123,6 +123,8 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border-top: 5px solid #0d47a1;
+            display: flex;
+            flex-direction: column;
         }
 
         .course-card:hover {
@@ -152,6 +154,9 @@
 
         .course-body {
             padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .course-body p {
@@ -210,11 +215,17 @@
             font-size: 1.2rem;
         }
 
+        .course-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: auto;
+        }
+
         .enroll-btn {
-            display: inline-block;
+            flex: 1;
             background: #ffd700;
             color: #1a237e;
-            padding: 12px 30px;
+            padding: 12px 20px;
             border-radius: 30px;
             text-decoration: none;
             font-weight: 700;
@@ -222,13 +233,32 @@
             border: none;
             cursor: pointer;
             font-size: 0.95rem;
-            width: 100%;
             text-align: center;
         }
 
         .enroll-btn:hover {
             background: #f5c400;
             transform: scale(1.02);
+        }
+
+        .readmore-btn {
+            flex: 0.5;
+            background: transparent;
+            color: #0d47a1;
+            padding: 12px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid #0d47a1;
+            cursor: pointer;
+            font-size: 0.95rem;
+            text-align: center;
+        }
+
+        .readmore-btn:hover {
+            background: #0d47a1;
+            color: white;
         }
 
         /* Footer */
@@ -290,7 +320,10 @@
         <a href="about.html">About</a>
         <a href="courses.html" class="active">Courses</a>
         <a href="training.html">Training</a>
+        <a href="opportunities.html">Opportunities</a>
+        <a href="questionnaire.html">Questionnaire</a>
         <a href="contact.html">Contact</a>
+        <a href="apply.html">Apply Now</a>
     </div>
 
     <!-- Main Content -->
@@ -302,58 +335,20 @@
 
         <div class="course-grid">
 
-            <!-- Course 1: Banking Foundation -->
+            <!-- ==================== MANAGER TRAINING ==================== -->
+            
+            <!-- Course: Sales Manager -->
             <div class="course-card">
                 <div class="course-header">
-                    <h3>Banking Foundation</h3>
-                    <span class="course-code">Course Code: BFN-101</span>
+                    <h3>Sales Manager</h3>
+                    <span class="course-code">Course Code: SM-101</span>
                 </div>
                 <div class="course-body">
-                    <p>Build a strong foundation in banking operations, financial products, and customer service essentials.</p>
+                    <p>Master sales strategies, product knowledge, and customer relationship management for banking products.</p>
                     <div class="course-details">
                         <div class="course-detail-item">
                             <strong>Duration</strong>
                             <span>3 Months</span>
-                        </div>
-                        <div class="course-detail-item">
-                            <strong>Fee</strong>
-                            <span>₹25,000</span>
-                        </div>
-                        <div class="course-detail-item">
-                            <strong>Mode</strong>
-                            <span>Classroom + Online</span>
-                        </div>
-                        <div class="course-detail-item">
-                            <strong>Certification</strong>
-                            <span>Yes</span>
-                        </div>
-                    </div>
-                    <ul class="course-features">
-                        <li>Banking operations & regulations</li>
-                        <li>Financial products overview</li>
-                        <li>Customer service excellence</li>
-                        <li>Mock interviews & assessments</li>
-                    </ul>
-                    <a href="#" class="enroll-btn">Enroll Now</a>
-                </div>
-            </div>
-
-            <!-- Course 2: Advanced Banking & Finance -->
-            <div class="course-card">
-                <div class="course-header">
-                    <h3>Advanced Banking & Finance</h3>
-                    <span class="course-code">Course Code: ABF-201</span>
-                </div>
-                <div class="course-body">
-                    <p>Deep dive into corporate banking, risk management, investment strategies, and advanced financial analysis.</p>
-                    <div class="course-details">
-                        <div class="course-detail-item">
-                            <strong>Duration</strong>
-                            <span>6 Months</span>
-                        </div>
-                        <div class="course-detail-item">
-                            <strong>Fee</strong>
-                            <span>₹45,000</span>
                         </div>
                         <div class="course-detail-item">
                             <strong>Mode</strong>
@@ -363,33 +358,75 @@
                             <strong>Certification</strong>
                             <span>Yes</span>
                         </div>
+                        <div class="course-detail-item">
+                            <strong>Batch Size</strong>
+                            <span>20-25 Students</span>
+                        </div>
                     </div>
                     <ul class="course-features">
-                        <li>Corporate banking & lending</li>
-                        <li>Risk management frameworks</li>
-                        <li>Investment & portfolio analysis</li>
-                        <li>Industry projects & internships</li>
+                        <li>Product Sale strategies</li>
+                        <li>Loan Against Property</li>
+                        <li>Business Loan management</li>
+                        <li>Home Loan & Professional Loan</li>
                     </ul>
-                    <a href="#" class="enroll-btn">Enroll Now</a>
+                    <div class="course-actions">
+                        <a href="course-detail.html?code=SM-101" class="readmore-btn">Read More</a>
+                        <a href="#" class="enroll-btn">Enroll Now</a>
+                    </div>
                 </div>
             </div>
 
-            <!-- Course 3: Retail Banking & Operations -->
+            <!-- Course: Finance Manager -->
             <div class="course-card">
                 <div class="course-header">
-                    <h3>Retail Banking & Operations</h3>
-                    <span class="course-code">Course Code: RBO-301</span>
+                    <h3>Finance Manager</h3>
+                    <span class="course-code">Course Code: FM-201</span>
                 </div>
                 <div class="course-body">
-                    <p>Master retail banking processes, branch operations, account management, and digital banking solutions.</p>
+                    <p>Comprehensive training in financial management, analysis, and strategic decision-making.</p>
                     <div class="course-details">
                         <div class="course-detail-item">
                             <strong>Duration</strong>
                             <span>4 Months</span>
                         </div>
                         <div class="course-detail-item">
-                            <strong>Fee</strong>
-                            <span>₹32,000</span>
+                            <strong>Mode</strong>
+                            <span>Classroom + Practical</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Certification</strong>
+                            <span>Yes</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Batch Size</strong>
+                            <span>15-20 Students</span>
+                        </div>
+                    </div>
+                    <ul class="course-features">
+                        <li>Financial statement analysis</li>
+                        <li>Budgeting & forecasting</li>
+                        <li>Risk assessment</li>
+                        <li>Strategic financial planning</li>
+                    </ul>
+                    <div class="course-actions">
+                        <a href="course-detail.html?code=FM-201" class="readmore-btn">Read More</a>
+                        <a href="#" class="enroll-btn">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course: Ops Manager -->
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>Ops Manager</h3>
+                    <span class="course-code">Course Code: OM-301</span>
+                </div>
+                <div class="course-body">
+                    <p>Learn operations management, file analysis, and banking compliance processes.</p>
+                    <div class="course-details">
+                        <div class="course-detail-item">
+                            <strong>Duration</strong>
+                            <span>3 Months</span>
                         </div>
                         <div class="course-detail-item">
                             <strong>Mode</strong>
@@ -399,105 +436,36 @@
                             <strong>Certification</strong>
                             <span>Yes</span>
                         </div>
-                    </div>
-                    <ul class="course-features">
-                        <li>Branch operations & management</li>
-                        <li>Account opening & KYC process</li>
-                        <li>Digital banking platforms</li>
-                        <li>Documentation & compliance</li>
-                    </ul>
-                    <a href="#" class="enroll-btn">Enroll Now</a>
-                </div>
-            </div>
-
-            <!-- Course 4: Soft Skills & Leadership -->
-            <div class="course-card">
-                <div class="course-header">
-                    <h3>Soft Skills & Leadership</h3>
-                    <span class="course-code">Course Code: SSL-401</span>
-                </div>
-                <div class="course-body">
-                    <p>Enhance your communication, leadership, teamwork, and professional ethics for career growth.</p>
-                    <div class="course-details">
                         <div class="course-detail-item">
-                            <strong>Duration</strong>
-                            <span>2 Months</span>
-                        </div>
-                        <div class="course-detail-item">
-                            <strong>Fee</strong>
-                            <span>₹18,000</span>
-                        </div>
-                        <div class="course-detail-item">
-                            <strong>Mode</strong>
-                            <span>Interactive Sessions</span>
-                        </div>
-                        <div class="course-detail-item">
-                            <strong>Certification</strong>
-                            <span>Yes</span>
+                            <strong>Batch Size</strong>
+                            <span>20-25 Students</span>
                         </div>
                     </div>
                     <ul class="course-features">
-                        <li>Effective communication skills</li>
-                        <li>Leadership & team management</li>
-                        <li>Professional ethics & etiquette</li>
-                        <li>Personal branding & interviews</li>
+                        <li>File Analysis</li>
+                        <li>KYC, Banking, ITR</li>
+                        <li>RTR & Property verification</li>
+                        <li>Compliance management</li>
                     </ul>
-                    <a href="#" class="enroll-btn">Enroll Now</a>
-                </div>
-            </div>
-
-            <!-- Course 5: Digital Banking & Fintech -->
-            <div class="course-card">
-                <div class="course-header">
-                    <h3>Digital Banking & Fintech</h3>
-                    <span class="course-code">Course Code: DBF-501</span>
-                </div>
-                <div class="course-body">
-                    <p>Explore the future of banking with digital payments, blockchain, AI in finance, and fintech innovations.</p>
-                    <div class="course-details">
-                        <div class="course-detail-item">
-                            <strong>Duration</strong>
-                            <span>5 Months</span>
-                        </div>
-                        <div class="course-detail-item">
-                            <strong>Fee</strong>
-                            <span>₹38,000</span>
-                        </div>
-                        <div class="course-detail-item">
-                            <strong>Mode</strong>
-                            <span>Online + Practical</span>
-                        </div>
-                        <div class="course-detail-item">
-                            <strong>Certification</strong>
-                            <span>Yes</span>
-                        </div>
+                    <div class="course-actions">
+                        <a href="course-detail.html?code=OM-301" class="readmore-btn">Read More</a>
+                        <a href="#" class="enroll-btn">Enroll Now</a>
                     </div>
-                    <ul class="course-features">
-                        <li>Digital payment systems</li>
-                        <li>Blockchain & cryptocurrency</li>
-                        <li>AI & machine learning in finance</li>
-                        <li>Fintech startup case studies</li>
-                    </ul>
-                    <a href="#" class="enroll-btn">Enroll Now</a>
                 </div>
             </div>
 
-            <!-- Course 6: Banking Documentation & Compliance -->
+            <!-- Course: Risk Manager -->
             <div class="course-card">
                 <div class="course-header">
-                    <h3>Banking Documentation & Compliance</h3>
-                    <span class="course-code">Course Code: BDC-601</span>
+                    <h3>Risk Manager</h3>
+                    <span class="course-code">Course Code: RM-401</span>
                 </div>
                 <div class="course-body">
-                    <p>Master banking forms, documentation processes, regulatory compliance, and audit procedures.</p>
+                    <p>Master risk assessment, fraud detection, and verification processes in banking.</p>
                     <div class="course-details">
                         <div class="course-detail-item">
                             <strong>Duration</strong>
                             <span>3 Months</span>
-                        </div>
-                        <div class="course-detail-item">
-                            <strong>Fee</strong>
-                            <span>₹22,000</span>
                         </div>
                         <div class="course-detail-item">
                             <strong>Mode</strong>
@@ -507,14 +475,1164 @@
                             <strong>Certification</strong>
                             <span>Yes</span>
                         </div>
+                        <div class="course-detail-item">
+                            <strong>Batch Size</strong>
+                            <span>15-20 Students</span>
+                        </div>
                     </div>
                     <ul class="course-features">
-                        <li>Banking forms & documentation</li>
-                        <li>Regulatory compliance (RBI, SEBI)</li>
-                        <li>Audit procedures & controls</li>
-                        <li>Anti-money laundering (AML)</li>
+                        <li>Verification processes</li>
+                        <li>Fraud detection techniques</li>
+                        <li>Risk assessment frameworks</li>
+                        <li>Compliance & reporting</li>
                     </ul>
-                    <a href="#" class="enroll-btn">Enroll Now</a>
+                    <div class="course-actions">
+                        <a href="course-detail.html?code=RM-401" class="readmore-btn">Read More</a>
+                        <a href="#" class="enroll-btn">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course: Credit Manager -->
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>Credit Manager</h3>
+                    <span class="course-code">Course Code: CM-501</span>
+                </div>
+                <div class="course-body">
+                    <p>Learn credit evaluation, verification, and approval processes for banking loans.</p>
+                    <div class="course-details">
+                        <div class="course-detail-item">
+                            <strong>Duration</strong>
+                            <span>4 Months</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Mode</strong>
+                            <span>Classroom + Practical</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Certification</strong>
+                            <span>Yes</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Batch Size</strong>
+                            <span>15-20 Students</span>
+                        </div>
+                    </div>
+                    <ul class="course-features">
+                        <li>Verify & recommend files</li>
+                        <li>Approval/rejection processes</li>
+                        <li>Credit risk assessment</li>
+                        <li>Loan underwriting</li>
+                    </ul>
+                    <div class="course-actions">
+                        <a href="course-detail.html?code=CM-501" class="readmore-btn">Read More</a>
+                        <a href="#" class="enroll-btn">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course: Credit Analyst -->
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>Credit Analyst</h3>
+                    <span class="course-code">Course Code: CA-601</span>
+                </div>
+                <div class="course-body">
+                    <p>Analyze financial statements, credit risk, and make informed lending decisions.</p>
+                    <div class="course-details">
+                        <div class="course-detail-item">
+                            <strong>Duration</strong>
+                            <span>3 Months</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Mode</strong>
+                            <span>Classroom + Practical</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Certification</strong>
+                            <span>Yes</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Batch Size</strong>
+                            <span>20-25 Students</span>
+                        </div>
+                    </div>
+                    <ul class="course-features">
+                        <li>Financial statement analysis</li>
+                        <li>Credit risk assessment</li>
+                        <li>Loan eligibility evaluation</li>
+                        <li>Reporting & recommendations</li>
+                    </ul>
+                    <div class="course-actions">
+                        <a href="course-detail.html?code=CA-601" class="readmore-btn">Read More</a>
+                        <a href="#" class="enroll-btn">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course: Legal Manager -->
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>Legal Manager</h3>
+                    <span class="course-code">Course Code: LM-701</span>
+                </div>
+                <div class="course-body">
+                    <p>Master property verification, legal documentation, and compliance in banking.</p>
+                    <div class="course-details">
+                        <div class="course-detail-item">
+                            <strong>Duration</strong>
+                            <span>3 Months</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Mode</strong>
+                            <span>Classroom + Practical</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Certification</strong>
+                            <span>Yes</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Batch Size</strong>
+                            <span>15-20 Students</span>
+                        </div>
+                    </div>
+                    <ul class="course-features">
+                        <li>Property verification</li>
+                        <li>Legal documentation</li>
+                        <li>Compliance management</li>
+                        <li>Regulatory frameworks</li>
+                    </ul>
+                    <div class="course-actions">
+                        <a href="course-detail.html?code=LM-701" class="readmore-btn">Read More</a>
+                        <a href="#" class="enroll-btn">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course: Technical Manager -->
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>Technical Manager</h3>
+                    <span class="course-code">Course Code: TM-801</span>
+                </div>
+                <div class="course-body">
+                    <p>Evaluate property value based on location, market trends, and technical assessment.</p>
+                    <div class="course-details">
+                        <div class="course-detail-item">
+                            <strong>Duration</strong>
+                            <span>3 Months</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Mode</strong>
+                            <span>Classroom + Practical</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Certification</strong>
+                            <span>Yes</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Batch Size</strong>
+                            <span>15-20 Students</span>
+                        </div>
+                    </div>
+                    <ul class="course-features">
+                        <li>Property valuation techniques</li>
+                        <li>Location-based assessment</li>
+                        <li>Market trend analysis</li>
+                        <li>Technical reporting</li>
+                    </ul>
+                    <div class="course-actions">
+                        <a href="course-detail.html?code=TM-801" class="readmore-btn">Read More</a>
+                        <a href="#" class="enroll-btn">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course: Underwriting Manager -->
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>Underwriting Manager</h3>
+                    <span class="course-code">Course Code: UM-901</span>
+                </div>
+                <div class="course-body">
+                    <p>Review and approve credit risk, ensuring quality lending decisions.</p>
+                    <div class="course-details">
+                        <div class="course-detail-item">
+                            <strong>Duration</strong>
+                            <span>4 Months</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Mode</strong>
+                            <span>Classroom + Practical</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Certification</strong>
+                            <span>Yes</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Batch Size</strong>
+                            <span>15-20 Students</span>
+                        </div>
+                    </div>
+                    <ul class="course-features">
+                        <li>Credit risk review</li>
+                        <li>Approval processes</li>
+                        <li>Underwriting standards</li>
+                        <li>Quality control</li>
+                    </ul>
+                    <div class="course-actions">
+                        <a href="course-detail.html?code=UM-901" class="readmore-btn">Read More</a>
+                        <a href="#" class="enroll-btn">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course: Collections / Recovery Manager -->
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>Collections / Recovery Manager</h3>
+                    <span class="course-code">Course Code: CRM-1001</span>
+                </div>
+                <div class="course-body">
+                    <p>Manage overdue loans, recovery processes, and debt collection strategies.</p>
+                    <div class="course-details">
+                        <div class="course-detail-item">
+                            <strong>Duration</strong>
+                            <span>3 Months</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Mode</strong>
+                            <span>Classroom + Practical</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Certification</strong>
+                            <span>Yes</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Batch Size</strong>
+                            <span>20-25 Students</span>
+                        </div>
+                    </div>
+                    <ul class="course-features">
+                        <li>Overdue loan management</li>
+                        <li>Recovery strategies</li>
+                        <li>Debt collection techniques</li>
+                        <li>Legal recovery processes</li>
+                    </ul>
+                    <div class="course-actions">
+                        <a href="course-detail.html?code=CRM-1001" class="readmore-btn">Read More</a>
+                        <a href="#" class="enroll-btn">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course: Portfolio Manager -->
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>Portfolio Manager</h3>
+                    <span class="course-code">Course Code: PM-1101</span>
+                </div>
+                <div class="course-body">
+                    <p>Manage portfolios of loans, investments, and financial assets effectively.</p>
+                    <div class="course-details">
+                        <div class="course-detail-item">
+                            <strong>Duration</strong>
+                            <span>4 Months</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Mode</strong>
+                            <span>Classroom + Practical</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Certification</strong>
+                            <span>Yes</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Batch Size</strong>
+                            <span>15-20 Students</span>
+                        </div>
+                    </div>
+                    <ul class="course-features">
+                        <li>Portfolio management</li>
+                        <li>Investment strategies</li>
+                        <li>Asset allocation</li>
+                        <li>Risk monitoring</li>
+                    </ul>
+                    <div class="course-actions">
+                        <a href="course-detail.html?code=PM-1101" class="readmore-btn">Read More</a>
+                        <a href="#" class="enroll-btn">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course: Asset Manager -->
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>Asset Manager</h3>
+                    <span class="course-code">Course Code: AM-1201</span>
+                </div>
+                <div class="course-body">
+                    <p>Manage investments, financial assets, and optimize returns for clients.</p>
+                    <div class="course-details">
+                        <div class="course-detail-item">
+                            <strong>Duration</strong>
+                            <span>4 Months</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Mode</strong>
+                            <span>Classroom + Practical</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Certification</strong>
+                            <span>Yes</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Batch Size</strong>
+                            <span>15-20 Students</span>
+                        </div>
+                    </div>
+                    <ul class="course-features">
+                        <li>Asset management strategies</li>
+                        <li>Investment planning</li>
+                        <li>Portfolio optimization</li>
+                        <li>Client relationship management</li>
+                    </ul>
+                    <div class="course-actions">
+                        <a href="course-detail.html?code=AM-1201" class="readmore-btn">Read More</a>
+                        <a href="#" class="enroll-btn">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course: Asset Finance Manager -->
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>Asset Finance Manager</h3>
+                    <span class="course-code">Course Code: AFM-1301</span>
+                </div>
+                <div class="course-body">
+                    <p>Handle financing for vehicles, equipment, and other assets effectively.</p>
+                    <div class="course-details">
+                        <div class="course-detail-item">
+                            <strong>Duration</strong>
+                            <span>3 Months</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Mode</strong>
+                            <span>Classroom + Practical</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Certification</strong>
+                            <span>Yes</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Batch Size</strong>
+                            <span>20-25 Students</span>
+                        </div>
+                    </div>
+                    <ul class="course-features">
+                        <li>Vehicle financing</li>
+                        <li>Equipment financing</li>
+                        <li>Asset valuation</li>
+                        <li>Leasing & hire purchase</li>
+                    </ul>
+                    <div class="course-actions">
+                        <a href="course-detail.html?code=AFM-1301" class="readmore-btn">Read More</a>
+                        <a href="#" class="enroll-btn">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course: MSME / Business Banking Manager -->
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>MSME / Business Banking Manager</h3>
+                    <span class="course-code">Course Code: BBM-1401</span>
+                </div>
+                <div class="course-body">
+                    <p>Handle loans for small and medium businesses with specialized banking solutions.</p>
+                    <div class="course-details">
+                        <div class="course-detail-item">
+                            <strong>Duration</strong>
+                            <span>4 Months</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Mode</strong>
+                            <span>Classroom + Practical</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Certification</strong>
+                            <span>Yes</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Batch Size</strong>
+                            <span>15-20 Students</span>
+                        </div>
+                    </div>
+                    <ul class="course-features">
+                        <li>MSME loan management</li>
+                        <li>Business banking solutions</li>
+                        <li>Working capital financing</li>
+                        <li>Entrepreneur support</li>
+                    </ul>
+                    <div class="course-actions">
+                        <a href="course-detail.html?code=BBM-1401" class="readmore-btn">Read More</a>
+                        <a href="#" class="enroll-btn">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==================== ACCOUNTS TRAINING ==================== -->
+
+            <!-- Course: Accountant -->
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>Accountant</h3>
+                    <span class="course-code">Course Code: ACC-1501</span>
+                </div>
+                <div class="course-body">
+                    <p>Comprehensive training in accounting principles, financial reporting, and tax compliance.</p>
+                    <div class="course-details">
+                        <div class="course-detail-item">
+                            <strong>Duration</strong>
+                            <span>3 Months</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Mode</strong>
+                            <span>Classroom + Practical</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Certification</strong>
+                            <span>Yes</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Batch Size</strong>
+                            <span>20-25 Students</span>
+                        </div>
+                    </div>
+                    <ul class="course-features">
+                        <li>Accounting principles</li>
+                        <li>Financial reporting</li>
+                        <li>Tax compliance</li>
+                        <li>Bookkeeping & ledger management</li>
+                    </ul>
+                    <div class="course-actions">
+                        <a href="course-detail.html?code=ACC-1501" class="readmore-btn">Read More</a>
+                        <a href="#" class="enroll-btn">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course: Auditor -->
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>Auditor</h3>
+                    <span class="course-code">Course Code: AUD-1601</span>
+                </div>
+                <div class="course-body">
+                    <p>Learn auditing processes, internal controls, and compliance verification.</p>
+                    <div class="course-details">
+                        <div class="course-detail-item">
+                            <strong>Duration</strong>
+                            <span>3 Months</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Mode</strong>
+                            <span>Classroom + Practical</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Certification</strong>
+                            <span>Yes</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Batch Size</strong>
+                            <span>15-20 Students</span>
+                        </div>
+                    </div>
+                    <ul class="course-features">
+                        <li>Audit procedures</li>
+                        <li>Internal controls</li>
+                        <li>Compliance verification</li>
+                        <li>Risk assessment</li>
+                    </ul>
+                    <div class="course-actions">
+                        <a href="course-detail.html?code=AUD-1601" class="readmore-btn">Read More</a>
+                        <a href="#" class="enroll-btn">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course: Chartered Accountant -->
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>Chartered Accountant</h3>
+                    <span class="course-code">Course Code: CA-1701</span>
+                </div>
+                <div class="course-body">
+                    <p>Advanced training for CA certification with practical financial management skills.</p>
+                    <div class="course-details">
+                        <div class="course-detail-item">
+                            <strong>Duration</strong>
+                            <span>6 Months</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Mode</strong>
+                            <span>Classroom + Practical</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Certification</strong>
+                            <span>Yes</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Batch Size</strong>
+                            <span>10-15 Students</span>
+                        </div>
+                    </div>
+                    <ul class="course-features">
+                        <li>Advanced accounting</li>
+                        <li>Audit & assurance</li>
+                        <li>Taxation expertise</li>
+                        <li>Financial management</li>
+                    </ul>
+                    <div class="course-actions">
+                        <a href="course-detail.html?code=CA-1701" class="readmore-btn">Read More</a>
+                        <a href="#" class="enroll-btn">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course: Company Secretary -->
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>Company Secretary</h3>
+                    <span class="course-code">Course Code: CS-1801</span>
+                </div>
+                <div class="course-body">
+                    <p>Corporate governance, compliance management, and secretarial practices.</p>
+                    <div class="course-details">
+                        <div class="course-detail-item">
+                            <strong>Duration</strong>
+                            <span>5 Months</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Mode</strong>
+                            <span>Classroom + Practical</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Certification</strong>
+                            <span>Yes</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Batch Size</strong>
+                            <span>15-20 Students</span>
+                        </div>
+                    </div>
+                    <ul class="course-features">
+                        <li>Corporate governance</li>
+                        <li>Compliance management</li>
+                        <li>Secretarial practices</li>
+                        <li>Legal & regulatory frameworks</li>
+                    </ul>
+                    <div class="course-actions">
+                        <a href="course-detail.html?code=CS-1801" class="readmore-btn">Read More</a>
+                        <a href="#" class="enroll-btn">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==================== BRANCH TRAINING ==================== -->
+
+            <!-- Course: Teller / Cashier -->
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>Teller / Cashier</h3>
+                    <span class="course-code">Course Code: TEL-1901</span>
+                </div>
+                <div class="course-body">
+                    <p>Master cash handling, customer transactions, and teller operations.</p>
+                    <div class="course-details">
+                        <div class="course-detail-item">
+                            <strong>Duration</strong>
+                            <span>2 Months</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Mode</strong>
+                            <span>Classroom + Hands-on</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Certification</strong>
+                            <span>Yes</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Batch Size</strong>
+                            <span>25-30 Students</span>
+                        </div>
+                    </div>
+                    <ul class="course-features">
+                        <li>Cash handling</li>
+                        <li>Customer transactions</li>
+                        <li>Teller operations</li>
+                        <li>Banking software usage</li>
+                    </ul>
+                    <div class="course-actions">
+                        <a href="course-detail.html?code=TEL-1901" class="readmore-btn">Read More</a>
+                        <a href="#" class="enroll-btn">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course: Back Office / Branch Operations Executive -->
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>Back Office / Branch Operations Executive</h3>
+                    <span class="course-code">Course Code: BOE-2001</span>
+                </div>
+                <div class="course-body">
+                    <p>Learn back office operations, documentation, and branch support functions.</p>
+                    <div class="course-details">
+                        <div class="course-detail-item">
+                            <strong>Duration</strong>
+                            <span>3 Months</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Mode</strong>
+                            <span>Classroom + Practical</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Certification</strong>
+                            <span>Yes</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Batch Size</strong>
+                            <span>20-25 Students</span>
+                        </div>
+                    </div>
+                    <ul class="course-features">
+                        <li>Back office operations</li>
+                        <li>Documentation management</li>
+                        <li>Branch support functions</li>
+                        <li>Process optimization</li>
+                    </ul>
+                    <div class="course-actions">
+                        <a href="course-detail.html?code=BOE-2001" class="readmore-btn">Read More</a>
+                        <a href="#" class="enroll-btn">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course: Customer Service Officer -->
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>Customer Service Officer</h3>
+                    <span class="course-code">Course Code: CSO-2101</span>
+                </div>
+                <div class="course-body">
+                    <p>Develop customer service excellence, relationship management, and problem-solving skills.</p>
+                    <div class="course-details">
+                        <div class="course-detail-item">
+                            <strong>Duration</strong>
+                            <span>2 Months</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Mode</strong>
+                            <span>Interactive Sessions</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Certification</strong>
+                            <span>Yes</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Batch Size</strong>
+                            <span>25-30 Students</span>
+                        </div>
+                    </div>
+                    <ul class="course-features">
+                        <li>Customer service excellence</li>
+                        <li>Relationship management</li>
+                        <li>Problem-solving skills</li>
+                        <li>Communication techniques</li>
+                    </ul>
+                    <div class="course-actions">
+                        <a href="course-detail.html?code=CSO-2101" class="readmore-btn">Read More</a>
+                        <a href="#" class="enroll-btn">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==================== LIABILITY BANKING ROLES ==================== -->
+
+            <!-- Course: Liability Sales Manager -->
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>Liability Sales Manager</h3>
+                    <span class="course-code">Course Code: LSM-2201</span>
+                </div>
+                <div class="course-body">
+                    <p>Lead deposit and account acquisition strategies for banking institutions.</p>
+                    <div class="course-details">
+                        <div class="course-detail-item">
+                            <strong>Duration</strong>
+                            <span>4 Months</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Mode</strong>
+                            <span>Classroom + Practical</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Certification</strong>
+                            <span>Yes</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Batch Size</strong>
+                            <span>15-20 Students</span>
+                        </div>
+                    </div>
+                    <ul class="course-features">
+                        <li>Deposit account acquisition</li>
+                        <li>Sales strategies</li>
+                        <li>Team leadership</li>
+                        <li>Target achievement</li>
+                    </ul>
+                    <div class="course-actions">
+                        <a href="course-detail.html?code=LSM-2201" class="readmore-btn">Read More</a>
+                        <a href="#" class="enroll-btn">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course: CASA Manager -->
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>CASA Manager</h3>
+                    <span class="course-code">Course Code: CASA-2301</span>
+                </div>
+                <div class="course-body">
+                    <p>Focus on Current Account and Savings Account growth and management.</p>
+                    <div class="course-details">
+                        <div class="course-detail-item">
+                            <strong>Duration</strong>
+                            <span>3 Months</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Mode</strong>
+                            <span>Classroom + Practical</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Certification</strong>
+                            <span>Yes</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Batch Size</strong>
+                            <span>20-25 Students</span>
+                        </div>
+                    </div>
+                    <ul class="course-features">
+                        <li>CASA account management</li>
+                        <li>Account growth strategies</li>
+                        <li>Customer acquisition</li>
+                        <li>Relationship management</li>
+                    </ul>
+                    <div class="course-actions">
+                        <a href="course-detail.html?code=CASA-2301" class="readmore-btn">Read More</a>
+                        <a href="#" class="enroll-btn">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course: Relationship Manager - Liabilities -->
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>Relationship Manager - Liabilities</h3>
+                    <span class="course-code">Course Code: RML-2401</span>
+                </div>
+                <div class="course-body">
+                    <p>Acquire and manage deposit customers, build long-term banking relationships.</p>
+                    <div class="course-details">
+                        <div class="course-detail-item">
+                            <strong>Duration</strong>
+                            <span>3 Months</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Mode</strong>
+                            <span>Classroom + Practical</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Certification</strong>
+                            <span>Yes</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Batch Size</strong>
+                            <span>20-25 Students</span>
+                        </div>
+                    </div>
+                    <ul class="course-features">
+                        <li>Deposit customer management</li>
+                        <li>Relationship building</li>
+                        <li>Cross-selling</li>
+                        <li>Customer retention</li>
+                    </ul>
+                    <div class="course-actions">
+                        <a href="course-detail.html?code=RML-2401" class="readmore-btn">Read More</a>
+                        <a href="#" class="enroll-btn">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course: Branch Liability Manager -->
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>Branch Liability Manager</h3>
+                    <span class="course-code">Course Code: BLM-2501</span>
+                </div>
+                <div class="course-body">
+                    <p>Manage branch deposit targets and liability portfolio effectively.</p>
+                    <div class="course-details">
+                        <div class="course-detail-item">
+                            <strong>Duration</strong>
+                            <span>3 Months</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Mode</strong>
+                            <span>Classroom + Practical</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Certification</strong>
+                            <span>Yes</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Batch Size</strong>
+                            <span>15-20 Students</span>
+                        </div>
+                    </div>
+                    <ul class="course-features">
+                        <li>Deposit target management</li>
+                        <li>Branch liability portfolio</li>
+                        <li>Team coordination</li>
+                        <li>Performance monitoring</li>
+                    </ul>
+                    <div class="course-actions">
+                        <a href="course-detail.html?code=BLM-2501" class="readmore-btn">Read More</a>
+                        <a href="#" class="enroll-btn">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course: Retail Liability Manager -->
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>Retail Liability Manager</h3>
+                    <span class="course-code">Course Code: RLM-2601</span>
+                </div>
+                <div class="course-body">
+                    <p>Handle individual customer deposits and retail liability products.</p>
+                    <div class="course-details">
+                        <div class="course-detail-item">
+                            <strong>Duration</strong>
+                            <span>3 Months</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Mode</strong>
+                            <span>Classroom + Practical</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Certification</strong>
+                            <span>Yes</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Batch Size</strong>
+                            <span>20-25 Students</span>
+                        </div>
+                    </div>
+                    <ul class="course-features">
+                        <li>Retail deposit management</li>
+                        <li>Customer acquisition</li>
+                        <li>Product knowledge</li>
+                        <li>Sales techniques</li>
+                    </ul>
+                    <div class="course-actions">
+                        <a href="course-detail.html?code=RLM-2601" class="readmore-btn">Read More</a>
+                        <a href="#" class="enroll-btn">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course: Priority Banking Manager -->
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>Priority Banking Manager</h3>
+                    <span class="course-code">Course Code: PBM-2701</span>
+                </div>
+                <div class="course-body">
+                    <p>Manage high-value customers and premium banking relationships.</p>
+                    <div class="course-details">
+                        <div class="course-detail-item">
+                            <strong>Duration</strong>
+                            <span>4 Months</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Mode</strong>
+                            <span>Classroom + Practical</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Certification</strong>
+                            <span>Yes</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Batch Size</strong>
+                            <span>15-20 Students</span>
+                        </div>
+                    </div>
+                    <ul class="course-features">
+                        <li>High-value customer management</li>
+                        <li>Premium banking solutions</li>
+                        <li>Wealth management</li>
+                        <li>Exclusive services</li>
+                    </ul>
+                    <div class="course-actions">
+                        <a href="course-detail.html?code=PBM-2701" class="readmore-btn">Read More</a>
+                        <a href="#" class="enroll-btn">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course: Wealth Relationship Manager -->
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>Wealth Relationship Manager</h3>
+                    <span class="course-code">Course Code: WRM-2801</span>
+                </div>
+                <div class="course-body">
+                    <p>Manage affluent customers with investment and deposit relationship solutions.</p>
+                    <div class="course-details">
+                        <div class="course-detail-item">
+                            <strong>Duration</strong>
+                            <span>4 Months</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Mode</strong>
+                            <span>Classroom + Practical</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Certification</strong>
+                            <span>Yes</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Batch Size</strong>
+                            <span>15-20 Students</span>
+                        </div>
+                    </div>
+                    <ul class="course-features">
+                        <li>Affluent customer management</li>
+                        <li>Investment solutions</li>
+                        <li>Deposit relationships</li>
+                        <li>Portfolio advisory</li>
+                    </ul>
+                    <div class="course-actions">
+                        <a href="course-detail.html?code=WRM-2801" class="readmore-btn">Read More</a>
+                        <a href="#" class="enroll-btn">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course: Corporate Liability Manager -->
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>Corporate Liability Manager</h3>
+                    <span class="course-code">Course Code: CLM-2901</span>
+                </div>
+                <div class="course-body">
+                    <p>Acquire corporate deposits, salary accounts, and manage corporate relationships.</p>
+                    <div class="course-details">
+                        <div class="course-detail-item">
+                            <strong>Duration</strong>
+                            <span>4 Months</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Mode</strong>
+                            <span>Classroom + Practical</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Certification</strong>
+                            <span>Yes</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Batch Size</strong>
+                            <span>15-20 Students</span>
+                        </div>
+                    </div>
+                    <ul class="course-features">
+                        <li>Corporate deposit acquisition</li>
+                        <li>Salary account management</li>
+                        <li>Corporate relationship building</li>
+                        <li>B2B banking solutions</li>
+                    </ul>
+                    <div class="course-actions">
+                        <a href="course-detail.html?code=CLM-2901" class="readmore-btn">Read More</a>
+                        <a href="#" class="enroll-btn">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course: CASA Sales Officer -->
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>CASA Sales Officer</h3>
+                    <span class="course-code">Course Code: CSO-3001</span>
+                </div>
+                <div class="course-body">
+                    <p>Acquire savings and current accounts with effective sales techniques.</p>
+                    <div class="course-details">
+                        <div class="course-detail-item">
+                            <strong>Duration</strong>
+                            <span>2 Months</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Mode</strong>
+                            <span>Classroom + Practical</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Certification</strong>
+                            <span>Yes</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Batch Size</strong>
+                            <span>25-30 Students</span>
+                        </div>
+                    </div>
+                    <ul class="course-features">
+                        <li>Savings account acquisition</li>
+                        <li>Current account sales</li>
+                        <li>Customer outreach</li>
+                        <li>Target achievement</li>
+                    </ul>
+                    <div class="course-actions">
+                        <a href="course-detail.html?code=CSO-3001" class="readmore-btn">Read More</a>
+                        <a href="#" class="enroll-btn">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course: Deposit Mobilization Officer -->
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>Deposit Mobilization Officer</h3>
+                    <span class="course-code">Course Code: DMO-3101</span>
+                </div>
+                <div class="course-body">
+                    <p>Focus on bringing deposits to the bank through strategic mobilization.</p>
+                    <div class="course-details">
+                        <div class="course-detail-item">
+                            <strong>Duration</strong>
+                            <span>3 Months</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Mode</strong>
+                            <span>Classroom + Practical</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Certification</strong>
+                            <span>Yes</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Batch Size</strong>
+                            <span>20-25 Students</span>
+                        </div>
+                    </div>
+                    <ul class="course-features">
+                        <li>Deposit mobilization strategies</li>
+                        <li>Customer acquisition</li>
+                        <li>Market outreach</li>
+                        <li>Relationship building</li>
+                    </ul>
+                    <div class="course-actions">
+                        <a href="course-detail.html?code=DMO-3101" class="readmore-btn">Read More</a>
+                        <a href="#" class="enroll-btn">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==================== FLOOR MANAGER / TEAM SUPERVISOR ==================== -->
+
+            <!-- Course: Floor Manager -->
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>Floor Manager</h3>
+                    <span class="course-code">Course Code: FM-3201</span>
+                </div>
+                <div class="course-body">
+                    <p>Supervise and guide teams, ensure work quality, and manage daily operations.</p>
+                    <div class="course-details">
+                        <div class="course-detail-item">
+                            <strong>Duration</strong>
+                            <span>4 Months</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Mode</strong>
+                            <span>Classroom + Practical</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Certification</strong>
+                            <span>Yes</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Batch Size</strong>
+                            <span>15-20 Students</span>
+                        </div>
+                    </div>
+                    <ul class="course-features">
+                        <li>Team supervision & guidance</li>
+                        <li>Task assignment & monitoring</li>
+                        <li>Performance management</li>
+                        <li>Quality assurance & compliance</li>
+                        <li>Training & development</li>
+                        <li>Cross-department coordination</li>
+                    </ul>
+                    <div class="course-actions">
+                        <a href="course-detail.html?code=FM-3201" class="readmore-btn">Read More</a>
+                        <a href="#" class="enroll-btn">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course: Team Supervisor -->
+            <div class="course-card">
+                <div class="course-header">
+                    <h3>Team Supervisor</h3>
+                    <span class="course-code">Course Code: TS-3301</span>
+                </div>
+                <div class="course-body">
+                    <p>Lead teams, monitor performance, and ensure policy compliance and quality.</p>
+                    <div class="course-details">
+                        <div class="course-detail-item">
+                            <strong>Duration</strong>
+                            <span>3 Months</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Mode</strong>
+                            <span>Classroom + Practical</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Certification</strong>
+                            <span>Yes</span>
+                        </div>
+                        <div class="course-detail-item">
+                            <strong>Batch Size</strong>
+                            <span>20-25 Students</span>
+                        </div>
+                    </div>
+                    <ul class="course-features">
+                        <li>Team leadership & guidance</li>
+                        <li>Performance monitoring</li>
+                        <li>Policy compliance</li>
+                        <li>Quality management</li>
+                        <li>Reporting & productivity</li>
+                        <li>New employee training</li>
+                    </ul>
+                    <div class="course-actions">
+                        <a href="course-detail.html?code=TS-3301" class="readmore-btn">Read More</a>
+                        <a href="#" class="enroll-btn">Enroll Now</a>
+                    </div>
                 </div>
             </div>
 

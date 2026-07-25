@@ -451,7 +451,10 @@
         <a href="about.html">About</a>
         <a href="courses.html" class="active">Courses</a>
         <a href="training.html">Training</a>
+        <a href="opportunities.html">Opportunities</a>
+        <a href="questionnaire.html">Questionnaire</a>
         <a href="contact.html">Contact</a>
+        <a href="apply.html">Apply Now</a>
     </div>
 
     <!-- Main Content -->
@@ -466,10 +469,10 @@
             <!-- Header -->
             <div class="course-detail-header">
                 <div class="course-badge">📚 Course</div>
-                <h2 id="courseTitle">Banking Foundation</h2>
-                <p class="subtitle" id="courseSubtitle">Build a strong foundation in banking operations, financial products, and customer service essentials.</p>
+                <h2 id="courseTitle">Sales Manager</h2>
+                <p class="subtitle" id="courseSubtitle">Master sales strategies, product knowledge, and customer relationship management for banking products.</p>
                 <div style="margin-top: 15px;">
-                    <span style="background: rgba(255,215,0,0.2); padding: 4px 15px; border-radius: 20px; font-size: 0.9rem;" id="courseCode">Course Code: BFN-101</span>
+                    <span style="background: rgba(255,215,0,0.2); padding: 4px 15px; border-radius: 20px; font-size: 0.9rem;" id="courseCode">Course Code: SM-101</span>
                 </div>
             </div>
 
@@ -479,7 +482,7 @@
                 <!-- Overview -->
                 <div class="overview-section">
                     <h3>📖 Course Overview</h3>
-                    <p id="courseOverview">This comprehensive Banking Foundation course is designed to provide you with a solid understanding of the banking industry. You'll learn about various banking operations, financial products, regulatory frameworks, and customer service excellence. The course combines theoretical knowledge with practical applications to prepare you for a successful career in the banking sector.</p>
+                    <p id="courseOverview">This Sales Manager course is designed to equip you with the skills and knowledge needed to excel in banking sales. You'll learn various product sales strategies, customer relationship management, and how to handle different loan products including Loan Against Property, Business Loans, Home Loans, and Professional Loans. The course combines theoretical knowledge with practical sales scenarios.</p>
                 </div>
 
                 <!-- Info Grid -->
@@ -490,7 +493,7 @@
                     </div>
                     <div class="info-item">
                         <span class="label">📅 Mode</span>
-                        <span class="value" id="courseMode">Classroom + Online</span>
+                        <span class="value" id="courseMode">Classroom + Practical</span>
                     </div>
                     <div class="info-item">
                         <span class="label">📜 Certification</span>
@@ -510,30 +513,7 @@
                 <div class="learn-section">
                     <h3>🎯 What You'll Learn</h3>
                     <div class="learn-grid" id="courseLearn">
-                        <div class="learn-item">
-                            <span class="icon">📊</span>
-                            <span class="text">Banking operations & regulations</span>
-                        </div>
-                        <div class="learn-item">
-                            <span class="icon">💰</span>
-                            <span class="text">Financial products overview</span>
-                        </div>
-                        <div class="learn-item">
-                            <span class="icon">🤝</span>
-                            <span class="text">Customer service excellence</span>
-                        </div>
-                        <div class="learn-item">
-                            <span class="icon">📝</span>
-                            <span class="text">Mock interviews & assessments</span>
-                        </div>
-                        <div class="learn-item">
-                            <span class="icon">📋</span>
-                            <span class="text">Documentation & KYC process</span>
-                        </div>
-                        <div class="learn-item">
-                            <span class="icon">💻</span>
-                            <span class="text">Digital banking platforms</span>
-                        </div>
+                        <!-- Will be populated by JavaScript -->
                     </div>
                 </div>
 
@@ -541,30 +521,7 @@
                 <div class="curriculum-section">
                     <h3>📚 Course Curriculum</h3>
                     <ul class="curriculum-list" id="courseCurriculum">
-                        <li>
-                            <span class="module">Module 1: Introduction to Banking</span>
-                            <span class="duration">2 Weeks</span>
-                        </li>
-                        <li>
-                            <span class="module">Module 2: Banking Operations</span>
-                            <span class="duration">3 Weeks</span>
-                        </li>
-                        <li>
-                            <span class="module">Module 3: Financial Products</span>
-                            <span class="duration">2 Weeks</span>
-                        </li>
-                        <li>
-                            <span class="module">Module 4: Customer Service & Communication</span>
-                            <span class="duration">2 Weeks</span>
-                        </li>
-                        <li>
-                            <span class="module">Module 5: Documentation & Compliance</span>
-                            <span class="duration">2 Weeks</span>
-                        </li>
-                        <li>
-                            <span class="module">Module 6: Final Assessment & Project</span>
-                            <span class="duration">1 Week</span>
-                        </li>
+                        <!-- Will be populated by JavaScript -->
                     </ul>
                 </div>
 
@@ -573,18 +530,7 @@
                     <h3>🚀 Career Opportunities</h3>
                     <p style="color: #555; margin-bottom: 15px;">After completing this course, you'll be eligible for the following roles:</p>
                     <div class="career-grid" id="courseCareers">
-                        <div class="career-item">
-                            <div class="role">📌 Banking Associate</div>
-                        </div>
-                        <div class="career-item">
-                            <div class="role">📌 Customer Service Officer</div>
-                        </div>
-                        <div class="career-item">
-                            <div class="role">📌 Operations Executive</div>
-                        </div>
-                        <div class="career-item">
-                            <div class="role">📌 Relationship Manager</div>
-                        </div>
+                        <!-- Will be populated by JavaScript -->
                     </div>
                 </div>
 
@@ -608,207 +554,1142 @@
 
     <script>
         // ================================================================
-        // COURSE DATA - All courses with their details (NO FEES MENTIONED)
+        // COURSE DATA - All courses with their details
         // ================================================================
         const courseData = {
-            'BFN-101': {
-                title: 'Banking Foundation',
-                code: 'BFN-101',
-                subtitle: 'Build a strong foundation in banking operations, financial products, and customer service essentials.',
-                overview: 'This comprehensive Banking Foundation course is designed to provide you with a solid understanding of the banking industry. You\'ll learn about various banking operations, financial products, regulatory frameworks, and customer service excellence. The course combines theoretical knowledge with practical applications to prepare you for a successful career in the banking sector.',
+
+            // ==================== MANAGER TRAINING ====================
+
+            'SM-101': {
+                title: 'Sales Manager',
+                code: 'SM-101',
+                subtitle: 'Master sales strategies, product knowledge, and customer relationship management for banking products.',
+                overview: 'This Sales Manager course is designed to equip you with the skills and knowledge needed to excel in banking sales. You\'ll learn various product sales strategies, customer relationship management, and how to handle different loan products including Loan Against Property, Business Loans, Home Loans, and Professional Loans. The course combines theoretical knowledge with practical sales scenarios.',
                 duration: '3 Months',
-                mode: 'Classroom + Online',
+                mode: 'Classroom + Practical',
                 certification: 'Yes',
                 batch: '20-25 Students',
                 batchDate: 'Starting June 2026',
                 learn: [
-                    'Banking operations & regulations',
-                    'Financial products overview',
-                    'Customer service excellence',
-                    'Mock interviews & assessments',
-                    'Documentation & KYC process',
-                    'Digital banking platforms'
+                    'Product Sale Strategies',
+                    'Loan Against Property Management',
+                    'Business Loan Processing',
+                    'Home Loan & Professional Loan',
+                    'Customer Relationship Management',
+                    'Sales Target Achievement'
                 ],
                 curriculum: [
-                    { module: 'Module 1: Introduction to Banking', duration: '2 Weeks' },
-                    { module: 'Module 2: Banking Operations', duration: '3 Weeks' },
-                    { module: 'Module 3: Financial Products', duration: '2 Weeks' },
-                    { module: 'Module 4: Customer Service & Communication', duration: '2 Weeks' },
-                    { module: 'Module 5: Documentation & Compliance', duration: '2 Weeks' },
-                    { module: 'Module 6: Final Assessment & Project', duration: '1 Week' }
+                    { module: 'Module 1: Introduction to Banking Sales', duration: '2 Weeks' },
+                    { module: 'Module 2: Product Knowledge (Loans)', duration: '3 Weeks' },
+                    { module: 'Module 3: Sales Strategies & Techniques', duration: '2 Weeks' },
+                    { module: 'Module 4: Customer Relationship Management', duration: '2 Weeks' },
+                    { module: 'Module 5: Compliance & Documentation', duration: '2 Weeks' },
+                    { module: 'Module 6: Practical Sales Training', duration: '2 Weeks' }
                 ],
                 careers: [
-                    { role: 'Banking Associate' },
-                    { role: 'Customer Service Officer' },
-                    { role: 'Operations Executive' },
-                    { role: 'Relationship Manager' }
+                    { role: 'Sales Manager' },
+                    { role: 'Relationship Manager' },
+                    { role: 'Loan Officer' },
+                    { role: 'Branch Sales Head' }
                 ]
             },
-            'ABF-201': {
-                title: 'Advanced Banking & Finance',
-                code: 'ABF-201',
-                subtitle: 'Deep dive into corporate banking, risk management, investment strategies, and advanced financial analysis.',
-                overview: 'The Advanced Banking & Finance course is designed for professionals who want to excel in corporate banking and financial management. This course covers sophisticated banking concepts, risk assessment frameworks, investment analysis, and strategic financial decision-making. You\'ll work on real-world case studies and gain hands-on experience with industry-standard tools.',
-                duration: '6 Months',
+
+            'FM-201': {
+                title: 'Finance Manager',
+                code: 'FM-201',
+                subtitle: 'Comprehensive training in financial management, analysis, and strategic decision-making.',
+                overview: 'The Finance Manager course provides comprehensive training in financial management, analysis, and strategic decision-making. You\'ll learn financial statement analysis, budgeting, forecasting, risk assessment, and strategic financial planning. This course is ideal for professionals aspiring to become finance managers in banking and financial institutions.',
+                duration: '4 Months',
                 mode: 'Classroom + Practical',
                 certification: 'Yes',
                 batch: '15-20 Students',
                 batchDate: 'Starting July 2026',
                 learn: [
-                    'Corporate banking & lending',
-                    'Risk management frameworks',
-                    'Investment & portfolio analysis',
-                    'Industry projects & internships',
-                    'Financial modeling & valuation',
-                    'Strategic financial planning'
+                    'Financial Statement Analysis',
+                    'Budgeting & Forecasting',
+                    'Risk Assessment',
+                    'Strategic Financial Planning',
+                    'Financial Reporting',
+                    'Investment Decisions'
                 ],
                 curriculum: [
-                    { module: 'Module 1: Corporate Banking', duration: '3 Weeks' },
-                    { module: 'Module 2: Risk Management', duration: '4 Weeks' },
-                    { module: 'Module 3: Investment Analysis', duration: '3 Weeks' },
-                    { module: 'Module 4: Financial Modeling', duration: '4 Weeks' },
+                    { module: 'Module 1: Financial Accounting', duration: '3 Weeks' },
+                    { module: 'Module 2: Financial Analysis', duration: '3 Weeks' },
+                    { module: 'Module 3: Budgeting & Forecasting', duration: '2 Weeks' },
+                    { module: 'Module 4: Risk Management', duration: '2 Weeks' },
                     { module: 'Module 5: Strategic Finance', duration: '3 Weeks' },
                     { module: 'Module 6: Capstone Project', duration: '3 Weeks' }
                 ],
                 careers: [
-                    { role: 'Corporate Banker' },
-                    { role: 'Risk Analyst' },
-                    { role: 'Investment Analyst' },
-                    { role: 'Financial Manager' }
+                    { role: 'Finance Manager' },
+                    { role: 'Financial Analyst' },
+                    { role: 'Budget Analyst' },
+                    { role: 'Financial Controller' }
                 ]
             },
-            'RBO-301': {
-                title: 'Retail Banking & Operations',
-                code: 'RBO-301',
-                subtitle: 'Master retail banking processes, branch operations, account management, and digital banking solutions.',
-                overview: 'This Retail Banking & Operations course focuses on the practical aspects of branch banking and retail operations. You\'ll learn how to manage day-to-day banking activities, handle customer accounts, process transactions, and implement digital banking solutions. The course includes hands-on training with banking software and real branch scenarios.',
-                duration: '4 Months',
+
+            'OM-301': {
+                title: 'Ops Manager',
+                code: 'OM-301',
+                subtitle: 'Learn operations management, file analysis, and banking compliance processes.',
+                overview: 'The Operations Manager course focuses on banking operations management, file analysis, KYC processes, and compliance. You\'ll learn how to manage banking operations, analyze files, handle KYC documentation, and ensure compliance with banking regulations. This course is perfect for professionals looking to excel in banking operations.',
+                duration: '3 Months',
                 mode: 'Classroom + Hands-on',
                 certification: 'Yes',
                 batch: '20-25 Students',
                 batchDate: 'Starting August 2026',
                 learn: [
-                    'Branch operations & management',
-                    'Account opening & KYC process',
-                    'Digital banking platforms',
-                    'Documentation & compliance',
-                    'Transaction processing',
-                    'Customer relationship management'
+                    'File Analysis',
+                    'KYC Processes',
+                    'Banking Documentation',
+                    'ITR & RTR Management',
+                    'Property Verification',
+                    'Compliance Management'
                 ],
                 curriculum: [
-                    { module: 'Module 1: Branch Banking', duration: '2 Weeks' },
-                    { module: 'Module 2: Account Management', duration: '3 Weeks' },
-                    { module: 'Module 3: Digital Banking', duration: '2 Weeks' },
-                    { module: 'Module 4: Compliance & Documentation', duration: '2 Weeks' },
-                    { module: 'Module 5: Transaction Processing', duration: '2 Weeks' },
-                    { module: 'Module 6: Practical Training', duration: '3 Weeks' }
+                    { module: 'Module 1: Banking Operations', duration: '2 Weeks' },
+                    { module: 'Module 2: File Analysis & Documentation', duration: '3 Weeks' },
+                    { module: 'Module 3: KYC & Compliance', duration: '2 Weeks' },
+                    { module: 'Module 4: ITR & RTR Management', duration: '2 Weeks' },
+                    { module: 'Module 5: Property Verification', duration: '2 Weeks' },
+                    { module: 'Module 6: Practical Training', duration: '2 Weeks' }
                 ],
                 careers: [
-                    { role: 'Branch Manager' },
                     { role: 'Operations Manager' },
-                    { role: 'Retail Banker' },
-                    { role: 'Account Manager' }
+                    { role: 'Branch Operations Head' },
+                    { role: 'Compliance Officer' },
+                    { role: 'Process Manager' }
                 ]
             },
-            'SSL-401': {
-                title: 'Soft Skills & Leadership',
-                code: 'SSL-401',
-                subtitle: 'Enhance your communication, leadership, teamwork, and professional ethics for career growth.',
-                overview: 'The Soft Skills & Leadership course is designed to transform you into a confident and effective professional. You\'ll develop essential workplace skills including communication, presentation, negotiation, leadership, and emotional intelligence. This course is ideal for professionals at any stage of their career who want to accelerate their growth.',
-                duration: '2 Months',
-                mode: 'Interactive Sessions',
+
+            'RM-401': {
+                title: 'Risk Manager',
+                code: 'RM-401',
+                subtitle: 'Master risk assessment, fraud detection, and verification processes in banking.',
+                overview: 'The Risk Manager course is designed to provide comprehensive knowledge of risk assessment, fraud detection, and verification processes in banking. You\'ll learn various risk management frameworks, fraud detection techniques, verification processes, and compliance reporting. This course is ideal for professionals aspiring to become risk managers in banking institutions.',
+                duration: '3 Months',
+                mode: 'Classroom + Practical',
                 certification: 'Yes',
-                batch: '25-30 Students',
+                batch: '15-20 Students',
                 batchDate: 'Starting September 2026',
                 learn: [
-                    'Effective communication skills',
-                    'Leadership & team management',
-                    'Professional ethics & etiquette',
-                    'Personal branding & interviews',
-                    'Conflict resolution',
-                    'Emotional intelligence'
+                    'Verification Processes',
+                    'Fraud Detection Techniques',
+                    'Risk Assessment Frameworks',
+                    'Compliance & Reporting',
+                    'Risk Mitigation Strategies',
+                    'Internal Controls'
                 ],
                 curriculum: [
-                    { module: 'Module 1: Communication Mastery', duration: '2 Weeks' },
-                    { module: 'Module 2: Leadership Development', duration: '2 Weeks' },
-                    { module: 'Module 3: Professional Ethics', duration: '1 Week' },
-                    { module: 'Module 4: Personal Branding', duration: '1 Week' },
-                    { module: 'Module 5: Emotional Intelligence', duration: '1 Week' },
-                    { module: 'Module 6: Practical Workshops', duration: '1 Week' }
+                    { module: 'Module 1: Introduction to Risk Management', duration: '2 Weeks' },
+                    { module: 'Module 2: Fraud Detection', duration: '3 Weeks' },
+                    { module: 'Module 3: Risk Assessment', duration: '2 Weeks' },
+                    { module: 'Module 4: Verification Processes', duration: '2 Weeks' },
+                    { module: 'Module 5: Compliance & Reporting', duration: '2 Weeks' },
+                    { module: 'Module 6: Practical Case Studies', duration: '2 Weeks' }
                 ],
                 careers: [
-                    { role: 'Team Leader' },
-                    { role: 'Project Manager' },
-                    { role: 'Training Manager' },
-                    { role: 'HR Executive' }
+                    { role: 'Risk Manager' },
+                    { role: 'Fraud Analyst' },
+                    { role: 'Compliance Manager' },
+                    { role: 'Risk Assessment Officer' }
                 ]
             },
-            'DBF-501': {
-                title: 'Digital Banking & Fintech',
-                code: 'DBF-501',
-                subtitle: 'Explore the future of banking with digital payments, blockchain, AI in finance, and fintech innovations.',
-                overview: 'The Digital Banking & Fintech course is your gateway to the future of financial services. You\'ll explore cutting-edge technologies including blockchain, cryptocurrency, AI-powered banking, and digital payment systems. This course is perfect for tech-savvy professionals who want to lead the digital transformation in banking.',
-                duration: '5 Months',
-                mode: 'Online + Practical',
+
+            'CM-501': {
+                title: 'Credit Manager',
+                code: 'CM-501',
+                subtitle: 'Learn credit evaluation, verification, and approval processes for banking loans.',
+                overview: 'The Credit Manager course provides comprehensive training in credit evaluation, verification, and loan approval processes. You\'ll learn how to verify files, recommend loan applications, make approval/rejection decisions, and manage credit risk. This course is perfect for professionals aspiring to become credit managers in banking institutions.',
+                duration: '4 Months',
+                mode: 'Classroom + Practical',
                 certification: 'Yes',
                 batch: '15-20 Students',
                 batchDate: 'Starting October 2026',
                 learn: [
-                    'Digital payment systems',
-                    'Blockchain & cryptocurrency',
-                    'AI & machine learning in finance',
-                    'Fintech startup case studies',
-                    'Digital banking platforms',
-                    'Cybersecurity in banking'
+                    'File Verification',
+                    'Recommendation Processes',
+                    'Approval/Rejection Decisions',
+                    'Credit Risk Assessment',
+                    'Loan Underwriting',
+                    'Credit Policy Implementation'
                 ],
                 curriculum: [
-                    { module: 'Module 1: Digital Payments', duration: '2 Weeks' },
-                    { module: 'Module 2: Blockchain & Crypto', duration: '3 Weeks' },
-                    { module: 'Module 3: AI in Finance', duration: '3 Weeks' },
-                    { module: 'Module 4: Fintech Innovations', duration: '2 Weeks' },
-                    { module: 'Module 5: Cybersecurity', duration: '2 Weeks' },
-                    { module: 'Module 6: Capstone Project', duration: '3 Weeks' }
+                    { module: 'Module 1: Credit Evaluation', duration: '3 Weeks' },
+                    { module: 'Module 2: Verification Processes', duration: '2 Weeks' },
+                    { module: 'Module 3: Loan Approval & Rejection', duration: '3 Weeks' },
+                    { module: 'Module 4: Credit Risk Management', duration: '2 Weeks' },
+                    { module: 'Module 5: Credit Policy & Compliance', duration: '2 Weeks' },
+                    { module: 'Module 6: Practical Training', duration: '3 Weeks' }
                 ],
                 careers: [
-                    { role: 'Fintech Analyst' },
-                    { role: 'Digital Banking Manager' },
-                    { role: 'Blockchain Developer' },
-                    { role: 'AI Finance Specialist' }
+                    { role: 'Credit Manager' },
+                    { role: 'Credit Analyst' },
+                    { role: 'Underwriting Manager' },
+                    { role: 'Risk Manager' }
                 ]
             },
-            'BDC-601': {
-                title: 'Banking Documentation & Compliance',
-                code: 'BDC-601',
-                subtitle: 'Master banking forms, documentation processes, regulatory compliance, and audit procedures.',
-                overview: 'This specialized course focuses on the critical aspects of banking documentation and regulatory compliance. You\'ll learn how to handle various banking forms, understand RBI and SEBI regulations, implement anti-money laundering (AML) procedures, and conduct internal audits. This course is essential for professionals working in compliance, audit, or operations.',
+
+            'CA-601': {
+                title: 'Credit Analyst',
+                code: 'CA-601',
+                subtitle: 'Analyze financial statements, credit risk, and make informed lending decisions.',
+                overview: 'The Credit Analyst course is designed to provide you with the skills needed to analyze financial statements, assess credit risk, and make informed lending decisions. You\'ll learn financial statement analysis, credit risk assessment, loan eligibility evaluation, and reporting. This course is ideal for professionals seeking careers in credit analysis.',
                 duration: '3 Months',
                 mode: 'Classroom + Practical',
                 certification: 'Yes',
                 batch: '20-25 Students',
                 batchDate: 'Starting November 2026',
                 learn: [
-                    'Banking forms & documentation',
-                    'Regulatory compliance (RBI, SEBI)',
-                    'Audit procedures & controls',
-                    'Anti-money laundering (AML)',
-                    'KYC & due diligence',
-                    'Risk assessment & reporting'
+                    'Financial Statement Analysis',
+                    'Credit Risk Assessment',
+                    'Loan Eligibility Evaluation',
+                    'Reporting & Recommendations',
+                    'Credit Scoring',
+                    'Risk Mitigation'
                 ],
                 curriculum: [
-                    { module: 'Module 1: Banking Documentation', duration: '2 Weeks' },
-                    { module: 'Module 2: Regulatory Compliance', duration: '3 Weeks' },
-                    { module: 'Module 3: Audit & Controls', duration: '2 Weeks' },
-                    { module: 'Module 4: AML & KYC', duration: '2 Weeks' },
-                    { module: 'Module 5: Risk Assessment', duration: '2 Weeks' },
+                    { module: 'Module 1: Financial Analysis', duration: '2 Weeks' },
+                    { module: 'Module 2: Credit Assessment', duration: '3 Weeks' },
+                    { module: 'Module 3: Loan Evaluation', duration: '2 Weeks' },
+                    { module: 'Module 4: Reporting & Documentation', duration: '2 Weeks' },
+                    { module: 'Module 5: Credit Risk Management', duration: '2 Weeks' },
+                    { module: 'Module 6: Practical Case Studies', duration: '2 Weeks' }
+                ],
+                careers: [
+                    { role: 'Credit Analyst' },
+                    { role: 'Risk Analyst' },
+                    { role: 'Financial Analyst' },
+                    { role: 'Loan Officer' }
+                ]
+            },
+
+            'LM-701': {
+                title: 'Legal Manager',
+                code: 'LM-701',
+                subtitle: 'Master property verification, legal documentation, and compliance in banking.',
+                overview: 'The Legal Manager course provides comprehensive training in property verification, legal documentation, and compliance management in banking. You\'ll learn how to verify property documents, ensure legal compliance, and manage regulatory frameworks. This course is perfect for professionals seeking careers in banking legal departments.',
+                duration: '3 Months',
+                mode: 'Classroom + Practical',
+                certification: 'Yes',
+                batch: '15-20 Students',
+                batchDate: 'Starting December 2026',
+                learn: [
+                    'Property Verification',
+                    'Legal Documentation',
+                    'Compliance Management',
+                    'Regulatory Frameworks',
+                    'Contract Review',
+                    'Legal Risk Assessment'
+                ],
+                curriculum: [
+                    { module: 'Module 1: Property Law in Banking', duration: '2 Weeks' },
+                    { module: 'Module 2: Legal Documentation', duration: '3 Weeks' },
+                    { module: 'Module 3: Compliance Management', duration: '2 Weeks' },
+                    { module: 'Module 4: Regulatory Frameworks', duration: '2 Weeks' },
+                    { module: 'Module 5: Contract Management', duration: '2 Weeks' },
                     { module: 'Module 6: Practical Training', duration: '2 Weeks' }
                 ],
                 careers: [
+                    { role: 'Legal Manager' },
                     { role: 'Compliance Officer' },
-                    { role: 'Audit Executive' },
-                    { role: 'Risk Analyst' },
+                    { role: 'Legal Advisor' },
                     { role: 'Documentation Specialist' }
                 ]
+            },
+
+            'TM-801': {
+                title: 'Technical Manager',
+                code: 'TM-801',
+                subtitle: 'Evaluate property value based on location, market trends, and technical assessment.',
+                overview: 'The Technical Manager course provides training in property valuation, location-based assessment, market trend analysis, and technical reporting. You\'ll learn how to evaluate property value, analyze market trends, and provide technical assessments for banking purposes. This course is ideal for professionals in property valuation and technical management.',
+                duration: '3 Months',
+                mode: 'Classroom + Practical',
+                certification: 'Yes',
+                batch: '15-20 Students',
+                batchDate: 'Starting January 2027',
+                learn: [
+                    'Property Valuation Techniques',
+                    'Location-Based Assessment',
+                    'Market Trend Analysis',
+                    'Technical Reporting',
+                    'Property Inspection',
+                    'Valuation Methodologies'
+                ],
+                curriculum: [
+                    { module: 'Module 1: Property Valuation', duration: '2 Weeks' },
+                    { module: 'Module 2: Location Analysis', duration: '2 Weeks' },
+                    { module: 'Module 3: Market Trends', duration: '2 Weeks' },
+                    { module: 'Module 4: Technical Reporting', duration: '2 Weeks' },
+                    { module: 'Module 5: Inspection Techniques', duration: '2 Weeks' },
+                    { module: 'Module 6: Practical Training', duration: '3 Weeks' }
+                ],
+                careers: [
+                    { role: 'Technical Manager' },
+                    { role: 'Property Valuer' },
+                    { role: 'Real Estate Analyst' },
+                    { role: 'Technical Analyst' }
+                ]
+            },
+
+            'UM-901': {
+                title: 'Underwriting Manager',
+                code: 'UM-901',
+                subtitle: 'Review and approve credit risk, ensuring quality lending decisions.',
+                overview: 'The Underwriting Manager course is designed to provide comprehensive knowledge of credit risk review, approval processes, and underwriting standards. You\'ll learn how to evaluate credit applications, make approval decisions, ensure underwriting standards, and maintain quality control. This course is perfect for professionals aspiring to become underwriting managers.',
+                duration: '4 Months',
+                mode: 'Classroom + Practical',
+                certification: 'Yes',
+                batch: '15-20 Students',
+                batchDate: 'Starting February 2027',
+                learn: [
+                    'Credit Risk Review',
+                    'Approval Processes',
+                    'Underwriting Standards',
+                    'Quality Control',
+                    'Risk Assessment',
+                    'Decision Making'
+                ],
+                curriculum: [
+                    { module: 'Module 1: Credit Underwriting', duration: '3 Weeks' },
+                    { module: 'Module 2: Risk Review', duration: '3 Weeks' },
+                    { module: 'Module 3: Approval Processes', duration: '2 Weeks' },
+                    { module: 'Module 4: Quality Control', duration: '2 Weeks' },
+                    { module: 'Module 5: Underwriting Standards', duration: '2 Weeks' },
+                    { module: 'Module 6: Practical Training', duration: '3 Weeks' }
+                ],
+                careers: [
+                    { role: 'Underwriting Manager' },
+                    { role: 'Credit Manager' },
+                    { role: 'Risk Manager' },
+                    { role: 'Loan Processing Manager' }
+                ]
+            },
+
+            'CRM-1001': {
+                title: 'Collections / Recovery Manager',
+                code: 'CRM-1001',
+                subtitle: 'Manage overdue loans, recovery processes, and debt collection strategies.',
+                overview: 'The Collections & Recovery Manager course provides comprehensive training in managing overdue loans, recovery processes, and debt collection strategies. You\'ll learn how to handle delinquent accounts, implement recovery strategies, manage legal recovery processes, and improve collection efficiency. This course is ideal for professionals in collections and recovery management.',
+                duration: '3 Months',
+                mode: 'Classroom + Practical',
+                certification: 'Yes',
+                batch: '20-25 Students',
+                batchDate: 'Starting March 2027',
+                learn: [
+                    'Overdue Loan Management',
+                    'Recovery Strategies',
+                    'Debt Collection Techniques',
+                    'Legal Recovery Processes',
+                    'Customer Communication',
+                    'Collection Efficiency'
+                ],
+                curriculum: [
+                    { module: 'Module 1: Collections Management', duration: '2 Weeks' },
+                    { module: 'Module 2: Recovery Strategies', duration: '3 Weeks' },
+                    { module: 'Module 3: Legal Recovery', duration: '2 Weeks' },
+                    { module: 'Module 4: Customer Communication', duration: '2 Weeks' },
+                    { module: 'Module 5: Performance Metrics', duration: '2 Weeks' },
+                    { module: 'Module 6: Practical Training', duration: '2 Weeks' }
+                ],
+                careers: [
+                    { role: 'Collections Manager' },
+                    { role: 'Recovery Manager' },
+                    { role: 'Credit Control Manager' },
+                    { role: 'Debt Collection Specialist' }
+                ]
+            },
+
+            'PM-1101': {
+                title: 'Portfolio Manager',
+                code: 'PM-1101',
+                subtitle: 'Manage portfolios of loans, investments, and financial assets effectively.',
+                overview: 'The Portfolio Manager course is designed to provide comprehensive training in portfolio management, investment strategies, asset allocation, and risk monitoring. You\'ll learn how to manage loan portfolios, investment portfolios, and financial assets effectively. This course is perfect for professionals aspiring to become portfolio managers.',
+                duration: '4 Months',
+                mode: 'Classroom + Practical',
+                certification: 'Yes',
+                batch: '15-20 Students',
+                batchDate: 'Starting April 2027',
+                learn: [
+                    'Portfolio Management',
+                    'Investment Strategies',
+                    'Asset Allocation',
+                    'Risk Monitoring',
+                    'Performance Analysis',
+                    'Portfolio Optimization'
+                ],
+                curriculum: [
+                    { module: 'Module 1: Portfolio Management', duration: '3 Weeks' },
+                    { module: 'Module 2: Investment Strategies', duration: '3 Weeks' },
+                    { module: 'Module 3: Asset Allocation', duration: '2 Weeks' },
+                    { module: 'Module 4: Risk Monitoring', duration: '2 Weeks' },
+                    { module: 'Module 5: Performance Analysis', duration: '2 Weeks' },
+                    { module: 'Module 6: Capstone Project', duration: '3 Weeks' }
+                ],
+                careers: [
+                    { role: 'Portfolio Manager' },
+                    { role: 'Investment Manager' },
+                    { role: 'Asset Manager' },
+                    { role: 'Financial Analyst' }
+                ]
+            },
+
+            'AM-1201': {
+                title: 'Asset Manager',
+                code: 'AM-1201',
+                subtitle: 'Manage investments, financial assets, and optimize returns for clients.',
+                overview: 'The Asset Manager course provides training in asset management strategies, investment planning, portfolio optimization, and client relationship management. You\'ll learn how to manage financial assets, optimize returns, and build strong client relationships. This course is ideal for professionals seeking careers in asset management.',
+                duration: '4 Months',
+                mode: 'Classroom + Practical',
+                certification: 'Yes',
+                batch: '15-20 Students',
+                batchDate: 'Starting May 2027',
+                learn: [
+                    'Asset Management Strategies',
+                    'Investment Planning',
+                    'Portfolio Optimization',
+                    'Client Relationship Management',
+                    'Risk Management',
+                    'Performance Monitoring'
+                ],
+                curriculum: [
+                    { module: 'Module 1: Asset Management', duration: '3 Weeks' },
+                    { module: 'Module 2: Investment Planning', duration: '3 Weeks' },
+                    { module: 'Module 3: Portfolio Optimization', duration: '2 Weeks' },
+                    { module: 'Module 4: Client Management', duration: '2 Weeks' },
+                    { module: 'Module 5: Risk Management', duration: '2 Weeks' },
+                    { module: 'Module 6: Practical Training', duration: '3 Weeks' }
+                ],
+                careers: [
+                    { role: 'Asset Manager' },
+                    { role: 'Investment Advisor' },
+                    { role: 'Portfolio Manager' },
+                    { role: 'Wealth Manager' }
+                ]
+            },
+
+            'AFM-1301': {
+                title: 'Asset Finance Manager',
+                code: 'AFM-1301',
+                subtitle: 'Handle financing for vehicles, equipment, and other assets effectively.',
+                overview: 'The Asset Finance Manager course provides specialized training in vehicle financing, equipment financing, asset valuation, and leasing. You\'ll learn how to handle various asset finance products, evaluate assets, and manage leasing and hire purchase agreements. This course is perfect for professionals in asset finance.',
+                duration: '3 Months',
+                mode: 'Classroom + Practical',
+                certification: 'Yes',
+                batch: '20-25 Students',
+                batchDate: 'Starting June 2027',
+                learn: [
+                    'Vehicle Financing',
+                    'Equipment Financing',
+                    'Asset Valuation',
+                    'Leasing & Hire Purchase',
+                    'Risk Assessment',
+                    'Documentation Management'
+                ],
+                curriculum: [
+                    { module: 'Module 1: Asset Finance Products', duration: '2 Weeks' },
+                    { module: 'Module 2: Vehicle Financing', duration: '2 Weeks' },
+                    { module: 'Module 3: Equipment Financing', duration: '2 Weeks' },
+                    { module: 'Module 4: Asset Valuation', duration: '2 Weeks' },
+                    { module: 'Module 5: Leasing & Documentation', duration: '2 Weeks' },
+                    { module: 'Module 6: Practical Training', duration: '3 Weeks' }
+                ],
+                careers: [
+                    { role: 'Asset Finance Manager' },
+                    { role: 'Leasing Manager' },
+                    { role: 'Equipment Finance Specialist' },
+                    { role: 'Asset Valuation Officer' }
+                ]
+            },
+
+            'BBM-1401': {
+                title: 'MSME / Business Banking Manager',
+                code: 'BBM-1401',
+                subtitle: 'Handle loans for small and medium businesses with specialized banking solutions.',
+                overview: 'The MSME/Business Banking Manager course is designed to provide comprehensive knowledge of MSME banking, business loans, working capital financing, and entrepreneur support. You\'ll learn how to handle small and medium business banking, manage working capital finance, and support entrepreneurs. This course is ideal for professionals in business banking.',
+                duration: '4 Months',
+                mode: 'Classroom + Practical',
+                certification: 'Yes',
+                batch: '15-20 Students',
+                batchDate: 'Starting July 2027',
+                learn: [
+                    'MSME Loan Management',
+                    'Business Banking Solutions',
+                    'Working Capital Financing',
+                    'Entrepreneur Support',
+                    'Business Credit Assessment',
+                    'Relationship Management'
+                ],
+                curriculum: [
+                    { module: 'Module 1: MSME Banking', duration: '3 Weeks' },
+                    { module: 'Module 2: Business Loans', duration: '3 Weeks' },
+                    { module: 'Module 3: Working Capital Finance', duration: '2 Weeks' },
+                    { module: 'Module 4: Entrepreneur Support', duration: '2 Weeks' },
+                    { module: 'Module 5: Credit Assessment', duration: '2 Weeks' },
+                    { module: 'Module 6: Practical Training', duration: '3 Weeks' }
+                ],
+                careers: [
+                    { role: 'MSME Banking Manager' },
+                    { role: 'Business Banking Manager' },
+                    { role: 'Relationship Manager' },
+                    { role: 'Loan Officer' }
+                ]
+            },
+
+            // ==================== ACCOUNTS TRAINING ====================
+
+            'ACC-1501': {
+                title: 'Accountant',
+                code: 'ACC-1501',
+                subtitle: 'Comprehensive training in accounting principles, financial reporting, and tax compliance.',
+                overview: 'The Accountant course provides comprehensive training in accounting principles, financial reporting, tax compliance, and bookkeeping. You\'ll learn how to manage accounts, prepare financial statements, handle tax returns, and ensure compliance with accounting standards. This course is perfect for professionals aspiring to become accountants.',
+                duration: '3 Months',
+                mode: 'Classroom + Practical',
+                certification: 'Yes',
+                batch: '20-25 Students',
+                batchDate: 'Starting August 2027',
+                learn: [
+                    'Accounting Principles',
+                    'Financial Reporting',
+                    'Tax Compliance',
+                    'Bookkeeping & Ledger Management',
+                    'Financial Statement Preparation',
+                    'Accounting Software'
+                ],
+                curriculum: [
+                    { module: 'Module 1: Accounting Fundamentals', duration: '2 Weeks' },
+                    { module: 'Module 2: Financial Reporting', duration: '3 Weeks' },
+                    { module: 'Module 3: Tax Compliance', duration: '2 Weeks' },
+                    { module: 'Module 4: Bookkeeping', duration: '2 Weeks' },
+                    { module: 'Module 5: Accounting Software', duration: '2 Weeks' },
+                    { module: 'Module 6: Practical Training', duration: '2 Weeks' }
+                ],
+                careers: [
+                    { role: 'Accountant' },
+                    { role: 'Senior Accountant' },
+                    { role: 'Accounts Manager' },
+                    { role: 'Finance Executive' }
+                ]
+            },
+
+            'AUD-1601': {
+                title: 'Auditor',
+                code: 'AUD-1601',
+                subtitle: 'Learn auditing processes, internal controls, and compliance verification.',
+                overview: 'The Auditor course provides training in auditing processes, internal controls, compliance verification, and risk assessment. You\'ll learn how to conduct audits, evaluate internal controls, verify compliance, and assess risks. This course is ideal for professionals seeking careers in auditing.',
+                duration: '3 Months',
+                mode: 'Classroom + Practical',
+                certification: 'Yes',
+                batch: '15-20 Students',
+                batchDate: 'Starting September 2027',
+                learn: [
+                    'Audit Procedures',
+                    'Internal Controls',
+                    'Compliance Verification',
+                    'Risk Assessment',
+                    'Audit Reporting',
+                    'Regulatory Compliance'
+                ],
+                curriculum: [
+                    { module: 'Module 1: Auditing Fundamentals', duration: '2 Weeks' },
+                    { module: 'Module 2: Internal Controls', duration: '3 Weeks' },
+                    { module: 'Module 3: Compliance Audits', duration: '2 Weeks' },
+                    { module: 'Module 4: Risk Assessment', duration: '2 Weeks' },
+                    { module: 'Module 5: Audit Reporting', duration: '2 Weeks' },
+                    { module: 'Module 6: Practical Training', duration: '2 Weeks' }
+                ],
+                careers: [
+                    { role: 'Auditor' },
+                    { role: 'Internal Auditor' },
+                    { role: 'Compliance Officer' },
+                    { role: 'Risk Auditor' }
+                ]
+            },
+
+            'CA-1701': {
+                title: 'Chartered Accountant',
+                code: 'CA-1701',
+                subtitle: 'Advanced training for CA certification with practical financial management skills.',
+                overview: 'The Chartered Accountant course provides advanced training for CA certification, covering advanced accounting, audit & assurance, taxation, and financial management. You\'ll learn the skills needed to become a certified chartered accountant with practical financial management expertise. This course is perfect for CA aspirants.',
+                duration: '6 Months',
+                mode: 'Classroom + Practical',
+                certification: 'Yes',
+                batch: '10-15 Students',
+                batchDate: 'Starting October 2027',
+                learn: [
+                    'Advanced Accounting',
+                    'Audit & Assurance',
+                    'Taxation Expertise',
+                    'Financial Management',
+                    'Corporate Laws',
+                    'Professional Ethics'
+                ],
+                curriculum: [
+                    { module: 'Module 1: Advanced Accounting', duration: '4 Weeks' },
+                    { module: 'Module 2: Audit & Assurance', duration: '3 Weeks' },
+                    { module: 'Module 3: Taxation', duration: '4 Weeks' },
+                    { module: 'Module 4: Financial Management', duration: '3 Weeks' },
+                    { module: 'Module 5: Corporate Laws', duration: '3 Weeks' },
+                    { module: 'Module 6: Capstone Project', duration: '4 Weeks' }
+                ],
+                careers: [
+                    { role: 'Chartered Accountant' },
+                    { role: 'Finance Director' },
+                    { role: 'Tax Consultant' },
+                    { role: 'Audit Partner' }
+                ]
+            },
+
+            'CS-1801': {
+                title: 'Company Secretary',
+                code: 'CS-1801',
+                subtitle: 'Corporate governance, compliance management, and secretarial practices.',
+                overview: 'The Company Secretary course provides comprehensive training in corporate governance, compliance management, secretarial practices, and legal frameworks. You\'ll learn how to manage corporate governance, ensure compliance, handle secretarial duties, and navigate legal regulations. This course is ideal for CS aspirants.',
+                duration: '5 Months',
+                mode: 'Classroom + Practical',
+                certification: 'Yes',
+                batch: '15-20 Students',
+                batchDate: 'Starting November 2027',
+                learn: [
+                    'Corporate Governance',
+                    'Compliance Management',
+                    'Secretarial Practices',
+                    'Legal & Regulatory Frameworks',
+                    'Board Meeting Management',
+                    'Corporate Laws'
+                ],
+                curriculum: [
+                    { module: 'Module 1: Corporate Governance', duration: '3 Weeks' },
+                    { module: 'Module 2: Compliance Management', duration: '3 Weeks' },
+                    { module: 'Module 3: Secretarial Practices', duration: '2 Weeks' },
+                    { module: 'Module 4: Legal Frameworks', duration: '3 Weeks' },
+                    { module: 'Module 5: Corporate Laws', duration: '2 Weeks' },
+                    { module: 'Module 6: Practical Training', duration: '3 Weeks' }
+                ],
+                careers: [
+                    { role: 'Company Secretary' },
+                    { role: 'Compliance Officer' },
+                    { role: 'Corporate Governance Manager' },
+                    { role: 'Legal Advisor' }
+                ]
+            },
+
+            // ==================== BRANCH TRAINING ====================
+
+            'TEL-1901': {
+                title: 'Teller / Cashier',
+                code: 'TEL-1901',
+                subtitle: 'Master cash handling, customer transactions, and teller operations.',
+                overview: 'The Teller/Cashier course provides practical training in cash handling, customer transactions, teller operations, and banking software usage. You\'ll learn how to handle cash, process customer transactions, use banking software, and provide excellent customer service. This course is perfect for entry-level banking professionals.',
+                duration: '2 Months',
+                mode: 'Classroom + Hands-on',
+                certification: 'Yes',
+                batch: '25-30 Students',
+                batchDate: 'Starting December 2027',
+                learn: [
+                    'Cash Handling',
+                    'Customer Transactions',
+                    'Teller Operations',
+                    'Banking Software Usage',
+                    'Customer Service',
+                    'Cash Reconciliation'
+                ],
+                curriculum: [
+                    { module: 'Module 1: Cash Handling', duration: '1 Week' },
+                    { module: 'Module 2: Teller Operations', duration: '2 Weeks' },
+                    { module: 'Module 3: Banking Software', duration: '2 Weeks' },
+                    { module: 'Module 4: Customer Transactions', duration: '2 Weeks' },
+                    { module: 'Module 5: Customer Service', duration: '1 Week' },
+                    { module: 'Module 6: Practical Training', duration: '2 Weeks' }
+                ],
+                careers: [
+                    { role: 'Teller' },
+                    { role: 'Cashier' },
+                    { role: 'Customer Service Associate' },
+                    { role: 'Branch Operations Executive' }
+                ]
+            },
+
+            'BOE-2001': {
+                title: 'Back Office / Branch Operations Executive',
+                code: 'BOE-2001',
+                subtitle: 'Learn back office operations, documentation, and branch support functions.',
+                overview: 'The Back Office/Branch Operations Executive course provides training in back office operations, documentation management, branch support functions, and process optimization. You\'ll learn how to manage back office operations, handle documentation, support branch functions, and optimize processes. This course is ideal for aspiring operations executives.',
+                duration: '3 Months',
+                mode: 'Classroom + Practical',
+                certification: 'Yes',
+                batch: '20-25 Students',
+                batchDate: 'Starting January 2028',
+                learn: [
+                    'Back Office Operations',
+                    'Documentation Management',
+                    'Branch Support Functions',
+                    'Process Optimization',
+                    'Data Management',
+                    'Compliance'
+                ],
+                curriculum: [
+                    { module: 'Module 1: Back Office Operations', duration: '2 Weeks' },
+                    { module: 'Module 2: Documentation Management', duration: '3 Weeks' },
+                    { module: 'Module 3: Branch Support', duration: '2 Weeks' },
+                    { module: 'Module 4: Process Optimization', duration: '2 Weeks' },
+                    { module: 'Module 5: Data Management', duration: '2 Weeks' },
+                    { module: 'Module 6: Practical Training', duration: '2 Weeks' }
+                ],
+                careers: [
+                    { role: 'Back Office Executive' },
+                    { role: 'Branch Operations Executive' },
+                    { role: 'Process Coordinator' },
+                    { role: 'Documentation Specialist' }
+                ]
+            },
+
+            'CSO-2101': {
+                title: 'Customer Service Officer',
+                code: 'CSO-2101',
+                subtitle: 'Develop customer service excellence, relationship management, and problem-solving skills.',
+                overview: 'The Customer Service Officer course provides training in customer service excellence, relationship management, problem-solving skills, and communication techniques. You\'ll learn how to provide exceptional customer service, handle customer queries, resolve complaints, and build strong relationships. This course is perfect for customer-facing roles.',
+                duration: '2 Months',
+                mode: 'Interactive Sessions',
+                certification: 'Yes',
+                batch: '25-30 Students',
+                batchDate: 'Starting February 2028',
+                learn: [
+                    'Customer Service Excellence',
+                    'Relationship Management',
+                    'Problem-Solving Skills',
+                    'Communication Techniques',
+                    'Complaint Handling',
+                    'Customer Retention'
+                ],
+                curriculum: [
+                    { module: 'Module 1: Customer Service Fundamentals', duration: '1 Week' },
+                    { module: 'Module 2: Communication Skills', duration: '2 Weeks' },
+                    { module: 'Module 3: Problem Solving', duration: '2 Weeks' },
+                    { module: 'Module 4: Complaint Handling', duration: '1 Week' },
+                    { module: 'Module 5: Relationship Management', duration: '1 Week' },
+                    { module: 'Module 6: Practical Training', duration: '2 Weeks' }
+                ],
+                careers: [
+                    { role: 'Customer Service Officer' },
+                    { role: 'Customer Relationship Manager' },
+                    { role: 'Client Service Executive' },
+                    { role: 'Branch Customer Service Head' }
+                ]
+            },
+
+            // ==================== LIABILITY BANKING ROLES ====================
+
+            'LSM-2201': {
+                title: 'Liability Sales Manager',
+                code: 'LSM-2201',
+                subtitle: 'Lead deposit and account acquisition strategies for banking institutions.',
+                overview: 'The Liability Sales Manager course is designed to provide comprehensive training in deposit and account acquisition, sales strategies, team leadership, and target achievement. You\'ll learn how to lead teams, develop sales strategies, acquire deposits and accounts, and achieve targets. This course is ideal for professionals in liability sales.',
+                duration: '4 Months',
+                mode: 'Classroom + Practical',
+                certification: 'Yes',
+                batch: '15-20 Students',
+                batchDate: 'Starting March 2028',
+                learn: [
+                    'Deposit Account Acquisition',
+                    'Sales Strategies',
+                    'Team Leadership',
+                    'Target Achievement',
+                    'Liability Products',
+                    'Customer Acquisition'
+                ],
+                curriculum: [
+                    { module: 'Module 1: Liability Banking', duration: '3 Weeks' },
+                    { module: 'Module 2: Sales Strategies', duration: '3 Weeks' },
+                    { module: 'Module 3: Team Leadership', duration: '2 Weeks' },
+                    { module: 'Module 4: Target Management', duration: '2 Weeks' },
+                    { module: 'Module 5: Product Knowledge', duration: '2 Weeks' },
+                    { module: 'Module 6: Practical Training', duration: '3 Weeks' }
+                ],
+                careers: [
+                    { role: 'Liability Sales Manager' },
+                    { role: 'Deposit Acquisition Manager' },
+                    { role: 'Sales Team Lead' },
+                    { role: 'Relationship Manager' }
+                ]
+            },
+
+            'CASA-2301': {
+                title: 'CASA Manager',
+                code: 'CASA-2301',
+                subtitle: 'Focus on Current Account and Savings Account growth and management.',
+                overview: 'The CASA Manager course provides specialized training in Current Account and Savings Account management, growth strategies, customer acquisition, and relationship management. You\'ll learn how to manage CASA portfolios, grow customer base, and build strong relationships. This course is perfect for CASA banking professionals.',
+                duration: '3 Months',
+                mode: 'Classroom + Practical',
+                certification: 'Yes',
+                batch: '20-25 Students',
+                batchDate: 'Starting April 2028',
+                learn: [
+                    'CASA Account Management',
+                    'Account Growth Strategies',
+                    'Customer Acquisition',
+                    'Relationship Management',
+                    'CASA Products',
+                    'Portfolio Management'
+                ],
+                curriculum: [
+                    { module: 'Module 1: CASA Banking', duration: '2 Weeks' },
+                    { module: 'Module 2: Growth Strategies', duration: '3 Weeks' },
+                    { module: 'Module 3: Customer Acquisition', duration: '2 Weeks' },
+                    { module: 'Module 4: Relationship Management', duration: '2 Weeks' },
+                    { module: 'Module 5: Product Knowledge', duration: '2 Weeks' },
+                    { module: 'Module 6: Practical Training', duration: '2 Weeks' }
+                ],
+                careers: [
+                    { role: 'CASA Manager' },
+                    { role: 'Branch Manager' },
+                    { role: 'Relationship Manager' },
+                    { role: 'Deposit Manager' }
+                ]
+            },
+
+            'RML-2401': {
+                title: 'Relationship Manager - Liabilities',
+                code: 'RML-2401',
+                subtitle: 'Acquire and manage deposit customers, build long-term banking relationships.',
+                overview: 'The Relationship Manager - Liabilities course provides training in deposit customer management, relationship building, cross-selling, and customer retention. You\'ll learn how to acquire and manage deposit customers, build long-term relationships, cross-sell products, and ensure customer retention. This course is ideal for relationship managers.',
+                duration: '3 Months',
+                mode: 'Classroom + Practical',
+                certification: 'Yes',
+                batch: '20-25 Students',
+                batchDate: 'Starting May 2028',
+                learn: [
+                    'Deposit Customer Management',
+                    'Relationship Building',
+                    'Cross-Selling',
+                    'Customer Retention',
+                    'Portfolio Management',
+                    'Customer Engagement'
+                ],
+                curriculum: [
+                    { module: 'Module 1: Relationship Banking', duration: '2 Weeks' },
+                    { module: 'Module 2: Customer Management', duration: '3 Weeks' },
+                    { module: 'Module 3: Relationship Building', duration: '2 Weeks' },
+                    { module: 'Module 4: Cross-Selling', duration: '2 Weeks' },
+                    { module: 'Module 5: Retention Strategies', duration: '2 Weeks' },
+                    { module: 'Module 6: Practical Training', duration: '2 Weeks' }
+                ],
+                careers: [
+                    { role: 'Relationship Manager' },
+                    { role: 'Customer Relationship Manager' },
+                    { role: 'Portfolio Manager' },
+                    { role: 'Branch Manager' }
+                ]
+            },
+
+            'BLM-2501': {
+                title: 'Branch Liability Manager',
+                code: 'BLM-2501',
+                subtitle: 'Manage branch deposit targets and liability portfolio effectively.',
+                overview: 'The Branch Liability Manager course provides comprehensive training in deposit target management, branch liability portfolio, team coordination, and performance monitoring. You\'ll learn how to manage branch deposits, monitor performance, coordinate teams, and achieve targets. This course is perfect for branch liability management.',
+                duration: '3 Months',
+                mode: 'Classroom + Practical',
+                certification: 'Yes',
+                batch: '15-20 Students',
+                batchDate: 'Starting June 2028',
+                learn: [
+                    'Deposit Target Management',
+                    'Branch Liability Portfolio',
+                    'Team Coordination',
+                    'Performance Monitoring',
+                    'Liability Products',
+                    'Strategic Planning'
+                ],
+                curriculum: [
+                    { module: 'Module 1: Branch Liability', duration: '2 Weeks' },
+                    { module: 'Module 2: Target Management', duration: '3 Weeks' },
+                    { module: 'Module 3: Team Coordination', duration: '2 Weeks' },
+                    { module: 'Module 4: Performance Monitoring', duration: '2 Weeks' },
+                    { module: 'Module 5: Product Knowledge', duration: '2 Weeks' },
+                    { module: 'Module 6: Practical Training', duration: '2 Weeks' }
+                ],
+                careers: [
+                    { role: 'Branch Liability Manager' },
+                    { role: 'Branch Manager' },
+                    { role: 'Deposit Manager' },
+                    { role: 'Regional Manager' }
+                ]
+            },
+
+            'RLM-2601': {
+                title: 'Retail Liability Manager',
+                code: 'RLM-2601',
+                subtitle: 'Handle individual customer deposits and retail liability products.',
+                overview: 'The Retail Liability Manager course provides training in retail deposit management, customer acquisition, product knowledge, and sales techniques. You\'ll learn how to manage retail deposits, acquire customers, sell products, and build relationships. This course is ideal for retail banking professionals.',
+                duration: '3 Months',
+                mode: 'Classroom + Practical',
+                certification: 'Yes',
+                batch: '20-25 Students',
+                batchDate: 'Starting July 2028',
+                learn: [
+                    'Retail Deposit Management',
+                    'Customer Acquisition',
+                    'Product Knowledge',
+                    'Sales Techniques',
+                    'Relationship Building',
+                    'Portfolio Growth'
+                ],
+                curriculum: [
+                    { module: 'Module 1: Retail Banking', duration: '2 Weeks' },
+                    { module: 'Module 2: Deposit Management', duration: '3 Weeks' },
+                    { module: 'Module 3: Customer Acquisition', duration: '2 Weeks' },
+                    { module: 'Module 4: Sales Techniques', duration: '2 Weeks' },
+                    { module: 'Module 5: Product Knowledge', duration: '2 Weeks' },
+                    { module: 'Module 6: Practical Training', duration: '2 Weeks' }
+                ],
+                careers: [
+                    { role: 'Retail Liability Manager' },
+                    { role: 'Retail Banking Manager' },
+                    { role: 'Deposit Manager' },
+                    { role: 'Branch Manager' }
+                ]
+            },
+
+            'PBM-2701': {
+                title: 'Priority Banking Manager',
+                code: 'PBM-2701',
+                subtitle: 'Manage high-value customers and premium banking relationships.',
+                overview: 'The Priority Banking Manager course provides training in high-value customer management, premium banking solutions, wealth management, and exclusive services. You\'ll learn how to manage high-value customers, provide premium banking services, manage wealth, and deliver exclusive customer experiences. This course is perfect for priority banking professionals.',
+                duration: '4 Months',
+                mode: 'Classroom + Practical',
+                certification: 'Yes',
+                batch: '15-20 Students',
+                batchDate: 'Starting August 2028',
+                learn: [
+                    'High-Value Customer Management',
+                    'Premium Banking Solutions',
+                    'Wealth Management',
+                    'Exclusive Services',
+                    'Customer Retention',
+                    'Relationship Building'
+                ],
+                curriculum: [
+                    { module: 'Module 1: Priority Banking', duration: '3 Weeks' },
+                    { module: 'Module 2: High-Value Customers', duration: '3 Weeks' },
+                    { module: 'Module 3: Wealth Management', duration: '2 Weeks' },
+                    { module: 'Module 4: Premium Services', duration: '2 Weeks' },
+                    { module: 'Module 5: Retention Strategies', duration: '2 Weeks' },
+                    { module: 'Module 6: Practical Training', duration: '3 Weeks' }
+                ],
+                careers: [
+                    { role: 'Priority Banking Manager' },
+                    { role: 'Wealth Manager' },
+                    { role: 'Premium Banking Head' },
+                    { role: 'Private Banker' }
+                ]
+            },
+
+            'WRM-2801': {
+                title: 'Wealth Relationship Manager',
+                code: 'WRM-2801',
+                subtitle: 'Manage affluent customers with investment and deposit relationship solutions.',
+                overview: 'The Wealth Relationship Manager course provides comprehensive training in affluent customer management, investment solutions, deposit relationships, and portfolio advisory. You\'ll learn how to manage high-net-worth customers, provide investment advice, manage deposits, and offer portfolio advisory services. This course is ideal for wealth management professionals.',
+                duration: '4 Months',
+                mode: 'Classroom + Practical',
+                certification: 'Yes',
+                batch: '15-20 Students',
+                batchDate: 'Starting September 2028',
+                learn: [
+                    'Affluent Customer Management',
+                    'Investment Solutions',
+                    'Deposit Relationships',
+                    'Portfolio Advisory',
+                    'Wealth Planning',
+                    'Risk Management'
+                ],
+                curriculum: [
+                    { module: 'Module 1: Wealth Management', duration: '3 Weeks' },
+                    { module: 'Module 2: Investment Solutions', duration: '3 Weeks' },
+                    { module: 'Module 3: Portfolio Advisory', duration: '2 Weeks' },
+                    { module: 'Module 4: Customer Management', duration: '2 Weeks' },
+                    { module: 'Module 5: Wealth Planning', duration: '2 Weeks' },
+                    { module: 'Module 6: Practical Training', duration: '3 Weeks' }
+                ],
+                careers: [
+                    { role: 'Wealth Relationship Manager' },
+                    { role: 'Wealth Manager' },
+                    { role: 'Investment Advisor' },
+                    { role: 'Private Banker' }
+                ]
+            },
+
+            'CLM-2901': {
+                title: 'Corporate Liability Manager',
+                code: 'CLM-2901',
+                subtitle: 'Acquire corporate deposits, salary accounts, and manage corporate relationships.',
+                overview: 'The Corporate Liability Manager course provides training in corporate deposit acquisition, salary account management, corporate relationship building, and B2B banking solutions. You\'ll learn how to acquire corporate deposits, manage salary accounts, build corporate relationships, and provide B2B banking solutions. This course is perfect for corporate banking professionals.',
+                duration: '4 Months',
+                mode: 'Classroom + Practical',
+                certification: 'Yes',
+                batch: '15-20 Students',
+                batchDate: 'Starting October 2028',
+                learn: [
+                    'Corporate Deposit Acquisition',
+                    'Salary Account Management',
+                    'Corporate Relationship Building',
+                    'B2B Banking Solutions',
+                    'Corporate Banking Products',
+                    'Client Management'
+                ],
+                curriculum: [
+                    { module: 'Module 1: Corporate Banking', duration: '3 Weeks' },
+                    { module: 'Module 2: Deposit Acquisition', duration: '3 Weeks' },
+                    { module: 'Module 3: Relationship Building', duration: '2 Weeks' },
+                    { module: 'Module 4: B2B Solutions', duration: '2 Weeks' },
+                    { module: 'Module 5: Product Knowledge', duration: '2 Weeks' },
+                    { module: 'Module 6: Practical Training', duration: '3 Weeks' }
+                ],
+                careers: [
+                    { role: 'Corporate Liability Manager' },
+                    { role: 'Corporate Banking Manager' },
+                    { role: 'Relationship Manager' },
+                    { role: 'Business Banking Head' }
+                ]
+            },
+
+            'CSO-3001': {
+                title: 'CASA Sales Officer',
+                code: 'CSO-3001',
+                subtitle: 'Acquire savings and current accounts with effective sales techniques.',
+                overview: 'The CASA Sales Officer course provides training in savings account acquisition, current account sales, customer outreach, and target achievement. You\'ll learn how to acquire CASA customers, meet sales targets, and build customer relationships. This course is ideal for entry-level sales professionals in banking.',
+                duration: '2 Months',
+                mode: 'Classroom + Practical',
+                certification: 'Yes',
+                batch: '25-30 Students',
+                batchDate: 'Starting November 2028',
+                learn: [
+                    'Savings Account Acquisition',
+                    'Current Account Sales',
+                    'Customer Outreach',
+                    'Target Achievement',
+                    'Sales Techniques',
+                    'Lead Generation'
+                ],
+                curriculum: [
+                    { module: 'Module 1: CASA Products', duration: '1 Week' },
+                    { module: 'Module 2: Sales Techniques', duration: '2 Weeks' },
+                    { module: 'Module 3: Customer Outreach', duration: '2 Weeks' },
+                    { module: 'Module 4: Target Management', duration: '1 Week' },
+                    { module: 'Module 5: Lead Generation', duration: '1 Week' },
+                    { module: 'Module 6: Practical Training', duration: '2 Weeks' }
+                ],
+                careers: [
+                    { role: 'CASA Sales Officer' },
+                    { role: 'Sales Executive' },
+                    { role: 'Relationship Officer' },
+                    { role: 'Deposit Sales Executive' }
+                ]
+            },
+
+            'DMO-3101': {
+                title: 'Deposit Mobilization Officer',
+                code: 'DMO-3101',
+                subtitle: 'Focus on bringing deposits to the bank through strategic mobilization.',
+                overview: 'The Deposit Mobilization Officer course provides training in deposit mobilization strategies, customer acquisition, market outreach, and relationship building. You\'ll learn how to mobilize deposits, acquire customers, reach out to markets, and build strong relationships. This course is perfect for deposit mobilization professionals.',
+                duration: '3 Months',
+                mode: 'Classroom + Practical',
+                certification: 'Yes',
+                batch: '20-25 Students',
+                batchDate: 'Starting December 2028',
+                learn: [
+                    'Deposit Mobilization Strategies',
+                    'Customer Acquisition',
+                    'Market Outreach',
+                    'Relationship Building',
+                    'Deposit Products',
+                    'Strategic Planning'
+                ],
+                curriculum: [
+                    { module: 'Module 1: Deposit Mobilization', duration: '2 Weeks' },
+                    { module: 'Module 2: Customer Acquisition', duration: '3 Weeks' },
+                    { module: 'Module 3: Market Outreach', duration: '2 Weeks' },
+                    { module: 'Module 4: Relationship Building', duration: '2 Weeks' },
+                    { module: 'Module 5: Product Knowledge', duration: '2 Weeks' },
+                    { module: 'Module 6: Practical Training', duration: '2 Weeks' }
+                ],
+                careers: [
+                    { role: 'Deposit Mobilization Officer' },
+                    { role: 'Deposit Manager' },
+                    { role: 'Relationship Manager' },
+                    { role: 'Branch Manager' }
+                ]
+            },
+
+            // ==================== FLOOR MANAGER / TEAM SUPERVISOR ====================
+
+            'FM-3201': {
+                title: 'Floor Manager',
+                code: 'FM-3201',
+                subtitle: 'Supervise and guide teams, ensure work quality, and manage daily operations.',
+                overview: 'The Floor Manager course provides comprehensive training in team supervision, task assignment, performance management, quality assurance, and cross-department coordination. You\'ll learn how to supervise teams, assign tasks, manage performance, ensure quality, and coordinate with other departments. This course is perfect for aspiring floor managers.',
+                duration: '4 Months',
+                mode: 'Classroom + Practical',
+                certification: 'Yes',
+                batch: '15-20 Students',
+                batchDate: 'Starting January 2029',
+                learn: [
+                    'Team Supervision & Guidance',
+                    'Task Assignment & Monitoring',
+                    'Performance Management',
+                    'Quality Assurance & Compliance',
+                    'Training & Development',
+                    'Cross-Department Coordination'
+                ],
+                curriculum: [
+                    { module: 'Module 1: Leadership & Supervision', duration: '3 Weeks' },
+                    { module: 'Module 2: Performance Management', duration: '3 Weeks' },
+                    { module: 'Module 3: Quality Assurance', duration: '2 Weeks' },
+                    { module: 'Module 4: Training & Development', duration: '2 Weeks' },
+                    { module: 'Module 5: Coordination & Reporting', duration: '2 Weeks' },
+                    { module: 'Module 6: Practical Training', duration: '3 Weeks' }
+                ],
+                careers: [
+                    { role: 'Floor Manager' },
+                    { role: 'Operations Manager' },
+                    { role: 'Team Lead' },
+                    { role: 'Branch Manager' }
+                ]
+            },
+
+            'TS-3301': {
+                title: 'Team Supervisor',
+                code: 'TS-3301',
+                subtitle: 'Lead teams, monitor performance, and ensure policy compliance and quality.',
+                overview: 'The Team Supervisor course provides training in team leadership, performance monitoring, policy compliance, quality management, and reporting. You\'ll learn how to lead teams, monitor performance, ensure compliance, manage quality, and prepare reports. This course is ideal for aspiring team supervisors.',
+                duration: '3 Months',
+                mode: 'Classroom + Practical',
+                certification: 'Yes',
+                batch: '20-25 Students',
+                batchDate: 'Starting February 2029',
+                learn: [
+                    'Team Leadership & Guidance',
+                    'Performance Monitoring',
+                    'Policy Compliance',
+                    'Quality Management',
+                    'Reporting & Productivity',
+                    'New Employee Training'
+                ],
+                curriculum: [
+                    { module: 'Module 1: Leadership Skills', duration: '2 Weeks' },
+                    { module: 'Module 2: Performance Management', duration: '3 Weeks' },
+                    { module: 'Module 3: Compliance & Quality', duration: '2 Weeks' },
+                    { module: 'Module 4: Reporting & Productivity', duration: '2 Weeks' },
+                    { module: 'Module 5: Training & Development', duration: '2 Weeks' },
+                    { module: 'Module 6: Practical Training', duration: '2 Weeks' }
+                ],
+                careers: [
+                    { role: 'Team Supervisor' },
+                    { role: 'Team Lead' },
+                    { role: 'Senior Associate' },
+                    { role: 'Assistant Manager' }
+                ]
             }
+
         };
 
         // ================================================================
@@ -823,7 +1704,7 @@
             const course = courseData[courseCode];
 
             if (!course) {
-                // If course not found, show error or default
+                // If course not found, show error
                 document.querySelector('.course-detail-card').innerHTML = `
                     <div style="padding: 50px; text-align: center;">
                         <h2 style="color: #1a237e;">Course Not Found</h2>
@@ -884,7 +1765,7 @@
                 const div = document.createElement('div');
                 div.className = 'career-item';
                 div.innerHTML = `
-                    <div class="role">${item.role}</div>
+                    <div class="role">📌 ${item.role}</div>
                 `;
                 careersGrid.appendChild(div);
             });
