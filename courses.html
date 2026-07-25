@@ -1,202 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Courses - Dharithri Manpower Training & Supply Pvt. Ltd.</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: #f5f7fa;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #1a237e, #0d47a1);
+        /* Additional styles for courses page */
+        .courses-hero {
+            background: linear-gradient(135deg, #0b2b4a, #1a3a5c);
             color: white;
-            padding: 20px 40px;
+            padding: 60px 0;
             text-align: center;
         }
 
-        .header h1 {
-            font-size: 2.5rem;
-            letter-spacing: 2px;
+        .courses-hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 12px;
         }
 
-        .header h1 span {
-            color: #ffd700;
-        }
-
-        .header p {
-            font-size: 1.1rem;
-            margin-top: 5px;
-            opacity: 0.9;
-            font-style: italic;
-        }
-
-        .nav {
-            background-color: #0d47a1;
-            padding: 12px 0;
-            text-align: center;
-            border-bottom: 3px solid #ffd700;
-        }
-
-        .nav a {
-            color: white;
-            text-decoration: none;
-            padding: 12px 25px;
-            margin: 0 5px;
-            font-size: 1rem;
-            font-weight: 600;
-            transition: all 0.3s;
-            border-radius: 5px;
-        }
-
-        .nav a:hover {
-            background-color: #ffd700;
-            color: #1a237e;
-        }
-
-        .nav a.active {
-            background-color: #ffd700;
-            color: #1a237e;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        .page-title {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .page-title h2 {
-            font-size: 2.2rem;
-            color: #1a237e;
-            position: relative;
-            display: inline-block;
-        }
-
-        .page-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: #ffd700;
-            border-radius: 2px;
-        }
-
-        .page-title p {
-            color: #555;
-            margin-top: 20px;
-            font-size: 1.1rem;
+        .courses-hero p {
+            font-size: 1.15rem;
+            color: #a0b8cf;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .course-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
             gap: 30px;
-            margin-top: 30px;
+            padding: 40px 0 60px;
         }
 
         .course-card {
             background: white;
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-top: 5px solid #0d47a1;
+            border-top: 5px solid #c49a2b;
             display: flex;
             flex-direction: column;
         }
 
         .course-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
         }
 
-        .course-header {
-            background: linear-gradient(135deg, #1a237e, #0d47a1);
+        .course-card-header {
+            background: linear-gradient(135deg, #0b2b4a, #1a3a5c);
             color: white;
-            padding: 20px 25px;
+            padding: 20px 24px;
         }
 
-        .course-header h3 {
-            font-size: 1.4rem;
-            margin-bottom: 5px;
+        .course-card-header h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 4px;
         }
 
-        .course-header .course-code {
-            font-size: 0.85rem;
-            opacity: 0.8;
-            background: rgba(255, 215, 0, 0.2);
-            display: inline-block;
+        .course-card-header .course-code {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            background: rgba(196, 154, 43, 0.2);
             padding: 2px 12px;
             border-radius: 20px;
+            display: inline-block;
         }
 
-        .course-body {
-            padding: 25px;
+        .course-card-body {
+            padding: 24px;
             flex: 1;
             display: flex;
             flex-direction: column;
         }
 
-        .course-body p {
+        .course-card-body p {
             color: #555;
             line-height: 1.6;
-            margin-bottom: 15px;
+            margin-bottom: 16px;
+            font-size: 0.95rem;
         }
 
-        .course-details {
+        .course-meta {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 20px;
+            gap: 8px;
+            margin-bottom: 16px;
         }
 
-        .course-detail-item {
-            background: #f0f2f5;
-            padding: 8px 12px;
+        .course-meta-item {
+            background: #f5f7fa;
+            padding: 6px 12px;
             border-radius: 6px;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
         }
 
-        .course-detail-item strong {
-            color: #1a237e;
+        .course-meta-item strong {
+            color: #0b2b4a;
             display: block;
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            margin-bottom: 2px;
         }
 
-        .course-detail-item span {
+        .course-meta-item span {
             color: #333;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .course-features {
             list-style: none;
             padding: 0;
-            margin: 15px 0 20px 0;
+            margin: 8px 0 16px;
         }
 
         .course-features li {
-            padding: 5px 0;
+            padding: 4px 0;
             color: #555;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -204,9 +131,8 @@
 
         .course-features li::before {
             content: "✓";
-            color: #ffd700;
+            color: #c49a2b;
             font-weight: bold;
-            font-size: 1.2rem;
         }
 
         .course-actions {
@@ -215,140 +141,97 @@
             margin-top: auto;
         }
 
-        .enroll-btn {
+        .btn-enroll {
             flex: 1;
-            background: #ffd700;
-            color: #1a237e;
-            padding: 12px 20px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 700;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-            font-size: 0.95rem;
-            text-align: center;
-        }
-
-        .enroll-btn:hover {
-            background: #f5c400;
-            transform: scale(1.02);
-        }
-
-        .readmore-btn {
-            flex: 0.5;
-            background: transparent;
-            color: #0d47a1;
+            background: #c49a2b;
+            color: white;
             padding: 12px 20px;
             border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
+            text-align: center;
             transition: all 0.3s;
-            border: 2px solid #0d47a1;
+            border: none;
             cursor: pointer;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
+        }
+
+        .btn-enroll:hover {
+            background: #a87d1f;
+            transform: scale(1.02);
+        }
+
+        .btn-readmore {
+            flex: 0.6;
+            background: transparent;
+            color: #0b2b4a;
+            padding: 12px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
             text-align: center;
+            transition: all 0.3s;
+            border: 2px solid #0b2b4a;
+            cursor: pointer;
+            font-size: 0.9rem;
         }
 
-        .readmore-btn:hover {
-            background: #0d47a1;
+        .btn-readmore:hover {
+            background: #0b2b4a;
             color: white;
-        }
-
-        .footer {
-            background: #1a237e;
-            color: white;
-            text-align: center;
-            padding: 30px;
-            margin-top: 50px;
-        }
-
-        .footer p {
-            opacity: 0.8;
-        }
-
-        .footer .highlight {
-            color: #ffd700;
         }
 
         @media (max-width: 768px) {
-            .header h1 {
-                font-size: 1.8rem;
-            }
-
-            .nav a {
-                display: inline-block;
-                padding: 8px 15px;
-                margin: 3px;
-                font-size: 0.85rem;
+            .courses-hero h1 {
+                font-size: 2rem;
             }
 
             .course-grid {
                 grid-template-columns: 1fr;
             }
 
-            .course-details {
-                grid-template-columns: 1fr;
-            }
-
-            .page-title h2 {
-                font-size: 1.6rem;
+            .course-meta {
+                grid-template-columns: 1fr 1fr;
             }
         }
     </style>
 </head>
 <body>
-
-    <!-- ====== HEADER ====== -->
-    <div class="header">
-        <h1>DHARITHRI <span>MANPOWER</span></h1>
-        <p>TRAINING & SUPPLY PVT. LTD.</p>
-        <p style="font-size: 0.9rem; margin-top: 8px; opacity: 0.8;">WE SUPPLY THE WORTH. WE IMPROVE THE WORTH.</p>
-    </div>
-
-    <!-- ====== NAVIGATION - ONLY ONE COPY ====== -->
-    <div class="nav">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="courses.html" class="active">Courses</a>
-        <a href="training.html">Training</a>
-        <a href="opportunities.html">Opportunities</a>
-        <a href="questionnaire.html">Questionnaire</a>
-        <a href="contact.html">Contact</a>
-        <a href="apply.html">Apply Now</a>
-    </div>
-
-    <!-- ====== MAIN CONTENT ====== -->
-    <div class="container">
-        <div class="page-title">
-            <h2>Our Courses</h2>
+    <!-- Navbar auto-loaded by navbar.js -->
+    <!-- ======== COURSES HERO ======== -->
+    <section class="courses-hero">
+        <div class="container">
+            <h1>Our Courses</h1>
             <p>Comprehensive training programs designed to build your career in the banking and finance sector</p>
         </div>
+    </section>
 
+    <!-- ======== COURSE GRID ======== -->
+    <section class="container">
         <div class="course-grid">
 
             <!-- Sales Manager -->
             <div class="course-card">
-                <div class="course-header">
+                <div class="course-card-header">
                     <h3>Sales Manager</h3>
                     <span class="course-code">Course Code: SM-101</span>
                 </div>
-                <div class="course-body">
+                <div class="course-card-body">
                     <p>Master sales strategies, product knowledge, and customer relationship management for banking products.</p>
-                    <div class="course-details">
-                        <div class="course-detail-item">
+                    <div class="course-meta">
+                        <div class="course-meta-item">
                             <strong>Duration</strong>
                             <span>6 Months</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Mode</strong>
                             <span>Classroom + Practical</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Certification</strong>
                             <span>Yes</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Batch Size</strong>
                             <span>20-25 Students</span>
                         </div>
@@ -360,34 +243,34 @@
                         <li>Home Loan & Professional Loan</li>
                     </ul>
                     <div class="course-actions">
-                        <a href="course-detail.html?code=SM-101" class="readmore-btn">Read More</a>
-                        <a href="#" class="enroll-btn">Enroll Now</a>
+                        <a href="course-detail.html?code=SM-101" class="btn-readmore">Read More</a>
+                        <a href="#" class="btn-enroll">Enroll Now</a>
                     </div>
                 </div>
             </div>
 
             <!-- Finance Manager -->
             <div class="course-card">
-                <div class="course-header">
+                <div class="course-card-header">
                     <h3>Finance Manager</h3>
                     <span class="course-code">Course Code: FM-201</span>
                 </div>
-                <div class="course-body">
+                <div class="course-card-body">
                     <p>Comprehensive training in financial management, analysis, and strategic decision-making.</p>
-                    <div class="course-details">
-                        <div class="course-detail-item">
+                    <div class="course-meta">
+                        <div class="course-meta-item">
                             <strong>Duration</strong>
                             <span>6 Months</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Mode</strong>
                             <span>Classroom + Practical</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Certification</strong>
                             <span>Yes</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Batch Size</strong>
                             <span>15-20 Students</span>
                         </div>
@@ -399,34 +282,34 @@
                         <li>Strategic financial planning</li>
                     </ul>
                     <div class="course-actions">
-                        <a href="course-detail.html?code=FM-201" class="readmore-btn">Read More</a>
-                        <a href="#" class="enroll-btn">Enroll Now</a>
+                        <a href="course-detail.html?code=FM-201" class="btn-readmore">Read More</a>
+                        <a href="#" class="btn-enroll">Enroll Now</a>
                     </div>
                 </div>
             </div>
 
             <!-- Ops Manager -->
             <div class="course-card">
-                <div class="course-header">
+                <div class="course-card-header">
                     <h3>Ops Manager</h3>
                     <span class="course-code">Course Code: OM-301</span>
                 </div>
-                <div class="course-body">
+                <div class="course-card-body">
                     <p>Learn operations management, file analysis, and banking compliance processes.</p>
-                    <div class="course-details">
-                        <div class="course-detail-item">
+                    <div class="course-meta">
+                        <div class="course-meta-item">
                             <strong>Duration</strong>
                             <span>6 Months</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Mode</strong>
                             <span>Classroom + Hands-on</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Certification</strong>
                             <span>Yes</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Batch Size</strong>
                             <span>20-25 Students</span>
                         </div>
@@ -438,34 +321,34 @@
                         <li>Compliance management</li>
                     </ul>
                     <div class="course-actions">
-                        <a href="course-detail.html?code=OM-301" class="readmore-btn">Read More</a>
-                        <a href="#" class="enroll-btn">Enroll Now</a>
+                        <a href="course-detail.html?code=OM-301" class="btn-readmore">Read More</a>
+                        <a href="#" class="btn-enroll">Enroll Now</a>
                     </div>
                 </div>
             </div>
 
             <!-- Risk Manager -->
             <div class="course-card">
-                <div class="course-header">
+                <div class="course-card-header">
                     <h3>Risk Manager</h3>
                     <span class="course-code">Course Code: RM-401</span>
                 </div>
-                <div class="course-body">
+                <div class="course-card-body">
                     <p>Master risk assessment, fraud detection, and verification processes in banking.</p>
-                    <div class="course-details">
-                        <div class="course-detail-item">
+                    <div class="course-meta">
+                        <div class="course-meta-item">
                             <strong>Duration</strong>
                             <span>6 Months</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Mode</strong>
                             <span>Classroom + Practical</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Certification</strong>
                             <span>Yes</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Batch Size</strong>
                             <span>15-20 Students</span>
                         </div>
@@ -477,34 +360,34 @@
                         <li>Compliance & reporting</li>
                     </ul>
                     <div class="course-actions">
-                        <a href="course-detail.html?code=RM-401" class="readmore-btn">Read More</a>
-                        <a href="#" class="enroll-btn">Enroll Now</a>
+                        <a href="course-detail.html?code=RM-401" class="btn-readmore">Read More</a>
+                        <a href="#" class="btn-enroll">Enroll Now</a>
                     </div>
                 </div>
             </div>
 
             <!-- Credit Manager -->
             <div class="course-card">
-                <div class="course-header">
+                <div class="course-card-header">
                     <h3>Credit Manager</h3>
                     <span class="course-code">Course Code: CM-501</span>
                 </div>
-                <div class="course-body">
+                <div class="course-card-body">
                     <p>Learn credit evaluation, verification, and approval processes for banking loans.</p>
-                    <div class="course-details">
-                        <div class="course-detail-item">
+                    <div class="course-meta">
+                        <div class="course-meta-item">
                             <strong>Duration</strong>
                             <span>6 Months</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Mode</strong>
                             <span>Classroom + Practical</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Certification</strong>
                             <span>Yes</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Batch Size</strong>
                             <span>15-20 Students</span>
                         </div>
@@ -516,34 +399,34 @@
                         <li>Loan underwriting</li>
                     </ul>
                     <div class="course-actions">
-                        <a href="course-detail.html?code=CM-501" class="readmore-btn">Read More</a>
-                        <a href="#" class="enroll-btn">Enroll Now</a>
+                        <a href="course-detail.html?code=CM-501" class="btn-readmore">Read More</a>
+                        <a href="#" class="btn-enroll">Enroll Now</a>
                     </div>
                 </div>
             </div>
 
             <!-- Credit Analyst -->
             <div class="course-card">
-                <div class="course-header">
+                <div class="course-card-header">
                     <h3>Credit Analyst</h3>
                     <span class="course-code">Course Code: CA-601</span>
                 </div>
-                <div class="course-body">
+                <div class="course-card-body">
                     <p>Analyze financial statements, credit risk, and make informed lending decisions.</p>
-                    <div class="course-details">
-                        <div class="course-detail-item">
+                    <div class="course-meta">
+                        <div class="course-meta-item">
                             <strong>Duration</strong>
                             <span>6 Months</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Mode</strong>
                             <span>Classroom + Practical</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Certification</strong>
                             <span>Yes</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Batch Size</strong>
                             <span>20-25 Students</span>
                         </div>
@@ -555,34 +438,34 @@
                         <li>Reporting & recommendations</li>
                     </ul>
                     <div class="course-actions">
-                        <a href="course-detail.html?code=CA-601" class="readmore-btn">Read More</a>
-                        <a href="#" class="enroll-btn">Enroll Now</a>
+                        <a href="course-detail.html?code=CA-601" class="btn-readmore">Read More</a>
+                        <a href="#" class="btn-enroll">Enroll Now</a>
                     </div>
                 </div>
             </div>
 
             <!-- Legal Manager -->
             <div class="course-card">
-                <div class="course-header">
+                <div class="course-card-header">
                     <h3>Legal Manager</h3>
                     <span class="course-code">Course Code: LM-701</span>
                 </div>
-                <div class="course-body">
+                <div class="course-card-body">
                     <p>Master property verification, legal documentation, and compliance in banking.</p>
-                    <div class="course-details">
-                        <div class="course-detail-item">
+                    <div class="course-meta">
+                        <div class="course-meta-item">
                             <strong>Duration</strong>
                             <span>6 Months</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Mode</strong>
                             <span>Classroom + Practical</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Certification</strong>
                             <span>Yes</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Batch Size</strong>
                             <span>15-20 Students</span>
                         </div>
@@ -594,34 +477,34 @@
                         <li>Regulatory frameworks</li>
                     </ul>
                     <div class="course-actions">
-                        <a href="course-detail.html?code=LM-701" class="readmore-btn">Read More</a>
-                        <a href="#" class="enroll-btn">Enroll Now</a>
+                        <a href="course-detail.html?code=LM-701" class="btn-readmore">Read More</a>
+                        <a href="#" class="btn-enroll">Enroll Now</a>
                     </div>
                 </div>
             </div>
 
             <!-- Technical Manager -->
             <div class="course-card">
-                <div class="course-header">
+                <div class="course-card-header">
                     <h3>Technical Manager</h3>
                     <span class="course-code">Course Code: TM-801</span>
                 </div>
-                <div class="course-body">
+                <div class="course-card-body">
                     <p>Evaluate property value based on location, market trends, and technical assessment.</p>
-                    <div class="course-details">
-                        <div class="course-detail-item">
+                    <div class="course-meta">
+                        <div class="course-meta-item">
                             <strong>Duration</strong>
                             <span>6 Months</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Mode</strong>
                             <span>Classroom + Practical</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Certification</strong>
                             <span>Yes</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Batch Size</strong>
                             <span>15-20 Students</span>
                         </div>
@@ -633,34 +516,34 @@
                         <li>Technical reporting</li>
                     </ul>
                     <div class="course-actions">
-                        <a href="course-detail.html?code=TM-801" class="readmore-btn">Read More</a>
-                        <a href="#" class="enroll-btn">Enroll Now</a>
+                        <a href="course-detail.html?code=TM-801" class="btn-readmore">Read More</a>
+                        <a href="#" class="btn-enroll">Enroll Now</a>
                     </div>
                 </div>
             </div>
 
             <!-- Underwriting Manager -->
             <div class="course-card">
-                <div class="course-header">
+                <div class="course-card-header">
                     <h3>Underwriting Manager</h3>
                     <span class="course-code">Course Code: UM-901</span>
                 </div>
-                <div class="course-body">
+                <div class="course-card-body">
                     <p>Review and approve credit risk, ensuring quality lending decisions.</p>
-                    <div class="course-details">
-                        <div class="course-detail-item">
+                    <div class="course-meta">
+                        <div class="course-meta-item">
                             <strong>Duration</strong>
                             <span>6 Months</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Mode</strong>
                             <span>Classroom + Practical</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Certification</strong>
                             <span>Yes</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Batch Size</strong>
                             <span>15-20 Students</span>
                         </div>
@@ -672,34 +555,34 @@
                         <li>Quality control</li>
                     </ul>
                     <div class="course-actions">
-                        <a href="course-detail.html?code=UM-901" class="readmore-btn">Read More</a>
-                        <a href="#" class="enroll-btn">Enroll Now</a>
+                        <a href="course-detail.html?code=UM-901" class="btn-readmore">Read More</a>
+                        <a href="#" class="btn-enroll">Enroll Now</a>
                     </div>
                 </div>
             </div>
 
             <!-- Collections / Recovery Manager -->
             <div class="course-card">
-                <div class="course-header">
+                <div class="course-card-header">
                     <h3>Collections / Recovery Manager</h3>
                     <span class="course-code">Course Code: CRM-1001</span>
                 </div>
-                <div class="course-body">
+                <div class="course-card-body">
                     <p>Manage overdue loans, recovery processes, and debt collection strategies.</p>
-                    <div class="course-details">
-                        <div class="course-detail-item">
+                    <div class="course-meta">
+                        <div class="course-meta-item">
                             <strong>Duration</strong>
                             <span>6 Months</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Mode</strong>
                             <span>Classroom + Practical</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Certification</strong>
                             <span>Yes</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Batch Size</strong>
                             <span>20-25 Students</span>
                         </div>
@@ -711,34 +594,34 @@
                         <li>Legal recovery processes</li>
                     </ul>
                     <div class="course-actions">
-                        <a href="course-detail.html?code=CRM-1001" class="readmore-btn">Read More</a>
-                        <a href="#" class="enroll-btn">Enroll Now</a>
+                        <a href="course-detail.html?code=CRM-1001" class="btn-readmore">Read More</a>
+                        <a href="#" class="btn-enroll">Enroll Now</a>
                     </div>
                 </div>
             </div>
 
             <!-- Portfolio Manager -->
             <div class="course-card">
-                <div class="course-header">
+                <div class="course-card-header">
                     <h3>Portfolio Manager</h3>
                     <span class="course-code">Course Code: PM-1101</span>
                 </div>
-                <div class="course-body">
+                <div class="course-card-body">
                     <p>Manage portfolios of loans, investments, and financial assets effectively.</p>
-                    <div class="course-details">
-                        <div class="course-detail-item">
+                    <div class="course-meta">
+                        <div class="course-meta-item">
                             <strong>Duration</strong>
                             <span>6 Months</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Mode</strong>
                             <span>Classroom + Practical</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Certification</strong>
                             <span>Yes</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Batch Size</strong>
                             <span>15-20 Students</span>
                         </div>
@@ -750,34 +633,34 @@
                         <li>Risk monitoring</li>
                     </ul>
                     <div class="course-actions">
-                        <a href="course-detail.html?code=PM-1101" class="readmore-btn">Read More</a>
-                        <a href="#" class="enroll-btn">Enroll Now</a>
+                        <a href="course-detail.html?code=PM-1101" class="btn-readmore">Read More</a>
+                        <a href="#" class="btn-enroll">Enroll Now</a>
                     </div>
                 </div>
             </div>
 
             <!-- Asset Manager -->
             <div class="course-card">
-                <div class="course-header">
+                <div class="course-card-header">
                     <h3>Asset Manager</h3>
                     <span class="course-code">Course Code: AM-1201</span>
                 </div>
-                <div class="course-body">
+                <div class="course-card-body">
                     <p>Manage investments, financial assets, and optimize returns for clients.</p>
-                    <div class="course-details">
-                        <div class="course-detail-item">
+                    <div class="course-meta">
+                        <div class="course-meta-item">
                             <strong>Duration</strong>
                             <span>6 Months</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Mode</strong>
                             <span>Classroom + Practical</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Certification</strong>
                             <span>Yes</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Batch Size</strong>
                             <span>15-20 Students</span>
                         </div>
@@ -789,34 +672,34 @@
                         <li>Client relationship management</li>
                     </ul>
                     <div class="course-actions">
-                        <a href="course-detail.html?code=AM-1201" class="readmore-btn">Read More</a>
-                        <a href="#" class="enroll-btn">Enroll Now</a>
+                        <a href="course-detail.html?code=AM-1201" class="btn-readmore">Read More</a>
+                        <a href="#" class="btn-enroll">Enroll Now</a>
                     </div>
                 </div>
             </div>
 
             <!-- Asset Finance Manager -->
             <div class="course-card">
-                <div class="course-header">
+                <div class="course-card-header">
                     <h3>Asset Finance Manager</h3>
                     <span class="course-code">Course Code: AFM-1301</span>
                 </div>
-                <div class="course-body">
+                <div class="course-card-body">
                     <p>Handle financing for vehicles, equipment, and other assets effectively.</p>
-                    <div class="course-details">
-                        <div class="course-detail-item">
+                    <div class="course-meta">
+                        <div class="course-meta-item">
                             <strong>Duration</strong>
                             <span>6 Months</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Mode</strong>
                             <span>Classroom + Practical</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Certification</strong>
                             <span>Yes</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Batch Size</strong>
                             <span>20-25 Students</span>
                         </div>
@@ -828,34 +711,34 @@
                         <li>Leasing & hire purchase</li>
                     </ul>
                     <div class="course-actions">
-                        <a href="course-detail.html?code=AFM-1301" class="readmore-btn">Read More</a>
-                        <a href="#" class="enroll-btn">Enroll Now</a>
+                        <a href="course-detail.html?code=AFM-1301" class="btn-readmore">Read More</a>
+                        <a href="#" class="btn-enroll">Enroll Now</a>
                     </div>
                 </div>
             </div>
 
             <!-- MSME / Business Banking Manager -->
             <div class="course-card">
-                <div class="course-header">
+                <div class="course-card-header">
                     <h3>MSME / Business Banking Manager</h3>
                     <span class="course-code">Course Code: BBM-1401</span>
                 </div>
-                <div class="course-body">
+                <div class="course-card-body">
                     <p>Handle loans for small and medium businesses with specialized banking solutions.</p>
-                    <div class="course-details">
-                        <div class="course-detail-item">
+                    <div class="course-meta">
+                        <div class="course-meta-item">
                             <strong>Duration</strong>
                             <span>6 Months</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Mode</strong>
                             <span>Classroom + Practical</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Certification</strong>
                             <span>Yes</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Batch Size</strong>
                             <span>15-20 Students</span>
                         </div>
@@ -867,34 +750,34 @@
                         <li>Entrepreneur support</li>
                     </ul>
                     <div class="course-actions">
-                        <a href="course-detail.html?code=BBM-1401" class="readmore-btn">Read More</a>
-                        <a href="#" class="enroll-btn">Enroll Now</a>
+                        <a href="course-detail.html?code=BBM-1401" class="btn-readmore">Read More</a>
+                        <a href="#" class="btn-enroll">Enroll Now</a>
                     </div>
                 </div>
             </div>
 
             <!-- Accountant -->
             <div class="course-card">
-                <div class="course-header">
+                <div class="course-card-header">
                     <h3>Accountant</h3>
                     <span class="course-code">Course Code: ACC-1501</span>
                 </div>
-                <div class="course-body">
+                <div class="course-card-body">
                     <p>Comprehensive training in accounting principles, financial reporting, and tax compliance.</p>
-                    <div class="course-details">
-                        <div class="course-detail-item">
+                    <div class="course-meta">
+                        <div class="course-meta-item">
                             <strong>Duration</strong>
                             <span>6 Months</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Mode</strong>
                             <span>Classroom + Practical</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Certification</strong>
                             <span>Yes</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Batch Size</strong>
                             <span>20-25 Students</span>
                         </div>
@@ -906,34 +789,34 @@
                         <li>Bookkeeping & ledger management</li>
                     </ul>
                     <div class="course-actions">
-                        <a href="course-detail.html?code=ACC-1501" class="readmore-btn">Read More</a>
-                        <a href="#" class="enroll-btn">Enroll Now</a>
+                        <a href="course-detail.html?code=ACC-1501" class="btn-readmore">Read More</a>
+                        <a href="#" class="btn-enroll">Enroll Now</a>
                     </div>
                 </div>
             </div>
 
             <!-- Auditor -->
             <div class="course-card">
-                <div class="course-header">
+                <div class="course-card-header">
                     <h3>Auditor</h3>
                     <span class="course-code">Course Code: AUD-1601</span>
                 </div>
-                <div class="course-body">
+                <div class="course-card-body">
                     <p>Learn auditing processes, internal controls, and compliance verification.</p>
-                    <div class="course-details">
-                        <div class="course-detail-item">
+                    <div class="course-meta">
+                        <div class="course-meta-item">
                             <strong>Duration</strong>
                             <span>6 Months</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Mode</strong>
                             <span>Classroom + Practical</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Certification</strong>
                             <span>Yes</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Batch Size</strong>
                             <span>15-20 Students</span>
                         </div>
@@ -945,34 +828,34 @@
                         <li>Risk assessment</li>
                     </ul>
                     <div class="course-actions">
-                        <a href="course-detail.html?code=AUD-1601" class="readmore-btn">Read More</a>
-                        <a href="#" class="enroll-btn">Enroll Now</a>
+                        <a href="course-detail.html?code=AUD-1601" class="btn-readmore">Read More</a>
+                        <a href="#" class="btn-enroll">Enroll Now</a>
                     </div>
                 </div>
             </div>
 
             <!-- Chartered Accountant -->
             <div class="course-card">
-                <div class="course-header">
+                <div class="course-card-header">
                     <h3>Chartered Accountant</h3>
                     <span class="course-code">Course Code: CA-1701</span>
                 </div>
-                <div class="course-body">
+                <div class="course-card-body">
                     <p>Advanced training for CA certification with practical financial management skills.</p>
-                    <div class="course-details">
-                        <div class="course-detail-item">
+                    <div class="course-meta">
+                        <div class="course-meta-item">
                             <strong>Duration</strong>
                             <span>6 Months</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Mode</strong>
                             <span>Classroom + Practical</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Certification</strong>
                             <span>Yes</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Batch Size</strong>
                             <span>10-15 Students</span>
                         </div>
@@ -984,34 +867,34 @@
                         <li>Financial management</li>
                     </ul>
                     <div class="course-actions">
-                        <a href="course-detail.html?code=CA-1701" class="readmore-btn">Read More</a>
-                        <a href="#" class="enroll-btn">Enroll Now</a>
+                        <a href="course-detail.html?code=CA-1701" class="btn-readmore">Read More</a>
+                        <a href="#" class="btn-enroll">Enroll Now</a>
                     </div>
                 </div>
             </div>
 
             <!-- Company Secretary -->
             <div class="course-card">
-                <div class="course-header">
+                <div class="course-card-header">
                     <h3>Company Secretary</h3>
                     <span class="course-code">Course Code: CS-1801</span>
                 </div>
-                <div class="course-body">
+                <div class="course-card-body">
                     <p>Corporate governance, compliance management, and secretarial practices.</p>
-                    <div class="course-details">
-                        <div class="course-detail-item">
+                    <div class="course-meta">
+                        <div class="course-meta-item">
                             <strong>Duration</strong>
                             <span>6 Months</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Mode</strong>
                             <span>Classroom + Practical</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Certification</strong>
                             <span>Yes</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Batch Size</strong>
                             <span>15-20 Students</span>
                         </div>
@@ -1023,34 +906,34 @@
                         <li>Legal & regulatory frameworks</li>
                     </ul>
                     <div class="course-actions">
-                        <a href="course-detail.html?code=CS-1801" class="readmore-btn">Read More</a>
-                        <a href="#" class="enroll-btn">Enroll Now</a>
+                        <a href="course-detail.html?code=CS-1801" class="btn-readmore">Read More</a>
+                        <a href="#" class="btn-enroll">Enroll Now</a>
                     </div>
                 </div>
             </div>
 
             <!-- Teller / Cashier -->
             <div class="course-card">
-                <div class="course-header">
+                <div class="course-card-header">
                     <h3>Teller / Cashier</h3>
                     <span class="course-code">Course Code: TEL-1901</span>
                 </div>
-                <div class="course-body">
+                <div class="course-card-body">
                     <p>Master cash handling, customer transactions, and teller operations.</p>
-                    <div class="course-details">
-                        <div class="course-detail-item">
+                    <div class="course-meta">
+                        <div class="course-meta-item">
                             <strong>Duration</strong>
                             <span>6 Months</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Mode</strong>
                             <span>Classroom + Hands-on</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Certification</strong>
                             <span>Yes</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Batch Size</strong>
                             <span>25-30 Students</span>
                         </div>
@@ -1062,34 +945,34 @@
                         <li>Banking software usage</li>
                     </ul>
                     <div class="course-actions">
-                        <a href="course-detail.html?code=TEL-1901" class="readmore-btn">Read More</a>
-                        <a href="#" class="enroll-btn">Enroll Now</a>
+                        <a href="course-detail.html?code=TEL-1901" class="btn-readmore">Read More</a>
+                        <a href="#" class="btn-enroll">Enroll Now</a>
                     </div>
                 </div>
             </div>
 
             <!-- Back Office / Branch Operations Executive -->
             <div class="course-card">
-                <div class="course-header">
+                <div class="course-card-header">
                     <h3>Back Office / Branch Operations Executive</h3>
                     <span class="course-code">Course Code: BOE-2001</span>
                 </div>
-                <div class="course-body">
+                <div class="course-card-body">
                     <p>Learn back office operations, documentation, and branch support functions.</p>
-                    <div class="course-details">
-                        <div class="course-detail-item">
+                    <div class="course-meta">
+                        <div class="course-meta-item">
                             <strong>Duration</strong>
                             <span>6 Months</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Mode</strong>
                             <span>Classroom + Practical</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Certification</strong>
                             <span>Yes</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Batch Size</strong>
                             <span>20-25 Students</span>
                         </div>
@@ -1101,34 +984,34 @@
                         <li>Process optimization</li>
                     </ul>
                     <div class="course-actions">
-                        <a href="course-detail.html?code=BOE-2001" class="readmore-btn">Read More</a>
-                        <a href="#" class="enroll-btn">Enroll Now</a>
+                        <a href="course-detail.html?code=BOE-2001" class="btn-readmore">Read More</a>
+                        <a href="#" class="btn-enroll">Enroll Now</a>
                     </div>
                 </div>
             </div>
 
             <!-- Customer Service Officer -->
             <div class="course-card">
-                <div class="course-header">
+                <div class="course-card-header">
                     <h3>Customer Service Officer</h3>
                     <span class="course-code">Course Code: CSO-2101</span>
                 </div>
-                <div class="course-body">
+                <div class="course-card-body">
                     <p>Develop customer service excellence, relationship management, and problem-solving skills.</p>
-                    <div class="course-details">
-                        <div class="course-detail-item">
+                    <div class="course-meta">
+                        <div class="course-meta-item">
                             <strong>Duration</strong>
                             <span>6 Months</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Mode</strong>
                             <span>Interactive Sessions</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Certification</strong>
                             <span>Yes</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Batch Size</strong>
                             <span>25-30 Students</span>
                         </div>
@@ -1140,34 +1023,34 @@
                         <li>Communication techniques</li>
                     </ul>
                     <div class="course-actions">
-                        <a href="course-detail.html?code=CSO-2101" class="readmore-btn">Read More</a>
-                        <a href="#" class="enroll-btn">Enroll Now</a>
+                        <a href="course-detail.html?code=CSO-2101" class="btn-readmore">Read More</a>
+                        <a href="#" class="btn-enroll">Enroll Now</a>
                     </div>
                 </div>
             </div>
 
             <!-- Liability Sales Manager -->
             <div class="course-card">
-                <div class="course-header">
+                <div class="course-card-header">
                     <h3>Liability Sales Manager</h3>
                     <span class="course-code">Course Code: LSM-2201</span>
                 </div>
-                <div class="course-body">
+                <div class="course-card-body">
                     <p>Lead deposit and account acquisition strategies for banking institutions.</p>
-                    <div class="course-details">
-                        <div class="course-detail-item">
+                    <div class="course-meta">
+                        <div class="course-meta-item">
                             <strong>Duration</strong>
                             <span>6 Months</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Mode</strong>
                             <span>Classroom + Practical</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Certification</strong>
                             <span>Yes</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Batch Size</strong>
                             <span>15-20 Students</span>
                         </div>
@@ -1179,34 +1062,34 @@
                         <li>Target achievement</li>
                     </ul>
                     <div class="course-actions">
-                        <a href="course-detail.html?code=LSM-2201" class="readmore-btn">Read More</a>
-                        <a href="#" class="enroll-btn">Enroll Now</a>
+                        <a href="course-detail.html?code=LSM-2201" class="btn-readmore">Read More</a>
+                        <a href="#" class="btn-enroll">Enroll Now</a>
                     </div>
                 </div>
             </div>
 
             <!-- CASA Manager -->
             <div class="course-card">
-                <div class="course-header">
+                <div class="course-card-header">
                     <h3>CASA Manager</h3>
                     <span class="course-code">Course Code: CASA-2301</span>
                 </div>
-                <div class="course-body">
+                <div class="course-card-body">
                     <p>Focus on Current Account and Savings Account growth and management.</p>
-                    <div class="course-details">
-                        <div class="course-detail-item">
+                    <div class="course-meta">
+                        <div class="course-meta-item">
                             <strong>Duration</strong>
                             <span>6 Months</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Mode</strong>
                             <span>Classroom + Practical</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Certification</strong>
                             <span>Yes</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Batch Size</strong>
                             <span>20-25 Students</span>
                         </div>
@@ -1218,34 +1101,34 @@
                         <li>Relationship management</li>
                     </ul>
                     <div class="course-actions">
-                        <a href="course-detail.html?code=CASA-2301" class="readmore-btn">Read More</a>
-                        <a href="#" class="enroll-btn">Enroll Now</a>
+                        <a href="course-detail.html?code=CASA-2301" class="btn-readmore">Read More</a>
+                        <a href="#" class="btn-enroll">Enroll Now</a>
                     </div>
                 </div>
             </div>
 
             <!-- Relationship Manager - Liabilities -->
             <div class="course-card">
-                <div class="course-header">
+                <div class="course-card-header">
                     <h3>Relationship Manager - Liabilities</h3>
                     <span class="course-code">Course Code: RML-2401</span>
                 </div>
-                <div class="course-body">
+                <div class="course-card-body">
                     <p>Acquire and manage deposit customers, build long-term banking relationships.</p>
-                    <div class="course-details">
-                        <div class="course-detail-item">
+                    <div class="course-meta">
+                        <div class="course-meta-item">
                             <strong>Duration</strong>
                             <span>6 Months</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Mode</strong>
                             <span>Classroom + Practical</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Certification</strong>
                             <span>Yes</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Batch Size</strong>
                             <span>20-25 Students</span>
                         </div>
@@ -1257,34 +1140,34 @@
                         <li>Customer retention</li>
                     </ul>
                     <div class="course-actions">
-                        <a href="course-detail.html?code=RML-2401" class="readmore-btn">Read More</a>
-                        <a href="#" class="enroll-btn">Enroll Now</a>
+                        <a href="course-detail.html?code=RML-2401" class="btn-readmore">Read More</a>
+                        <a href="#" class="btn-enroll">Enroll Now</a>
                     </div>
                 </div>
             </div>
 
             <!-- Branch Liability Manager -->
             <div class="course-card">
-                <div class="course-header">
+                <div class="course-card-header">
                     <h3>Branch Liability Manager</h3>
                     <span class="course-code">Course Code: BLM-2501</span>
                 </div>
-                <div class="course-body">
+                <div class="course-card-body">
                     <p>Manage branch deposit targets and liability portfolio effectively.</p>
-                    <div class="course-details">
-                        <div class="course-detail-item">
+                    <div class="course-meta">
+                        <div class="course-meta-item">
                             <strong>Duration</strong>
                             <span>6 Months</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Mode</strong>
                             <span>Classroom + Practical</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Certification</strong>
                             <span>Yes</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Batch Size</strong>
                             <span>15-20 Students</span>
                         </div>
@@ -1296,34 +1179,34 @@
                         <li>Performance monitoring</li>
                     </ul>
                     <div class="course-actions">
-                        <a href="course-detail.html?code=BLM-2501" class="readmore-btn">Read More</a>
-                        <a href="#" class="enroll-btn">Enroll Now</a>
+                        <a href="course-detail.html?code=BLM-2501" class="btn-readmore">Read More</a>
+                        <a href="#" class="btn-enroll">Enroll Now</a>
                     </div>
                 </div>
             </div>
 
             <!-- Retail Liability Manager -->
             <div class="course-card">
-                <div class="course-header">
+                <div class="course-card-header">
                     <h3>Retail Liability Manager</h3>
                     <span class="course-code">Course Code: RLM-2601</span>
                 </div>
-                <div class="course-body">
+                <div class="course-card-body">
                     <p>Handle individual customer deposits and retail liability products.</p>
-                    <div class="course-details">
-                        <div class="course-detail-item">
+                    <div class="course-meta">
+                        <div class="course-meta-item">
                             <strong>Duration</strong>
                             <span>6 Months</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Mode</strong>
                             <span>Classroom + Practical</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Certification</strong>
                             <span>Yes</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Batch Size</strong>
                             <span>20-25 Students</span>
                         </div>
@@ -1335,34 +1218,34 @@
                         <li>Sales techniques</li>
                     </ul>
                     <div class="course-actions">
-                        <a href="course-detail.html?code=RLM-2601" class="readmore-btn">Read More</a>
-                        <a href="#" class="enroll-btn">Enroll Now</a>
+                        <a href="course-detail.html?code=RLM-2601" class="btn-readmore">Read More</a>
+                        <a href="#" class="btn-enroll">Enroll Now</a>
                     </div>
                 </div>
             </div>
 
             <!-- Priority Banking Manager -->
             <div class="course-card">
-                <div class="course-header">
+                <div class="course-card-header">
                     <h3>Priority Banking Manager</h3>
                     <span class="course-code">Course Code: PBM-2701</span>
                 </div>
-                <div class="course-body">
+                <div class="course-card-body">
                     <p>Manage high-value customers and premium banking relationships.</p>
-                    <div class="course-details">
-                        <div class="course-detail-item">
+                    <div class="course-meta">
+                        <div class="course-meta-item">
                             <strong>Duration</strong>
                             <span>6 Months</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Mode</strong>
                             <span>Classroom + Practical</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Certification</strong>
                             <span>Yes</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Batch Size</strong>
                             <span>15-20 Students</span>
                         </div>
@@ -1374,34 +1257,34 @@
                         <li>Exclusive services</li>
                     </ul>
                     <div class="course-actions">
-                        <a href="course-detail.html?code=PBM-2701" class="readmore-btn">Read More</a>
-                        <a href="#" class="enroll-btn">Enroll Now</a>
+                        <a href="course-detail.html?code=PBM-2701" class="btn-readmore">Read More</a>
+                        <a href="#" class="btn-enroll">Enroll Now</a>
                     </div>
                 </div>
             </div>
 
             <!-- Wealth Relationship Manager -->
             <div class="course-card">
-                <div class="course-header">
+                <div class="course-card-header">
                     <h3>Wealth Relationship Manager</h3>
                     <span class="course-code">Course Code: WRM-2801</span>
                 </div>
-                <div class="course-body">
+                <div class="course-card-body">
                     <p>Manage affluent customers with investment and deposit relationship solutions.</p>
-                    <div class="course-details">
-                        <div class="course-detail-item">
+                    <div class="course-meta">
+                        <div class="course-meta-item">
                             <strong>Duration</strong>
                             <span>6 Months</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Mode</strong>
                             <span>Classroom + Practical</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Certification</strong>
                             <span>Yes</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Batch Size</strong>
                             <span>15-20 Students</span>
                         </div>
@@ -1413,34 +1296,34 @@
                         <li>Portfolio advisory</li>
                     </ul>
                     <div class="course-actions">
-                        <a href="course-detail.html?code=WRM-2801" class="readmore-btn">Read More</a>
-                        <a href="#" class="enroll-btn">Enroll Now</a>
+                        <a href="course-detail.html?code=WRM-2801" class="btn-readmore">Read More</a>
+                        <a href="#" class="btn-enroll">Enroll Now</a>
                     </div>
                 </div>
             </div>
 
             <!-- Corporate Liability Manager -->
             <div class="course-card">
-                <div class="course-header">
+                <div class="course-card-header">
                     <h3>Corporate Liability Manager</h3>
                     <span class="course-code">Course Code: CLM-2901</span>
                 </div>
-                <div class="course-body">
+                <div class="course-card-body">
                     <p>Acquire corporate deposits, salary accounts, and manage corporate relationships.</p>
-                    <div class="course-details">
-                        <div class="course-detail-item">
+                    <div class="course-meta">
+                        <div class="course-meta-item">
                             <strong>Duration</strong>
                             <span>6 Months</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Mode</strong>
                             <span>Classroom + Practical</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Certification</strong>
                             <span>Yes</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Batch Size</strong>
                             <span>15-20 Students</span>
                         </div>
@@ -1452,34 +1335,34 @@
                         <li>B2B banking solutions</li>
                     </ul>
                     <div class="course-actions">
-                        <a href="course-detail.html?code=CLM-2901" class="readmore-btn">Read More</a>
-                        <a href="#" class="enroll-btn">Enroll Now</a>
+                        <a href="course-detail.html?code=CLM-2901" class="btn-readmore">Read More</a>
+                        <a href="#" class="btn-enroll">Enroll Now</a>
                     </div>
                 </div>
             </div>
 
             <!-- CASA Sales Officer -->
             <div class="course-card">
-                <div class="course-header">
+                <div class="course-card-header">
                     <h3>CASA Sales Officer</h3>
                     <span class="course-code">Course Code: CSO-3001</span>
                 </div>
-                <div class="course-body">
+                <div class="course-card-body">
                     <p>Acquire savings and current accounts with effective sales techniques.</p>
-                    <div class="course-details">
-                        <div class="course-detail-item">
+                    <div class="course-meta">
+                        <div class="course-meta-item">
                             <strong>Duration</strong>
                             <span>6 Months</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Mode</strong>
                             <span>Classroom + Practical</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Certification</strong>
                             <span>Yes</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Batch Size</strong>
                             <span>25-30 Students</span>
                         </div>
@@ -1491,34 +1374,34 @@
                         <li>Target achievement</li>
                     </ul>
                     <div class="course-actions">
-                        <a href="course-detail.html?code=CSO-3001" class="readmore-btn">Read More</a>
-                        <a href="#" class="enroll-btn">Enroll Now</a>
+                        <a href="course-detail.html?code=CSO-3001" class="btn-readmore">Read More</a>
+                        <a href="#" class="btn-enroll">Enroll Now</a>
                     </div>
                 </div>
             </div>
 
             <!-- Deposit Mobilization Officer -->
             <div class="course-card">
-                <div class="course-header">
+                <div class="course-card-header">
                     <h3>Deposit Mobilization Officer</h3>
                     <span class="course-code">Course Code: DMO-3101</span>
                 </div>
-                <div class="course-body">
+                <div class="course-card-body">
                     <p>Focus on bringing deposits to the bank through strategic mobilization.</p>
-                    <div class="course-details">
-                        <div class="course-detail-item">
+                    <div class="course-meta">
+                        <div class="course-meta-item">
                             <strong>Duration</strong>
                             <span>6 Months</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Mode</strong>
                             <span>Classroom + Practical</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Certification</strong>
                             <span>Yes</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Batch Size</strong>
                             <span>20-25 Students</span>
                         </div>
@@ -1530,34 +1413,34 @@
                         <li>Relationship building</li>
                     </ul>
                     <div class="course-actions">
-                        <a href="course-detail.html?code=DMO-3101" class="readmore-btn">Read More</a>
-                        <a href="#" class="enroll-btn">Enroll Now</a>
+                        <a href="course-detail.html?code=DMO-3101" class="btn-readmore">Read More</a>
+                        <a href="#" class="btn-enroll">Enroll Now</a>
                     </div>
                 </div>
             </div>
 
             <!-- Floor Manager -->
             <div class="course-card">
-                <div class="course-header">
+                <div class="course-card-header">
                     <h3>Floor Manager</h3>
                     <span class="course-code">Course Code: FM-3201</span>
                 </div>
-                <div class="course-body">
+                <div class="course-card-body">
                     <p>Supervise and guide teams, ensure work quality, and manage daily operations.</p>
-                    <div class="course-details">
-                        <div class="course-detail-item">
+                    <div class="course-meta">
+                        <div class="course-meta-item">
                             <strong>Duration</strong>
                             <span>6 Months</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Mode</strong>
                             <span>Classroom + Practical</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Certification</strong>
                             <span>Yes</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Batch Size</strong>
                             <span>15-20 Students</span>
                         </div>
@@ -1569,34 +1452,34 @@
                         <li>Quality assurance & compliance</li>
                     </ul>
                     <div class="course-actions">
-                        <a href="course-detail.html?code=FM-3201" class="readmore-btn">Read More</a>
-                        <a href="#" class="enroll-btn">Enroll Now</a>
+                        <a href="course-detail.html?code=FM-3201" class="btn-readmore">Read More</a>
+                        <a href="#" class="btn-enroll">Enroll Now</a>
                     </div>
                 </div>
             </div>
 
             <!-- Team Supervisor -->
             <div class="course-card">
-                <div class="course-header">
+                <div class="course-card-header">
                     <h3>Team Supervisor</h3>
                     <span class="course-code">Course Code: TS-3301</span>
                 </div>
-                <div class="course-body">
+                <div class="course-card-body">
                     <p>Lead teams, monitor performance, and ensure policy compliance and quality.</p>
-                    <div class="course-details">
-                        <div class="course-detail-item">
+                    <div class="course-meta">
+                        <div class="course-meta-item">
                             <strong>Duration</strong>
                             <span>6 Months</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Mode</strong>
                             <span>Classroom + Practical</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Certification</strong>
                             <span>Yes</span>
                         </div>
-                        <div class="course-detail-item">
+                        <div class="course-meta-item">
                             <strong>Batch Size</strong>
                             <span>20-25 Students</span>
                         </div>
@@ -1608,20 +1491,24 @@
                         <li>Quality management</li>
                     </ul>
                     <div class="course-actions">
-                        <a href="course-detail.html?code=TS-3301" class="readmore-btn">Read More</a>
-                        <a href="#" class="enroll-btn">Enroll Now</a>
+                        <a href="course-detail.html?code=TS-3301" class="btn-readmore">Read More</a>
+                        <a href="#" class="btn-enroll">Enroll Now</a>
                     </div>
                 </div>
             </div>
 
         </div>
-    </div>
+    </section>
 
-    <!-- ====== FOOTER ====== -->
-    <div class="footer">
-        <p>&copy; 2026 <span class="highlight">Dharithri Manpower Training & Supply Pvt. Ltd.</span></p>
-        <p style="margin-top: 8px; font-size: 0.85rem;">WE SUPPLY THE WORTH. WE IMPROVE THE WORTH.</p>
-    </div>
+    <!-- ======== FOOTER (Matches Homepage) ======== -->
+    <footer>
+        <div class="container" style="text-align:center; padding:40px 0;">
+            <p style="color:#a0b8cf; font-size:0.9rem;">&copy; 2026 <span style="color:#c49a2b;">Dharithri Manpower Training & Supply Pvt. Ltd.</span></p>
+            <p style="color:#a0b8cf; font-size:0.85rem; margin-top:4px;">WE SUPPLY THE WORTH. WE IMPROVE THE WORTH.</p>
+        </div>
+    </footer>
 
+    <script src="js/main.js"></script>
+    <script src="js/navbar.js"></script>
 </body>
 </html>
