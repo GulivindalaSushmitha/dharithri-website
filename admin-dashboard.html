@@ -7,30 +7,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css" />
-    
-    <!-- Firebase SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 </head>
 <body>
-    <!-- ======== NAVBAR ======== -->
-    <nav class="navbar" style="background:#0b2b4a; padding:12px 0; position:sticky; top:0; z-index:100;">
-        <div class="container" style="max-width:1280px; margin:0 auto; padding:0 24px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
-            <div style="display:flex; align-items:center; gap:12px;">
-                <img src="assets/images/logo.png" alt="Logo" style="height:40px; width:auto; filter:brightness(0) invert(1);" onerror="this.style.display='none'" />
-                <span style="color:white; font-weight:700; font-size:1.1rem;">Dharithri<span style="color:#c49a2b;">.</span> Admin</span>
-            </div>
-            <div style="display:flex; align-items:center; gap:16px;">
-                <span style="color:#a0b8cf; font-size:0.9rem;"><i class="fas fa-user"></i> <span id="adminUserDisplay">admin</span></span>
-                <button onclick="logout()" style="background:#c49a2b; border:none; color:#0b2b4a; padding:6px 20px; border-radius:20px; cursor:pointer; font-weight:600; transition:0.2s;">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                </button>
-            </div>
-        </div>
-    </nav>
+    <!-- Navbar auto-loaded by navbar.js -->
 
-    <!-- ======== MAIN CONTENT ======== -->
-    <section class="container" style="max-width:1280px; margin:0 auto; padding:30px 24px;">
+    <section class="container" style="padding: 30px 0;">
         <h1 style="font-size:2.2rem; font-weight:700; color:#0b2b4a; margin-bottom:8px;">📊 Applications Dashboard</h1>
         <p style="color:#4a5d74; margin-bottom:32px;">View all registered applications submitted through the website.</p>
 
@@ -47,8 +28,18 @@
         <div id="applicationsTable" style="background:white; padding:24px; border-radius:16px; box-shadow:0 4px 16px rgba(0,0,0,0.03); overflow-x:auto;"></div>
     </section>
 
+    <script src="js/main.js"></script>
+    <script src="js/navbar.js"></script>
+    
+    <!-- Firebase SDKs - Updated to latest version -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+
     <script>
-        // ===== FIREBASE CONFIG =====
+        // =============================================
+        // FIREBASE CONFIGURATION
+        // =============================================
         const firebaseConfig = {
             apiKey: "AIzaSyA7aJEk6jSaNDaLSgvmx6TVDtRpiinjTqs",
             authDomain: "dharithri-training.firebaseapp.com",
@@ -59,19 +50,41 @@
             measurementId: "G-NHEK585JRM"
         };
 
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
+        // =============================================
+        // INITIALIZE FIREBASE
+        // =============================================
+        console.log('🚀 Initializing Firebase for Admin...');
 
-        // ===== CHECK LOGIN =====
+        try {
+            firebase.initializeApp(firebaseConfig);
+            const db = firebase.firestore();
+            console.log('✅ Firebase initialized for Admin!');
+            
+            // Test connection
+            db.collection('applications').limit(1).get()
+                .then(() => {
+                    console.log('✅ Firestore connection successful for Admin!');
+                })
+                .catch((error) => {
+                    console.error('❌ Firestore connection test failed:', error);
+                });
+        } catch (error) {
+            console.error('❌ Firebase initialization failed:', error);
+        }
+
+        // =============================================
+        // CHECK ADMIN LOGIN
+        // =============================================
         if (localStorage.getItem('dharithri_admin_logged_in') !== 'true') {
             window.location.href = 'admin-login.html';
         }
 
-        // Show username
         const username = localStorage.getItem('dharithri_admin_username') || 'admin';
         document.getElementById('adminUserDisplay').textContent = username;
 
-        // ===== LOGOUT =====
+        // =============================================
+        // LOGOUT
+        // =============================================
         function logout() {
             if (confirm('Are you sure you want to logout?')) {
                 localStorage.removeItem('dharithri_admin_logged_in');
@@ -80,7 +93,9 @@
             }
         }
 
-        // ===== LOAD APPLICATIONS =====
+        // =============================================
+        // LOAD APPLICATIONS
+        // =============================================
         function loadApplications() {
             const tableDiv = document.getElementById('applicationsTable');
             const statsDiv = document.getElementById('stats');
@@ -188,7 +203,9 @@
                 });
         }
 
-        // ===== VIEW APPLICATION DETAILS =====
+        // =============================================
+        // VIEW APPLICATION DETAILS
+        // =============================================
         function viewApplication(docId) {
             db.collection('applications').doc(docId).get()
                 .then((doc) => {
@@ -231,7 +248,9 @@
                 });
         }
 
-        // ===== EXPORT CSV =====
+        // =============================================
+        // EXPORT CSV
+        // =============================================
         function exportCSV() {
             const applications = window.applicationsData || [];
             if (applications.length === 0) {
@@ -267,7 +286,9 @@
             URL.revokeObjectURL(link.href);
         }
 
-        // ===== REFRESH DATA =====
+        // =============================================
+        // REFRESH DATA
+        // =============================================
         function refreshData() {
             document.getElementById('applicationsTable').innerHTML = '';
             document.getElementById('stats').innerHTML = '';
@@ -279,7 +300,9 @@
             loadApplications();
         }
 
-        // ===== LOAD ON PAGE LOAD =====
+        // =============================================
+        // LOAD ON PAGE LOAD
+        // =============================================
         document.addEventListener('DOMContentLoaded', loadApplications);
     </script>
 </body>

@@ -9,7 +9,7 @@ const navbarHTML = `
         <!-- LOGO - CLICKABLE TO HOME -->
         <a href="index.html" style="text-decoration:none; display:flex; align-items:center; gap:12px;">
             <div class="logo-area" style="display:flex; align-items:center; gap:12px;">
-                <img src="assets/images/logo.png" alt="Dharithri Logo" style="height:55px; width:auto;" onerror="this.style.display='none'" />
+                <img src="assets/images/logo.png" alt="Dharithri Logo" style="height:55px; width:auto;" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2250%22 height=%2250%22%3E%3Crect width=%2250%22 height=%2250%22 fill=%22%230b2b4a%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22white%22 font-size=%2216%22 font-family=%22sans-serif%22%3EDH%3C/text%3E%3C/svg%3E'" />
                 <div style="display:flex; flex-direction:column; line-height:1.1;">
                     <span style="font-weight:800; font-size:1.1rem; color:#0b2b4a; letter-spacing:0.5px;">DHARITHRI</span>
                     <span style="font-size:0.55rem; color:#4a5d74; font-weight:600; letter-spacing:0.3px;">MANPOWER TRAINING & SUPPLY PVT. LTD.</span>
@@ -60,22 +60,18 @@ const footerHTML = `
 
 // ===== FUNCTION TO INJECT NAVBAR =====
 function loadNavbar() {
-    // Insert navbar at the beginning of body
     document.body.insertAdjacentHTML('afterbegin', navbarHTML);
 }
 
 // ===== FUNCTION TO INJECT FOOTER =====
 function loadFooter() {
-    // Insert footer at the end of body
     document.body.insertAdjacentHTML('beforeend', footerHTML);
 }
 
 // ===== FUNCTION TO HIGHLIGHT ACTIVE PAGE =====
 function highlightActivePage() {
-    // Get current page filename
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     
-    // Map of page to nav ID
     const pageMap = {
         'index.html': 'navHome',
         'about.html': 'navAbout',
@@ -87,7 +83,6 @@ function highlightActivePage() {
         'apply.html': 'navApply'
     };
     
-    // Get the nav link ID
     const navId = pageMap[currentPage];
     if (navId) {
         const link = document.getElementById(navId);
