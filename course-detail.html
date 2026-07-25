@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Course Detail · Dharithri</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <nav class="navbar"><div class="container nav-flex">
+        <div class="logo-area"><img src="assets/images/logo.png" alt="Logo" onerror="this.src='https://via.placeholder.com/48x48?text=DH'" /><div class="logo-text">Dharithri<span>.</span></div></div>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html">Home</a><a href="about.html">About</a><a href="courses.html" class="active">Courses</a>
+            <a href="training.html">Training</a><a href="questionnaire.html">Questionnaire</a><a href="contact.html">Contact</a>
+            <a href="apply.html" class="btn btn-gold" style="padding:8px 22px;">Apply Now</a>
+        </div>
+        <div class="hamburger" onclick="toggleNav()"><i class="fas fa-bars"></i></div>
+    </div></nav>
+
+    <section class="container" style="padding: 60px 0;">
+        <h1 class="section-title" id="courseTitle">Course Details</h1>
+        <div style="background:white; padding:40px; border-radius:24px; box-shadow:0 4px 16px rgba(0,0,0,0.03);">
+            <div id="courseContent">
+                <p style="color:#4a5d74; font-size:1.1rem;">Loading course details...</p>
+            </div>
+            <div style="margin-top:30px; display:flex; gap:16px; flex-wrap:wrap;">
+                <a href="courses.html" class="btn">← Back to Courses</a>
+                <a href="apply.html" class="btn btn-gold">Apply Now <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <footer style="background:#061c2f; color:white; padding:40px 0; margin-top:40px;">
+        <div class="container" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:20px;">
+            <div><h4>Dharithri Manpower Training & Supply Pvt. Ltd.</h4><p style="color:#7a94ae;">Building Worth. Inspiring Generations.</p></div>
+            <div>
+                <a href="#" style="color:#7a94ae; margin:0 10px; font-size:1.4rem;"><i class="fab fa-facebook"></i></a>
+                <a href="#" style="color:#7a94ae; margin:0 10px; font-size:1.4rem;"><i class="fab fa-instagram"></i></a>
+                <a href="#" style="color:#7a94ae; margin:0 10px; font-size:1.4rem;"><i class="fab fa-linkedin"></i></a>
+                <a href="#" style="color:#7a94ae; margin:0 10px; font-size:1.4rem;"><i class="fab fa-youtube"></i></a>
+                <a href="#" style="color:#7a94ae; margin:0 10px; font-size:1.4rem;"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Course data
+        const courseData = {
+            'Sales Manager': {
+                title: 'Sales Manager Training',
+                description: 'Master the art of selling banking products including Loan Against Property, Business Loans, Home Loans, and Professional Loans. Learn relationship building, customer acquisition, and sales strategies.',
+                modules: ['Loan Against Property (LAP)', 'Business Loan', 'Home Loan', 'Professional Loan', 'Sales Strategies', 'Customer Relationship Management']
+            },
+            'Operations Manager': {
+                title: 'Operations Manager Training',
+                description: 'Learn the complete operations workflow in banking including file analysis, customer verification, income assessment, KYC processes, and documentation management.',
+                modules: ['File Analysis', 'Customer Profile Verification', 'Income Analysis', 'KYC Verification', 'Banking Documentation', 'Process Optimization']
+            },
+            'Risk Manager': {
+                title: 'Risk Manager Training (Certified)',
+                description: 'Comprehensive training on credit, operational, financial, fraud, and compliance risks. Understand RBI guidelines and risk management frameworks.',
+                modules: ['Credit Risk', 'Operational Risk', 'Financial Risk', 'Fraud Risk', 'Compliance Risk', 'RBI Guidelines', 'Risk Assessment']
+            },
+            'Credit Manager': {
+                title: 'Credit Manager Training',
+                description: 'Master credit appraisal, financial statement analysis, CIBIL evaluation, and loan approval processes. Understand banking policies and credit decision-making.',
+                modules: ['Credit Appraisal', 'Financial Statement Analysis', 'CIBIL Analysis', 'Loan Approval Process', 'Banking Policies']
+            },
+            'Legal Manager': {
+                title: 'Legal Manager Training',
+                description: 'Learn property legal verification, title search, EC verification, mortgage creation, and SARFAESI Act. Understand legal aspects of banking and finance.',
+                modules: ['Property Legal Verification', 'Title Search', 'EC Verification', 'Mortgage Creation', 'SARFAESI Act']
+            },
+            'Technical Manager': {
+                title: 'Technical Manager Training (Certified)',
+                description: 'Develop skills in property inspection, construction verification, technical valuation, site visits, and estimation. Learn to assess collateral value.',
+                modules: ['Property Inspection', 'Construction Verification', 'Technical Valuation', 'Site Visit', 'Estimation']
+            },
+            'Accounts & Finance': {
+                title: 'Accounts & Finance Training',
+                description: 'Build a strong foundation in accounting, auditing, and financial management. Includes guidance for CA and CS aspirants.',
+                modules: ['Accountant', 'Auditor', 'Chartered Accountant Guidance', 'Company Secretary Guidance', 'Financial Reporting']
+            },
+            'Branch Banking': {
+                title: 'Branch Banking Training (Certified)',
+                description: 'Learn front-office banking operations including teller services, cashier duties, branch operations, and customer service. Handle daily banking transactions.',
+                modules: ['Teller', 'Cashier', 'Branch Operations Executive', 'Customer Service Officer']
+            },
+            'Liability Banking': {
+                title: 'Liability Banking Training',
+                description: 'Master liability products including CASA, relationship management, priority banking, wealth management, and corporate liability. Drive deposits and client relationships.',
+                modules: ['Liability Sales Manager', 'CASA Manager', 'Relationship Manager', 'Priority Banking Manager', 'Wealth Relationship Manager', 'Corporate Liability Manager', 'Deposit Mobilization Officer']
+            },
+            'Asset Banking': {
+                title: 'Asset Banking Training',
+                description: 'Learn asset management, credit analysis, underwriting, portfolio management, collections, and MSME banking. Understand the entire asset side of banking.',
+                modules: ['Asset Manager', 'Credit Manager', 'Loan Manager', 'Credit Analyst', 'Underwriting Manager', 'Portfolio Manager', 'Collections Manager', 'MSME Banking Manager']
+            },
+            'Team Supervisor': {
+                title: 'Team Supervisor Training',
+                description: 'Develop leadership skills including team handling, performance monitoring, task allocation, reporting, and policy compliance. Learn to manage teams effectively.',
+                modules: ['Team Leadership', 'Performance Monitoring', 'Task Allocation', 'Reporting', 'Policy Compliance']
+            }
+        };
+
+        // Get course from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const course = urlParams.get('course');
+        const data = courseData[course];
+
+        if (data) {
+            document.getElementById('courseTitle').textContent = data.title;
+            let html = `<p style="font-size:1.1rem; line-height:1.8; color:#2f4057;">${data.description}</p>`;
+            html += `<h3 style="margin-top:24px; color:#0b2b4a;">Course Modules</h3><ul style="list-style:none; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:12px;">`;
+            data.modules.forEach(m => {
+                html += `<li style="padding:8px 12px; background:#f5f8fd; border-radius:8px; color:#2f4057;">✓ ${m}</li>`;
+            });
+            html += `</ul>`;
+            document.getElementById('courseContent').innerHTML = html;
+        } else {
+            document.getElementById('courseContent').innerHTML = `<p style="color:#e74c3c;">Course not found. Please go back to <a href="courses.html">Courses</a>.</p>`;
+        }
+    </script>
+    <script src="js/main.js"></script>
+</body>
+</html>

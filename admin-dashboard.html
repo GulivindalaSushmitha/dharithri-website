@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard · Dharithri</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+    
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+    <!-- ======== NAVBAR ======== -->
+    <nav class="navbar" style="background:#0b2b4a; padding:12px 0; position:sticky; top:0; z-index:100;">
+        <div class="container" style="max-width:1280px; margin:0 auto; padding:0 24px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+            <div style="display:flex; align-items:center; gap:12px;">
+                <img src="assets/images/logo.png" alt="Logo" style="height:40px; width:auto; filter:brightness(0) invert(1);" onerror="this.style.display='none'" />
+                <span style="color:white; font-weight:700; font-size:1.1rem;">Dharithri<span style="color:#c49a2b;">.</span> Admin</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:16px;">
+                <span style="color:#a0b8cf; font-size:0.9rem;"><i class="fas fa-user"></i> <span id="adminUserDisplay">admin</span></span>
+                <button onclick="logout()" style="background:#c49a2b; border:none; color:#0b2b4a; padding:6px 20px; border-radius:20px; cursor:pointer; font-weight:600; transition:0.2s;">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ======== MAIN CONTENT ======== -->
+    <section class="container" style="max-width:1280px; margin:0 auto; padding:30px 24px;">
+        <h1 style="font-size:2.2rem; font-weight:700; color:#0b2b4a; margin-bottom:8px;">📊 Applications Dashboard</h1>
+        <p style="color:#4a5d74; margin-bottom:32px;">View all registered applications submitted through the website.</p>
+
+        <!-- Stats -->
+        <div id="stats" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap:16px; margin-bottom:24px;"></div>
+
+        <!-- Loading -->
+        <div id="loadingMessage" style="text-align:center; padding:40px; color:#4a5d74; background:white; border-radius:16px;">
+            <i class="fas fa-spinner fa-spin" style="font-size:2rem; color:#c49a2b;"></i>
+            <p style="margin-top:12px;">Loading applications...</p>
+        </div>
+
+        <!-- Table -->
+        <div id="applicationsTable" style="background:white; padding:24px; border-radius:16px; box-shadow:0 4px 16px rgba(0,0,0,0.03); overflow-x:auto;"></div>
+    </section>
+
+    <script>
+        // ===== FIREBASE CONFIG =====
+        const firebaseConfig = {
+            apiKey: "AIzaSyA7aJEk6jSaNDaLSgvmx6TVDtRpiinjTqs",
+            authDomain: "dharithri-training.firebaseapp.com",
+            projectId: "dharithri-training",
+            storageBucket: "dharithri-training.firebasestorage.app",
+            messagingSenderId: "54254956289",
+            appId: "1:54254956289:web:753ecd7a1c6b53534a3500",
+            measurementId: "G-NHEK585JRM"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // ===== CHECK LOGIN =====
+        if (localStorage.getItem('dharithri_admin_logged_in') !== 'true') {
+            window.location.href = 'admin-login.html';
+        }
+
+        // Show username
+        const username = localStorage.getItem('dharithri_admin_username') || 'admin';
+        document.getElementById('adminUserDisplay').textContent = username;
+
+        // ===== LOGOUT =====
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('dharithri_admin_logged_in');
+                localStorage.removeItem('dharithri_admin_username');
+                window.location.href = 'admin-login.html';
+            }
+        }
+
+        // ===== LOAD APPLICATIONS =====
+        function loadApplications() {
+            const tableDiv = document.getElementById('applicationsTable');
+            const statsDiv = document.getElementById('stats');
+            const loadingDiv = document.getElementById('loadingMessage');
+
+            db.collection('applications')
+                .orderBy('applicationDate', 'desc')
+                .get()
+                .then((snapshot) => {
+                    loadingDiv.style.display = 'none';
+                    
+                    const applications = [];
+                    snapshot.forEach((doc) => {
+                        applications.push({ id: doc.id, ...doc.data() });
+                    });
+
+                    // Show stats
+                    statsDiv.innerHTML = `
+                        <div style="background:#f5f8fd; padding:16px; border-radius:12px; text-align:center;">
+                            <h3 style="color:#0b2b4a; font-size:1.8rem; margin:0;">${applications.length}</h3>
+                            <p style="color:#4a5d74; margin:4px 0 0;">Total Applications</p>
+                        </div>
+                        <div style="background:#f5f8fd; padding:16px; border-radius:12px; text-align:center;">
+                            <h3 style="color:#0b2b4a; font-size:1.8rem; margin:0;">${applications.length > 0 ? new Date(applications[0].applicationDate).toLocaleDateString() : 'N/A'}</h3>
+                            <p style="color:#4a5d74; margin:4px 0 0;">Latest Application</p>
+                        </div>
+                        <div style="background:#f5f8fd; padding:16px; border-radius:12px; text-align:center;">
+                            <h3 style="color:#0b2b4a; font-size:1.8rem; margin:0;">${applications.filter(a => a.program).length}</h3>
+                            <p style="color:#4a5d74; margin:4px 0 0;">Programs Selected</p>
+                        </div>
+                    `;
+
+                    if (applications.length === 0) {
+                        tableDiv.innerHTML = `
+                            <div style="text-align:center; padding:40px; color:#4a5d74;">
+                                <i class="fas fa-inbox" style="font-size:3rem; color:#c49a2b;"></i>
+                                <h3 style="margin:12px 0;">No applications yet</h3>
+                                <p>Applications submitted through the website will appear here.</p>
+                            </div>
+                        `;
+                        return;
+                    }
+
+                    let html = `
+                        <table style="width:100%; border-collapse:collapse; font-size:0.9rem;">
+                            <thead>
+                                <tr style="background:#0b2b4a; color:white;">
+                                    <th style="padding:12px 16px; text-align:left;">#</th>
+                                    <th style="padding:12px 16px; text-align:left;">Name</th>
+                                    <th style="padding:12px 16px; text-align:left;">Mobile</th>
+                                    <th style="padding:12px 16px; text-align:left;">Email</th>
+                                    <th style="padding:12px 16px; text-align:left;">Program</th>
+                                    <th style="padding:12px 16px; text-align:left;">Goal</th>
+                                    <th style="padding:12px 16px; text-align:left;">Date</th>
+                                    <th style="padding:12px 16px; text-align:center;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                    `;
+
+                    applications.forEach((app, index) => {
+                        const bgColor = index % 2 === 0 ? '#ffffff' : '#f8f9fb';
+                        html += `
+                            <tr style="background:${bgColor}; border-bottom:1px solid #eef2f6;">
+                                <td style="padding:10px 16px;">${index + 1}</td>
+                                <td style="padding:10px 16px; font-weight:600; color:#0b2b4a;">${app.name || 'N/A'}</td>
+                                <td style="padding:10px 16px;">${app.mobile || 'N/A'}</td>
+                                <td style="padding:10px 16px;">${app.email || 'N/A'}</td>
+                                <td style="padding:10px 16px;"><span style="background:#c49a2b; color:#0b2b4a; padding:2px 12px; border-radius:40px; font-size:0.75rem; font-weight:600;">${app.program || 'N/A'}</span></td>
+                                <td style="padding:10px 16px;">${app.career_goal || 'N/A'}</td>
+                                <td style="padding:10px 16px; font-size:0.8rem;">${app.applicationDate ? new Date(app.applicationDate).toLocaleString() : 'N/A'}</td>
+                                <td style="padding:10px 16px; text-align:center;">
+                                    <button onclick="viewApplication('${app.id}')" style="background:#c49a2b; border:none; color:white; padding:4px 14px; border-radius:6px; cursor:pointer; font-size:0.8rem;">
+                                        <i class="fas fa-eye"></i> View
+                                    </button>
+                                </td>
+                            </tr>
+                        `;
+                    });
+
+                    html += `</tbody></table>`;
+                    html += `
+                        <div style="margin-top:20px; display:flex; gap:12px; flex-wrap:wrap;">
+                            <button onclick="exportCSV()" style="background:#0b2b4a; color:white; border:none; padding:10px 24px; border-radius:40px; cursor:pointer; font-weight:600; transition:0.2s;">
+                                <i class="fas fa-file-csv"></i> Export CSV
+                            </button>
+                            <button onclick="refreshData()" style="background:#4a5d74; color:white; border:none; padding:10px 24px; border-radius:40px; cursor:pointer; font-weight:600; transition:0.2s;">
+                                <i class="fas fa-sync"></i> Refresh
+                            </button>
+                        </div>
+                    `;
+
+                    tableDiv.innerHTML = html;
+                    window.applicationsData = applications;
+                })
+                .catch((error) => {
+                    console.error('Error loading applications:', error);
+                    loadingDiv.innerHTML = `
+                        <i class="fas fa-exclamation-circle" style="font-size:2rem; color:#e74c3c;"></i>
+                        <p style="margin-top:12px; color:#e74c3c;">Error loading applications. Please refresh.</p>
+                        <button onclick="loadApplications()" style="margin-top:12px; background:#c49a2b; border:none; color:#0b2b4a; padding:8px 24px; border-radius:40px; cursor:pointer; font-weight:600;">
+                            <i class="fas fa-sync"></i> Try Again
+                        </button>
+                    `;
+                });
+        }
+
+        // ===== VIEW APPLICATION DETAILS =====
+        function viewApplication(docId) {
+            db.collection('applications').doc(docId).get()
+                .then((doc) => {
+                    if (doc.exists) {
+                        const data = doc.data();
+                        let details = '📋 APPLICATION DETAILS\n' + '='.repeat(40) + '\n\n';
+                        const fields = {
+                            'Name': data.name,
+                            'Aadhar': data.aadhar,
+                            'Mobile': data.mobile,
+                            'Email': data.email,
+                            'Gender': data.gender,
+                            'DOB': data.dob,
+                            'Address': data.address,
+                            'State': data.state,
+                            'Mother': data.mother,
+                            'Father': data.father,
+                            'Siblings': data.siblings,
+                            'Religion': data.religion,
+                            'Caste': data.caste,
+                            'Income': data.income,
+                            'PG Course': data.pg_course,
+                            'Graduation': data.grad_course,
+                            'Academic Year': data.academic_year,
+                            'Program': data.program,
+                            'Career Goal': data.career_goal,
+                            'Source': data.source,
+                            'Applied On': data.applicationDate ? new Date(data.applicationDate).toLocaleString() : 'N/A'
+                        };
+                        for (const [key, value] of Object.entries(fields)) {
+                            if (value) {
+                                details += `${key}: ${value}\n`;
+                            }
+                        }
+                        alert(details);
+                    }
+                })
+                .catch((error) => {
+                    alert('Error loading application details');
+                });
+        }
+
+        // ===== EXPORT CSV =====
+        function exportCSV() {
+            const applications = window.applicationsData || [];
+            if (applications.length === 0) {
+                alert('No data to export.');
+                return;
+            }
+
+            const headers = ['Name', 'Aadhar', 'Mobile', 'Email', 'Gender', 'State', 'Program', 'Career Goal', 'Income', 'Source', 'Application Date'];
+            let csv = headers.join(',') + '\n';
+
+            applications.forEach(app => {
+                const row = [
+                    `"${app.name || ''}"`,
+                    `"${app.aadhar || ''}"`,
+                    `"${app.mobile || ''}"`,
+                    `"${app.email || ''}"`,
+                    `"${app.gender || ''}"`,
+                    `"${app.state || ''}"`,
+                    `"${app.program || ''}"`,
+                    `"${app.career_goal || ''}"`,
+                    `"${app.income || ''}"`,
+                    `"${app.source || ''}"`,
+                    `"${app.applicationDate || ''}"`
+                ];
+                csv += row.join(',') + '\n';
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `dharithri_applications_${new Date().toISOString().slice(0,10)}.csv`;
+            link.click();
+            URL.revokeObjectURL(link.href);
+        }
+
+        // ===== REFRESH DATA =====
+        function refreshData() {
+            document.getElementById('applicationsTable').innerHTML = '';
+            document.getElementById('stats').innerHTML = '';
+            document.getElementById('loadingMessage').style.display = 'block';
+            document.getElementById('loadingMessage').innerHTML = `
+                <i class="fas fa-spinner fa-spin" style="font-size:2rem; color:#c49a2b;"></i>
+                <p style="margin-top:12px;">Refreshing...</p>
+            `;
+            loadApplications();
+        }
+
+        // ===== LOAD ON PAGE LOAD =====
+        document.addEventListener('DOMContentLoaded', loadApplications);
+    </script>
+</body>
+</html>

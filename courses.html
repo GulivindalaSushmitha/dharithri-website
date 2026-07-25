@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Courses · Dharithri</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <nav class="navbar"><div class="container nav-flex">
+        <div class="logo-area"><img src="assets/images/logo.png" alt="Logo" onerror="this.src='https://via.placeholder.com/48x48?text=DH'" /><div class="logo-text">Dharithri<span>.</span></div></div>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html">Home</a><a href="about.html">About</a><a href="courses.html" class="active">Courses</a>
+            <a href="training.html">Training</a><a href="questionnaire.html">Questionnaire</a><a href="contact.html">Contact</a>
+            <a href="apply.html" class="btn btn-gold" style="padding:8px 22px;">Apply Now</a>
+        </div>
+        <div class="hamburger" onclick="toggleNav()"><i class="fas fa-bars"></i></div>
+    </div></nav>
+
+    <section class="container" style="padding: 60px 0;">
+        <h1 class="section-title">Our Courses</h1>
+        <p class="section-sub">Comprehensive banking and management training programs designed to build successful careers.</p>
+
+        <div class="course-grid">
+            <!-- Sales Manager -->
+            <div class="course-card"><h4>Sales Manager</h4><ul><li>Loan Against Property (LAP)</li><li>Business Loan</li><li>Home Loan</li><li>Professional Loan</li></ul><a href="course-detail.html?course=Sales%20Manager" class="btn btn-outline">Read More</a> <a href="apply.html" class="btn btn-gold">Apply Now</a></div>
+            
+            <!-- Operations Manager -->
+            <div class="course-card"><h4>Operations Manager</h4><ul><li>File Analysis</li><li>Customer Profile Verification</li><li>Income Analysis</li><li>KYC Verification</li><li>Banking Documentation</li></ul><a href="course-detail.html?course=Operations%20Manager" class="btn btn-outline">Read More</a> <a href="apply.html" class="btn btn-gold">Apply Now</a></div>
+            
+            <!-- Risk Manager -->
+            <div class="course-card"><h4>Risk Manager <span style="font-size:0.7rem; color:#c49a2b; font-weight:600;">Certified</span></h4><ul><li>Credit Risk</li><li>Operational Risk</li><li>Financial Risk</li><li>Fraud Risk</li><li>Compliance Risk</li><li>RBI Guidelines</li></ul><a href="course-detail.html?course=Risk%20Manager" class="btn btn-outline">Read More</a> <a href="apply.html" class="btn btn-gold">Apply Now</a></div>
+            
+            <!-- Credit Manager -->
+            <div class="course-card"><h4>Credit Manager</h4><ul><li>Credit Appraisal</li><li>Financial Statement Analysis</li><li>CIBIL Analysis</li><li>Loan Approval Process</li><li>Banking Policies</li></ul><a href="course-detail.html?course=Credit%20Manager" class="btn btn-outline">Read More</a> <a href="apply.html" class="btn btn-gold">Apply Now</a></div>
+            
+            <!-- Legal Manager -->
+            <div class="course-card"><h4>Legal Manager</h4><ul><li>Property Legal Verification</li><li>Title Search</li><li>EC Verification</li><li>Mortgage Creation</li><li>SARFAESI Act</li></ul><a href="course-detail.html?course=Legal%20Manager" class="btn btn-outline">Read More</a> <a href="apply.html" class="btn btn-gold">Apply Now</a></div>
+            
+            <!-- Technical Manager -->
+            <div class="course-card"><h4>Technical Manager <span style="font-size:0.7rem; color:#c49a2b; font-weight:600;">Certified</span></h4><ul><li>Property Inspection</li><li>Construction Verification</li><li>Technical Valuation</li><li>Site Visit</li><li>Estimation</li></ul><a href="course-detail.html?course=Technical%20Manager" class="btn btn-outline">Read More</a> <a href="apply.html" class="btn btn-gold">Apply Now</a></div>
+            
+            <!-- Accounts & Finance -->
+            <div class="course-card"><h4>Accounts & Finance</h4><ul><li>Accountant</li><li>Auditor</li><li>Chartered Accountant Guidance</li><li>Company Secretary Guidance</li></ul><a href="course-detail.html?course=Accounts%20%26%20Finance" class="btn btn-outline">Read More</a> <a href="apply.html" class="btn btn-gold">Apply Now</a></div>
+            
+            <!-- Branch Banking -->
+            <div class="course-card"><h4>Branch Banking <span style="font-size:0.7rem; color:#c49a2b; font-weight:600;">Certified</span></h4><ul><li>Teller</li><li>Cashier</li><li>Branch Operations Executive</li><li>Customer Service Officer</li></ul><a href="course-detail.html?course=Branch%20Banking" class="btn btn-outline">Read More</a> <a href="apply.html" class="btn btn-gold">Apply Now</a></div>
+            
+            <!-- Liability Banking -->
+            <div class="course-card"><h4>Liability Banking</h4><ul><li>Liability Sales Manager</li><li>CASA Manager</li><li>Relationship Manager</li><li>Priority Banking Manager</li><li>Wealth Relationship Manager</li><li>Corporate Liability Manager</li><li>Deposit Mobilization Officer</li></ul><a href="course-detail.html?course=Liability%20Banking" class="btn btn-outline">Read More</a> <a href="apply.html" class="btn btn-gold">Apply Now</a></div>
+            
+            <!-- Asset Banking -->
+            <div class="course-card"><h4>Asset Banking</h4><ul><li>Asset Manager</li><li>Credit Manager</li><li>Loan Manager</li><li>Credit Analyst</li><li>Underwriting Manager</li><li>Portfolio Manager</li><li>Collections Manager</li><li>MSME Banking Manager</li></ul><a href="course-detail.html?course=Asset%20Banking" class="btn btn-outline">Read More</a> <a href="apply.html" class="btn btn-gold">Apply Now</a></div>
+            
+            <!-- Team Supervisor -->
+            <div class="course-card"><h4>Team Supervisor</h4><ul><li>Team Leadership</li><li>Performance Monitoring</li><li>Task Allocation</li><li>Reporting</li><li>Policy Compliance</li></ul><a href="course-detail.html?course=Team%20Supervisor" class="btn btn-outline">Read More</a> <a href="apply.html" class="btn btn-gold">Apply Now</a></div>
+        </div>
+    </section>
+
+    <footer style="background:#061c2f; color:white; padding:40px 0; margin-top:40px;">
+        <div class="container" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:20px;">
+            <div><h4>Dharithri Manpower Training & Supply Pvt. Ltd.</h4><p style="color:#7a94ae;">Building Worth. Inspiring Generations.</p></div>
+            <div>
+                <a href="#" style="color:#7a94ae; margin:0 10px; font-size:1.4rem;"><i class="fab fa-facebook"></i></a>
+                <a href="#" style="color:#7a94ae; margin:0 10px; font-size:1.4rem;"><i class="fab fa-instagram"></i></a>
+                <a href="#" style="color:#7a94ae; margin:0 10px; font-size:1.4rem;"><i class="fab fa-linkedin"></i></a>
+                <a href="#" style="color:#7a94ae; margin:0 10px; font-size:1.4rem;"><i class="fab fa-youtube"></i></a>
+                <a href="#" style="color:#7a94ae; margin:0 10px; font-size:1.4rem;"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+    <script src="js/main.js"></script>
+</body>
+</html>
