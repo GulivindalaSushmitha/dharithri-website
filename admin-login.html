@@ -89,6 +89,19 @@
             margin-top: 12px;
             font-size: 14px;
         }
+        .demo-credentials {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-size: 13px;
+            color: #4a5d74;
+            text-align: center;
+            border: 1px dashed #c49a2b;
+        }
+        .demo-credentials strong {
+            color: #0b2b4a;
+        }
     </style>
 </head>
 <body>
@@ -98,36 +111,25 @@
         <p class="sub">Enter your credentials to access the dashboard</p>
         <form id="loginForm">
             <label for="adminEmail">Email Address</label>
-            <input type="email" id="adminEmail" placeholder="admin@test.com" required>
+            <input type="email" id="adminEmail" placeholder="admin@dharithri.com" required>
             <label for="adminPassword">Password</label>
             <input type="password" id="adminPassword" placeholder="Enter password" required>
             <button type="submit" id="loginBtn">Login</button>
             <div id="loginError" class="error"></div>
         </form>
+        <div class="demo-credentials">
+            <strong>Demo Credentials:</strong><br>
+            Email: <strong>admin@dharithri.com</strong><br>
+            Password: <strong>admin123</strong>
+        </div>
     </div>
 
     <!-- ============================================ -->
-    <!-- FIREBASE SDK - LOADING WITH FALLBACK        -->
+    <!-- FIREBASE SDK                                 -->
     <!-- ============================================ -->
-    <script>
-        // Check if Firebase SDK loads properly
-        console.log('⏳ Loading Firebase SDK...');
-    </script>
-    
-    <!-- Load Firebase SDK from CDN -->
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
-    
-    <script>
-        // Check if Firebase loaded successfully
-        if (typeof firebase === 'undefined') {
-            console.error('❌ Firebase failed to load!');
-            document.getElementById('loginError').textContent = '❌ Firebase SDK failed to load. Please check your internet connection.';
-            document.getElementById('loginError').style.color = '#d32f2f';
-        } else {
-            console.log('✅ Firebase loaded successfully!');
-        }
-    </script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
     
     <script>
         // ============================================
@@ -143,12 +145,13 @@
             measurementId: "G-NHEK585JRM"
         };
 
-        // Only initialize if Firebase loaded
-        if (typeof firebase !== 'undefined') {
+        // Check if Firebase loaded
+        if (typeof firebase === 'undefined') {
+            document.getElementById('loginError').textContent = '❌ Firebase SDK failed to load. Please check your internet connection.';
+            document.getElementById('loginError').style.color = '#d32f2f';
+        } else {
             firebase.initializeApp(firebaseConfig);
             const auth = firebase.auth();
-            
-            console.log('✅ Firebase initialized!');
             
             // ============================================
             // 📝 LOGIN HANDLER
@@ -174,7 +177,6 @@
                 
                 auth.signInWithEmailAndPassword(email, password)
                     .then((userCredential) => {
-                        console.log('✅ Login successful!', userCredential.user.email);
                         errorDiv.className = 'success';
                         errorDiv.textContent = '✅ Login successful! Redirecting...';
                         
@@ -183,7 +185,6 @@
                         }, 1000);
                     })
                     .catch((error) => {
-                        console.error('❌ Login error:', error.code, error.message);
                         loginBtn.textContent = 'Login';
                         loginBtn.disabled = false;
                         errorDiv.className = 'error';
@@ -206,14 +207,9 @@
             // ============================================
             auth.onAuthStateChanged((user) => {
                 if (user) {
-                    console.log('✅ User already logged in:', user.email);
                     window.location.href = 'admin-dashboard.html';
                 }
             });
-        } else {
-            console.error('❌ Firebase not available. Login will not work.');
-            document.getElementById('loginBtn').disabled = true;
-            document.getElementById('loginBtn').textContent = '⚠️ Firebase Not Loaded';
         }
     </script>
 </body>
