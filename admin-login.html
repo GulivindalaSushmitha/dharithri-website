@@ -4,46 +4,101 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Login · Dharithri</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f0f4f8;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-container {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+            width: 100%;
+            max-width: 420px;
+        }
+        .login-container .logo {
+            text-align: center;
+            font-size: 48px;
+            margin-bottom: 8px;
+        }
+        .login-container h2 {
+            text-align: center;
+            color: #0b2b4a;
+            font-size: 24px;
+            margin-bottom: 6px;
+        }
+        .login-container p.sub {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 28px;
+        }
+        .login-container label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .login-container input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 15px;
+            margin-bottom: 16px;
+            transition: border-color 0.3s;
+        }
+        .login-container input:focus {
+            border-color: #c49a2b;
+            outline: none;
+        }
+        .login-container button {
+            width: 100%;
+            padding: 14px;
+            background: #0b2b4a;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .login-container button:hover { background: #1a3f5e; }
+        .error {
+            color: #d32f2f;
+            text-align: center;
+            margin-top: 12px;
+            font-size: 14px;
+        }
+    </style>
 </head>
-<body style="background:#f0f4fa; display:flex; align-items:center; justify-content:center; min-height:100vh; padding:20px; margin:0;">
-    <div class="admin-login-box" style="max-width:420px; width:100%; background:white; padding:40px; border-radius:24px; box-shadow:0 12px 40px rgba(0,0,0,0.08);">
-        
-        <div style="text-align:center; margin-bottom:30px;">
-            <img src="assets/images/logo.png" alt="Dharithri Logo" style="height:60px; width:auto;" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2250%22 height=%2250%22%3E%3Crect width=%2250%22 height=%2250%22 fill=%22%230b2b4a%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22white%22 font-size=%2216%22 font-family=%22sans-serif%22%3EDH%3C/text%3E%3C/svg%3E'" />
-            <h2 style="color:#0b2b4a; margin-top:12px; font-size:1.5rem;">Admin Login</h2>
-            <p style="color:#4a5d74; font-size:0.9rem;">Enter your credentials to access the dashboard</p>
-        </div>
-
-        <form id="adminLoginForm">
-            <div id="loginAlert"></div>
-            
-            <div class="form-group">
-                <label style="font-weight:600; color:#0b2b4a;">Username <span style="color:#e74c3c;">*</span></label>
-                <input type="text" id="adminUsername" placeholder="Enter username" required style="width:100%; padding:12px 16px; border:1px solid #dde2e8; border-radius:12px; font-family:inherit; font-size:0.95rem; transition:0.2s;" />
-            </div>
-            
-            <div class="form-group">
-                <label style="font-weight:600; color:#0b2b4a;">Password <span style="color:#e74c3c;">*</span></label>
-                <input type="password" id="adminPassword" placeholder="Enter password" required style="width:100%; padding:12px 16px; border:1px solid #dde2e8; border-radius:12px; font-family:inherit; font-size:0.95rem; transition:0.2s;" />
-            </div>
-            
-            <button type="submit" class="btn btn-gold" style="width:100%; padding:14px; font-size:1rem; border:none; border-radius:40px; cursor:pointer; font-weight:600; background:#c49a2b; color:#0b2b4a; transition:0.2s;">
-                <i class="fas fa-sign-in-alt"></i> Login
-            </button>
-            
-            <div style="text-align:center; margin-top:16px; font-size:0.85rem; color:#7a94ae;">
-                <i class="fas fa-lock"></i> Demo: admin / admin123
-            </div>
+<body>
+    <div class="login-container">
+        <div class="logo">🔐</div>
+        <h2>Admin Login</h2>
+        <p class="sub">Enter your credentials to access the dashboard</p>
+        <form id="loginForm">
+            <label for="adminEmail">Email Address</label>
+            <input type="email" id="adminEmail" placeholder="admin@example.com" required>
+            <label for="adminPassword">Password</label>
+            <input type="password" id="adminPassword" placeholder="Enter password" required>
+            <button type="submit">Login</button>
+            <div id="loginError" class="error"></div>
         </form>
     </div>
 
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
     <script>
-        // =============================================
-        // FIREBASE CONFIGURATION
-        // =============================================
         const firebaseConfig = {
             apiKey: "AIzaSyA7aJEk6jSaNDaLSgvmx6TVDtRpiinjTqs",
             authDomain: "dharithri-training.firebaseapp.com",
@@ -54,67 +109,26 @@
             measurementId: "G-NHEK585JRM"
         };
 
-        // =============================================
-        // CREDENTIALS (Hardcoded)
-        // =============================================
-        const ADMIN_USERNAME = "admin";
-        const ADMIN_PASSWORD = "admin123";
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
 
-        // =============================================
-        // LOGIN FORM HANDLER
-        // =============================================
-        document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
+            const email = document.getElementById('adminEmail').value;
+            const password = document.getElementById('adminPassword').value;
+            const errorDiv = document.getElementById('loginError');
             
-            const username = document.getElementById('adminUsername').value.trim();
-            const password = document.getElementById('adminPassword').value.trim();
-            const alertDiv = document.getElementById('loginAlert');
-
-            alertDiv.innerHTML = '';
-
-            if (!username || !password) {
-                alertDiv.innerHTML = '<div class="alert alert-error">❌ Please enter both username and password.</div>';
-                setTimeout(() => { alertDiv.innerHTML = ''; }, 4000);
-                return;
-            }
-
-            if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
-                localStorage.setItem('dharithri_admin_logged_in', 'true');
-                localStorage.setItem('dharithri_admin_username', username);
-                
-                alertDiv.innerHTML = '<div class="alert alert-success">✅ Login successful! Redirecting...</div>';
-                
-                setTimeout(() => {
-                    window.location.href = 'admin-dashboard.html';
-                }, 800);
-            } else {
-                alertDiv.innerHTML = '<div class="alert alert-error">❌ Invalid username or password. Please try again.</div>';
-                setTimeout(() => { alertDiv.innerHTML = ''; }, 4000);
-                
-                document.getElementById('adminPassword').value = '';
-                document.getElementById('adminPassword').focus();
-            }
-        });
-
-        // =============================================
-        // CHECK IF ALREADY LOGGED IN
-        // =============================================
-        if (localStorage.getItem('dharithri_admin_logged_in') === 'true') {
-            window.location.href = 'admin-dashboard.html';
-        }
-
-        // =============================================
-        // ENTER KEY SUPPORT
-        // =============================================
-        document.getElementById('adminPassword').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                document.getElementById('adminLoginForm').dispatchEvent(new Event('submit'));
-            }
-        });
-        document.getElementById('adminUsername').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                document.getElementById('adminLoginForm').dispatchEvent(new Event('submit'));
-            }
+            errorDiv.textContent = '⏳ Logging in...';
+            errorDiv.style.color = '#0b2b4a';
+            
+            auth.signInWithEmailAndPassword(email, password)
+                .then(() => {
+                    window.location.href = 'dashboard.html';
+                })
+                .catch((error) => {
+                    errorDiv.style.color = '#d32f2f';
+                    errorDiv.textContent = '❌ ' + error.message;
+                });
         });
     </script>
 </body>

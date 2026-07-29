@@ -6,40 +6,391 @@
     <title>Admin Dashboard · Dharithri</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="css/style.css" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: #f0f4f8; 
+            min-height: 100vh;
+        }
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+        
+        /* ===== LOGIN SECTION ===== */
+        #loginSection {
+            max-width: 420px;
+            margin: 100px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+        #loginSection .logo {
+            text-align: center;
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        #loginSection h2 { 
+            text-align: center; 
+            color: #0b2b4a; 
+            margin-bottom: 8px;
+            font-size: 24px;
+        }
+        #loginSection p.sub {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+        #loginSection label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+        #loginSection input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: border-color 0.3s;
+        }
+        #loginSection input:focus {
+            border-color: #c49a2b;
+            outline: none;
+        }
+        #loginSection button {
+            width: 100%;
+            padding: 14px;
+            background: #0b2b4a;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 25px;
+            transition: background 0.3s;
+        }
+        #loginSection button:hover { background: #1a3f5e; }
+        .error { 
+            color: #d32f2f; 
+            text-align: center; 
+            margin-top: 12px; 
+            font-size: 14px;
+        }
+        
+        /* ===== DASHBOARD SECTION ===== */
+        #dashboardSection { display: none; }
+        
+        .dashboard-header {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .dashboard-header h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #0b2b4a;
+        }
+        .dashboard-header h1 span {
+            font-weight: 300;
+            color: #4a5d74;
+        }
+        .header-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .header-actions .admin-badge {
+            background: #c49a2b;
+            color: #0b2b4a;
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .logout-btn {
+            background: #d32f2f;
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        .logout-btn:hover { background: #b71c1c; }
+        
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            text-align: center;
+        }
+        .stat-card .number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0b2b4a;
+        }
+        .stat-card .label {
+            font-size: 0.85rem;
+            color: #4a5d74;
+            margin-top: 4px;
+        }
+        
+        /* Table */
+        .table-container {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            overflow-x: auto;
+        }
+        .table-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .table-toolbar h3 {
+            color: #0b2b4a;
+            font-size: 1.1rem;
+        }
+        .search-box {
+            padding: 8px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 40px;
+            font-size: 14px;
+            width: 250px;
+            max-width: 100%;
+            transition: border-color 0.3s;
+        }
+        .search-box:focus {
+            border-color: #c49a2b;
+            outline: none;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+        th {
+            background: #0b2b4a;
+            color: white;
+            padding: 12px 16px;
+            text-align: left;
+            white-space: nowrap;
+            position: sticky;
+            top: 0;
+            z-index: 5;
+        }
+        td {
+            padding: 10px 16px;
+            border-bottom: 1px solid #eef2f6;
+            vertical-align: middle;
+        }
+        tr:hover td { background: #f8f9fb; }
+        
+        .program-badge {
+            background: #c49a2b;
+            color: #0b2b4a;
+            padding: 2px 12px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+        .view-btn {
+            background: #c49a2b;
+            border: none;
+            color: #0b2b4a;
+            padding: 4px 14px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        .view-btn:hover { background: #b8891a; }
+        
+        .loading-state {
+            text-align: center;
+            padding: 40px;
+            color: #4a5d74;
+        }
+        .loading-state i {
+            font-size: 2rem;
+            color: #c49a2b;
+        }
+        .loading-state p {
+            margin-top: 12px;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #4a5d74;
+        }
+        .empty-state i {
+            font-size: 3rem;
+            color: #c49a2b;
+        }
+        .empty-state h3 {
+            margin: 12px 0;
+            color: #0b2b4a;
+        }
+        
+        .action-bar {
+            margin-top: 20px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .action-btn {
+            padding: 10px 24px;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: opacity 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .action-btn:hover { opacity: 0.85; }
+        .action-btn.primary { background: #0b2b4a; color: white; }
+        .action-btn.secondary { background: #4a5d74; color: white; }
+        .action-btn.success { background: #2e7d32; color: white; }
+        
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            th, td { font-size: 0.8rem; padding: 8px 10px; }
+            .dashboard-header { flex-direction: column; align-items: stretch; text-align: center; }
+            .header-actions { justify-content: center; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+            .table-toolbar { flex-direction: column; align-items: stretch; }
+            .search-box { width: 100%; }
+        }
+        @media (max-width: 480px) {
+            .stats-grid { grid-template-columns: 1fr; }
+            .container { padding: 10px; }
+        }
+    </style>
 </head>
 <body>
-    <!-- Navbar auto-loaded by navbar.js -->
 
-    <section class="container" style="padding: 30px 0;">
-        <h1 style="font-size:2.2rem; font-weight:700; color:#0b2b4a; margin-bottom:8px;">📊 Applications Dashboard</h1>
-        <p style="color:#4a5d74; margin-bottom:32px;">View all registered applications submitted through the website.</p>
+    <!-- ============================================ -->
+    <!-- LOGIN SECTION                               -->
+    <!-- ============================================ -->
+    <div id="loginSection">
+        <div class="logo">🔐</div>
+        <h2>Admin Login</h2>
+        <p class="sub">Enter your credentials to access the dashboard</p>
+        <form id="loginForm">
+            <label for="adminEmail">Email Address</label>
+            <input type="email" id="adminEmail" placeholder="admin@example.com" required>
+            <label for="adminPassword">Password</label>
+            <input type="password" id="adminPassword" placeholder="Enter password" required>
+            <button type="submit">Login</button>
+            <div id="loginError" class="error"></div>
+        </form>
+    </div>
 
-        <!-- Stats -->
-        <div id="stats" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap:16px; margin-bottom:24px;"></div>
+    <!-- ============================================ -->
+    <!-- DASHBOARD SECTION                           -->
+    <!-- ============================================ -->
+    <div id="dashboardSection">
+        <div class="container">
+            <!-- Header -->
+            <div class="dashboard-header">
+                <h1>📊 Dharithri <span>Admin Dashboard</span></h1>
+                <div class="header-actions">
+                    <span class="admin-badge"><i class="fas fa-user-shield"></i> Admin</span>
+                    <button class="logout-btn" onclick="logoutAdmin()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                </div>
+            </div>
 
-        <!-- Loading -->
-        <div id="loadingMessage" style="text-align:center; padding:40px; color:#4a5d74; background:white; border-radius:16px;">
-            <i class="fas fa-spinner fa-spin" style="font-size:2rem; color:#c49a2b;"></i>
-            <p style="margin-top:12px;">Loading applications...</p>
+            <!-- Stats -->
+            <div class="stats-grid" id="statsGrid">
+                <div class="stat-card">
+                    <div class="number" id="totalCount">0</div>
+                    <div class="label">Total Applications</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number" id="todayCount">0</div>
+                    <div class="label">Today's Applications</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number" id="weekCount">0</div>
+                    <div class="label">This Week</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number" id="programCount">0</div>
+                    <div class="label">Programs Selected</div>
+                </div>
+            </div>
+
+            <!-- Table -->
+            <div class="table-container">
+                <div class="table-toolbar">
+                    <h3><i class="fas fa-list"></i> All Applications</h3>
+                    <input type="text" class="search-box" id="searchInput" placeholder="🔍 Search by name, email, phone..." onkeyup="searchTable()">
+                </div>
+                <div style="overflow-x:auto; max-height: 550px; overflow-y: auto;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Mobile</th>
+                                <th>Email</th>
+                                <th>Program</th>
+                                <th>Career Goal</th>
+                                <th>Date</th>
+                                <th style="text-align:center;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="applicationsBody">
+                            <tr><td colspan="8" class="loading-state"><i class="fas fa-spinner fa-spin"></i><p>Loading applications...</p></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="action-bar">
+                    <button class="action-btn primary" onclick="exportCSV()"><i class="fas fa-file-csv"></i> Export CSV</button>
+                    <button class="action-btn secondary" onclick="refreshData()"><i class="fas fa-sync"></i> Refresh</button>
+                </div>
+            </div>
         </div>
-
-        <!-- Table -->
-        <div id="applicationsTable" style="background:white; padding:24px; border-radius:16px; box-shadow:0 4px 16px rgba(0,0,0,0.03); overflow-x:auto;"></div>
-    </section>
-
-    <script src="js/main.js"></script>
-    <script src="js/navbar.js"></script>
-    
-    <!-- Firebase SDKs - Updated to latest version -->
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    </div>
 
     <script>
-        // =============================================
-        // FIREBASE CONFIGURATION
-        // =============================================
+        // ============================================
+        // 🔥 FIREBASE CONFIGURATION
+        // ============================================
         const firebaseConfig = {
             apiKey: "AIzaSyA7aJEk6jSaNDaLSgvmx6TVDtRpiinjTqs",
             authDomain: "dharithri-training.firebaseapp.com",
@@ -50,179 +401,229 @@
             measurementId: "G-NHEK585JRM"
         };
 
-        // =============================================
-        // INITIALIZE FIREBASE
-        // =============================================
-        console.log('🚀 Initializing Firebase for Admin...');
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const auth = firebase.auth();
 
-        try {
-            firebase.initializeApp(firebaseConfig);
-            const db = firebase.firestore();
-            console.log('✅ Firebase initialized for Admin!');
+        let allApplications = []; // Store all data for search
+
+        // ============================================
+        // 📝 LOGIN HANDLER
+        // ============================================
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
             
-            // Test connection
-            db.collection('applications').limit(1).get()
-                .then(() => {
-                    console.log('✅ Firestore connection successful for Admin!');
+            const email = document.getElementById('adminEmail').value;
+            const password = document.getElementById('adminPassword').value;
+            const errorDiv = document.getElementById('loginError');
+            
+            errorDiv.textContent = '⏳ Logging in...';
+            errorDiv.style.color = '#0b2b4a';
+            
+            auth.signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    errorDiv.textContent = '';
+                    document.getElementById('loginSection').style.display = 'none';
+                    document.getElementById('dashboardSection').style.display = 'block';
+                    loadApplications();
                 })
                 .catch((error) => {
-                    console.error('❌ Firestore connection test failed:', error);
+                    errorDiv.style.color = '#d32f2f';
+                    errorDiv.textContent = '❌ ' + error.message;
                 });
-        } catch (error) {
-            console.error('❌ Firebase initialization failed:', error);
+        });
+
+        // ============================================
+        // 🚪 LOGOUT HANDLER
+        // ============================================
+        function logoutAdmin() {
+            auth.signOut();
+            document.getElementById('loginSection').style.display = 'block';
+            document.getElementById('dashboardSection').style.display = 'none';
+            document.getElementById('loginSection').querySelector('h2').textContent = '🔐 Logged Out';
+            document.getElementById('adminEmail').value = '';
+            document.getElementById('adminPassword').value = '';
         }
 
-        // =============================================
-        // CHECK ADMIN LOGIN
-        // =============================================
-        if (localStorage.getItem('dharithri_admin_logged_in') !== 'true') {
-            window.location.href = 'admin-login.html';
-        }
-
-        const username = localStorage.getItem('dharithri_admin_username') || 'admin';
-        document.getElementById('adminUserDisplay').textContent = username;
-
-        // =============================================
-        // LOGOUT
-        // =============================================
-        function logout() {
-            if (confirm('Are you sure you want to logout?')) {
-                localStorage.removeItem('dharithri_admin_logged_in');
-                localStorage.removeItem('dharithri_admin_username');
-                window.location.href = 'admin-login.html';
-            }
-        }
-
-        // =============================================
-        // LOAD APPLICATIONS
-        // =============================================
+        // ============================================
+        // 📊 LOAD APPLICATIONS
+        // ============================================
         function loadApplications() {
-            const tableDiv = document.getElementById('applicationsTable');
-            const statsDiv = document.getElementById('stats');
-            const loadingDiv = document.getElementById('loadingMessage');
+            const tableBody = document.getElementById('applicationsBody');
+            tableBody.innerHTML = '<tr><td colspan="8" class="loading-state"><i class="fas fa-spinner fa-spin"></i><p>Loading applications...</p></td></tr>';
 
             db.collection('applications')
                 .orderBy('applicationDate', 'desc')
                 .get()
                 .then((snapshot) => {
-                    loadingDiv.style.display = 'none';
-                    
+                    if (snapshot.empty) {
+                        tableBody.innerHTML = `
+                            <tr><td colspan="8">
+                                <div class="empty-state">
+                                    <i class="fas fa-inbox"></i>
+                                    <h3>No applications yet</h3>
+                                    <p>Applications submitted through the website will appear here.</p>
+                                </div>
+                            </td></tr>
+                        `;
+                        updateStats([]);
+                        allApplications = [];
+                        return;
+                    }
+
                     const applications = [];
                     snapshot.forEach((doc) => {
                         applications.push({ id: doc.id, ...doc.data() });
                     });
 
-                    // Show stats
-                    statsDiv.innerHTML = `
-                        <div style="background:#f5f8fd; padding:16px; border-radius:12px; text-align:center;">
-                            <h3 style="color:#0b2b4a; font-size:1.8rem; margin:0;">${applications.length}</h3>
-                            <p style="color:#4a5d74; margin:4px 0 0;">Total Applications</p>
-                        </div>
-                        <div style="background:#f5f8fd; padding:16px; border-radius:12px; text-align:center;">
-                            <h3 style="color:#0b2b4a; font-size:1.8rem; margin:0;">${applications.length > 0 ? new Date(applications[0].applicationDate).toLocaleDateString() : 'N/A'}</h3>
-                            <p style="color:#4a5d74; margin:4px 0 0;">Latest Application</p>
-                        </div>
-                        <div style="background:#f5f8fd; padding:16px; border-radius:12px; text-align:center;">
-                            <h3 style="color:#0b2b4a; font-size:1.8rem; margin:0;">${applications.filter(a => a.program).length}</h3>
-                            <p style="color:#4a5d74; margin:4px 0 0;">Programs Selected</p>
-                        </div>
-                    `;
-
-                    if (applications.length === 0) {
-                        tableDiv.innerHTML = `
-                            <div style="text-align:center; padding:40px; color:#4a5d74;">
-                                <i class="fas fa-inbox" style="font-size:3rem; color:#c49a2b;"></i>
-                                <h3 style="margin:12px 0;">No applications yet</h3>
-                                <p>Applications submitted through the website will appear here.</p>
-                            </div>
-                        `;
-                        return;
-                    }
-
-                    let html = `
-                        <table style="width:100%; border-collapse:collapse; font-size:0.9rem;">
-                            <thead>
-                                <tr style="background:#0b2b4a; color:white;">
-                                    <th style="padding:12px 16px; text-align:left;">#</th>
-                                    <th style="padding:12px 16px; text-align:left;">Name</th>
-                                    <th style="padding:12px 16px; text-align:left;">Mobile</th>
-                                    <th style="padding:12px 16px; text-align:left;">Email</th>
-                                    <th style="padding:12px 16px; text-align:left;">Program</th>
-                                    <th style="padding:12px 16px; text-align:left;">Goal</th>
-                                    <th style="padding:12px 16px; text-align:left;">Date</th>
-                                    <th style="padding:12px 16px; text-align:center;">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                    `;
-
-                    applications.forEach((app, index) => {
-                        const bgColor = index % 2 === 0 ? '#ffffff' : '#f8f9fb';
-                        html += `
-                            <tr style="background:${bgColor}; border-bottom:1px solid #eef2f6;">
-                                <td style="padding:10px 16px;">${index + 1}</td>
-                                <td style="padding:10px 16px; font-weight:600; color:#0b2b4a;">${app.name || 'N/A'}</td>
-                                <td style="padding:10px 16px;">${app.mobile || 'N/A'}</td>
-                                <td style="padding:10px 16px;">${app.email || 'N/A'}</td>
-                                <td style="padding:10px 16px;"><span style="background:#c49a2b; color:#0b2b4a; padding:2px 12px; border-radius:40px; font-size:0.75rem; font-weight:600;">${app.program || 'N/A'}</span></td>
-                                <td style="padding:10px 16px;">${app.career_goal || 'N/A'}</td>
-                                <td style="padding:10px 16px; font-size:0.8rem;">${app.applicationDate ? new Date(app.applicationDate).toLocaleString() : 'N/A'}</td>
-                                <td style="padding:10px 16px; text-align:center;">
-                                    <button onclick="viewApplication('${app.id}')" style="background:#c49a2b; border:none; color:white; padding:4px 14px; border-radius:6px; cursor:pointer; font-size:0.8rem;">
-                                        <i class="fas fa-eye"></i> View
-                                    </button>
-                                </td>
-                            </tr>
-                        `;
-                    });
-
-                    html += `</tbody></table>`;
-                    html += `
-                        <div style="margin-top:20px; display:flex; gap:12px; flex-wrap:wrap;">
-                            <button onclick="exportCSV()" style="background:#0b2b4a; color:white; border:none; padding:10px 24px; border-radius:40px; cursor:pointer; font-weight:600; transition:0.2s;">
-                                <i class="fas fa-file-csv"></i> Export CSV
-                            </button>
-                            <button onclick="refreshData()" style="background:#4a5d74; color:white; border:none; padding:10px 24px; border-radius:40px; cursor:pointer; font-weight:600; transition:0.2s;">
-                                <i class="fas fa-sync"></i> Refresh
-                            </button>
-                        </div>
-                    `;
-
-                    tableDiv.innerHTML = html;
-                    window.applicationsData = applications;
+                    allApplications = applications;
+                    updateStats(applications);
+                    renderTable(applications);
                 })
                 .catch((error) => {
                     console.error('Error loading applications:', error);
-                    loadingDiv.innerHTML = `
-                        <i class="fas fa-exclamation-circle" style="font-size:2rem; color:#e74c3c;"></i>
-                        <p style="margin-top:12px; color:#e74c3c;">Error loading applications. Please refresh.</p>
-                        <button onclick="loadApplications()" style="margin-top:12px; background:#c49a2b; border:none; color:#0b2b4a; padding:8px 24px; border-radius:40px; cursor:pointer; font-weight:600;">
-                            <i class="fas fa-sync"></i> Try Again
-                        </button>
+                    tableBody.innerHTML = `
+                        <tr><td colspan="8" style="text-align:center; padding:40px; color:#d32f2f;">
+                            <i class="fas fa-exclamation-circle" style="font-size:2rem;"></i>
+                            <p style="margin-top:12px;">Error loading applications: ${error.message}</p>
+                            <button onclick="refreshData()" style="margin-top:12px; background:#c49a2b; border:none; color:#0b2b4a; padding:8px 24px; border-radius:40px; cursor:pointer; font-weight:600;">
+                                <i class="fas fa-sync"></i> Try Again
+                            </button>
+                        </td></tr>
                     `;
                 });
         }
 
-        // =============================================
-        // VIEW APPLICATION DETAILS
-        // =============================================
+        // ============================================
+        // 📈 UPDATE STATS
+        // ============================================
+        function updateStats(applications) {
+            const total = applications.length;
+            const today = new Date();
+            const todayStr = today.toDateString();
+            const weekAgo = new Date(today);
+            weekAgo.setDate(weekAgo.getDate() - 7);
+
+            let todayCount = 0;
+            let weekCount = 0;
+            const programs = new Set();
+
+            applications.forEach(app => {
+                if (app.applicationDate) {
+                    const appDate = new Date(app.applicationDate);
+                    if (appDate.toDateString() === todayStr) todayCount++;
+                    if (appDate >= weekAgo) weekCount++;
+                }
+                if (app.program) programs.add(app.program);
+            });
+
+            document.getElementById('totalCount').textContent = total;
+            document.getElementById('todayCount').textContent = todayCount;
+            document.getElementById('weekCount').textContent = weekCount;
+            document.getElementById('programCount').textContent = programs.size;
+        }
+
+        // ============================================
+        // 📋 RENDER TABLE
+        // ============================================
+        function renderTable(applications) {
+            const tableBody = document.getElementById('applicationsBody');
+            
+            if (applications.length === 0) {
+                tableBody.innerHTML = `
+                    <tr><td colspan="8">
+                        <div class="empty-state">
+                            <i class="fas fa-search"></i>
+                            <h3>No matching records</h3>
+                            <p>Try adjusting your search criteria.</p>
+                        </div>
+                    </td></tr>
+                `;
+                return;
+            }
+
+            let html = '';
+            applications.forEach((app, index) => {
+                const bgColor = index % 2 === 0 ? '#ffffff' : '#f8f9fb';
+                const dateStr = app.applicationDate ? new Date(app.applicationDate).toLocaleString('en-IN', {
+                    day: '2-digit',
+                    month: 'short',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                }) : 'N/A';
+
+                html += `
+                    <tr style="background:${bgColor};">
+                        <td style="padding:10px 16px; font-weight:600;">${index + 1}</td>
+                        <td style="padding:10px 16px; font-weight:600; color:#0b2b4a;">${app.name || 'N/A'}</td>
+                        <td style="padding:10px 16px;">${app.mobile || app.father_mobile || 'N/A'}</td>
+                        <td style="padding:10px 16px; font-size:0.85rem;">${app.email || 'N/A'}</td>
+                        <td style="padding:10px 16px;">
+                            <span class="program-badge">${app.program || app.course || 'N/A'}</span>
+                        </td>
+                        <td style="padding:10px 16px; font-size:0.85rem;">${app.career_goal || app.goal || 'N/A'}</td>
+                        <td style="padding:10px 16px; font-size:0.8rem; white-space:nowrap;">${dateStr}</td>
+                        <td style="padding:10px 16px; text-align:center;">
+                            <button class="view-btn" onclick="viewApplication('${app.id}')">
+                                <i class="fas fa-eye"></i> View
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            tableBody.innerHTML = html;
+        }
+
+        // ============================================
+        // 🔍 SEARCH TABLE
+        // ============================================
+        function searchTable() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase().trim();
+            
+            if (filter === '') {
+                renderTable(allApplications);
+                return;
+            }
+
+            const filtered = allApplications.filter(app => {
+                const name = (app.name || '').toLowerCase();
+                const email = (app.email || '').toLowerCase();
+                const mobile = (app.mobile || app.father_mobile || '').toString().toLowerCase();
+                const program = (app.program || app.course || '').toLowerCase();
+                return name.includes(filter) || 
+                       email.includes(filter) || 
+                       mobile.includes(filter) || 
+                       program.includes(filter);
+            });
+
+            renderTable(filtered);
+        }
+
+        // ============================================
+        // 👁️ VIEW APPLICATION DETAILS
+        // ============================================
         function viewApplication(docId) {
             db.collection('applications').doc(docId).get()
                 .then((doc) => {
                     if (doc.exists) {
                         const data = doc.data();
-                        let details = '📋 APPLICATION DETAILS\n' + '='.repeat(40) + '\n\n';
+                        let details = '📋 APPLICATION DETAILS\n' + '═'.repeat(40) + '\n\n';
+                        
                         const fields = {
                             'Name': data.name,
                             'Aadhar': data.aadhar,
-                            'Mobile': data.mobile,
+                            'Mobile': data.mobile || data.father_mobile,
                             'Email': data.email,
                             'Gender': data.gender,
                             'DOB': data.dob,
                             'Address': data.address,
                             'State': data.state,
-                            'Mother': data.mother,
                             'Father': data.father,
+                            'Mother': data.mother,
                             'Siblings': data.siblings,
                             'Religion': data.religion,
                             'Caste': data.caste,
@@ -230,30 +631,32 @@
                             'PG Course': data.pg_course,
                             'Graduation': data.grad_course,
                             'Academic Year': data.academic_year,
-                            'Program': data.program,
-                            'Career Goal': data.career_goal,
+                            'Program': data.program || data.course,
+                            'Career Goal': data.career_goal || data.goal,
                             'Source': data.source,
                             'Applied On': data.applicationDate ? new Date(data.applicationDate).toLocaleString() : 'N/A'
                         };
+
                         for (const [key, value] of Object.entries(fields)) {
-                            if (value) {
+                            if (value && value !== 'N/A') {
                                 details += `${key}: ${value}\n`;
                             }
                         }
                         alert(details);
+                    } else {
+                        alert('Application not found.');
                     }
                 })
                 .catch((error) => {
-                    alert('Error loading application details');
+                    alert('Error loading application details: ' + error.message);
                 });
         }
 
-        // =============================================
-        // EXPORT CSV
-        // =============================================
+        // ============================================
+        // 📥 EXPORT CSV
+        // ============================================
         function exportCSV() {
-            const applications = window.applicationsData || [];
-            if (applications.length === 0) {
+            if (allApplications.length === 0) {
                 alert('No data to export.');
                 return;
             }
@@ -261,24 +664,24 @@
             const headers = ['Name', 'Aadhar', 'Mobile', 'Email', 'Gender', 'State', 'Program', 'Career Goal', 'Income', 'Source', 'Application Date'];
             let csv = headers.join(',') + '\n';
 
-            applications.forEach(app => {
+            allApplications.forEach(app => {
                 const row = [
-                    `"${app.name || ''}"`,
-                    `"${app.aadhar || ''}"`,
-                    `"${app.mobile || ''}"`,
-                    `"${app.email || ''}"`,
-                    `"${app.gender || ''}"`,
-                    `"${app.state || ''}"`,
-                    `"${app.program || ''}"`,
-                    `"${app.career_goal || ''}"`,
-                    `"${app.income || ''}"`,
-                    `"${app.source || ''}"`,
-                    `"${app.applicationDate || ''}"`
+                    `"${(app.name || '').replace(/"/g, '""')}"`,
+                    `"${(app.aadhar || '').replace(/"/g, '""')}"`,
+                    `"${(app.mobile || app.father_mobile || '').replace(/"/g, '""')}"`,
+                    `"${(app.email || '').replace(/"/g, '""')}"`,
+                    `"${(app.gender || '').replace(/"/g, '""')}"`,
+                    `"${(app.state || '').replace(/"/g, '""')}"`,
+                    `"${(app.program || app.course || '').replace(/"/g, '""')}"`,
+                    `"${(app.career_goal || app.goal || '').replace(/"/g, '""')}"`,
+                    `"${(app.income || '').replace(/"/g, '""')}"`,
+                    `"${(app.source || '').replace(/"/g, '""')}"`,
+                    `"${(app.applicationDate || '').replace(/"/g, '""')}"`
                 ];
                 csv += row.join(',') + '\n';
             });
 
-            const blob = new Blob([csv], { type: 'text/csv' });
+            const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
             link.download = `dharithri_applications_${new Date().toISOString().slice(0,10)}.csv`;
@@ -286,24 +689,26 @@
             URL.revokeObjectURL(link.href);
         }
 
-        // =============================================
-        // REFRESH DATA
-        // =============================================
+        // ============================================
+        // 🔄 REFRESH DATA
+        // ============================================
         function refreshData() {
-            document.getElementById('applicationsTable').innerHTML = '';
-            document.getElementById('stats').innerHTML = '';
-            document.getElementById('loadingMessage').style.display = 'block';
-            document.getElementById('loadingMessage').innerHTML = `
-                <i class="fas fa-spinner fa-spin" style="font-size:2rem; color:#c49a2b;"></i>
-                <p style="margin-top:12px;">Refreshing...</p>
-            `;
+            document.getElementById('applicationsBody').innerHTML = 
+                '<tr><td colspan="8" class="loading-state"><i class="fas fa-spinner fa-spin"></i><p>Refreshing...</p></td></tr>';
             loadApplications();
         }
 
-        // =============================================
-        // LOAD ON PAGE LOAD
-        // =============================================
-        document.addEventListener('DOMContentLoaded', loadApplications);
+        // ============================================
+        // 🔄 AUTO-LOGIN CHECK
+        // ============================================
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                document.getElementById('loginSection').style.display = 'none';
+                document.getElementById('dashboardSection').style.display = 'block';
+                loadApplications();
+            }
+        });
     </script>
+
 </body>
 </html>
