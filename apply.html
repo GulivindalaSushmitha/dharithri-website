@@ -18,7 +18,7 @@
         <p class="section-sub text-center" style="margin:0 auto 30px;">Fill in all the details to start your journey with Dharithri.</p>
 
         <div class="form-section">
-            <form id="applicationForm" enctype="multipart/form-data">
+            <form id="applicationForm">
                 <div id="formAlert"></div>
 
                 <!-- Personal Details -->
@@ -164,25 +164,6 @@
                     </select>
                 </div>
 
-                <!-- ===== RESUME UPLOAD - 5MB MAX ===== -->
-                <div class="form-group" style="margin-top: 20px; padding: 20px; background: #f8f9fa; border-radius: 12px; border: 2px dashed #c49a2b;">
-                    <label for="resume" style="font-size: 1.1rem;">
-                        <i class="fas fa-file-upload" style="color:#c49a2b;"></i> Upload Resume <span class="required">*</span>
-                        <span style="font-weight:400; color:#4a5d74; display:block; font-size:0.85rem; margin-top:4px;">
-                            <i class="fas fa-info-circle"></i> Accepted formats: PDF, DOC, DOCX · Max size: 5MB
-                        </span>
-                    </label>
-                    <input type="file" name="resume" id="resume" accept=".pdf,.doc,.docx" required 
-                           style="padding: 12px; background: white; border-radius: 8px; width: 100%; cursor: pointer;" />
-                    <div id="resumeStatus" style="margin-top: 10px; font-size: 0.95rem; font-weight: 500;"></div>
-                    <div id="resumeProgress" style="margin-top: 8px; display: none;">
-                        <div style="background: #e0e0e0; border-radius: 10px; height: 8px; overflow: hidden;">
-                            <div id="progressBar" style="background: #c49a2b; height: 100%; width: 0%; transition: width 0.3s;"></div>
-                        </div>
-                        <span id="progressText" style="font-size: 0.8rem; color: #4a5d74; display: block; margin-top: 4px;">0%</span>
-                    </div>
-                </div>
-
                 <!-- How Did You Hear -->
                 <div class="form-group">
                     <label>How Did You Hear About Us? <span class="required">*</span></label>
@@ -219,7 +200,6 @@
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
 
     <script>
         // =============================================
@@ -235,65 +215,30 @@
             measurementId: "G-NHEK585JRM"
         };
 
+        // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
-        const storage = firebase.storage();
         console.log('✅ Firebase initialized!');
 
         // =============================================
-        // FILE VALIDATION - 5MB MAX
-        // =============================================
-        document.getElementById('resume').addEventListener('change', function(e) {
-            const file = this.files[0];
-            const statusDiv = document.getElementById('resumeStatus');
-            const progressDiv = document.getElementById('resumeProgress');
-            
-            if (file) {
-                // Check file size (max 5MB)
-                if (file.size > 5 * 1024 * 1024) {
-                    statusDiv.innerHTML = `<span style="color: #d32f2f;">❌ File is too large! Please select a file under 5MB.</span>`;
-                    this.value = '';
-                    progressDiv.style.display = 'none';
-                    return;
-                }
-                
-                // Check file type
-                const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
-                
-                if (!allowedTypes.includes(file.type)) {
-                    statusDiv.innerHTML = `<span style="color: #d32f2f;">❌ Invalid file format! Please upload PDF, DOC, or DOCX.</span>`;
-                    this.value = '';
-                    progressDiv.style.display = 'none';
-                    return;
-                }
-                
-                // File is valid
-                const fileSize = (file.size / 1024 / 1024).toFixed(2);
-                statusDiv.innerHTML = `
-                    <span style="color: #2e7d32;">✅ File selected: <strong>${file.name}</strong> (${fileSize} MB)</span>
-                `;
-                progressDiv.style.display = 'none';
-            } else {
-                statusDiv.innerHTML = '';
-                progressDiv.style.display = 'none';
-            }
-        });
-
-        // =============================================
-        // FORM SUBMISSION
+        // FORM SUBMISSION - Instant Submit (No Resume)
         // =============================================
         document.getElementById('applicationForm').addEventListener('submit', async function(e) {
             e.preventDefault();
 
             const submitBtn = this.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerHTML;
+            
+            // Show loading state
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
             submitBtn.disabled = true;
 
             document.getElementById('formAlert').innerHTML = '';
 
             try {
-                // Collect form data
+                // =============================================
+                // COLLECT FORM DATA
+                // =============================================
                 const formData = {
                     name: document.getElementById('name')?.value || '',
                     aadhar: document.getElementById('aadhar')?.value || '',
@@ -322,53 +267,14 @@
                     status: 'pending'
                 };
 
-                // Validate declaration
+                // =============================================
+                // VALIDATE DECLARATION
+                // =============================================
                 if (!formData.declaration) {
                     document.getElementById('formAlert').innerHTML = `
                         <div class="alert alert-error">
                             <strong>⚠️ Please accept the declaration</strong>
-                        </div>
-                    `;
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.disabled = false;
-                    return;
-                }
-
-                // Get resume file
-                const resumeFile = document.getElementById('resume').files[0];
-                
-                if (!resumeFile) {
-                    document.getElementById('formAlert').innerHTML = `
-                        <div class="alert alert-error">
-                            <strong>⚠️ Please upload your resume</strong>
-                        </div>
-                    `;
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.disabled = false;
-                    return;
-                }
-
-                // Check file size again (max 5MB)
-                if (resumeFile.size > 5 * 1024 * 1024) {
-                    document.getElementById('formAlert').innerHTML = `
-                        <div class="alert alert-error">
-                            <strong>⚠️ File is too large!</strong>
-                            <p style="margin-top:4px;">Please upload a file under 5MB.</p>
-                        </div>
-                    `;
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.disabled = false;
-                    return;
-                }
-
-                // Check file type
-                const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
-                
-                if (!allowedTypes.includes(resumeFile.type)) {
-                    document.getElementById('formAlert').innerHTML = `
-                        <div class="alert alert-error">
-                            <strong>⚠️ Invalid file format!</strong>
-                            <p style="margin-top:4px;">Please upload PDF, DOC, or DOCX files only.</p>
+                            <p style="margin-top:4px;">You must agree to the terms and conditions to submit your application.</p>
                         </div>
                     `;
                     submitBtn.innerHTML = originalText;
@@ -377,61 +283,37 @@
                 }
 
                 // =============================================
-                // UPLOAD RESUME TO FIREBASE STORAGE
+                // VALIDATE REQUIRED FIELDS
                 // =============================================
-                const fileName = `${Date.now()}_${resumeFile.name.replace(/[^a-zA-Z0-9.]/g, '_')}`;
-                const storageRef = storage.ref(`resumes/${fileName}`);
-                
-                // Show progress bar
-                const progressDiv = document.getElementById('resumeProgress');
-                const progressBar = document.getElementById('progressBar');
-                const progressText = document.getElementById('progressText');
-                progressDiv.style.display = 'block';
-                
-                document.getElementById('resumeStatus').innerHTML = `
-                    <span style="color: #0b2b4a;">⏳ Uploading resume... <i class="fas fa-spinner fa-spin"></i></span>
-                `;
-
-                // Upload file
-                const uploadTask = storageRef.put(resumeFile);
-
-                // Wait for upload to complete
-                const snapshot = await new Promise((resolve, reject) => {
-                    uploadTask.on(
-                        'state_changed',
-                        (snapshot) => {
-                            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                            progressBar.style.width = progress + '%';
-                            progressText.textContent = Math.round(progress) + '%';
-                            document.getElementById('resumeStatus').innerHTML = `
-                                <span style="color: #0b2b4a;">📤 Uploading resume... ${Math.round(progress)}%</span>
-                            `;
-                        },
-                        (error) => reject(error),
-                        () => resolve(uploadTask.snapshot)
-                    );
+                const requiredFields = ['name', 'aadhar', 'mobile', 'email', 'program', 'career_goal'];
+                let missingFields = [];
+                requiredFields.forEach(field => {
+                    if (!formData[field] || formData[field] === '') {
+                        missingFields.push(field);
+                    }
                 });
 
-                // Get download URL
-                const downloadURL = await storageRef.getDownloadURL();
-                
-                document.getElementById('resumeStatus').innerHTML = `
-                    <span style="color: #2e7d32;">✅ Resume uploaded successfully!</span>
-                `;
-                progressBar.style.width = '100%';
-                progressText.textContent = '100%';
-
-                // Add resume info to form data
-                formData.resume = fileName;
-                formData.resume_url = downloadURL;
+                if (missingFields.length > 0) {
+                    document.getElementById('formAlert').innerHTML = `
+                        <div class="alert alert-error">
+                            <strong>⚠️ Please fill in all required fields</strong>
+                            <p style="margin-top:4px;">Missing: ${missingFields.join(', ')}</p>
+                        </div>
+                    `;
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    return;
+                }
 
                 // =============================================
-                // SAVE TO FIRESTORE
+                // SAVE TO FIRESTORE - INSTANT SUBMIT
                 // =============================================
                 const docRef = await db.collection('applications').add(formData);
+                
+                console.log('✅ Application saved! ID:', docRef.id);
 
                 // =============================================
-                // SUCCESS MESSAGE - "Thank You"
+                // SUCCESS MESSAGE
                 // =============================================
                 document.getElementById('formAlert').innerHTML = `
                     <div class="alert alert-success" style="padding:30px; border-radius:16px; background:#e8f5e9; border:2px solid #4caf50;">
@@ -458,22 +340,22 @@
                     </div>
                 `;
 
-                // Reset form
+                // =============================================
+                // RESET FORM
+                // =============================================
                 document.getElementById('applicationForm').reset();
-                document.getElementById('resumeStatus').innerHTML = '';
-                document.getElementById('resumeProgress').style.display = 'none';
-                progressBar.style.width = '0%';
-                progressText.textContent = '0%';
+                
+                // Scroll to top to show message
                 window.scrollTo({ top: 0, behavior: 'smooth' });
 
             } catch (error) {
                 console.error('❌ Error:', error);
                 
                 let errorMsg = error.message;
-                if (error.code === 'storage/unauthorized') {
-                    errorMsg = 'Permission denied. Please check Firebase Storage rules.';
-                } else if (error.message && error.message.includes('CORS')) {
-                    errorMsg = 'CORS error. Please configure CORS for Firebase Storage.';
+                if (error.code === 'permission-denied') {
+                    errorMsg = 'Permission denied. Please check Firebase rules.';
+                } else if (error.code === 'unavailable') {
+                    errorMsg = 'Service unavailable. Please check your internet connection.';
                 } else {
                     errorMsg = error.message || 'Unknown error occurred.';
                 }
@@ -488,16 +370,14 @@
                         </button>
                     </div>
                 `;
-                document.getElementById('resumeStatus').innerHTML = `
-                    <span style="color: #d32f2f;">❌ Upload failed: ${error.message}</span>
-                `;
             } finally {
+                // Re-enable button
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
             }
         });
 
-        console.log('✅ Application form ready with 5MB resume upload!');
+        console.log('✅ Application form ready!');
     </script>
 </body>
 </html>
