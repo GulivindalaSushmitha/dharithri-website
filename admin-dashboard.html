@@ -150,7 +150,7 @@
             display: inline-block;
         }
         
-        /* ===== VIEW BUTTON ONLY ===== */
+        /* ===== ACTION BUTTONS ===== */
         .action-cell {
             display: flex;
             gap: 6px;
@@ -159,29 +159,41 @@
             flex-wrap: wrap;
         }
 
-        .btn-view-action {
+        .btn-action {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 6px 16px;
+            padding: 6px 14px;
             border-radius: 6px;
             border: none;
             cursor: pointer;
             transition: all 0.3s ease;
             color: white;
             text-decoration: none;
-            font-size: 0.85rem;
-            background: #c49a2b;
-            gap: 6px;
+            font-size: 0.8rem;
             font-weight: 600;
+            gap: 5px;
         }
-        .btn-view-action:hover {
-            background: #b0861f;
+        .btn-action:hover {
             transform: scale(1.05);
         }
 
-        .btn-view-action i {
-            font-size: 14px;
+        .btn-view-action {
+            background: #4CAF50;
+        }
+        .btn-view-action:hover {
+            background: #45a049;
+        }
+
+        .btn-delete-action {
+            background: #dc3545;
+        }
+        .btn-delete-action:hover {
+            background: #c82333;
+        }
+
+        .btn-action i {
+            font-size: 12px;
         }
         
         .loading-state {
@@ -232,7 +244,6 @@
         .action-btn:hover { opacity: 0.85; }
         .action-btn.primary { background: #0b2b4a; color: white; }
         .action-btn.secondary { background: #4a5d74; color: white; }
-        .action-btn.success { background: #2e7d32; color: white; }
         .action-btn.danger { background: #d32f2f; color: white; }
         
         /* ===== MODAL ===== */
@@ -398,7 +409,7 @@
                                 <th>Program</th>
                                 <th>Career Goal</th>
                                 <th>Date</th>
-                                <th style="text-align:center;">Action</th>
+                                <th style="text-align:center; min-width:130px;">Action</th>
                             </tr>
                         </thead>
                         <tbody id="applicationsBody">
@@ -457,6 +468,7 @@
             measurementId: "G-NHEK585JRM"
         };
 
+        // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
         const auth = firebase.auth();
@@ -464,7 +476,7 @@
         let allApplications = [];
 
         // ============================================
-        // 🔐 PROTECTION
+        // 🔐 CHECK AUTH
         // ============================================
         auth.onAuthStateChanged((user) => {
             if (!user) {
@@ -498,17 +510,22 @@
         }
 
         // ============================================
-        // 📊 LOAD APPLICATIONS
+        // 📊 LOAD APPLICATIONS - FIXED
         // ============================================
         function loadApplications() {
             const tableBody = document.getElementById('applicationsBody');
             tableBody.innerHTML = '<tr><td colspan="8" class="loading-state"><i class="fas fa-spinner fa-spin"></i><p>Loading applications...</p></td></tr>';
 
+            console.log('🔄 Loading applications from Firestore...');
+
             db.collection('applications')
                 .orderBy('applicationDate', 'desc')
                 .get()
                 .then((snapshot) => {
+                    console.log('📦 Query completed. Size:', snapshot.size);
+                    
                     if (snapshot.empty) {
+                        console.log('⚠️ No applications found');
                         tableBody.innerHTML = `
                             <tr><td colspan="8">
                                 <div class="empty-state">
@@ -526,6 +543,7 @@
                     const applications = [];
                     snapshot.forEach((doc) => {
                         const data = doc.data();
+                        console.log('📄 Document:', doc.id, data);
                         applications.push({ 
                             id: doc.id, 
                             ...data,
@@ -533,24 +551,39 @@
                         });
                     });
 
+                    console.log('✅ Loaded', applications.length, 'applications');
                     allApplications = applications;
                     updateStats(applications);
                     renderTable(applications);
-                    console.log('✅ Loaded', applications.length, 'applications');
                 })
                 .catch((error) => {
-                    console.error('Error:', error);
+                    console.error('❌ ERROR loading applications:', error);
+                    console.error('Error code:', error.code);
+                    console.error('Error message:', error.message);
+                    
                     tableBody.innerHTML = `
                         <tr><td colspan="8" style="text-align:center; padding:40px; color:#d32f2f;">
                             <i class="fas fa-exclamation-circle" style="font-size:2rem;"></i>
-                            <p style="margin-top:12px;">Error loading applications: ${error.message}</p>
+                            <p style="margin-top:12px;"><strong>Error loading applications</strong></p>
+                            <p style="margin-top:4px;">${error.message}</p>
+                            <p style="margin-top:4px; font-size:0.85rem; color:#666;">Error code: ${error.code || 'Unknown'}</p>
                             <button onclick="refreshData()" style="margin-top:12px; background:#c49a2b; border:none; color:#0b2b4a; padding:8px 24px; border-radius:40px; cursor:pointer; font-weight:600;">
                                 <i class="fas fa-sync"></i> Try Again
                             </button>
+                            <button onclick="checkRules()" style="margin-top:12px; margin-left:10px; background:#0b2b4a; border:none; color:white; padding:8px 24px; border-radius:40px; cursor:pointer; font-weight:600;">
+                                <i class="fas fa-shield-alt"></i> Check Rules
+                            </button>
                         </td></tr>
                     `;
-                    showToast('Error loading applications', 'error');
+                    showToast('Error loading applications: ' + error.message, 'error');
                 });
+        }
+
+        // ============================================
+        // 🔍 CHECK RULES - Helper function
+        // ============================================
+        function checkRules() {
+            alert('🔍 Checking Firestore Rules...\n\n1. Go to Firebase Console\n2. Click Firestore Database\n3. Click Rules tab\n4. Make sure rules allow read:\n\nrules_version = "2";\nservice cloud.firestore {\n  match /databases/{database}/documents {\n    match /applications/{document=**} {\n      allow read, write: if true;\n    }\n  }\n}\n\n5. Click Publish\n6. Wait 1 minute\n7. Refresh dashboard');
         }
 
         // ============================================
@@ -585,7 +618,7 @@
         }
 
         // ============================================
-        // 📋 RENDER TABLE - View Only
+        // 📋 RENDER TABLE
         // ============================================
         function renderTable(applications) {
             const tableBody = document.getElementById('applicationsBody');
@@ -631,10 +664,15 @@
                         </td>
                         <td style="padding:10px 16px; font-size:0.85rem;">${app.career_goal || app.goal || 'N/A'}</td>
                         <td style="padding:10px 16px; font-size:0.8rem; white-space:nowrap;">${dateStr}</td>
-                        <td style="padding:10px 16px; text-align:center;">
-                            <button class="btn-view-action" onclick="viewApplication('${app.id}')">
-                                <i class="fas fa-eye"></i> View
-                            </button>
+                        <td style="padding:10px 16px;">
+                            <div class="action-cell">
+                                <button class="btn-action btn-view-action" onclick="viewApplication('${app.id}')">
+                                    <i class="fas fa-eye"></i> View
+                                </button>
+                                <button class="btn-action btn-delete-action" onclick="deleteApplication('${app.id}', '${app.name || 'Unknown'}')">
+                                    <i class="fas fa-trash"></i> Delete
+                                </button>
+                            </div>
                         </td>
                     </tr>
                 `;
@@ -668,7 +706,7 @@
         }
 
         // ============================================
-        // 👁️ VIEW APPLICATION - Full Details
+        // 👁️ VIEW APPLICATION
         // ============================================
         function viewApplication(docId) {
             db.collection('applications').doc(docId).get()
@@ -715,7 +753,7 @@
                         }
 
                         if (html === '') {
-                            html = '<p style="text-align:center;color:#666; padding:20px;">No details available for this application.</p>';
+                            html = '<p style="text-align:center;color:#666; padding:20px;">No details available.</p>';
                         }
 
                         document.getElementById('modalBody').innerHTML = html;
@@ -728,6 +766,56 @@
                     console.error('Error loading details:', error);
                     showToast('Error loading details: ' + error.message, 'error');
                 });
+        }
+
+        // ============================================
+        // 🗑️ DELETE SINGLE APPLICATION
+        // ============================================
+        function deleteApplication(docId, name) {
+            if (confirm(`⚠️ Are you sure you want to delete the application for "${name}"?\n\nThis action cannot be undone!`)) {
+                db.collection('applications').doc(docId).delete()
+                    .then(() => {
+                        allApplications = allApplications.filter(app => app.id !== docId);
+                        updateStats(allApplications);
+                        renderTable(allApplications);
+                        showToast(`✅ "${name}" deleted successfully!`, 'success');
+                    })
+                    .catch((error) => {
+                        console.error('Error deleting:', error);
+                        showToast('Error deleting: ' + error.message, 'error');
+                    });
+            }
+        }
+
+        // ============================================
+        // 🗑️ DELETE ALL
+        // ============================================
+        function deleteAll() {
+            if (allApplications.length === 0) {
+                showToast('No applications to delete.', 'info');
+                return;
+            }
+
+            if (confirm(`⚠️ Delete ALL ${allApplications.length} applications?`)) {
+                if (confirm('⚠️ FINAL WARNING: This cannot be undone!')) {
+                    const batch = db.batch();
+                    allApplications.forEach(app => {
+                        const ref = db.collection('applications').doc(app.id);
+                        batch.delete(ref);
+                    });
+                    
+                    batch.commit()
+                        .then(() => {
+                            allApplications = [];
+                            updateStats([]);
+                            renderTable([]);
+                            showToast('✅ All applications deleted!', 'success');
+                        })
+                        .catch((error) => {
+                            showToast('Error: ' + error.message, 'error');
+                        });
+                }
+            }
         }
 
         // ============================================
@@ -782,37 +870,6 @@
             link.click();
             URL.revokeObjectURL(link.href);
             showToast('✅ CSV exported!', 'success');
-        }
-
-        // ============================================
-        // 🗑️ DELETE ALL
-        // ============================================
-        function deleteAll() {
-            if (allApplications.length === 0) {
-                showToast('No applications to delete.', 'info');
-                return;
-            }
-
-            if (confirm(`⚠️ Delete ALL ${allApplications.length} applications?`)) {
-                if (confirm('⚠️ FINAL WARNING: This cannot be undone!')) {
-                    const batch = db.batch();
-                    allApplications.forEach(app => {
-                        const ref = db.collection('applications').doc(app.id);
-                        batch.delete(ref);
-                    });
-                    
-                    batch.commit()
-                        .then(() => {
-                            allApplications = [];
-                            updateStats([]);
-                            renderTable([]);
-                            showToast('✅ All applications deleted!', 'success');
-                        })
-                        .catch((error) => {
-                            showToast('Error: ' + error.message, 'error');
-                        });
-                }
-            }
         }
 
         // ============================================
