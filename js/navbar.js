@@ -2,11 +2,19 @@
 // NAVBAR.JS - Single Navbar for ALL Pages
 // =============================================
 
-// ===== NAVBAR HTML - UPDATED with correct tagline =====
+// Remove any "Loading..." text from the page
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('*').forEach(el => {
+        if (el.textContent && el.textContent.trim() === 'Loading...') {
+            el.remove();
+        }
+    });
+});
+
+// ===== NAVBAR HTML =====
 const navbarHTML = `
 <nav class="navbar">
     <div class="container nav-flex">
-        <!-- LOGO - CLICKABLE TO HOME -->
         <a href="index.html" style="text-decoration:none; display:flex; align-items:center; gap:12px;">
             <div class="logo-area" style="display:flex; align-items:center; gap:12px;">
                 <img src="assets/images/logo.png" alt="Dharithri Logo" style="height:55px; width:auto;" onerror="this.style.display='none'" />
@@ -32,7 +40,7 @@ const navbarHTML = `
     </div>
 </nav>
 
-<!-- TAGLINE BANNER - UPDATED with correct tagline -->
+<!-- TAGLINE BANNER -->
 <div style="background:#0b2b4a; color:white; text-align:center; padding:8px 0; font-weight:600; letter-spacing:1px; font-size:0.85rem;">
     <i class="fas fa-quote-left" style="color:#c49a2b; margin-right:8px;"></i>
     WE IMPROVE THE WORTH. WE SUPPLY THE WORTH.
@@ -40,7 +48,7 @@ const navbarHTML = `
 </div>
 `;
 
-// ===== FOOTER HTML - UPDATED with correct tagline =====
+// ===== FOOTER HTML =====
 const footerHTML = `
 <footer style="background:#061c2f; color:white; padding:40px 0; margin-top:40px;">
     <div class="container" style="text-align:center;">
@@ -86,7 +94,6 @@ const footerHTML = `
 
 // ===== FUNCTION TO INJECT NAVBAR =====
 function loadNavbar() {
-    // Remove existing navbar if any (to prevent duplicates)
     const existingNavbar = document.querySelector('.navbar');
     if (existingNavbar) {
         existingNavbar.remove();
@@ -96,7 +103,6 @@ function loadNavbar() {
 
 // ===== FUNCTION TO INJECT FOOTER =====
 function loadFooter() {
-    // Remove existing footer if any (to prevent duplicates)
     const existingFooter = document.querySelector('footer');
     if (existingFooter) {
         existingFooter.remove();
@@ -123,9 +129,7 @@ function highlightActivePage() {
     if (navId) {
         const link = document.getElementById(navId);
         if (link) {
-            // Remove active class from all links
             document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-            // Add active class to current page
             link.classList.add('active');
         }
     }
