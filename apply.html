@@ -164,7 +164,7 @@
                     </select>
                 </div>
 
-                <!-- ===== RESUME UPLOAD - FIXED ===== -->
+                <!-- ===== RESUME UPLOAD ===== -->
                 <div class="form-group" style="margin-top: 20px; padding: 20px; background: #f8f9fa; border-radius: 12px; border: 2px dashed #c49a2b;">
                     <label for="resume" style="font-size: 1.1rem;">
                         <i class="fas fa-file-upload" style="color:#c49a2b;"></i> Upload Resume <span class="required">*</span>
@@ -250,7 +250,6 @@
             const progressDiv = document.getElementById('resumeProgress');
             
             if (file) {
-                // Check file size (max 2MB)
                 if (file.size > 2 * 1024 * 1024) {
                     statusDiv.innerHTML = `<span style="color: #d32f2f;">❌ File is too large! Please select a file under 2MB.</span>`;
                     this.value = '';
@@ -258,12 +257,7 @@
                     return;
                 }
                 
-                // Check file type
-                const allowedTypes = [
-                    'application/pdf',
-                    'application/msword',
-                    'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-                ];
+                const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
                 
                 if (!allowedTypes.includes(file.type)) {
                     statusDiv.innerHTML = `<span style="color: #d32f2f;">❌ Invalid file format! Please upload PDF, DOC, or DOCX.</span>`;
@@ -272,7 +266,6 @@
                     return;
                 }
                 
-                // File is valid
                 const fileSize = (file.size / 1024 / 1024).toFixed(2);
                 statusDiv.innerHTML = `
                     <span style="color: #2e7d32;">✅ File selected: <strong>${file.name}</strong> (${fileSize} MB)</span>
@@ -285,25 +278,19 @@
         });
 
         // =============================================
-        // FORM SUBMISSION - WITH RESUME UPLOAD FIX
+        // FORM SUBMISSION - FIXED
         // =============================================
-        document.getElementById('applicationForm').addEventListener('submit', function(e) {
+        document.getElementById('applicationForm').addEventListener('submit', async function(e) {
             e.preventDefault();
 
-            // Get the submit button
             const submitBtn = this.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerHTML;
-            
-            // Disable button and show loading
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
             submitBtn.disabled = true;
 
-            // Clear previous alerts
             document.getElementById('formAlert').innerHTML = '';
 
-            // =============================================
-            // 1. COLLECT FORM DATA
-            // =============================================
+            // Collect form data
             const formData = {
                 name: document.getElementById('name')?.value || '',
                 aadhar: document.getElementById('aadhar')?.value || '',
@@ -333,7 +320,6 @@
                 userId: 'guest_' + Date.now()
             };
 
-            // Validate declaration
             if (!formData.declaration) {
                 document.getElementById('formAlert').innerHTML = `
                     <div class="alert alert-error">
@@ -346,30 +332,6 @@
                 return;
             }
 
-            // Validate required fields
-            const requiredFields = ['name', 'aadhar', 'mobile', 'email', 'program', 'career_goal'];
-            let missingFields = [];
-            requiredFields.forEach(field => {
-                if (!formData[field] || formData[field] === '') {
-                    missingFields.push(field);
-                }
-            });
-
-            if (missingFields.length > 0) {
-                document.getElementById('formAlert').innerHTML = `
-                    <div class="alert alert-error">
-                        <strong>⚠️ Please fill in all required fields</strong>
-                        <p style="margin-top:4px;">Missing: ${missingFields.join(', ')}</p>
-                    </div>
-                `;
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-                return;
-            }
-
-            // =============================================
-            // 2. HANDLE RESUME UPLOAD
-            // =============================================
             const resumeFile = document.getElementById('resume').files[0];
             
             if (!resumeFile) {
@@ -384,178 +346,96 @@
                 return;
             }
 
-            // Check file size again (max 2MB)
-            if (resumeFile.size > 2 * 1024 * 1024) {
-                document.getElementById('formAlert').innerHTML = `
-                    <div class="alert alert-error">
-                        <strong>⚠️ File is too large!</strong>
-                        <p style="margin-top:4px;">Please upload a file under 2MB.</p>
-                    </div>
-                `;
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-                return;
-            }
-
-            // Check file type
-            const allowedTypes = [
-                'application/pdf',
-                'application/msword',
-                'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-            ];
-            
-            if (!allowedTypes.includes(resumeFile.type)) {
-                document.getElementById('formAlert').innerHTML = `
-                    <div class="alert alert-error">
-                        <strong>⚠️ Invalid file format!</strong>
-                        <p style="margin-top:4px;">Please upload PDF, DOC, or DOCX files only.</p>
-                    </div>
-                `;
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-                return;
-            }
-
-            // =============================================
-            // 3. UPLOAD RESUME TO FIREBASE STORAGE
-            // =============================================
+            // Upload resume
             const fileName = `${Date.now()}_${resumeFile.name}`;
             const storageRef = storage.ref(`resumes/${fileName}`);
             
-            // Show progress bar
             const progressDiv = document.getElementById('resumeProgress');
             const progressBar = document.getElementById('progressBar');
             const progressText = document.getElementById('progressText');
             progressDiv.style.display = 'block';
             
-            // Update status
             document.getElementById('resumeStatus').innerHTML = `
                 <span style="color: #0b2b4a;">⏳ Uploading resume... <i class="fas fa-spinner fa-spin"></i></span>
             `;
 
-            // Upload file with progress tracking
-            const uploadTask = storageRef.put(resumeFile);
+            try {
+                const uploadTask = storageRef.put(resumeFile);
 
-            uploadTask.on(
-                'state_changed',
-                (snapshot) => {
-                    // Progress
-                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    progressBar.style.width = progress + '%';
-                    progressText.textContent = Math.round(progress) + '%';
-                    document.getElementById('resumeStatus').innerHTML = `
-                        <span style="color: #0b2b4a;">📤 Uploading resume... ${Math.round(progress)}%</span>
-                    `;
-                },
-                (error) => {
-                    // Handle errors
-                    console.error('Upload error:', error);
-                    document.getElementById('formAlert').innerHTML = `
-                        <div class="alert alert-error">
-                            <strong>❌ Resume upload failed</strong>
-                            <p style="margin-top:4px;">${error.message}</p>
-                            <p style="margin-top:4px; font-size:0.85rem; color:#666;">Please make sure you have permission to upload files.</p>
+                const snapshot = await new Promise((resolve, reject) => {
+                    uploadTask.on(
+                        'state_changed',
+                        (snapshot) => {
+                            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                            progressBar.style.width = progress + '%';
+                            progressText.textContent = Math.round(progress) + '%';
+                            document.getElementById('resumeStatus').innerHTML = `
+                                <span style="color: #0b2b4a;">📤 Uploading resume... ${Math.round(progress)}%</span>
+                            `;
+                        },
+                        (error) => reject(error),
+                        () => resolve(uploadTask.snapshot)
+                    );
+                });
+
+                const downloadURL = await storageRef.getDownloadURL();
+                
+                formData.resume = fileName;
+                formData.resume_url = downloadURL;
+                
+                // Save to Firestore
+                const docRef = await db.collection('applications').add(formData);
+                
+                document.getElementById('formAlert').innerHTML = `
+                    <div class="alert alert-success" style="padding:25px; border-radius:16px; background:#e8f5e9; border:2px solid #4caf50;">
+                        <div style="text-align:center;">
+                            <i class="fas fa-check-circle" style="font-size:3rem; color:#2e7d32;"></i>
+                            <h2 style="color:#2e7d32; margin:12px 0 8px;">🎉 Application Submitted!</h2>
+                            <p style="color:#2e7d32; font-size:1.1rem;">Your application has been submitted successfully.</p>
+                            <p style="color:#2e7d32; font-size:0.9rem; margin-top:8px; background:white; padding:8px 16px; border-radius:8px; display:inline-block;">
+                                <strong>Reference ID:</strong> ${docRef.id}
+                            </p>
+                            <p style="color:#2e7d32; font-size:0.95rem; margin-top:12px;">
+                                📧 A confirmation email will be sent to <strong>${formData.email}</strong>
+                            </p>
+                            <p style="color:#2e7d32; font-size:0.9rem; margin-top:8px;">
+                                Our team will review your application and contact you within 2-3 business days.
+                            </p>
+                            <hr style="margin:16px 0; border:1px solid #a5d6a7;">
+                            <p style="color:#2e7d32; font-size:0.85rem;">
+                                <i class="fas fa-phone"></i> For queries: +91-XXXXXXXXXX &nbsp;|&nbsp; 
+                                <i class="fas fa-envelope"></i> info@dharithri.com
+                            </p>
                         </div>
-                    `;
-                    document.getElementById('resumeStatus').innerHTML = `
-                        <span style="color: #d32f2f;">❌ Upload failed: ${error.message}</span>
-                    `;
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.disabled = false;
-                },
-                async () => {
-                    // Upload completed successfully
-                    try {
-                        const downloadURL = await uploadTask.snapshot.ref.getDownloadURL();
-                        
-                        console.log('✅ Resume uploaded successfully!');
-                        console.log('📎 Download URL:', downloadURL);
-                        
-                        // Update status
-                        document.getElementById('resumeStatus').innerHTML = `
-                            <span style="color: #2e7d32;">✅ Resume uploaded successfully!</span>
-                        `;
-                        progressBar.style.width = '100%';
-                        progressText.textContent = '100%';
-                        
-                        // Add resume info to form data
-                        formData.resume = fileName;
-                        formData.resume_url = downloadURL;
-                        formData.resume_size = resumeFile.size;
-                        formData.resume_type = resumeFile.type;
-                        
-                        // =============================================
-                        // 4. SAVE TO FIRESTORE
-                        // =============================================
-                        db.collection('applications').add(formData)
-                            .then((docRef) => {
-                                console.log('✅ Application saved! ID:', docRef.id);
-                                
-                                // Show success message
-                                document.getElementById('formAlert').innerHTML = `
-                                    <div class="alert alert-success" style="padding:25px; border-radius:16px; background:#e8f5e9; border:2px solid #4caf50;">
-                                        <div style="text-align:center;">
-                                            <i class="fas fa-check-circle" style="font-size:3rem; color:#2e7d32;"></i>
-                                            <h2 style="color:#2e7d32; margin:12px 0 8px;">🎉 Application Submitted!</h2>
-                                            <p style="color:#2e7d32; font-size:1.1rem;">Your application has been submitted successfully.</p>
-                                            <p style="color:#2e7d32; font-size:0.9rem; margin-top:8px; background:white; padding:8px 16px; border-radius:8px; display:inline-block;">
-                                                <strong>Reference ID:</strong> ${docRef.id}
-                                            </p>
-                                            <p style="color:#2e7d32; font-size:0.95rem; margin-top:12px;">
-                                                📧 A confirmation email will be sent to <strong>${formData.email}</strong>
-                                            </p>
-                                            <p style="color:#2e7d32; font-size:0.9rem; margin-top:8px;">
-                                                Our team will review your application and contact you within 2-3 business days.
-                                            </p>
-                                            <hr style="margin:16px 0; border:1px solid #a5d6a7;">
-                                            <p style="color:#2e7d32; font-size:0.85rem;">
-                                                <i class="fas fa-phone"></i> For queries: +91-XXXXXXXXXX &nbsp;|&nbsp; 
-                                                <i class="fas fa-envelope"></i> info@dharithri.com
-                                            </p>
-                                        </div>
-                                    </div>
-                                `;
-                                
-                                // Reset form
-                                document.getElementById('applicationForm').reset();
-                                document.getElementById('resumeStatus').innerHTML = '';
-                                document.getElementById('resumeProgress').style.display = 'none';
-                                progressBar.style.width = '0%';
-                                progressText.textContent = '0%';
-                                
-                                // Scroll to top to show message
-                                window.scrollTo({ top: 0, behavior: 'smooth' });
-                                
-                                // Auto-hide after 30 seconds
-                                setTimeout(() => { 
-                                    document.getElementById('formAlert').innerHTML = ''; 
-                                }, 30000);
-                            })
-                            .catch((error) => {
-                                console.error('❌ Error saving to Firestore:', error);
-                                document.getElementById('formAlert').innerHTML = `
-                                    <div class="alert alert-error">
-                                        <strong>❌ Failed to save application</strong>
-                                        <p style="margin-top:4px;">${error.message}</p>
-                                        <p style="margin-top:4px; font-size:0.85rem; color:#666;">Error code: ${error.code || 'Unknown'}</p>
-                                    </div>
-                                `;
-                                submitBtn.innerHTML = originalText;
-                                submitBtn.disabled = false;
-                            });
-                    } catch (error) {
-                        console.error('❌ Error getting download URL:', error);
-                        document.getElementById('formAlert').innerHTML = `
-                            <div class="alert alert-error">
-                                <strong>❌ Failed to get download URL</strong>
-                                <p style="margin-top:4px;">${error.message}</p>
-                            </div>
-                        `;
-                        submitBtn.innerHTML = originalText;
-                        submitBtn.disabled = false;
-                    }
-                }
-            );
+                    </div>
+                `;
+                
+                document.getElementById('applicationForm').reset();
+                document.getElementById('resumeStatus').innerHTML = '';
+                document.getElementById('resumeProgress').style.display = 'none';
+                progressBar.style.width = '0%';
+                progressText.textContent = '0%';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            } catch (error) {
+                console.error('❌ Error:', error);
+                document.getElementById('formAlert').innerHTML = `
+                    <div class="alert alert-error">
+                        <strong>❌ Upload Failed</strong>
+                        <p style="margin-top:4px;">${error.message}</p>
+                        <p style="margin-top:4px; font-size:0.85rem; color:#666;">Error code: ${error.code || 'Unknown'}</p>
+                        <button onclick="location.reload()" style="margin-top:8px; background:#c49a2b; border:none; color:#0b2b4a; padding:8px 20px; border-radius:40px; cursor:pointer; font-weight:600;">
+                            <i class="fas fa-sync"></i> Try Again
+                        </button>
+                    </div>
+                `;
+                document.getElementById('resumeStatus').innerHTML = `
+                    <span style="color: #d32f2f;">❌ Upload failed: ${error.message}</span>
+                `;
+            } finally {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
         });
 
         console.log('✅ Application form ready with resume upload!');
