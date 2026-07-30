@@ -81,16 +81,16 @@ body { font-family: 'Inter', sans-serif; background: #fafbfc; color: #1e1e2a; li
 .form-group label .required { color: #e74c3c; }
 .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px 16px; border: 1px solid #dde2e8; border-radius: 12px; font-family: 'Inter', sans-serif; font-size: 0.95rem; transition: 0.2s; background: white; }
 .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: #c49a2b; box-shadow: 0 0 0 3px rgba(196,154,43,0.15); }
-.form-group input[type="file"] { padding: 10px; background: #f8f9fb; }
+.form-group input[type="file"] { padding: 10px; background: #f8f9fb; cursor: pointer; }
+.form-group input[type="file"]:hover { background: #f0f2f5; }
+.form-group small { display: block; margin-top: 4px; color: #6c7a8a; font-size: 0.85rem; }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
 .form-section { background: white; padding: 40px; border-radius: 24px; box-shadow: 0 4px 16px rgba(0,0,0,0.03); max-width: 900px; margin: 0 auto; }
 
 /* ============================================= */
-/* ===== ADMIN STYLES (UPDATED) ===== */
+/* ===== ADMIN LOGIN ===== */
 /* ============================================= */
-
-/* --- Admin Login Box --- */
 .admin-login-box {
     max-width: 420px;
     width: 100%;
@@ -129,75 +129,172 @@ body { font-family: 'Inter', sans-serif; background: #fafbfc; color: #1e1e2a; li
     color: #e74c3c;
 }
 
-/* --- Admin Table --- */
-.admin-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: white;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+/* ============================================= */
+/* ===== ADMIN DASHBOARD ===== */
+/* ============================================= */
+
+/* --- Dashboard Header --- */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 20px 0 30px;
+    gap: 16px;
 }
 
-.admin-table th {
+.dashboard-header h1 {
+    font-size: 2rem;
+    color: #0b2b4a;
+}
+
+.dashboard-controls {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.dashboard-controls input[type="text"] {
+    padding: 10px 16px;
+    border: 1px solid #dde2e8;
+    border-radius: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    min-width: 250px;
+    transition: 0.2s;
+    background: white;
+}
+
+.dashboard-controls input[type="text"]:focus {
+    outline: none;
+    border-color: #c49a2b;
+    box-shadow: 0 0 0 3px rgba(196,154,43,0.15);
+}
+
+.btn-export {
     background: #0b2b4a;
     color: white;
-    padding: 14px 16px;
-    text-align: left;
-    font-weight: 600;
-}
-
-.admin-table td {
-    padding: 12px 16px;
-    border-bottom: 1px solid #eef2f6;
-    vertical-align: middle;
-}
-
-.admin-table tr:hover {
-    background: #f8f9fb;
-}
-
-.admin-table .badge {
-    background: #c49a2b;
-    color: #0b2b4a;
-    padding: 2px 12px;
+    border: none;
+    padding: 10px 24px;
     border-radius: 40px;
-    font-size: 0.75rem;
+    cursor: pointer;
     font-weight: 600;
+    font-size: 0.9rem;
+    transition: 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
 }
 
-/* --- Admin Dashboard Table (Responsive) --- */
-.admin-dashboard-table {
+.btn-export:hover {
+    background: #1a3d5e;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(11,43,74,0.2);
+}
+
+.btn-export i {
+    font-size: 1rem;
+}
+
+/* --- Stats Cards --- */
+.admin-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.admin-stat-card {
+    background: white;
+    padding: 20px 24px;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+    text-align: center;
+    transition: 0.3s;
+    border: 1px solid #f0f2f5;
+}
+
+.admin-stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+}
+
+.admin-stat-card .stat-icon {
+    font-size: 1.8rem;
+    color: #c49a2b;
+    margin-bottom: 8px;
+}
+
+.admin-stat-card h3 {
+    color: #0b2b4a;
+    font-size: 2rem;
+    margin: 0;
+}
+
+.admin-stat-card p {
+    color: #4a5d74;
+    margin: 4px 0 0;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* --- Table Container --- */
+.table-container {
+    background: white;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+.table-container h2 {
+    color: #0b2b4a;
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-size: 1.4rem;
+}
+
+/* --- Admin Table --- */
+.admin-table {
     width: 100%;
     border-collapse: collapse;
     font-size: 0.9rem;
 }
 
-.admin-dashboard-table thead tr {
+.admin-table thead tr {
     background: #0b2b4a;
     color: white;
 }
 
-.admin-dashboard-table thead th {
+.admin-table thead th {
     padding: 12px 16px;
     text-align: left;
     font-weight: 600;
+    white-space: nowrap;
 }
 
-.admin-dashboard-table tbody tr {
+.admin-table tbody tr {
     border-bottom: 1px solid #eef2f6;
+    transition: 0.2s;
 }
 
-.admin-dashboard-table tbody tr:nth-child(even) {
-    background: #f8f9fb;
+.admin-table tbody tr:nth-child(even) {
+    background: #fafbfc;
 }
 
-.admin-dashboard-table tbody td {
+.admin-table tbody tr:hover {
+    background: #f5f8fd;
+}
+
+.admin-table tbody td {
     padding: 10px 16px;
     vertical-align: middle;
 }
 
-.admin-dashboard-table .program-badge {
+/* --- Program Badge --- */
+.program-badge {
     background: #c49a2b;
     color: #0b2b4a;
     padding: 2px 12px;
@@ -207,7 +304,77 @@ body { font-family: 'Inter', sans-serif; background: #fafbfc; color: #1e1e2a; li
     display: inline-block;
 }
 
-.admin-dashboard-table .view-btn {
+/* ============================================= */
+/* ===== ACTION BUTTONS (View, Resume, Delete) ===== */
+/* ============================================= */
+.action-cell {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.btn-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+    text-decoration: none;
+    font-size: 0.85rem;
+}
+
+.btn-action i {
+    font-size: 14px;
+}
+
+/* View Button */
+.btn-view {
+    background: #4CAF50;
+}
+.btn-view:hover {
+    background: #45a049;
+    transform: scale(1.08);
+    box-shadow: 0 4px 12px rgba(76,175,80,0.3);
+}
+
+/* Resume Button */
+.btn-resume {
+    background: #FF6B6B;
+}
+.btn-resume:hover {
+    background: #ff5252;
+    transform: scale(1.08);
+    box-shadow: 0 4px 12px rgba(255,107,107,0.3);
+}
+
+/* Delete Button */
+.btn-delete {
+    background: #dc3545;
+}
+.btn-delete:hover {
+    background: #c82333;
+    transform: scale(1.08);
+    box-shadow: 0 4px 12px rgba(220,53,69,0.3);
+}
+
+/* No Resume Badge */
+.no-resume {
+    color: #999;
+    font-size: 11px;
+    font-style: italic;
+    padding: 4px 8px;
+    background: #f5f5f5;
+    border-radius: 4px;
+}
+
+/* --- View Button (Text version) --- */
+.view-btn {
     background: #c49a2b;
     border: none;
     color: #0b2b4a;
@@ -219,39 +386,14 @@ body { font-family: 'Inter', sans-serif; background: #fafbfc; color: #1e1e2a; li
     transition: 0.2s;
 }
 
-.admin-dashboard-table .view-btn:hover {
+.view-btn:hover {
     background: #b0861f;
     transform: scale(1.05);
 }
 
-/* --- Admin Stats Cards --- */
-.admin-stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 16px;
-    margin-bottom: 24px;
-}
-
-.admin-stat-card {
-    background: #f5f8fd;
-    padding: 16px;
-    border-radius: 12px;
-    text-align: center;
-}
-
-.admin-stat-card h3 {
-    color: #0b2b4a;
-    font-size: 1.8rem;
-    margin: 0;
-}
-
-.admin-stat-card p {
-    color: #4a5d74;
-    margin: 4px 0 0;
-    font-size: 0.9rem;
-}
-
-/* --- Admin Action Buttons --- */
+/* ============================================= */
+/* ===== ADMIN ACTIONS BAR ===== */
+/* ============================================= */
 .admin-actions {
     margin-top: 20px;
     display: flex;
@@ -307,7 +449,9 @@ body { font-family: 'Inter', sans-serif; background: #fafbfc; color: #1e1e2a; li
     transform: translateY(-2px);
 }
 
-/* --- Admin Loading --- */
+/* ============================================= */
+/* ===== ADMIN LOADING & EMPTY STATES ===== */
+/* ============================================= */
 .admin-loading {
     text-align: center;
     padding: 40px;
@@ -331,7 +475,6 @@ body { font-family: 'Inter', sans-serif; background: #fafbfc; color: #1e1e2a; li
     100% { transform: rotate(360deg); }
 }
 
-/* --- Admin Empty State --- */
 .admin-empty {
     text-align: center;
     padding: 40px;
@@ -373,72 +516,6 @@ body { font-family: 'Inter', sans-serif; background: #fafbfc; color: #1e1e2a; li
     background: #e3f2fd;
     color: #0d47a1;
     border: 1px solid #90caf9;
-}
-
-/* ============================================= */
-/* ===== MISC ===== */
-/* ============================================= */
-.text-center { text-align: center; }
-.mt-20 { margin-top: 20px; }
-.mb-20 { margin-bottom: 20px; }
-
-/* ============================================= */
-/* ===== RESPONSIVE TABLES ===== */
-/* ============================================= */
-@media (max-width: 768px) {
-    .admin-dashboard-table {
-        font-size: 0.8rem;
-    }
-    
-    .admin-dashboard-table thead th,
-    .admin-dashboard-table tbody td {
-        padding: 8px 10px;
-    }
-    
-    .admin-dashboard-table .program-badge {
-        font-size: 0.65rem;
-        padding: 1px 8px;
-    }
-    
-    .admin-stats {
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    }
-    
-    .admin-stat-card h3 {
-        font-size: 1.4rem;
-    }
-    
-    .admin-login-box {
-        padding: 24px;
-        margin: 20px auto;
-    }
-    
-    .admin-actions {
-        flex-direction: column;
-    }
-    
-    .admin-actions .btn-export,
-    .admin-actions .btn-refresh,
-    .admin-actions .btn-danger {
-        width: 100%;
-        text-align: center;
-    }
-}
-
-@media (max-width: 480px) {
-    .admin-dashboard-table {
-        font-size: 0.7rem;
-    }
-    
-    .admin-dashboard-table thead th,
-    .admin-dashboard-table tbody td {
-        padding: 6px 8px;
-    }
-    
-    .admin-dashboard-table .view-btn {
-        padding: 2px 10px;
-        font-size: 0.7rem;
-    }
 }
 
 /* ============================================= */
@@ -525,4 +602,199 @@ body { font-family: 'Inter', sans-serif; background: #fafbfc; color: #1e1e2a; li
 .footer .footer-brand p {
     color: #7a94ae;
     margin-top: 4px;
+}
+
+/* ============================================= */
+/* ===== MISC UTILITIES ===== */
+/* ============================================= */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+.mt-20 { margin-top: 20px; }
+.mb-20 { margin-bottom: 20px; }
+.mt-30 { margin-top: 30px; }
+.mb-30 { margin-bottom: 30px; }
+.p-20 { padding: 20px; }
+.p-30 { padding: 30px; }
+.hidden { display: none; }
+
+/* ============================================= */
+/* ===== RESPONSIVE TABLES ===== */
+/* ============================================= */
+@media (max-width: 1024px) {
+    .admin-table {
+        font-size: 0.85rem;
+    }
+    .admin-table thead th,
+    .admin-table tbody td {
+        padding: 8px 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .dashboard-controls {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .dashboard-controls input[type="text"] {
+        min-width: auto;
+        width: 100%;
+    }
+    
+    .btn-export {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .admin-stats {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 12px;
+    }
+    
+    .admin-stat-card {
+        padding: 14px 16px;
+    }
+    
+    .admin-stat-card h3 {
+        font-size: 1.4rem;
+    }
+    
+    .admin-table {
+        font-size: 0.8rem;
+    }
+    
+    .admin-table thead th,
+    .admin-table tbody td {
+        padding: 6px 10px;
+    }
+    
+    .admin-table .program-badge {
+        font-size: 0.65rem;
+        padding: 1px 8px;
+    }
+    
+    .action-cell {
+        gap: 4px;
+    }
+    
+    .btn-action {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .btn-action i {
+        font-size: 12px;
+    }
+    
+    .no-resume {
+        font-size: 10px;
+        padding: 2px 6px;
+    }
+    
+    .admin-login-box {
+        padding: 24px;
+        margin: 20px auto;
+    }
+    
+    .admin-actions {
+        flex-direction: column;
+    }
+    
+    .admin-actions .btn-export,
+    .admin-actions .btn-refresh,
+    .admin-actions .btn-danger {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+    }
+    
+    .table-container {
+        padding: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-table {
+        font-size: 0.7rem;
+    }
+    
+    .admin-table thead th,
+    .admin-table tbody td {
+        padding: 4px 6px;
+    }
+    
+    .admin-table .view-btn {
+        padding: 2px 10px;
+        font-size: 0.65rem;
+    }
+    
+    .btn-action {
+        width: 26px;
+        height: 26px;
+    }
+    
+    .btn-action i {
+        font-size: 10px;
+    }
+    
+    .admin-stats {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+    
+    .admin-stat-card h3 {
+        font-size: 1.2rem;
+    }
+    
+    .admin-stat-card p {
+        font-size: 0.75rem;
+    }
+}
+
+/* ============================================= */
+/* ===== SCROLLBAR STYLING ===== */
+/* ============================================= */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c49a2b;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #b0861f;
+}
+
+/* ============================================= */
+/* ===== PRINT STYLES ===== */
+/* ============================================= */
+@media print {
+    .navbar, .footer, .admin-actions, .dashboard-controls {
+        display: none !important;
+    }
+    .table-container {
+        box-shadow: none !important;
+        border: 1px solid #ddd;
+    }
+    .admin-table thead tr {
+        background: #333 !important;
+        color: white !important;
+    }
+    .btn-action {
+        display: none !important;
+    }
 }
