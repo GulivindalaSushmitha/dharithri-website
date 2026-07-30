@@ -15,76 +15,7 @@
         }
         .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
         
-        /* ===== LOGIN SECTION ===== */
-        #loginSection {
-            max-width: 420px;
-            margin: 100px auto;
-            background: white;
-            padding: 40px;
-            border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-        }
-        #loginSection .logo {
-            text-align: center;
-            font-size: 48px;
-            margin-bottom: 10px;
-        }
-        #loginSection h2 { 
-            text-align: center; 
-            color: #0b2b4a; 
-            margin-bottom: 8px;
-            font-size: 24px;
-        }
-        #loginSection p.sub {
-            text-align: center;
-            color: #666;
-            font-size: 14px;
-            margin-bottom: 25px;
-        }
-        #loginSection label {
-            display: block;
-            font-size: 14px;
-            font-weight: 600;
-            color: #333;
-            margin-top: 15px;
-            margin-bottom: 5px;
-        }
-        #loginSection input {
-            width: 100%;
-            padding: 12px 14px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 15px;
-            transition: border-color 0.3s;
-        }
-        #loginSection input:focus {
-            border-color: #c49a2b;
-            outline: none;
-        }
-        #loginSection button {
-            width: 100%;
-            padding: 14px;
-            background: #0b2b4a;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 25px;
-            transition: background 0.3s;
-        }
-        #loginSection button:hover { background: #1a3f5e; }
-        .error { 
-            color: #d32f2f; 
-            text-align: center; 
-            margin-top: 12px; 
-            font-size: 14px;
-        }
-        
         /* ===== DASHBOARD SECTION ===== */
-        #dashboardSection { display: none; }
-        
         .dashboard-header {
             background: white;
             padding: 20px 30px;
@@ -367,23 +298,6 @@
 <body>
 
     <!-- ============================================ -->
-    <!-- LOGIN SECTION                               -->
-    <!-- ============================================ -->
-    <div id="loginSection">
-        <div class="logo">🔐</div>
-        <h2>Admin Login</h2>
-        <p class="sub">Enter your credentials to access the dashboard</p>
-        <form id="loginForm">
-            <label for="adminEmail">Email Address</label>
-            <input type="email" id="adminEmail" placeholder="admin@dharithri.com" required>
-            <label for="adminPassword">Password</label>
-            <input type="password" id="adminPassword" placeholder="Enter password" required>
-            <button type="submit">Login</button>
-            <div id="loginError" class="error"></div>
-        </form>
-    </div>
-
-    <!-- ============================================ -->
     <!-- DASHBOARD SECTION                           -->
     <!-- ============================================ -->
     <div id="dashboardSection">
@@ -491,40 +405,30 @@
         let allApplications = [];
 
         // ============================================
-        // 📝 LOGIN HANDLER
+        // 🔐 PROTECTION: Check if user is logged in
         // ============================================
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const email = document.getElementById('adminEmail').value;
-            const password = document.getElementById('adminPassword').value;
-            const errorDiv = document.getElementById('loginError');
-            
-            errorDiv.textContent = '⏳ Logging in...';
-            errorDiv.style.color = '#0b2b4a';
-            
-            auth.signInWithEmailAndPassword(email, password)
-                .then((userCredential) => {
-                    errorDiv.textContent = '';
-                    document.getElementById('loginSection').style.display = 'none';
-                    document.getElementById('dashboardSection').style.display = 'block';
-                    loadApplications();
-                })
-                .catch((error) => {
-                    errorDiv.style.color = '#d32f2f';
-                    errorDiv.textContent = '❌ ' + error.message;
-                });
+        auth.onAuthStateChanged((user) => {
+            if (!user) {
+                // No user logged in - redirect to login page
+                window.location.href = 'admin-login.html';
+            } else {
+                // User is logged in - show dashboard
+                console.log('✅ Admin logged in:', user.email);
+                loadApplications();
+            }
         });
 
         // ============================================
         // 🚪 LOGOUT HANDLER
         // ============================================
         function logoutAdmin() {
-            auth.signOut();
-            document.getElementById('loginSection').style.display = 'block';
-            document.getElementById('dashboardSection').style.display = 'none';
-            document.getElementById('adminEmail').value = '';
-            document.getElementById('adminPassword').value = '';
+            auth.signOut()
+                .then(() => {
+                    window.location.href = 'admin-login.html';
+                })
+                .catch((error) => {
+                    console.error('Logout error:', error);
+                });
         }
 
         // ============================================
@@ -836,17 +740,6 @@
                 '<tr><td colspan="8" class="loading-state"><i class="fas fa-spinner fa-spin"></i><p>Refreshing...</p></td></tr>';
             loadApplications();
         }
-
-        // ============================================
-        // 🔄 AUTO-LOGIN CHECK
-        // ============================================
-        auth.onAuthStateChanged((user) => {
-            if (user) {
-                document.getElementById('loginSection').style.display = 'none';
-                document.getElementById('dashboardSection').style.display = 'block';
-                loadApplications();
-            }
-        });
     </script>
 
 </body>
