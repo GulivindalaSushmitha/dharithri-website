@@ -559,7 +559,6 @@
                         applications.push({ 
                             id: doc.id, 
                             ...data,
-                            // Ensure date field exists
                             applicationDate: data.applicationDate || data.applied_on || data.created_at || new Date().toISOString()
                         });
                     });
@@ -604,9 +603,7 @@
                         const appDate = new Date(dateStr);
                         if (appDate.toDateString() === todayStr) todayCount++;
                         if (appDate >= weekAgo) weekCount++;
-                    } catch(e) {
-                        console.log('Date parse error for:', app.name);
-                    }
+                    } catch(e) {}
                 }
                 if (app.program) programs.add(app.program);
             });
@@ -723,7 +720,7 @@
         }
 
         // ============================================
-        // 👁️ VIEW APPLICATION - FIXED
+        // 👁️ VIEW APPLICATION
         // ============================================
         function viewApplication(docId) {
             console.log('Viewing application:', docId);
@@ -758,12 +755,13 @@
                             'Program Applied': data.program || data.course,
                             'Career Goal': data.career_goal || data.goal,
                             'How did you know?': data.source || data.how_did_you_know,
+                            'Resume Uploaded': data.resume_url ? '✅ Yes' : (data.resume ? '✅ Yes (filename)' : '❌ No'),
                             'Applied On': data.applicationDate ? new Date(data.applicationDate).toLocaleString() : 
                                       data.applied_on ? new Date(data.applied_on).toLocaleString() : 'N/A'
                         };
 
                         for (const [key, value] of Object.entries(fields)) {
-                            if (value && value !== 'N/A' && value !== '' && value !== 'undefined') {
+                            if (value && value !== 'N/A' && value !== '' && value !== 'undefined' && value !== '❌ No') {
                                 html += `
                                     <div class="detail-row">
                                         <span class="detail-label">${key}</span>
@@ -786,12 +784,15 @@
                                 </div>
                             `;
                         } else if (data.resume) {
-                            // Try to construct URL if only filename is stored
                             html += `
-                                <div class="detail-row" style="border-bottom: 2px solid #c49a2b; background: #f0f8ff;">
+                                <div class="detail-row" style="border-bottom: 2px solid #c49a2b; background: #fff3e0;">
                                     <span class="detail-label">📎 Resume</span>
                                     <span class="detail-value">
-                                        <span style="color: #999;">Resume uploaded but URL not available</span>
+                                        <span style="color: #e65100;">Resume file: ${data.resume}</span>
+                                        <br>
+                                        <button onclick="viewResume('${docId}', '')" style="background:#FF6B6B; color:white; border:none; padding:4px 12px; border-radius:4px; cursor:pointer; margin-top:4px;">
+                                            <i class="fas fa-file-pdf"></i> Try to View
+                                        </button>
                                     </span>
                                 </div>
                             `;
@@ -819,7 +820,8 @@
         function viewResume(docId, url) {
             console.log('Viewing resume for:', docId, 'URL:', url);
             
-            if (url) {
+            // If URL is provided, open it
+            if (url && url.startsWith('http')) {
                 window.open(url, '_blank');
                 return;
             }
@@ -834,14 +836,16 @@
                         if (data.resume_url) {
                             window.open(data.resume_url, '_blank');
                         } else if (data.resume) {
-                            // Try to construct URL for Firebase Storage
+                            // Try to get download URL from Firebase Storage
                             const storageRef = storage.ref(`resumes/${data.resume}`);
                             storageRef.getDownloadURL()
                                 .then((downloadURL) => {
+                                    console.log('✅ Got download URL:', downloadURL);
                                     window.open(downloadURL, '_blank');
                                 })
-                                .catch(() => {
-                                    showToast('Resume file not found in storage.', 'error');
+                                .catch((error) => {
+                                    console.error('Error getting download URL:', error);
+                                    showToast('Resume file not found in storage. Please check if the file was uploaded correctly.', 'error');
                                 });
                         } else {
                             showToast('No resume uploaded for this application.', 'error');
