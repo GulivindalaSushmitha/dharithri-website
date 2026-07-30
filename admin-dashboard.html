@@ -6,293 +6,121 @@
     <title>Admin Dashboard · Dharithri</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background: #f0f4f8; 
-            min-height: 100vh;
-        }
-        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
-        
-        /* ===== DASHBOARD SECTION ===== */
-        .dashboard-header {
-            background: white;
-            padding: 20px 30px;
-            border-radius: 16px;
+        /* ===== ADDITIONAL ADMIN STYLES ===== */
+        .action-cell {
             display: flex;
-            justify-content: space-between;
+            gap: 6px;
             align-items: center;
-            margin-bottom: 25px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-        .dashboard-header h1 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #0b2b4a;
-        }
-        .dashboard-header h1 span {
-            font-weight: 300;
-            color: #4a5d74;
-        }
-        .header-actions {
-            display: flex;
-            gap: 12px;
-            align-items: center;
+            justify-content: center;
             flex-wrap: wrap;
         }
-        .header-actions .admin-badge {
-            background: #c49a2b;
-            color: #0b2b4a;
-            padding: 6px 16px;
-            border-radius: 40px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-        .logout-btn {
-            background: #d32f2f;
-            color: white;
-            border: none;
-            padding: 10px 24px;
-            border-radius: 40px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 600;
-            transition: background 0.3s;
-        }
-        .logout-btn:hover { background: #b71c1c; }
-        
-        /* Stats */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-        .stat-card {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            text-align: center;
-        }
-        .stat-card .number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #0b2b4a;
-        }
-        .stat-card .label {
-            font-size: 0.85rem;
-            color: #4a5d74;
-            margin-top: 4px;
-        }
-        
-        /* Table */
-        .table-container {
-            background: white;
-            border-radius: 16px;
-            padding: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            overflow-x: auto;
-        }
-        .table-toolbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 16px;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-        .table-toolbar h3 {
-            color: #0b2b4a;
-            font-size: 1.1rem;
-        }
-        .search-box {
-            padding: 8px 16px;
-            border: 2px solid #e0e0e0;
-            border-radius: 40px;
-            font-size: 14px;
-            width: 250px;
-            max-width: 100%;
-            transition: border-color 0.3s;
-        }
-        .search-box:focus {
-            border-color: #c49a2b;
-            outline: none;
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.9rem;
-        }
-        th {
-            background: #0b2b4a;
-            color: white;
-            padding: 12px 16px;
-            text-align: left;
-            white-space: nowrap;
-            position: sticky;
-            top: 0;
-            z-index: 5;
-        }
-        td {
-            padding: 10px 16px;
-            border-bottom: 1px solid #eef2f6;
-            vertical-align: middle;
-        }
-        tr:hover td { background: #f8f9fb; }
-        
-        .program-badge {
-            background: #c49a2b;
-            color: #0b2b4a;
-            padding: 2px 12px;
-            border-radius: 40px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            display: inline-block;
-        }
-        .view-btn {
-            background: #c49a2b;
-            border: none;
-            color: #0b2b4a;
-            padding: 4px 14px;
-            border-radius: 40px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            font-weight: 600;
-            transition: background 0.2s;
-        }
-        .view-btn:hover { background: #b8891a; }
-        
-        .loading-state {
-            text-align: center;
-            padding: 40px;
-            color: #4a5d74;
-        }
-        .loading-state i {
-            font-size: 2rem;
-            color: #c49a2b;
-        }
-        .loading-state p {
-            margin-top: 12px;
-        }
-        
-        .empty-state {
-            text-align: center;
-            padding: 60px 20px;
-            color: #4a5d74;
-        }
-        .empty-state i {
-            font-size: 3rem;
-            color: #c49a2b;
-        }
-        .empty-state h3 {
-            margin: 12px 0;
-            color: #0b2b4a;
-        }
-        
-        .action-bar {
-            margin-top: 20px;
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-        .action-btn {
-            padding: 10px 24px;
-            border: none;
-            border-radius: 40px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: opacity 0.2s;
+
+        .btn-action {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: white;
+            text-decoration: none;
+            font-size: 0.85rem;
         }
-        .action-btn:hover { opacity: 0.85; }
-        .action-btn.primary { background: #0b2b4a; color: white; }
-        .action-btn.secondary { background: #4a5d74; color: white; }
-        .action-btn.success { background: #2e7d32; color: white; }
-        .action-btn.danger { background: #d32f2f; color: white; }
-        
-        /* Modal */
-        .modal {
-            display: none;
+
+        .btn-action i {
+            font-size: 14px;
+        }
+
+        .btn-view-action {
+            background: #4CAF50;
+        }
+        .btn-view-action:hover {
+            background: #45a049;
+            transform: scale(1.08);
+            box-shadow: 0 4px 12px rgba(76,175,80,0.3);
+        }
+
+        .btn-resume-action {
+            background: #FF6B6B;
+        }
+        .btn-resume-action:hover {
+            background: #ff5252;
+            transform: scale(1.08);
+            box-shadow: 0 4px 12px rgba(255,107,107,0.3);
+        }
+
+        .btn-delete-action {
+            background: #dc3545;
+        }
+        .btn-delete-action:hover {
+            background: #c82333;
+            transform: scale(1.08);
+            box-shadow: 0 4px 12px rgba(220,53,69,0.3);
+        }
+
+        .no-resume-badge {
+            color: #999;
+            font-size: 10px;
+            font-style: italic;
+            padding: 4px 8px;
+            background: #f5f5f5;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+
+        .resume-link {
+            color: #FF6B6B;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+        .resume-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Delete All button */
+        .action-btn.danger {
+            background: #d32f2f;
+            color: white;
+        }
+        .action-btn.danger:hover {
+            background: #b71c1c;
+        }
+
+        /* Toast notification */
+        .toast {
             position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            overflow: auto;
+            bottom: 20px;
+            right: 20px;
+            padding: 16px 24px;
+            border-radius: 12px;
+            color: white;
+            font-weight: 600;
+            z-index: 9999;
+            animation: slideUp 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            max-width: 400px;
         }
-        .modal-content {
-            background: white;
-            margin: 40px auto;
-            padding: 30px;
-            border-radius: 16px;
-            max-width: 600px;
-            position: relative;
-            animation: slideDown 0.3s ease;
-        }
-        @keyframes slideDown {
-            from { transform: translateY(-50px); opacity: 0; }
+        .toast.success { background: #2e7d32; }
+        .toast.error { background: #d32f2f; }
+        .toast.info { background: #0b2b4a; }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
-        .modal-close {
-            position: absolute;
-            right: 20px;
-            top: 15px;
-            font-size: 28px;
+
+        .toast .close-toast {
+            margin-left: 12px;
             cursor: pointer;
-            color: #666;
-            background: none;
-            border: none;
+            opacity: 0.8;
         }
-        .modal-close:hover { color: #d32f2f; }
-        .modal h2 {
-            color: #0b2b4a;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #c49a2b;
-        }
-        .modal .detail-row {
-            display: flex;
-            padding: 8px 0;
-            border-bottom: 1px solid #eef2f6;
-        }
-        .modal .detail-label {
-            font-weight: 600;
-            width: 40%;
-            color: #0b2b4a;
-        }
-        .modal .detail-value {
-            width: 60%;
-            color: #333;
-            word-break: break-word;
-        }
-        
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 768px) {
-            th, td { font-size: 0.8rem; padding: 8px 10px; }
-            .dashboard-header { flex-direction: column; align-items: stretch; text-align: center; }
-            .header-actions { justify-content: center; }
-            .stats-grid { grid-template-columns: 1fr 1fr; }
-            .table-toolbar { flex-direction: column; align-items: stretch; }
-            .search-box { width: 100%; }
-            .modal-content { margin: 20px; padding: 20px; }
-            .modal .detail-row { flex-direction: column; }
-            .modal .detail-label { width: 100%; }
-            .modal .detail-value { width: 100%; padding-left: 10px; }
-        }
-        @media (max-width: 480px) {
-            .stats-grid { grid-template-columns: 1fr; }
-            .container { padding: 10px; }
-        }
+        .toast .close-toast:hover { opacity: 1; }
     </style>
 </head>
 <body>
@@ -348,7 +176,7 @@
                                 <th>Program</th>
                                 <th>Career Goal</th>
                                 <th>Date</th>
-                                <th style="text-align:center;">Action</th>
+                                <th style="text-align:center; min-width:130px;">Action</th>
                             </tr>
                         </thead>
                         <tbody id="applicationsBody">
@@ -373,8 +201,18 @@
             <button class="modal-close" onclick="closeModal()">&times;</button>
             <h2><i class="fas fa-user-circle"></i> Application Details</h2>
             <div id="modalBody"></div>
+            <div style="margin-top:20px; padding-top:16px; border-top:2px solid #c49a2b; text-align:center;">
+                <button onclick="closeModal()" style="background:#0b2b4a; color:white; border:none; padding:10px 30px; border-radius:40px; cursor:pointer; font-weight:600;">
+                    <i class="fas fa-times"></i> Close
+                </button>
+            </div>
         </div>
     </div>
+
+    <!-- ============================================ -->
+    <!-- TOAST NOTIFICATION                          -->
+    <!-- ============================================ -->
+    <div id="toast" class="toast" style="display:none;"></div>
 
     <!-- ============================================ -->
     <!-- FIREBASE SDK                                 -->
@@ -382,6 +220,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
 
     <script>
         // ============================================
@@ -401,6 +240,7 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
         const auth = firebase.auth();
+        const storage = firebase.storage();
 
         let allApplications = [];
 
@@ -409,10 +249,8 @@
         // ============================================
         auth.onAuthStateChanged((user) => {
             if (!user) {
-                // No user logged in - redirect to login page
                 window.location.href = 'admin-login.html';
             } else {
-                // User is logged in - show dashboard
                 console.log('✅ Admin logged in:', user.email);
                 loadApplications();
             }
@@ -428,7 +266,32 @@
                 })
                 .catch((error) => {
                     console.error('Logout error:', error);
+                    showToast('Logout failed: ' + error.message, 'error');
                 });
+        }
+
+        // ============================================
+        // 💬 TOAST NOTIFICATION
+        // ============================================
+        function showToast(message, type = 'info') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = 'toast ' + type;
+            toast.style.display = 'block';
+            
+            // Add close button
+            const closeBtn = document.createElement('span');
+            closeBtn.className = 'close-toast';
+            closeBtn.innerHTML = ' ✕';
+            closeBtn.onclick = function() {
+                toast.style.display = 'none';
+            };
+            toast.appendChild(closeBtn);
+            
+            // Auto hide after 5 seconds
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 5000);
         }
 
         // ============================================
@@ -439,7 +302,7 @@
             tableBody.innerHTML = '<tr><td colspan="8" class="loading-state"><i class="fas fa-spinner fa-spin"></i><p>Loading applications...</p></td></tr>';
 
             db.collection('applications')
-                .orderBy('applicationDate', 'desc')
+                .orderBy('applied_on', 'desc')
                 .get()
                 .then((snapshot) => {
                     if (snapshot.empty) {
@@ -477,6 +340,7 @@
                             </button>
                         </td></tr>
                     `;
+                    showToast('Error loading applications: ' + error.message, 'error');
                 });
         }
 
@@ -495,10 +359,12 @@
             const programs = new Set();
 
             applications.forEach(app => {
-                if (app.applicationDate) {
-                    const appDate = new Date(app.applicationDate);
-                    if (appDate.toDateString() === todayStr) todayCount++;
-                    if (appDate >= weekAgo) weekCount++;
+                if (app.applied_on) {
+                    try {
+                        const appDate = new Date(app.applied_on);
+                        if (appDate.toDateString() === todayStr) todayCount++;
+                        if (appDate >= weekAgo) weekCount++;
+                    } catch(e) {}
                 }
                 if (app.program) programs.add(app.program);
             });
@@ -510,7 +376,7 @@
         }
 
         // ============================================
-        // 📋 RENDER TABLE
+        // 📋 RENDER TABLE WITH ACTION BUTTONS
         // ============================================
         function renderTable(applications) {
             const tableBody = document.getElementById('applicationsBody');
@@ -531,29 +397,56 @@
             let html = '';
             applications.forEach((app, index) => {
                 const bgColor = index % 2 === 0 ? '#ffffff' : '#f8f9fb';
-                const dateStr = app.applicationDate ? new Date(app.applicationDate).toLocaleString('en-IN', {
-                    day: '2-digit',
-                    month: 'short',
-                    year: 'numeric',
-                    hour: '2-digit',
-                    minute: '2-digit'
-                }) : 'N/A';
+                
+                let dateStr = 'N/A';
+                if (app.applied_on) {
+                    try {
+                        dateStr = new Date(app.applied_on).toLocaleString('en-IN', {
+                            day: '2-digit',
+                            month: 'short',
+                            year: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit'
+                        });
+                    } catch(e) {}
+                }
+
+                // Check if resume exists
+                const hasResume = app.resume_url || app.resume;
+                const resumeUrl = app.resume_url || '';
 
                 html += `
                     <tr style="background:${bgColor};">
                         <td style="padding:10px 16px; font-weight:600;">${index + 1}</td>
                         <td style="padding:10px 16px; font-weight:600; color:#0b2b4a;">${app.name || 'N/A'}</td>
-                        <td style="padding:10px 16px;">${app.mobile || app.father_mobile || 'N/A'}</td>
+                        <td style="padding:10px 16px;">${app.mobile || 'N/A'}</td>
                         <td style="padding:10px 16px; font-size:0.85rem;">${app.email || 'N/A'}</td>
                         <td style="padding:10px 16px;">
-                            <span class="program-badge">${app.program || app.course || 'N/A'}</span>
+                            <span class="program-badge">${app.program || 'N/A'}</span>
                         </td>
-                        <td style="padding:10px 16px; font-size:0.85rem;">${app.career_goal || app.goal || 'N/A'}</td>
+                        <td style="padding:10px 16px; font-size:0.85rem;">${app.career_goal || 'N/A'}</td>
                         <td style="padding:10px 16px; font-size:0.8rem; white-space:nowrap;">${dateStr}</td>
-                        <td style="padding:10px 16px; text-align:center;">
-                            <button class="view-btn" onclick="viewApplication('${app.id}')">
-                                <i class="fas fa-eye"></i> View
-                            </button>
+                        <td style="padding:10px 16px;">
+                            <div class="action-cell">
+                                <!-- View Button -->
+                                <button class="btn-action btn-view-action" onclick="viewApplication('${app.id}')" title="View Details">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                
+                                <!-- Resume Button -->
+                                ${hasResume ? `
+                                    <button class="btn-action btn-resume-action" onclick="viewResume('${app.id}', '${resumeUrl}')" title="View Resume">
+                                        <i class="fas fa-file-pdf"></i>
+                                    </button>
+                                ` : `
+                                    <span class="no-resume-badge">No Resume</span>
+                                `}
+                                
+                                <!-- Delete Button -->
+                                <button class="btn-action btn-delete-action" onclick="deleteApplication('${app.id}', '${app.name || 'Unknown'}')" title="Delete Application">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
                         </td>
                     </tr>
                 `;
@@ -577,12 +470,14 @@
             const filtered = allApplications.filter(app => {
                 const name = (app.name || '').toLowerCase();
                 const email = (app.email || '').toLowerCase();
-                const mobile = (app.mobile || app.father_mobile || '').toString().toLowerCase();
-                const program = (app.program || app.course || '').toLowerCase();
+                const mobile = (app.mobile || '').toString().toLowerCase();
+                const program = (app.program || '').toLowerCase();
+                const career_goal = (app.career_goal || '').toLowerCase();
                 return name.includes(filter) || 
                        email.includes(filter) || 
                        mobile.includes(filter) || 
-                       program.includes(filter);
+                       program.includes(filter) ||
+                       career_goal.includes(filter);
             });
 
             renderTable(filtered);
@@ -601,27 +496,26 @@
                         const fields = {
                             'Full Name': data.name,
                             'Aadhar Number': data.aadhar,
-                            'Mobile Number': data.mobile || data.father_mobile,
+                            'Mobile Number': data.mobile,
                             'Email': data.email,
                             'Gender': data.gender,
                             'Date of Birth': data.dob,
                             'Address': data.address,
                             'State': data.state,
-                            'City': data.city,
-                            'Pincode': data.pincode,
-                            'Father\'s Name': data.father,
-                            'Mother\'s Name': data.mother,
+                            'Father\'s Name': data.father_name,
+                            'Mother\'s Name': data.mother_name,
                             'Siblings': data.siblings,
                             'Religion': data.religion,
                             'Caste': data.caste,
-                            'Annual Income': data.income,
+                            'Annual Income': data.annual_income,
                             'PG Course': data.pg_course,
-                            'Graduation Course': data.grad_course,
+                            'Graduation Course': data.graduation_course,
                             'Academic Year': data.academic_year,
-                            'Program Applied': data.program || data.course,
-                            'Career Goal': data.career_goal || data.goal,
-                            'How did you know?': data.source,
-                            'Applied On': data.applicationDate ? new Date(data.applicationDate).toLocaleString() : 'N/A'
+                            'Program Applied': data.program,
+                            'Career Goal': data.career_goal,
+                            'How did you know?': data.how_did_you_know,
+                            'Resume Uploaded': data.resume_url ? '✅ Yes' : '❌ No',
+                            'Applied On': data.applied_on ? new Date(data.applied_on).toLocaleString() : 'N/A'
                         };
 
                         for (const [key, value] of Object.entries(fields)) {
@@ -635,6 +529,20 @@
                             }
                         }
 
+                        // Add Resume link if available
+                        if (data.resume_url) {
+                            html += `
+                                <div class="detail-row" style="border-bottom: 2px solid #c49a2b;">
+                                    <span class="detail-label">📎 Resume</span>
+                                    <span class="detail-value">
+                                        <a href="${data.resume_url}" target="_blank" style="color:#FF6B6B; font-weight:600; text-decoration:none;">
+                                            <i class="fas fa-file-pdf"></i> View Resume
+                                        </a>
+                                    </span>
+                                </div>
+                            `;
+                        }
+
                         if (html === '') {
                             html = '<p style="text-align:center;color:#666;">No details available.</p>';
                         }
@@ -642,12 +550,129 @@
                         document.getElementById('modalBody').innerHTML = html;
                         document.getElementById('detailModal').style.display = 'block';
                     } else {
-                        alert('Application not found.');
+                        showToast('Application not found.', 'error');
                     }
                 })
                 .catch((error) => {
-                    alert('Error loading application details: ' + error.message);
+                    showToast('Error loading details: ' + error.message, 'error');
                 });
+        }
+
+        // ============================================
+        // 📄 VIEW RESUME
+        // ============================================
+        function viewResume(docId, url) {
+            if (url) {
+                window.open(url, '_blank');
+            } else {
+                // If no URL in the document, try to get it from Firestore
+                db.collection('applications').doc(docId).get()
+                    .then((doc) => {
+                        if (doc.exists) {
+                            const data = doc.data();
+                            if (data.resume_url) {
+                                window.open(data.resume_url, '_blank');
+                            } else {
+                                showToast('Resume not available for this application.', 'error');
+                            }
+                        } else {
+                            showToast('Application not found.', 'error');
+                        }
+                    })
+                    .catch((error) => {
+                        showToast('Error loading resume: ' + error.message, 'error');
+                    });
+            }
+        }
+
+        // ============================================
+        // 🗑️ DELETE SINGLE APPLICATION
+        // ============================================
+        function deleteApplication(docId, name) {
+            if (confirm(`⚠️ Are you sure you want to delete the application for "${name}"?\n\nThis action cannot be undone!`)) {
+                // Get the document first to check for resume
+                db.collection('applications').doc(docId).get()
+                    .then((doc) => {
+                        if (doc.exists) {
+                            const data = doc.data();
+                            
+                            // Delete resume from Storage if it exists
+                            if (data.resume) {
+                                const storageRef = storage.ref(`resumes/${data.resume}`);
+                                storageRef.delete()
+                                    .then(() => {
+                                        console.log('Resume deleted from storage');
+                                    })
+                                    .catch((error) => {
+                                        console.log('Resume not found in storage, continuing...');
+                                    });
+                            }
+                            
+                            // Delete from Firestore
+                            return db.collection('applications').doc(docId).delete();
+                        }
+                    })
+                    .then(() => {
+                        // Remove from local array
+                        allApplications = allApplications.filter(app => app.id !== docId);
+                        
+                        // Remove row from table
+                        const row = document.getElementById(`row_${docId}`);
+                        if (row) row.remove();
+                        
+                        // Update stats
+                        updateStats(allApplications);
+                        
+                        // Re-render table
+                        renderTable(allApplications);
+                        
+                        showToast(`✅ Application for "${name}" deleted successfully!`, 'success');
+                    })
+                    .catch((error) => {
+                        console.error('Error deleting:', error);
+                        showToast('Error deleting application: ' + error.message, 'error');
+                    });
+            }
+        }
+
+        // ============================================
+        // 🗑️ DELETE ALL APPLICATIONS
+        // ============================================
+        function deleteAll() {
+            if (allApplications.length === 0) {
+                showToast('No applications to delete.', 'info');
+                return;
+            }
+
+            if (confirm(`⚠️ Are you sure you want to delete ALL ${allApplications.length} applications?\n\nThis action cannot be undone!`)) {
+                if (confirm('⚠️ FINAL WARNING: This will permanently delete all applications!')) {
+                    const batch = db.batch();
+                    let resumeCount = 0;
+                    
+                    allApplications.forEach(app => {
+                        const ref = db.collection('applications').doc(app.id);
+                        batch.delete(ref);
+                        
+                        // Delete resume from storage if exists
+                        if (app.resume) {
+                            resumeCount++;
+                            const storageRef = storage.ref(`resumes/${app.resume}`);
+                            storageRef.delete().catch(() => {});
+                        }
+                    });
+                    
+                    batch.commit()
+                        .then(() => {
+                            allApplications = [];
+                            updateStats([]);
+                            renderTable([]);
+                            showToast(`✅ ${allApplications.length} applications deleted successfully!`, 'success');
+                        })
+                        .catch((error) => {
+                            showToast('Error deleting applications: ' + error.message, 'error');
+                        });
+                }
+            }
         }
 
         // ============================================
@@ -666,70 +691,65 @@
         }
 
         // ============================================
-        // 📥 EXPORT CSV
+        // 📥 EXPORT CSV (with Aadhar Fix)
         // ============================================
         function exportCSV() {
             if (allApplications.length === 0) {
-                alert('No data to export.');
+                showToast('No data to export.', 'info');
                 return;
             }
 
-            const headers = ['Name', 'Aadhar', 'Mobile', 'Email', 'Gender', 'State', 'City', 'Program', 'Career Goal', 'Income', 'Source', 'Application Date'];
+            // Define headers
+            const headers = [
+                'Name', 
+                'Aadhar', 
+                'Mobile', 
+                'Email', 
+                'Gender', 
+                'State', 
+                'Program', 
+                'Career Goal', 
+                'Annual Income', 
+                'How Did You Know',
+                'Application Date'
+            ];
+            
             let csv = headers.join(',') + '\n';
 
             allApplications.forEach(app => {
+                // Format Aadhar with ="" to preserve full number in Excel
+                let aadhar = app.aadhar || '';
+                if (aadhar && !isNaN(aadhar) && aadhar.length > 10) {
+                    aadhar = `="${aadhar}"`;
+                }
+                
                 const row = [
                     `"${(app.name || '').replace(/"/g, '""')}"`,
-                    `"${(app.aadhar || '').replace(/"/g, '""')}"`,
-                    `"${(app.mobile || app.father_mobile || '').replace(/"/g, '""')}"`,
+                    `"${aadhar.replace(/"/g, '""')}"`,
+                    `"${(app.mobile || '').replace(/"/g, '""')}"`,
                     `"${(app.email || '').replace(/"/g, '""')}"`,
                     `"${(app.gender || '').replace(/"/g, '""')}"`,
                     `"${(app.state || '').replace(/"/g, '""')}"`,
-                    `"${(app.city || '').replace(/"/g, '""')}"`,
-                    `"${(app.program || app.course || '').replace(/"/g, '""')}"`,
-                    `"${(app.career_goal || app.goal || '').replace(/"/g, '""')}"`,
-                    `"${(app.income || '').replace(/"/g, '""')}"`,
-                    `"${(app.source || '').replace(/"/g, '""')}"`,
-                    `"${(app.applicationDate || '').replace(/"/g, '""')}"`
+                    `"${(app.program || '').replace(/"/g, '""')}"`,
+                    `"${(app.career_goal || '').replace(/"/g, '""')}"`,
+                    `"${(app.annual_income || '').replace(/"/g, '""')}"`,
+                    `"${(app.how_did_you_know || '').replace(/"/g, '""')}"`,
+                    `"${(app.applied_on || '').replace(/"/g, '""')}"`
                 ];
                 csv += row.join(',') + '\n';
             });
 
+            // Add BOM for UTF-8
             const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
             link.download = `dharithri_applications_${new Date().toISOString().slice(0,10)}.csv`;
+            document.body.appendChild(link);
             link.click();
+            document.body.removeChild(link);
             URL.revokeObjectURL(link.href);
-        }
-
-        // ============================================
-        // 🗑️ DELETE ALL APPLICATIONS
-        // ============================================
-        function deleteAll() {
-            if (allApplications.length === 0) {
-                alert('No applications to delete.');
-                return;
-            }
-
-            if (confirm('⚠️ Are you sure you want to delete ALL applications? This action cannot be undone!')) {
-                if (confirm('⚠️ FINAL WARNING: Delete all ${allApplications.length} applications?')) {
-                    const batch = db.batch();
-                    allApplications.forEach(app => {
-                        const ref = db.collection('applications').doc(app.id);
-                        batch.delete(ref);
-                    });
-                    
-                    batch.commit()
-                        .then(() => {
-                            alert('✅ All applications deleted successfully!');
-                            refreshData();
-                        })
-                        .catch((error) => {
-                            alert('❌ Error deleting applications: ' + error.message);
-                        });
-                }
-            }
+            
+            showToast('✅ CSV exported successfully!', 'success');
         }
 
         // ============================================
@@ -739,7 +759,23 @@
             document.getElementById('applicationsBody').innerHTML = 
                 '<tr><td colspan="8" class="loading-state"><i class="fas fa-spinner fa-spin"></i><p>Refreshing...</p></td></tr>';
             loadApplications();
+            showToast('🔄 Refreshing data...', 'info');
         }
+
+        // ============================================
+        // KEYBOARD SHORTCUTS
+        // ============================================
+        document.addEventListener('keydown', function(e) {
+            // ESC to close modal
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+            // Ctrl+F to focus search
+            if (e.ctrlKey && e.key === 'f') {
+                e.preventDefault();
+                document.getElementById('searchInput').focus();
+            }
+        });
     </script>
 
 </body>
