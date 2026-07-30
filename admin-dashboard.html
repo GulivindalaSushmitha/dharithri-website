@@ -73,26 +73,6 @@
             white-space: nowrap;
         }
 
-        .resume-link {
-            color: #FF6B6B;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.8rem;
-        }
-        .resume-link:hover {
-            text-decoration: underline;
-        }
-
-        /* Delete All button */
-        .action-btn.danger {
-            background: #d32f2f;
-            color: white;
-        }
-        .action-btn.danger:hover {
-            background: #b71c1c;
-        }
-
-        /* Toast notification */
         .toast {
             position: fixed;
             bottom: 20px;
@@ -124,6 +104,36 @@
     </style>
 </head>
 <body>
+
+    <!-- ============================================ -->
+    <!-- TOP TAGLINE BANNER - CHANGED -->
+    <!-- ============================================ -->
+    <div class="tagline-banner">
+        WE IMPROVE THE WORTH. WE SUPPLY THE WORTH.
+    </div>
+
+    <!-- ============================================ -->
+    <!-- NAVBAR -->
+    <!-- ============================================ -->
+    <nav class="navbar">
+        <div class="container nav-flex">
+            <div class="logo-area">
+                <img src="assets/images/logo.png" alt="Dharithri" onerror="this.src='logo9.png'" />
+                <span class="logo-text">Dharithri</span>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="courses.html">Courses</a>
+                <a href="training.html">Training</a>
+                <a href="opportunities.html">Opportunities</a>
+                <a href="questionnaire.html">Questionnaire</a>
+                <a href="contact.html">Contact</a>
+                <a href="apply.html" class="btn btn-gold" style="padding:6px 20px;">Apply Now</a>
+            </div>
+            <div class="hamburger" onclick="toggleNav()">☰</div>
+        </div>
+    </nav>
 
     <!-- ============================================ -->
     <!-- DASHBOARD SECTION                           -->
@@ -176,7 +186,7 @@
                                 <th>Program</th>
                                 <th>Career Goal</th>
                                 <th>Date</th>
-                                <th style="text-align:center; min-width:130px;">Action</th>
+                                <th style="text-align:center; min-width:150px;">Action</th>
                             </tr>
                         </thead>
                         <tbody id="applicationsBody">
@@ -236,7 +246,6 @@
             measurementId: "G-NHEK585JRM"
         };
 
-        // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
         const auth = firebase.auth();
@@ -245,7 +254,7 @@
         let allApplications = [];
 
         // ============================================
-        // 🔐 PROTECTION: Check if user is logged in
+        // 🔐 PROTECTION
         // ============================================
         auth.onAuthStateChanged((user) => {
             if (!user) {
@@ -257,21 +266,18 @@
         });
 
         // ============================================
-        // 🚪 LOGOUT HANDLER
+        // 🚪 LOGOUT
         // ============================================
         function logoutAdmin() {
-            auth.signOut()
-                .then(() => {
-                    window.location.href = 'admin-login.html';
-                })
-                .catch((error) => {
-                    console.error('Logout error:', error);
-                    showToast('Logout failed: ' + error.message, 'error');
-                });
+            auth.signOut().then(() => {
+                window.location.href = 'admin-login.html';
+            }).catch((error) => {
+                showToast('Logout failed: ' + error.message, 'error');
+            });
         }
 
         // ============================================
-        // 💬 TOAST NOTIFICATION
+        // 💬 TOAST
         // ============================================
         function showToast(message, type = 'info') {
             const toast = document.getElementById('toast');
@@ -279,19 +285,13 @@
             toast.className = 'toast ' + type;
             toast.style.display = 'block';
             
-            // Add close button
             const closeBtn = document.createElement('span');
             closeBtn.className = 'close-toast';
             closeBtn.innerHTML = ' ✕';
-            closeBtn.onclick = function() {
-                toast.style.display = 'none';
-            };
+            closeBtn.onclick = function() { toast.style.display = 'none'; };
             toast.appendChild(closeBtn);
             
-            // Auto hide after 5 seconds
-            setTimeout(() => {
-                toast.style.display = 'none';
-            }, 5000);
+            setTimeout(() => { toast.style.display = 'none'; }, 5000);
         }
 
         // ============================================
@@ -302,7 +302,7 @@
             tableBody.innerHTML = '<tr><td colspan="8" class="loading-state"><i class="fas fa-spinner fa-spin"></i><p>Loading applications...</p></td></tr>';
 
             db.collection('applications')
-                .orderBy('applied_on', 'desc')
+                .orderBy('applicationDate', 'desc')
                 .get()
                 .then((snapshot) => {
                     if (snapshot.empty) {
@@ -330,7 +330,7 @@
                     renderTable(applications);
                 })
                 .catch((error) => {
-                    console.error('Error loading applications:', error);
+                    console.error('Error:', error);
                     tableBody.innerHTML = `
                         <tr><td colspan="8" style="text-align:center; padding:40px; color:#d32f2f;">
                             <i class="fas fa-exclamation-circle" style="font-size:2rem;"></i>
@@ -340,7 +340,7 @@
                             </button>
                         </td></tr>
                     `;
-                    showToast('Error loading applications: ' + error.message, 'error');
+                    showToast('Error loading applications', 'error');
                 });
         }
 
@@ -354,14 +354,13 @@
             const weekAgo = new Date(today);
             weekAgo.setDate(weekAgo.getDate() - 7);
 
-            let todayCount = 0;
-            let weekCount = 0;
+            let todayCount = 0, weekCount = 0;
             const programs = new Set();
 
             applications.forEach(app => {
-                if (app.applied_on) {
+                if (app.applicationDate) {
                     try {
-                        const appDate = new Date(app.applied_on);
+                        const appDate = new Date(app.applicationDate);
                         if (appDate.toDateString() === todayStr) todayCount++;
                         if (appDate >= weekAgo) weekCount++;
                     } catch(e) {}
@@ -376,7 +375,7 @@
         }
 
         // ============================================
-        // 📋 RENDER TABLE WITH ACTION BUTTONS
+        // 📋 RENDER TABLE WITH VIEW, RESUME, DELETE
         // ============================================
         function renderTable(applications) {
             const tableBody = document.getElementById('applicationsBody');
@@ -399,32 +398,28 @@
                 const bgColor = index % 2 === 0 ? '#ffffff' : '#f8f9fb';
                 
                 let dateStr = 'N/A';
-                if (app.applied_on) {
+                if (app.applicationDate) {
                     try {
-                        dateStr = new Date(app.applied_on).toLocaleString('en-IN', {
-                            day: '2-digit',
-                            month: 'short',
-                            year: 'numeric',
-                            hour: '2-digit',
-                            minute: '2-digit'
+                        dateStr = new Date(app.applicationDate).toLocaleString('en-IN', {
+                            day: '2-digit', month: 'short', year: 'numeric',
+                            hour: '2-digit', minute: '2-digit'
                         });
                     } catch(e) {}
                 }
 
-                // Check if resume exists
                 const hasResume = app.resume_url || app.resume;
                 const resumeUrl = app.resume_url || '';
 
                 html += `
-                    <tr style="background:${bgColor};">
+                    <tr style="background:${bgColor};" id="row_${app.id}">
                         <td style="padding:10px 16px; font-weight:600;">${index + 1}</td>
                         <td style="padding:10px 16px; font-weight:600; color:#0b2b4a;">${app.name || 'N/A'}</td>
-                        <td style="padding:10px 16px;">${app.mobile || 'N/A'}</td>
+                        <td style="padding:10px 16px;">${app.mobile || app.father_mobile || 'N/A'}</td>
                         <td style="padding:10px 16px; font-size:0.85rem;">${app.email || 'N/A'}</td>
                         <td style="padding:10px 16px;">
-                            <span class="program-badge">${app.program || 'N/A'}</span>
+                            <span class="program-badge">${app.program || app.course || 'N/A'}</span>
                         </td>
-                        <td style="padding:10px 16px; font-size:0.85rem;">${app.career_goal || 'N/A'}</td>
+                        <td style="padding:10px 16px; font-size:0.85rem;">${app.career_goal || app.goal || 'N/A'}</td>
                         <td style="padding:10px 16px; font-size:0.8rem; white-space:nowrap;">${dateStr}</td>
                         <td style="padding:10px 16px;">
                             <div class="action-cell">
@@ -456,7 +451,7 @@
         }
 
         // ============================================
-        // 🔍 SEARCH TABLE
+        // 🔍 SEARCH
         // ============================================
         function searchTable() {
             const input = document.getElementById('searchInput');
@@ -470,21 +465,17 @@
             const filtered = allApplications.filter(app => {
                 const name = (app.name || '').toLowerCase();
                 const email = (app.email || '').toLowerCase();
-                const mobile = (app.mobile || '').toString().toLowerCase();
-                const program = (app.program || '').toLowerCase();
-                const career_goal = (app.career_goal || '').toLowerCase();
-                return name.includes(filter) || 
-                       email.includes(filter) || 
-                       mobile.includes(filter) || 
-                       program.includes(filter) ||
-                       career_goal.includes(filter);
+                const mobile = (app.mobile || app.father_mobile || '').toString().toLowerCase();
+                const program = (app.program || app.course || '').toLowerCase();
+                return name.includes(filter) || email.includes(filter) || 
+                       mobile.includes(filter) || program.includes(filter);
             });
 
             renderTable(filtered);
         }
 
         // ============================================
-        // 👁️ VIEW APPLICATION DETAILS
+        // 👁️ VIEW APPLICATION
         // ============================================
         function viewApplication(docId) {
             db.collection('applications').doc(docId).get()
@@ -496,26 +487,26 @@
                         const fields = {
                             'Full Name': data.name,
                             'Aadhar Number': data.aadhar,
-                            'Mobile Number': data.mobile,
+                            'Mobile Number': data.mobile || data.father_mobile,
                             'Email': data.email,
                             'Gender': data.gender,
                             'Date of Birth': data.dob,
                             'Address': data.address,
                             'State': data.state,
-                            'Father\'s Name': data.father_name,
-                            'Mother\'s Name': data.mother_name,
+                            'City': data.city,
+                            'Father\'s Name': data.father || data.father_name,
+                            'Mother\'s Name': data.mother || data.mother_name,
                             'Siblings': data.siblings,
                             'Religion': data.religion,
                             'Caste': data.caste,
-                            'Annual Income': data.annual_income,
+                            'Annual Income': data.income || data.annual_income,
                             'PG Course': data.pg_course,
-                            'Graduation Course': data.graduation_course,
+                            'Graduation Course': data.grad_course || data.graduation_course,
                             'Academic Year': data.academic_year,
-                            'Program Applied': data.program,
-                            'Career Goal': data.career_goal,
-                            'How did you know?': data.how_did_you_know,
-                            'Resume Uploaded': data.resume_url ? '✅ Yes' : '❌ No',
-                            'Applied On': data.applied_on ? new Date(data.applied_on).toLocaleString() : 'N/A'
+                            'Program Applied': data.program || data.course,
+                            'Career Goal': data.career_goal || data.goal,
+                            'How did you know?': data.source || data.how_did_you_know,
+                            'Applied On': data.applicationDate ? new Date(data.applicationDate).toLocaleString() : 'N/A'
                         };
 
                         for (const [key, value] of Object.entries(fields)) {
@@ -529,7 +520,6 @@
                             }
                         }
 
-                        // Add Resume link if available
                         if (data.resume_url) {
                             html += `
                                 <div class="detail-row" style="border-bottom: 2px solid #c49a2b;">
@@ -543,18 +533,12 @@
                             `;
                         }
 
-                        if (html === '') {
-                            html = '<p style="text-align:center;color:#666;">No details available.</p>';
-                        }
-
                         document.getElementById('modalBody').innerHTML = html;
                         document.getElementById('detailModal').style.display = 'block';
-                    } else {
-                        showToast('Application not found.', 'error');
                     }
                 })
                 .catch((error) => {
-                    showToast('Error loading details: ' + error.message, 'error');
+                    showToast('Error loading details', 'error');
                 });
         }
 
@@ -565,22 +549,13 @@
             if (url) {
                 window.open(url, '_blank');
             } else {
-                // If no URL in the document, try to get it from Firestore
                 db.collection('applications').doc(docId).get()
                     .then((doc) => {
-                        if (doc.exists) {
-                            const data = doc.data();
-                            if (data.resume_url) {
-                                window.open(data.resume_url, '_blank');
-                            } else {
-                                showToast('Resume not available for this application.', 'error');
-                            }
+                        if (doc.exists && doc.data().resume_url) {
+                            window.open(doc.data().resume_url, '_blank');
                         } else {
-                            showToast('Application not found.', 'error');
+                            showToast('Resume not available', 'error');
                         }
-                    })
-                    .catch((error) => {
-                        showToast('Error loading resume: ' + error.message, 'error');
                     });
             }
         }
@@ -590,53 +565,28 @@
         // ============================================
         function deleteApplication(docId, name) {
             if (confirm(`⚠️ Are you sure you want to delete the application for "${name}"?\n\nThis action cannot be undone!`)) {
-                // Get the document first to check for resume
                 db.collection('applications').doc(docId).get()
                     .then((doc) => {
-                        if (doc.exists) {
-                            const data = doc.data();
-                            
-                            // Delete resume from Storage if it exists
-                            if (data.resume) {
-                                const storageRef = storage.ref(`resumes/${data.resume}`);
-                                storageRef.delete()
-                                    .then(() => {
-                                        console.log('Resume deleted from storage');
-                                    })
-                                    .catch((error) => {
-                                        console.log('Resume not found in storage, continuing...');
-                                    });
-                            }
-                            
-                            // Delete from Firestore
-                            return db.collection('applications').doc(docId).delete();
+                        if (doc.exists && doc.data().resume) {
+                            const storageRef = storage.ref(`resumes/${doc.data().resume}`);
+                            storageRef.delete().catch(() => {});
                         }
+                        return db.collection('applications').doc(docId).delete();
                     })
                     .then(() => {
-                        // Remove from local array
                         allApplications = allApplications.filter(app => app.id !== docId);
-                        
-                        // Remove row from table
-                        const row = document.getElementById(`row_${docId}`);
-                        if (row) row.remove();
-                        
-                        // Update stats
                         updateStats(allApplications);
-                        
-                        // Re-render table
                         renderTable(allApplications);
-                        
-                        showToast(`✅ Application for "${name}" deleted successfully!`, 'success');
+                        showToast(`✅ "${name}" deleted successfully!`, 'success');
                     })
                     .catch((error) => {
-                        console.error('Error deleting:', error);
-                        showToast('Error deleting application: ' + error.message, 'error');
+                        showToast('Error deleting: ' + error.message, 'error');
                     });
             }
         }
 
         // ============================================
-        // 🗑️ DELETE ALL APPLICATIONS
+        // 🗑️ DELETE ALL
         // ============================================
         function deleteAll() {
             if (allApplications.length === 0) {
@@ -644,20 +594,14 @@
                 return;
             }
 
-            if (confirm(`⚠️ Are you sure you want to delete ALL ${allApplications.length} applications?\n\nThis action cannot be undone!`)) {
-                if (confirm('⚠️ FINAL WARNING: This will permanently delete all applications!')) {
+            if (confirm(`⚠️ Delete ALL ${allApplications.length} applications?`)) {
+                if (confirm('⚠️ FINAL WARNING: This cannot be undone!')) {
                     const batch = db.batch();
-                    let resumeCount = 0;
-                    
                     allApplications.forEach(app => {
                         const ref = db.collection('applications').doc(app.id);
                         batch.delete(ref);
-                        
-                        // Delete resume from storage if exists
                         if (app.resume) {
-                            resumeCount++;
-                            const storageRef = storage.ref(`resumes/${app.resume}`);
-                            storageRef.delete().catch(() => {});
+                            storage.ref(`resumes/${app.resume}`).delete().catch(() => {});
                         }
                     });
                     
@@ -666,32 +610,30 @@
                             allApplications = [];
                             updateStats([]);
                             renderTable([]);
-                            showToast(`✅ ${allApplications.length} applications deleted successfully!`, 'success');
+                            showToast('✅ All applications deleted!', 'success');
                         })
                         .catch((error) => {
-                            showToast('Error deleting applications: ' + error.message, 'error');
+                            showToast('Error: ' + error.message, 'error');
                         });
                 }
             }
         }
 
         // ============================================
-        // ❌ CLOSE MODAL
+        // ❌ MODAL
         // ============================================
         function closeModal() {
             document.getElementById('detailModal').style.display = 'none';
         }
 
-        // Close modal when clicking outside
         window.onclick = function(event) {
-            const modal = document.getElementById('detailModal');
-            if (event.target === modal) {
-                modal.style.display = 'none';
+            if (event.target === document.getElementById('detailModal')) {
+                closeModal();
             }
         }
 
         // ============================================
-        // 📥 EXPORT CSV (with Aadhar Fix)
+        // 📥 EXPORT CSV
         // ============================================
         function exportCSV() {
             if (allApplications.length === 0) {
@@ -699,25 +641,10 @@
                 return;
             }
 
-            // Define headers
-            const headers = [
-                'Name', 
-                'Aadhar', 
-                'Mobile', 
-                'Email', 
-                'Gender', 
-                'State', 
-                'Program', 
-                'Career Goal', 
-                'Annual Income', 
-                'How Did You Know',
-                'Application Date'
-            ];
-            
+            const headers = ['Name', 'Aadhar', 'Mobile', 'Email', 'Program', 'Career Goal', 'Application Date'];
             let csv = headers.join(',') + '\n';
 
             allApplications.forEach(app => {
-                // Format Aadhar with ="" to preserve full number in Excel
                 let aadhar = app.aadhar || '';
                 if (aadhar && !isNaN(aadhar) && aadhar.length > 10) {
                     aadhar = `="${aadhar}"`;
@@ -726,56 +653,33 @@
                 const row = [
                     `"${(app.name || '').replace(/"/g, '""')}"`,
                     `"${aadhar.replace(/"/g, '""')}"`,
-                    `"${(app.mobile || '').replace(/"/g, '""')}"`,
+                    `"${(app.mobile || app.father_mobile || '').replace(/"/g, '""')}"`,
                     `"${(app.email || '').replace(/"/g, '""')}"`,
-                    `"${(app.gender || '').replace(/"/g, '""')}"`,
-                    `"${(app.state || '').replace(/"/g, '""')}"`,
-                    `"${(app.program || '').replace(/"/g, '""')}"`,
-                    `"${(app.career_goal || '').replace(/"/g, '""')}"`,
-                    `"${(app.annual_income || '').replace(/"/g, '""')}"`,
-                    `"${(app.how_did_you_know || '').replace(/"/g, '""')}"`,
-                    `"${(app.applied_on || '').replace(/"/g, '""')}"`
+                    `"${(app.program || app.course || '').replace(/"/g, '""')}"`,
+                    `"${(app.career_goal || app.goal || '').replace(/"/g, '""')}"`,
+                    `"${(app.applicationDate || '').replace(/"/g, '""')}"`
                 ];
                 csv += row.join(',') + '\n';
             });
 
-            // Add BOM for UTF-8
             const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
-            link.download = `dharithri_applications_${new Date().toISOString().slice(0,10)}.csv`;
-            document.body.appendChild(link);
+            link.download = `applications_${new Date().toISOString().slice(0,10)}.csv`;
             link.click();
-            document.body.removeChild(link);
             URL.revokeObjectURL(link.href);
-            
-            showToast('✅ CSV exported successfully!', 'success');
+            showToast('✅ CSV exported!', 'success');
         }
 
         // ============================================
-        // 🔄 REFRESH DATA
+        // 🔄 REFRESH
         // ============================================
         function refreshData() {
             document.getElementById('applicationsBody').innerHTML = 
                 '<tr><td colspan="8" class="loading-state"><i class="fas fa-spinner fa-spin"></i><p>Refreshing...</p></td></tr>';
             loadApplications();
-            showToast('🔄 Refreshing data...', 'info');
+            showToast('🔄 Refreshing...', 'info');
         }
-
-        // ============================================
-        // KEYBOARD SHORTCUTS
-        // ============================================
-        document.addEventListener('keydown', function(e) {
-            // ESC to close modal
-            if (e.key === 'Escape') {
-                closeModal();
-            }
-            // Ctrl+F to focus search
-            if (e.ctrlKey && e.key === 'f') {
-                e.preventDefault();
-                document.getElementById('searchInput').focus();
-            }
-        });
     </script>
 
 </body>
