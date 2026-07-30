@@ -3,228 +3,461 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Apply Now · Dharithri</title>
+    <title>Admin Dashboard · Dharithri</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css" />
+    <style>
+        /* ===== ADMIN STYLES ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #f0f4f8; min-height: 100vh; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+        
+        .dashboard-header {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .dashboard-header h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #0b2b4a;
+        }
+        .dashboard-header h1 span {
+            font-weight: 300;
+            color: #4a5d74;
+        }
+        .header-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .admin-badge {
+            background: #c49a2b;
+            color: #0b2b4a;
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .logout-btn {
+            background: #d32f2f;
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        .logout-btn:hover { background: #b71c1c; }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            text-align: center;
+        }
+        .stat-card .number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0b2b4a;
+        }
+        .stat-card .label {
+            font-size: 0.85rem;
+            color: #4a5d74;
+            margin-top: 4px;
+        }
+        
+        .table-container {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            overflow-x: auto;
+        }
+        .table-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .table-toolbar h3 {
+            color: #0b2b4a;
+            font-size: 1.1rem;
+        }
+        .search-box {
+            padding: 8px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 40px;
+            font-size: 14px;
+            width: 250px;
+            max-width: 100%;
+            transition: border-color 0.3s;
+        }
+        .search-box:focus {
+            border-color: #c49a2b;
+            outline: none;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+        th {
+            background: #0b2b4a;
+            color: white;
+            padding: 12px 16px;
+            text-align: left;
+            white-space: nowrap;
+            position: sticky;
+            top: 0;
+            z-index: 5;
+        }
+        td {
+            padding: 10px 16px;
+            border-bottom: 1px solid #eef2f6;
+            vertical-align: middle;
+        }
+        tr:hover td { background: #f8f9fb; }
+        
+        .program-badge {
+            background: #c49a2b;
+            color: #0b2b4a;
+            padding: 2px 12px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+        
+        /* ===== ACTION BUTTONS ===== */
+        .action-cell {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px 14px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: white;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            gap: 5px;
+        }
+        .btn-action:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-view-action {
+            background: #4CAF50;
+        }
+        .btn-view-action:hover {
+            background: #45a049;
+        }
+
+        .btn-delete-action {
+            background: #dc3545;
+        }
+        .btn-delete-action:hover {
+            background: #c82333;
+        }
+
+        .btn-action i {
+            font-size: 12px;
+        }
+        
+        .loading-state {
+            text-align: center;
+            padding: 40px;
+            color: #4a5d74;
+        }
+        .loading-state i {
+            font-size: 2rem;
+            color: #c49a2b;
+        }
+        .loading-state p {
+            margin-top: 12px;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #4a5d74;
+        }
+        .empty-state i {
+            font-size: 3rem;
+            color: #c49a2b;
+        }
+        .empty-state h3 {
+            margin: 12px 0;
+            color: #0b2b4a;
+        }
+        
+        .action-bar {
+            margin-top: 20px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .action-btn {
+            padding: 10px 24px;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: opacity 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .action-btn:hover { opacity: 0.85; }
+        .action-btn.primary { background: #0b2b4a; color: white; }
+        .action-btn.secondary { background: #4a5d74; color: white; }
+        .action-btn.danger { background: #d32f2f; color: white; }
+        
+        /* ===== MODAL ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            overflow: auto;
+        }
+        .modal-content {
+            background: white;
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 16px;
+            max-width: 600px;
+            position: relative;
+            animation: slideDown 0.3s ease;
+        }
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .modal-close {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 28px;
+            cursor: pointer;
+            color: #666;
+            background: none;
+            border: none;
+        }
+        .modal-close:hover { color: #d32f2f; }
+        .modal h2 {
+            color: #0b2b4a;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #c49a2b;
+        }
+        .modal .detail-row {
+            display: flex;
+            padding: 8px 0;
+            border-bottom: 1px solid #eef2f6;
+        }
+        .modal .detail-label {
+            font-weight: 600;
+            width: 40%;
+            color: #0b2b4a;
+        }
+        .modal .detail-value {
+            width: 60%;
+            color: #333;
+            word-break: break-word;
+        }
+        
+        /* ===== TOAST ===== */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 16px 24px;
+            border-radius: 12px;
+            color: white;
+            font-weight: 600;
+            z-index: 9999;
+            animation: slideUp 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            max-width: 400px;
+        }
+        .toast.success { background: #2e7d32; }
+        .toast.error { background: #d32f2f; }
+        .toast.info { background: #0b2b4a; }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .toast .close-toast {
+            margin-left: 12px;
+            cursor: pointer;
+            opacity: 0.8;
+        }
+        .toast .close-toast:hover { opacity: 1; }
+        
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            th, td { font-size: 0.8rem; padding: 8px 10px; }
+            .dashboard-header { flex-direction: column; align-items: stretch; text-align: center; }
+            .header-actions { justify-content: center; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+            .table-toolbar { flex-direction: column; align-items: stretch; }
+            .search-box { width: 100%; }
+            .modal-content { margin: 20px; padding: 20px; }
+            .modal .detail-row { flex-direction: column; }
+            .modal .detail-label { width: 100%; }
+            .modal .detail-value { width: 100%; padding-left: 10px; }
+        }
+        @media (max-width: 480px) {
+            .stats-grid { grid-template-columns: 1fr; }
+            .container { padding: 10px; }
+        }
+    </style>
 </head>
 <body>
+
     <!-- ============================================ -->
     <!-- NAVBAR IS AUTO-LOADED BY navbar.js          -->
     <!-- ============================================ -->
 
-    <section class="container" style="padding: 40px 0 60px;">
-        <h1 class="section-title text-center">Application Form</h1>
-        <p class="section-sub text-center" style="margin:0 auto 30px;">Fill in all the details to start your journey with Dharithri.</p>
+    <!-- ============================================ -->
+    <!-- DASHBOARD SECTION                           -->
+    <!-- ============================================ -->
+    <div id="dashboardSection">
+        <div class="container">
+            <!-- Header -->
+            <div class="dashboard-header">
+                <h1>📊 Dharithri <span>Admin Dashboard</span></h1>
+                <div class="header-actions">
+                    <span class="admin-badge"><i class="fas fa-user-shield"></i> Admin</span>
+                    <button class="logout-btn" onclick="logoutAdmin()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                </div>
+            </div>
 
-        <div class="form-section">
-            <form id="applicationForm" enctype="multipart/form-data">
-                <div id="formAlert"></div>
+            <!-- Stats -->
+            <div class="stats-grid" id="statsGrid">
+                <div class="stat-card">
+                    <div class="number" id="totalCount">0</div>
+                    <div class="label">Total Applications</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number" id="todayCount">0</div>
+                    <div class="label">Today's Applications</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number" id="weekCount">0</div>
+                    <div class="label">This Week</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number" id="programCount">0</div>
+                    <div class="label">Programs Selected</div>
+                </div>
+            </div>
 
-                <!-- Personal Details -->
-                <h3 style="color:#0b2b4a; border-bottom:2px solid #c49a2b; padding-bottom:8px; margin-bottom:20px;"><i class="fas fa-user"></i> Personal Details</h3>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Name as per Aadhar Card <span class="required">*</span></label>
-                        <input type="text" name="name" id="name" required placeholder="Enter your full name" />
-                    </div>
-                    <div class="form-group">
-                        <label>Aadhar Number <span class="required">*</span></label>
-                        <input type="text" name="aadhar" id="aadhar" required pattern="[0-9]{12}" title="Enter 12-digit Aadhar number" placeholder="Enter 12-digit Aadhar number" />
-                    </div>
+            <!-- Table -->
+            <div class="table-container">
+                <div class="table-toolbar">
+                    <h3><i class="fas fa-list"></i> All Applications</h3>
+                    <input type="text" class="search-box" id="searchInput" placeholder="🔍 Search by name, email, phone..." onkeyup="searchTable()">
                 </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Mobile No: <span class="required">*</span></label>
-                        <input type="tel" name="mobile" id="mobile" required pattern="[0-9]{10}" title="Enter 10-digit mobile number" placeholder="Enter 10-digit mobile number" />
-                    </div>
-                    <div class="form-group">
-                        <label>Date Of Birth <span class="required">*</span></label>
-                        <input type="date" name="dob" id="dob" required />
-                    </div>
+                <div style="overflow-x:auto; max-height: 550px; overflow-y: auto;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Mobile</th>
+                                <th>Email</th>
+                                <th>Program</th>
+                                <th>Career Goal</th>
+                                <th>Date</th>
+                                <th style="text-align:center; min-width:130px;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="applicationsBody">
+                            <tr><td colspan="8" class="loading-state"><i class="fas fa-spinner fa-spin"></i><p>Loading applications...</p></td></tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Gender: <span class="required">*</span></label>
-                        <select name="gender" id="gender" required>
-                            <option value="">Select Gender</option>
-                            <option>Male</option>
-                            <option>Female</option>
-                            <option>Other</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Email ID <span class="required">*</span></label>
-                        <input type="email" name="email" id="email" required placeholder="Enter your email address" />
-                    </div>
+                <div class="action-bar">
+                    <button class="action-btn primary" onclick="exportCSV()"><i class="fas fa-file-csv"></i> Export CSV</button>
+                    <button class="action-btn secondary" onclick="refreshData()"><i class="fas fa-sync"></i> Refresh</button>
+                    <button class="action-btn danger" onclick="deleteAll()"><i class="fas fa-trash"></i> Delete All</button>
                 </div>
-                <div class="form-group">
-                    <label>Current Address <span class="required">*</span></label>
-                    <textarea name="address" id="address" rows="2" required placeholder="Enter your current address"></textarea>
-                </div>
-                <div class="form-group">
-                    <label>State <span class="required">*</span></label>
-                    <input type="text" name="state" id="state" required placeholder="Enter your state" />
-                </div>
-
-                <!-- Family Details -->
-                <h3 style="color:#0b2b4a; border-bottom:2px solid #c49a2b; padding-bottom:8px; margin:30px 0 20px;"><i class="fas fa-users"></i> Family Details</h3>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Mother Name & Occupation <span class="required">*</span></label>
-                        <input type="text" name="mother_name" id="mother_name" required placeholder="Mother's name and occupation" />
-                    </div>
-                    <div class="form-group">
-                        <label>Father Name & Occupation <span class="required">*</span></label>
-                        <input type="text" name="father_name" id="father_name" required placeholder="Father's name and occupation" />
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Mother Mobile No:</label>
-                        <input type="tel" name="mother_mobile" id="mother_mobile" pattern="[0-9]{10}" title="Enter 10-digit number" placeholder="Enter mother's mobile number" />
-                    </div>
-                    <div class="form-group">
-                        <label>Father Mobile No:</label>
-                        <input type="tel" name="father_mobile" id="father_mobile" pattern="[0-9]{10}" title="Enter 10-digit number" placeholder="Enter father's mobile number" />
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Siblings <span class="required">*</span></label>
-                        <input type="text" name="siblings" id="siblings" required placeholder="Number of siblings" />
-                    </div>
-                    <div class="form-group">
-                        <label>Religion: <span class="required">*</span></label>
-                        <input type="text" name="religion" id="religion" required placeholder="Enter your religion" />
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Caste <span class="required">*</span></label>
-                        <input type="text" name="caste" id="caste" required placeholder="Enter your caste" />
-                    </div>
-                    <div class="form-group">
-                        <label>Annual Income: <span class="required">*</span></label>
-                        <select name="annual_income" id="annual_income" required>
-                            <option value="">Select Income Range</option>
-                            <option>Below 1 Lakh</option>
-                            <option>1-3 Lakhs</option>
-                            <option>3-5 Lakhs</option>
-                            <option>5-10 Lakhs</option>
-                            <option>Above 10 Lakhs</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Education -->
-                <h3 style="color:#0b2b4a; border-bottom:2px solid #c49a2b; padding-bottom:8px; margin:30px 0 20px;"><i class="fas fa-graduation-cap"></i> Education Details</h3>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Post Graduate Course Name: <span class="required">*</span></label>
-                        <input type="text" name="pg_course" id="pg_course" required placeholder="e.g. MBA, MCA, etc." />
-                    </div>
-                    <div class="form-group">
-                        <label>Graduation Course Name: <span class="required">*</span></label>
-                        <input type="text" name="graduation_course" id="graduation_course" required placeholder="e.g. B.Tech, B.Com, etc." />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Academic year: <span class="required">*</span></label>
-                    <input type="text" name="academic_year" id="academic_year" placeholder="e.g. 2020-2024" required />
-                </div>
-
-                <!-- Training Program -->
-                <h3 style="color:#0b2b4a; border-bottom:2px solid #c49a2b; padding-bottom:8px; margin:30px 0 20px;"><i class="fas fa-briefcase"></i> Training Program</h3>
-                <div class="form-group">
-                    <label>Banking Training Program Selection <span class="required">*</span></label>
-                    <select name="program" id="program" required>
-                        <option value="">Select a program</option>
-                        <option>Sales Manager Training</option>
-                        <option>Operations Manager Training</option>
-                        <option>Risk Manager Training</option>
-                        <option>Credit Manager Training</option>
-                        <option>Legal Manager Training</option>
-                        <option>Technical Manager Training</option>
-                        <option>Accounts & Finance Training</option>
-                        <option>Branch Banking Training</option>
-                        <option>Liability Banking Training</option>
-                        <option>Asset Banking Training</option>
-                        <option>Team Supervisor Training</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>What is your main career goal? <span class="required">*</span></label>
-                    <select name="career_goal" id="career_goal" required>
-                        <option value="">Select Career Goal</option>
-                        <option>Start a career in banking</option>
-                        <option>Change my career</option>
-                        <option>Improving my banking skills</option>
-                        <option>Learn Loan Processing</option>
-                    </select>
-                </div>
-
-                <!-- ===== RESUME UPLOAD - 10MB MAX ===== -->
-                <div class="form-group" style="margin-top: 20px; padding: 20px; background: #f8f9fa; border-radius: 12px; border: 2px dashed #c49a2b;">
-                    <label for="resume" style="font-size: 1.1rem;">
-                        <i class="fas fa-file-upload" style="color:#c49a2b;"></i> Upload Resume <span class="required">*</span>
-                        <span style="font-weight:400; color:#4a5d74; display:block; font-size:0.85rem; margin-top:4px;">
-                            <i class="fas fa-info-circle"></i> Accepted formats: PDF, DOC, DOCX · Max size: 10MB
-                        </span>
-                    </label>
-                    <input type="file" name="resume" id="resume" accept=".pdf,.doc,.docx" required 
-                           style="padding: 12px; background: white; border-radius: 8px; width: 100%; cursor: pointer;" />
-                    <div id="resumeStatus" style="margin-top: 10px; font-size: 0.95rem; font-weight: 500;"></div>
-                    <div id="resumeProgress" style="margin-top: 8px; display: none;">
-                        <div style="background: #e0e0e0; border-radius: 10px; height: 8px; overflow: hidden;">
-                            <div id="progressBar" style="background: #c49a2b; height: 100%; width: 0%; transition: width 0.3s;"></div>
-                        </div>
-                        <span id="progressText" style="font-size: 0.8rem; color: #4a5d74; display: block; margin-top: 4px;">0%</span>
-                    </div>
-                </div>
-
-                <!-- How Did You Hear -->
-                <div class="form-group">
-                    <label>How Did You Hear About Us? <span class="required">*</span></label>
-                    <select name="how_did_you_know" id="how_did_you_know" required>
-                        <option value="">Select</option>
-                        <option>Google</option>
-                        <option>Instagram</option>
-                        <option>Facebook</option>
-                        <option>Whatsapp</option>
-                        <option>Youtube</option>
-                        <option>Website</option>
-                        <option>Friend/Family</option>
-                        <option>Newspaper</option>
-                        <option>Other</option>
-                    </select>
-                </div>
-
-                <!-- Declaration -->
-                <div class="form-group" style="margin-top:20px;">
-                    <label style="display:flex; align-items:flex-start; gap:10px; font-weight:400; cursor:pointer;">
-                        <input type="checkbox" name="declaration" id="declaration" required style="width:18px; height:18px; margin-top:2px; cursor:pointer;" />
-                        <span>I confirm that the information provided by me is accurate. I agree to be contacted by Dharithri Manpower Training and Supply Pvt. Ltd. regarding banking training programs, course details, and career opportunities <span class="required">*</span></span>
-                    </label>
-                </div>
-
-                <button type="submit" class="btn btn-gold" style="padding:14px 50px; font-size:1.1rem; width:100%; margin-top:12px;">
-                    <i class="fas fa-paper-plane"></i> Submit Application
-                </button>
-            </form>
+            </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Firebase SDKs -->
+    <!-- ============================================ -->
+    <!-- DETAIL MODAL                                 -->
+    <!-- ============================================ -->
+    <div id="detailModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <h2><i class="fas fa-user-circle"></i> Application Details</h2>
+            <div id="modalBody"></div>
+            <div style="margin-top:20px; padding-top:16px; border-top:2px solid #c49a2b; text-align:center;">
+                <button onclick="closeModal()" style="background:#0b2b4a; color:white; border:none; padding:10px 30px; border-radius:40px; cursor:pointer; font-weight:600;">
+                    <i class="fas fa-times"></i> Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- TOAST NOTIFICATION                          -->
+    <!-- ============================================ -->
+    <div id="toast" class="toast" style="display:none;"></div>
+
+    <!-- ============================================ -->
+    <!-- FIREBASE SDK                                 -->
+    <!-- ============================================ -->
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
     <script>
-        // =============================================
-        // FIREBASE CONFIGURATION
-        // =============================================
+        // ============================================
+        // 🔥 FIREBASE CONFIGURATION
+        // ============================================
         const firebaseConfig = {
             apiKey: "AIzaSyA7aJEk6jSaNDaLSgvmx6TVDtRpiinjTqs",
             authDomain: "dharithri-training.firebaseapp.com",
@@ -237,267 +470,406 @@
 
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
-        const storage = firebase.storage();
-        console.log('✅ Firebase initialized!');
+        const auth = firebase.auth();
 
-        // =============================================
-        // FILE VALIDATION - 10MB MAX
-        // =============================================
-        document.getElementById('resume').addEventListener('change', function(e) {
-            const file = this.files[0];
-            const statusDiv = document.getElementById('resumeStatus');
-            const progressDiv = document.getElementById('resumeProgress');
-            
-            if (file) {
-                // Check file size (max 10MB)
-                if (file.size > 10 * 1024 * 1024) {
-                    statusDiv.innerHTML = `<span style="color: #d32f2f;">❌ File is too large! Please select a file under 10MB.</span>`;
-                    this.value = '';
-                    progressDiv.style.display = 'none';
-                    return;
-                }
-                
-                // Check file type
-                const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
-                
-                if (!allowedTypes.includes(file.type)) {
-                    statusDiv.innerHTML = `<span style="color: #d32f2f;">❌ Invalid file format! Please upload PDF, DOC, or DOCX.</span>`;
-                    this.value = '';
-                    progressDiv.style.display = 'none';
-                    return;
-                }
-                
-                // File is valid
-                const fileSize = (file.size / 1024 / 1024).toFixed(2);
-                statusDiv.innerHTML = `
-                    <span style="color: #2e7d32;">✅ File selected: <strong>${file.name}</strong> (${fileSize} MB)</span>
-                `;
-                progressDiv.style.display = 'none';
+        let allApplications = [];
+
+        // ============================================
+        // 🔐 PROTECTION
+        // ============================================
+        auth.onAuthStateChanged((user) => {
+            if (!user) {
+                window.location.href = 'admin-login.html';
             } else {
-                statusDiv.innerHTML = '';
-                progressDiv.style.display = 'none';
+                console.log('✅ Admin logged in:', user.email);
+                loadApplications();
             }
         });
 
-        // =============================================
-        // FORM SUBMISSION
-        // =============================================
-        document.getElementById('applicationForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
+        // ============================================
+        // 🚪 LOGOUT
+        // ============================================
+        function logoutAdmin() {
+            auth.signOut().then(() => {
+                window.location.href = 'admin-login.html';
+            }).catch((error) => {
+                showToast('Logout failed: ' + error.message, 'error');
+            });
+        }
 
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
-            submitBtn.disabled = true;
+        // ============================================
+        // 💬 TOAST
+        // ============================================
+        function showToast(message, type = 'info') {
+            const toast = document.getElementById('toast');
+            toast.innerHTML = message + ' <span class="close-toast" onclick="this.parentElement.style.display=\'none\'">✕</span>';
+            toast.className = 'toast ' + type;
+            toast.style.display = 'block';
+            setTimeout(() => { toast.style.display = 'none'; }, 5000);
+        }
 
-            document.getElementById('formAlert').innerHTML = '';
+        // ============================================
+        // 📊 LOAD APPLICATIONS
+        // ============================================
+        function loadApplications() {
+            const tableBody = document.getElementById('applicationsBody');
+            tableBody.innerHTML = '<tr><td colspan="8" class="loading-state"><i class="fas fa-spinner fa-spin"></i><p>Loading applications...</p></td></tr>';
 
-            try {
-                // Collect form data
-                const formData = {
-                    name: document.getElementById('name')?.value || '',
-                    aadhar: document.getElementById('aadhar')?.value || '',
-                    mobile: document.getElementById('mobile')?.value || '',
-                    dob: document.getElementById('dob')?.value || '',
-                    gender: document.getElementById('gender')?.value || '',
-                    email: document.getElementById('email')?.value || '',
-                    address: document.getElementById('address')?.value || '',
-                    state: document.getElementById('state')?.value || '',
-                    mother_name: document.getElementById('mother_name')?.value || '',
-                    father_name: document.getElementById('father_name')?.value || '',
-                    mother_mobile: document.getElementById('mother_mobile')?.value || '',
-                    father_mobile: document.getElementById('father_mobile')?.value || '',
-                    siblings: document.getElementById('siblings')?.value || '',
-                    religion: document.getElementById('religion')?.value || '',
-                    caste: document.getElementById('caste')?.value || '',
-                    annual_income: document.getElementById('annual_income')?.value || '',
-                    pg_course: document.getElementById('pg_course')?.value || '',
-                    graduation_course: document.getElementById('graduation_course')?.value || '',
-                    academic_year: document.getElementById('academic_year')?.value || '',
-                    program: document.getElementById('program')?.value || '',
-                    career_goal: document.getElementById('career_goal')?.value || '',
-                    how_did_you_know: document.getElementById('how_did_you_know')?.value || '',
-                    declaration: document.getElementById('declaration')?.checked || false,
-                    applicationDate: new Date().toISOString(),
-                    status: 'pending'
-                };
+            db.collection('applications')
+                .orderBy('applicationDate', 'desc')
+                .get()
+                .then((snapshot) => {
+                    if (snapshot.empty) {
+                        tableBody.innerHTML = `
+                            <tr><td colspan="8">
+                                <div class="empty-state">
+                                    <i class="fas fa-inbox"></i>
+                                    <h3>No applications yet</h3>
+                                    <p>Applications submitted through the website will appear here.</p>
+                                </div>
+                            </td></tr>
+                        `;
+                        updateStats([]);
+                        allApplications = [];
+                        return;
+                    }
 
-                // Validate declaration
-                if (!formData.declaration) {
-                    document.getElementById('formAlert').innerHTML = `
-                        <div class="alert alert-error">
-                            <strong>⚠️ Please accept the declaration</strong>
-                        </div>
+                    const applications = [];
+                    snapshot.forEach((doc) => {
+                        const data = doc.data();
+                        applications.push({ 
+                            id: doc.id, 
+                            ...data,
+                            applicationDate: data.applicationDate || data.applied_on || data.created_at || new Date().toISOString()
+                        });
+                    });
+
+                    allApplications = applications;
+                    updateStats(applications);
+                    renderTable(applications);
+                    console.log('✅ Loaded', applications.length, 'applications');
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    tableBody.innerHTML = `
+                        <tr><td colspan="8" style="text-align:center; padding:40px; color:#d32f2f;">
+                            <i class="fas fa-exclamation-circle" style="font-size:2rem;"></i>
+                            <p style="margin-top:12px;">Error loading applications: ${error.message}</p>
+                            <p style="margin-top:4px; font-size:0.85rem; color:#666;">Error code: ${error.code || 'Unknown'}</p>
+                            <button onclick="refreshData()" style="margin-top:12px; background:#c49a2b; border:none; color:#0b2b4a; padding:8px 24px; border-radius:40px; cursor:pointer; font-weight:600;">
+                                <i class="fas fa-sync"></i> Try Again
+                            </button>
+                        </td></tr>
                     `;
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.disabled = false;
-                    return;
-                }
-
-                // Get resume file
-                const resumeFile = document.getElementById('resume').files[0];
-                
-                if (!resumeFile) {
-                    document.getElementById('formAlert').innerHTML = `
-                        <div class="alert alert-error">
-                            <strong>⚠️ Please upload your resume</strong>
-                        </div>
-                    `;
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.disabled = false;
-                    return;
-                }
-
-                // Check file size again (max 10MB)
-                if (resumeFile.size > 10 * 1024 * 1024) {
-                    document.getElementById('formAlert').innerHTML = `
-                        <div class="alert alert-error">
-                            <strong>⚠️ File is too large!</strong>
-                            <p style="margin-top:4px;">Please upload a file under 10MB.</p>
-                        </div>
-                    `;
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.disabled = false;
-                    return;
-                }
-
-                // Check file type
-                const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
-                
-                if (!allowedTypes.includes(resumeFile.type)) {
-                    document.getElementById('formAlert').innerHTML = `
-                        <div class="alert alert-error">
-                            <strong>⚠️ Invalid file format!</strong>
-                            <p style="margin-top:4px;">Please upload PDF, DOC, or DOCX files only.</p>
-                        </div>
-                    `;
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.disabled = false;
-                    return;
-                }
-
-                // =============================================
-                // UPLOAD RESUME TO FIREBASE STORAGE
-                // =============================================
-                const fileName = `${Date.now()}_${resumeFile.name.replace(/[^a-zA-Z0-9.]/g, '_')}`;
-                const storageRef = storage.ref(`resumes/${fileName}`);
-                
-                // Show progress bar
-                const progressDiv = document.getElementById('resumeProgress');
-                const progressBar = document.getElementById('progressBar');
-                const progressText = document.getElementById('progressText');
-                progressDiv.style.display = 'block';
-                
-                document.getElementById('resumeStatus').innerHTML = `
-                    <span style="color: #0b2b4a;">⏳ Uploading resume... <i class="fas fa-spinner fa-spin"></i></span>
-                `;
-
-                // Upload file
-                const uploadTask = storageRef.put(resumeFile);
-
-                // Wait for upload to complete
-                const snapshot = await new Promise((resolve, reject) => {
-                    uploadTask.on(
-                        'state_changed',
-                        (snapshot) => {
-                            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                            progressBar.style.width = progress + '%';
-                            progressText.textContent = Math.round(progress) + '%';
-                            document.getElementById('resumeStatus').innerHTML = `
-                                <span style="color: #0b2b4a;">📤 Uploading resume... ${Math.round(progress)}%</span>
-                            `;
-                        },
-                        (error) => reject(error),
-                        () => resolve(uploadTask.snapshot)
-                    );
+                    showToast('Error loading applications: ' + error.message, 'error');
                 });
+        }
 
-                // Get download URL
-                const downloadURL = await storageRef.getDownloadURL();
-                
-                document.getElementById('resumeStatus').innerHTML = `
-                    <span style="color: #2e7d32;">✅ Resume uploaded successfully!</span>
-                `;
-                progressBar.style.width = '100%';
-                progressText.textContent = '100%';
+        // ============================================
+        // 📈 UPDATE STATS
+        // ============================================
+        function updateStats(applications) {
+            const total = applications.length;
+            const today = new Date();
+            const todayStr = today.toDateString();
+            const weekAgo = new Date(today);
+            weekAgo.setDate(weekAgo.getDate() - 7);
 
-                // Add resume info to form data
-                formData.resume = fileName;
-                formData.resume_url = downloadURL;
+            let todayCount = 0, weekCount = 0;
+            const programs = new Set();
 
-                // =============================================
-                // SAVE TO FIRESTORE
-                // =============================================
-                const docRef = await db.collection('applications').add(formData);
+            applications.forEach(app => {
+                const dateStr = app.applicationDate || app.applied_on || app.created_at;
+                if (dateStr) {
+                    try {
+                        const appDate = new Date(dateStr);
+                        if (appDate.toDateString() === todayStr) todayCount++;
+                        if (appDate >= weekAgo) weekCount++;
+                    } catch(e) {}
+                }
+                if (app.program) programs.add(app.program);
+            });
 
-                // =============================================
-                // SUCCESS MESSAGE - "Thanks for submitting"
-                // =============================================
-                document.getElementById('formAlert').innerHTML = `
-                    <div class="alert alert-success" style="padding:30px; border-radius:16px; background:#e8f5e9; border:2px solid #4caf50;">
-                        <div style="text-align:center;">
-                            <i class="fas fa-check-circle" style="font-size:4rem; color:#2e7d32;"></i>
-                            <h2 style="color:#2e7d32; margin:16px 0 8px; font-size:2rem;">🎉 Thank You!</h2>
-                            <h3 style="color:#2e7d32; font-size:1.3rem; margin-bottom:12px;">Your application has been submitted successfully.</h3>
-                            <div style="background:white; padding:12px 24px; border-radius:8px; display:inline-block; margin:12px 0;">
-                                <strong style="color:#0b2b4a;">Reference ID:</strong> 
-                                <span style="color:#c49a2b; font-weight:700;">${docRef.id}</span>
-                            </div>
-                            <p style="color:#2e7d32; font-size:1rem; margin-top:16px;">
-                                📧 A confirmation email will be sent to <strong>${formData.email}</strong>
-                            </p>
-                            <p style="color:#2e7d32; font-size:0.95rem; margin-top:8px;">
-                                Our team will review your application and contact you within 2-3 business days.
-                            </p>
-                            <hr style="margin:20px 0; border:1px solid #a5d6a7;">
-                            <p style="color:#2e7d32; font-size:0.85rem;">
-                                <i class="fas fa-phone" style="color:#c49a2b;"></i> For queries: +91-XXXXXXXXXX &nbsp;|&nbsp; 
-                                <i class="fas fa-envelope" style="color:#c49a2b;"></i> info@dharithri.com
-                            </p>
+            document.getElementById('totalCount').textContent = total;
+            document.getElementById('todayCount').textContent = todayCount;
+            document.getElementById('weekCount').textContent = weekCount;
+            document.getElementById('programCount').textContent = programs.size;
+        }
+
+        // ============================================
+        // 📋 RENDER TABLE - View & Delete Buttons
+        // ============================================
+        function renderTable(applications) {
+            const tableBody = document.getElementById('applicationsBody');
+            
+            if (applications.length === 0) {
+                tableBody.innerHTML = `
+                    <tr><td colspan="8">
+                        <div class="empty-state">
+                            <i class="fas fa-search"></i>
+                            <h3>No matching records</h3>
+                            <p>Try adjusting your search criteria.</p>
                         </div>
-                    </div>
+                    </td></tr>
                 `;
+                return;
+            }
 
-                // Reset form
-                document.getElementById('applicationForm').reset();
-                document.getElementById('resumeStatus').innerHTML = '';
-                document.getElementById('resumeProgress').style.display = 'none';
-                progressBar.style.width = '0%';
-                progressText.textContent = '0%';
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-
-            } catch (error) {
-                console.error('❌ Error:', error);
+            let html = '';
+            applications.forEach((app, index) => {
+                const bgColor = index % 2 === 0 ? '#ffffff' : '#f8f9fb';
                 
-                let errorMsg = error.message;
-                if (error.code === 'storage/unauthorized') {
-                    errorMsg = 'Permission denied. Please check Firebase Storage rules.';
-                } else if (error.message && error.message.includes('CORS')) {
-                    errorMsg = 'CORS error. Please configure CORS for Firebase Storage.';
-                } else {
-                    errorMsg = error.message || 'Unknown error occurred.';
+                let dateStr = 'N/A';
+                const dateField = app.applicationDate || app.applied_on || app.created_at;
+                if (dateField) {
+                    try {
+                        dateStr = new Date(dateField).toLocaleString('en-IN', {
+                            day: '2-digit', month: 'short', year: 'numeric',
+                            hour: '2-digit', minute: '2-digit'
+                        });
+                    } catch(e) {
+                        dateStr = 'N/A';
+                    }
+                }
+
+                html += `
+                    <tr style="background:${bgColor};" id="row_${app.id}">
+                        <td style="padding:10px 16px; font-weight:600;">${index + 1}</td>
+                        <td style="padding:10px 16px; font-weight:600; color:#0b2b4a;">${app.name || 'N/A'}</td>
+                        <td style="padding:10px 16px;">${app.mobile || app.father_mobile || 'N/A'}</td>
+                        <td style="padding:10px 16px; font-size:0.85rem;">${app.email || 'N/A'}</td>
+                        <td style="padding:10px 16px;">
+                            <span class="program-badge">${app.program || app.course || 'N/A'}</span>
+                        </td>
+                        <td style="padding:10px 16px; font-size:0.85rem;">${app.career_goal || app.goal || 'N/A'}</td>
+                        <td style="padding:10px 16px; font-size:0.8rem; white-space:nowrap;">${dateStr}</td>
+                        <td style="padding:10px 16px;">
+                            <div class="action-cell">
+                                <!-- View Button -->
+                                <button class="btn-action btn-view-action" onclick="viewApplication('${app.id}')">
+                                    <i class="fas fa-eye"></i> View
+                                </button>
+                                
+                                <!-- Delete Button -->
+                                <button class="btn-action btn-delete-action" onclick="deleteApplication('${app.id}', '${app.name || 'Unknown'}')">
+                                    <i class="fas fa-trash"></i> Delete
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            tableBody.innerHTML = html;
+        }
+
+        // ============================================
+        // 🔍 SEARCH
+        // ============================================
+        function searchTable() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase().trim();
+            
+            if (filter === '') {
+                renderTable(allApplications);
+                return;
+            }
+
+            const filtered = allApplications.filter(app => {
+                const name = (app.name || '').toLowerCase();
+                const email = (app.email || '').toLowerCase();
+                const mobile = (app.mobile || app.father_mobile || '').toString().toLowerCase();
+                const program = (app.program || app.course || '').toLowerCase();
+                return name.includes(filter) || email.includes(filter) || 
+                       mobile.includes(filter) || program.includes(filter);
+            });
+
+            renderTable(filtered);
+        }
+
+        // ============================================
+        // 👁️ VIEW APPLICATION - Full Details
+        // ============================================
+        function viewApplication(docId) {
+            db.collection('applications').doc(docId).get()
+                .then((doc) => {
+                    if (doc.exists) {
+                        const data = doc.data();
+                        let html = '';
+                        
+                        const fields = {
+                            'Full Name': data.name,
+                            'Aadhar Number': data.aadhar,
+                            'Mobile Number': data.mobile || data.father_mobile,
+                            'Email': data.email,
+                            'Gender': data.gender,
+                            'Date of Birth': data.dob,
+                            'Address': data.address,
+                            'State': data.state,
+                            'City': data.city,
+                            'Father\'s Name': data.father || data.father_name,
+                            'Mother\'s Name': data.mother || data.mother_name,
+                            'Siblings': data.siblings,
+                            'Religion': data.religion,
+                            'Caste': data.caste,
+                            'Annual Income': data.income || data.annual_income,
+                            'PG Course': data.pg_course,
+                            'Graduation Course': data.grad_course || data.graduation_course,
+                            'Academic Year': data.academic_year,
+                            'Program Applied': data.program || data.course,
+                            'Career Goal': data.career_goal || data.goal,
+                            'How did you know?': data.source || data.how_did_you_know,
+                            'Applied On': data.applicationDate ? new Date(data.applicationDate).toLocaleString() : 
+                                      data.applied_on ? new Date(data.applied_on).toLocaleString() : 'N/A'
+                        };
+
+                        for (const [key, value] of Object.entries(fields)) {
+                            if (value && value !== 'N/A' && value !== '' && value !== 'undefined') {
+                                html += `
+                                    <div class="detail-row">
+                                        <span class="detail-label">${key}</span>
+                                        <span class="detail-value">${value}</span>
+                                    </div>
+                                `;
+                            }
+                        }
+
+                        if (html === '') {
+                            html = '<p style="text-align:center;color:#666; padding:20px;">No details available for this application.</p>';
+                        }
+
+                        document.getElementById('modalBody').innerHTML = html;
+                        document.getElementById('detailModal').style.display = 'block';
+                    } else {
+                        showToast('Application not found.', 'error');
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error loading details:', error);
+                    showToast('Error loading details: ' + error.message, 'error');
+                });
+        }
+
+        // ============================================
+        // 🗑️ DELETE SINGLE APPLICATION
+        // ============================================
+        function deleteApplication(docId, name) {
+            if (confirm(`⚠️ Are you sure you want to delete the application for "${name}"?\n\nThis action cannot be undone!`)) {
+                db.collection('applications').doc(docId).delete()
+                    .then(() => {
+                        // Remove from local array
+                        allApplications = allApplications.filter(app => app.id !== docId);
+                        
+                        // Update stats
+                        updateStats(allApplications);
+                        
+                        // Re-render table
+                        renderTable(allApplications);
+                        
+                        showToast(`✅ "${name}" deleted successfully!`, 'success');
+                    })
+                    .catch((error) => {
+                        console.error('Error deleting:', error);
+                        showToast('Error deleting: ' + error.message, 'error');
+                    });
+            }
+        }
+
+        // ============================================
+        // 🗑️ DELETE ALL
+        // ============================================
+        function deleteAll() {
+            if (allApplications.length === 0) {
+                showToast('No applications to delete.', 'info');
+                return;
+            }
+
+            if (confirm(`⚠️ Delete ALL ${allApplications.length} applications?`)) {
+                if (confirm('⚠️ FINAL WARNING: This cannot be undone!')) {
+                    const batch = db.batch();
+                    allApplications.forEach(app => {
+                        const ref = db.collection('applications').doc(app.id);
+                        batch.delete(ref);
+                    });
+                    
+                    batch.commit()
+                        .then(() => {
+                            allApplications = [];
+                            updateStats([]);
+                            renderTable([]);
+                            showToast('✅ All applications deleted!', 'success');
+                        })
+                        .catch((error) => {
+                            showToast('Error: ' + error.message, 'error');
+                        });
+                }
+            }
+        }
+
+        // ============================================
+        // ❌ MODAL
+        // ============================================
+        function closeModal() {
+            document.getElementById('detailModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target === document.getElementById('detailModal')) {
+                closeModal();
+            }
+        }
+
+        // ============================================
+        // 📥 EXPORT CSV
+        // ============================================
+        function exportCSV() {
+            if (allApplications.length === 0) {
+                showToast('No data to export.', 'info');
+                return;
+            }
+
+            const headers = ['Name', 'Aadhar', 'Mobile', 'Email', 'Program', 'Career Goal', 'Application Date'];
+            let csv = headers.join(',') + '\n';
+
+            allApplications.forEach(app => {
+                let aadhar = app.aadhar || '';
+                if (aadhar && !isNaN(aadhar) && aadhar.length > 10) {
+                    aadhar = `="${aadhar}"`;
                 }
                 
-                document.getElementById('formAlert').innerHTML = `
-                    <div class="alert alert-error">
-                        <strong>❌ Submission Failed</strong>
-                        <p style="margin-top:8px;">${errorMsg}</p>
-                        <p style="margin-top:4px; font-size:0.85rem; color:#666;">Error code: ${error.code || 'Unknown'}</p>
-                        <button onclick="location.reload()" style="margin-top:12px; background:#c49a2b; border:none; color:#0b2b4a; padding:10px 24px; border-radius:40px; cursor:pointer; font-weight:600;">
-                            <i class="fas fa-sync"></i> Try Again
-                        </button>
-                    </div>
-                `;
-                document.getElementById('resumeStatus').innerHTML = `
-                    <span style="color: #d32f2f;">❌ Upload failed: ${error.message}</span>
-                `;
-            } finally {
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            }
-        });
+                const dateField = app.applicationDate || app.applied_on || app.created_at || '';
+                
+                const row = [
+                    `"${(app.name || '').replace(/"/g, '""')}"`,
+                    `"${aadhar.replace(/"/g, '""')}"`,
+                    `"${(app.mobile || app.father_mobile || '').replace(/"/g, '""')}"`,
+                    `"${(app.email || '').replace(/"/g, '""')}"`,
+                    `"${(app.program || app.course || '').replace(/"/g, '""')}"`,
+                    `"${(app.career_goal || app.goal || '').replace(/"/g, '""')}"`,
+                    `"${dateField.replace(/"/g, '""')}"`
+                ];
+                csv += row.join(',') + '\n';
+            });
 
-        console.log('✅ Application form ready with 10MB resume upload!');
+            const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `applications_${new Date().toISOString().slice(0,10)}.csv`;
+            link.click();
+            URL.revokeObjectURL(link.href);
+            showToast('✅ CSV exported!', 'success');
+        }
+
+        // ============================================
+        // 🔄 REFRESH
+        // ============================================
+        function refreshData() {
+            document.getElementById('applicationsBody').innerHTML = 
+                '<tr><td colspan="8" class="loading-state"><i class="fas fa-spinner fa-spin"></i><p>Refreshing...</p></td></tr>';
+            loadApplications();
+            showToast('🔄 Refreshing...', 'info');
+        }
     </script>
+
 </body>
 </html>
