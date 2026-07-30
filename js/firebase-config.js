@@ -4,8 +4,9 @@
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-analytics-compat.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js";
+import { getFirestore, collection, addDoc, getDocs, doc, deleteDoc, getDoc, query, orderBy, where, updateDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js";
+import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js";
 
 // Your Firebase configuration
 const firebaseConfig = {
@@ -23,6 +24,31 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getFirestore(app);
 const auth = getAuth(app);
+const storage = getStorage(app);
 
-// Export for use in other files
-export { app, analytics, db, auth };
+// ============================================
+// EXPORT EVERYTHING
+// ============================================
+export { 
+    app, 
+    analytics, 
+    db, 
+    auth,
+    storage,
+    // Firestore functions
+    collection,
+    addDoc,
+    getDocs,
+    doc,
+    deleteDoc,
+    getDoc,
+    query,
+    orderBy,
+    where,
+    updateDoc,
+    // Storage functions
+    ref,
+    uploadBytes,
+    getDownloadURL,
+    deleteObject
+};
