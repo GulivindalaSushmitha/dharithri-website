@@ -156,10 +156,29 @@
         console.log('✅ Firebase initialized!');
 
         // =============================================
-        // FORM SUBMISSION
+        // FORM SUBMISSION - UPDATED WITH userId
         // =============================================
         document.getElementById('applicationForm').addEventListener('submit', function(e) {
             e.preventDefault();
+
+            // ✅ STEP 1: Get the currently logged-in user
+            const user = firebase.auth().currentUser;
+
+            // ✅ STEP 2: Check if user is logged in
+            if (!user) {
+                const alertDiv = document.getElementById('formAlert');
+                alertDiv.innerHTML = `
+                    <div class="alert alert-error" style="padding:20px; border-radius:12px; background:#ffebee; border:2px solid #f44336;">
+                        <strong>❌ Please Login First!</strong><br>
+                        You need to be logged in to submit an application.
+                        <br><br>
+                        <a href="login.html" class="btn btn-gold" style="padding:10px 30px; text-decoration:none; display:inline-block;">
+                            <i class="fas fa-sign-in-alt"></i> Go to Login
+                        </a>
+                    </div>
+                `;
+                return;
+            }
 
             // Get form data - handle File objects properly
             const formData = new FormData(this);
@@ -172,7 +191,12 @@
                 }
             });
 
+            // ✅ STEP 3: Add the userId to the data
+            data.userId = user.uid;  // ✅ THIS FIXES THE PERMISSION ERROR!
+            data.userEmail = user.email; // Also store email for reference
+
             console.log('📤 Data being saved:', data);
+            console.log('👤 Current User UID:', user.uid);
 
             // Validate declaration
             if (!data.declaration) {
@@ -190,7 +214,7 @@
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
             submitBtn.disabled = true;
 
-            // Save to Firestore
+            // ✅ STEP 4: Save to Firestore (now includes userId)
             db.collection('applications').add(data)
                 .then((docRef) => {
                     console.log('✅ SUCCESS! Document ID:', docRef.id);
@@ -273,6 +297,27 @@
                     setTimeout(() => { alertDiv.innerHTML = ''; }, 5000);
                 }
             }, 30000);
+        });
+
+        // =============================================
+        // CHECK AUTH STATE ON PAGE LOAD
+        // =============================================
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                console.log('✅ User is logged in:', user.email);
+                console.log('🆔 User UID:', user.uid);
+            } else {
+                console.log('❌ No user is logged in');
+                // Show a message on the page
+                const alertDiv = document.getElementById('formAlert');
+                alertDiv.innerHTML = `
+                    <div class="alert alert-info" style="padding:15px; border-radius:12px; background:#e3f2fd; border:2px solid #2196f3;">
+                        <strong>ℹ️ Please Login</strong><br>
+                        You need to be logged in to submit an application. 
+                        <a href="login.html" style="color:#0b2b4a; font-weight:600;">Login here</a>
+                    </div>
+                `;
+            }
         });
 
         console.log('✅ Application form ready!');
