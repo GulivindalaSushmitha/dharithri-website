@@ -23,8 +23,8 @@
         .top-nav {
             background: #ffffff;
             padding: 12px 0;
-            border-bottom: 2px solid #f0f0f0;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border-bottom: 1px solid #e8ecf0;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -40,25 +40,24 @@
             padding: 0 20px;
         }
         
-        /* ===== LOGO + BRAND NAME (CLICKABLE - STAYS ON PAGE) ===== */
+        /* ===== LOGO + BRAND NAME ===== */
         .nav-brand {
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 12px;
             text-decoration: none;
             color: inherit;
             cursor: pointer;
         }
         .nav-brand img {
-            height: 50px;
+            height: 48px;
             width: auto;
             border-radius: 6px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
             transition: transform 0.2s ease;
             cursor: pointer;
         }
         .nav-brand img:hover {
-            transform: scale(1.05);
+            transform: scale(1.03);
         }
         .nav-brand .brand-text {
             display: flex;
@@ -67,30 +66,31 @@
             cursor: pointer;
         }
         .nav-brand .brand-text .company-name {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             color: #0b2b4a;
             font-weight: 700;
         }
         .nav-brand .brand-text .tagline {
-            font-size: 0.75rem;
-            color: #6a7e94;
-            font-weight: 500;
-            letter-spacing: 0.3px;
+            font-size: 0.7rem;
+            color: #7a8a9e;
+            font-weight: 400;
+            letter-spacing: 0.2px;
         }
         
         /* ===== NAVIGATION LINKS ===== */
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 24px;
+            gap: 28px;
             flex-wrap: wrap;
         }
         .nav-links a {
             color: #2c3e50;
             text-decoration: none;
             font-weight: 500;
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             transition: color 0.2s ease;
+            padding: 4px 0;
         }
         .nav-links a:hover {
             color: #c49a2b;
@@ -98,10 +98,10 @@
         .nav-links .btn-apply {
             background: #c49a2b;
             color: white;
-            padding: 8px 24px;
+            padding: 8px 22px;
             border-radius: 30px;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             transition: background 0.2s ease;
         }
         .nav-links .btn-apply:hover {
@@ -120,21 +120,21 @@
                 gap: 16px;
             }
             .nav-brand .brand-text .company-name {
-                font-size: 0.95rem;
+                font-size: 0.9rem;
             }
             .nav-brand img {
-                height: 40px;
+                height: 38px;
             }
         }
         
         /* ===== HERO SECTION ===== */
         .hero {
-            padding: 40px 0;
+            padding: 40px 0 20px;
         }
         .hero-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 40px;
+            gap: 50px;
             align-items: center;
         }
         @media (max-width: 768px) {
@@ -151,41 +151,42 @@
         .hero-tag {
             display: inline-block;
             background: #f0f4fb;
-            padding: 6px 16px;
+            padding: 5px 14px;
             border-radius: 30px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: #0b2b4a;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
         .hero-tag i {
             color: #c49a2b;
         }
         
         .hero-quote-block {
-            background: #f0f4fb;
-            padding: 2rem 2rem 1.5rem;
-            border-radius: 24px;
-            margin-top: 1rem;
-            border-left: 6px solid #c49a2b;
+            background: #f5f8fc;
+            padding: 1.8rem 2rem 1.5rem;
+            border-radius: 20px;
+            margin-top: 0.8rem;
+            border-left: 5px solid #c49a2b;
         }
         .hero-quote-block .main-quote {
-            font-size: 1.8rem;
+            font-size: 1.7rem;
             font-weight: 700;
             color: #0b2b4a;
             margin-bottom: 0.2rem;
+            line-height: 1.2;
         }
         .hero-quote-block .description {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             margin: 0.5rem 0 0.8rem;
-            color: #1e2f3f;
+            color: #2a3a4a;
             line-height: 1.6;
         }
         .hero-quote-block .tagline {
             font-weight: 700;
             color: #0b2b4a;
-            font-size: 1.3rem;
-            margin-top: 0.5rem;
-            letter-spacing: -0.3px;
+            font-size: 1.2rem;
+            margin-top: 0.3rem;
+            letter-spacing: -0.2px;
         }
         .hero-quote-block .tagline span {
             color: #c49a2b;
@@ -193,7 +194,7 @@
         
         .btn {
             display: inline-block;
-            padding: 12px 28px;
+            padding: 11px 28px;
             border-radius: 30px;
             font-weight: 600;
             text-decoration: none;
@@ -201,6 +202,7 @@
             color: white;
             margin-right: 12px;
             transition: background 0.2s ease;
+            font-size: 0.95rem;
         }
         .btn:hover {
             background: #1a3a5a;
@@ -218,52 +220,56 @@
         
         /* ===== SECTIONS ===== */
         .section-title {
-            font-size: 2.2rem;
+            font-size: 2rem;
             text-align: center;
             color: #0b2b4a;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
         .section-sub {
             text-align: center;
             color: #4a5d74;
             margin-bottom: 20px;
+            font-size: 0.95rem;
         }
         
         .card-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 24px;
             margin-top: 24px;
         }
         .card {
             background: white;
-            padding: 24px;
+            padding: 24px 18px;
             border-radius: 16px;
             text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             transition: transform 0.2s ease;
+            border: 1px solid #f0f2f5;
         }
         .card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-3px);
         }
         .card i {
             color: #c49a2b;
-            font-size: 2rem;
+            font-size: 1.8rem;
         }
         .card h4 {
             margin-top: 0.5rem;
             color: #0b2b4a;
+            font-size: 1rem;
         }
         .card p {
             color: #4a5d74;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
+            margin-top: 4px;
         }
         
-        /* ===== FOOTER ===== */
+        /* ===== FOOTER - ONLY COPYRIGHT ===== */
         .footer {
-            background: #f0f4fb;
-            padding: 40px 0 20px;
-            border-top: 1px solid #dce3ec;
+            background: #f5f8fc;
+            padding: 30px 0 18px;
+            border-top: 1px solid #e8ecf0;
             margin-top: 0;
             text-align: center;
         }
@@ -273,94 +279,34 @@
             padding: 0 20px;
         }
         
-        .footer-brand {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 14px;
-            flex-wrap: wrap;
-            margin-bottom: 8px;
-        }
-        .footer-brand a {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            text-decoration: none;
-            color: inherit;
-            cursor: pointer;
-        }
-        .footer-brand img {
-            height: 45px;
-            width: auto;
-            border-radius: 6px;
-        }
-        .footer-brand .brand-text {
-            display: flex;
-            flex-direction: column;
-            line-height: 1.2;
-        }
-        .footer-brand .brand-text .company-name {
-            font-size: 1.1rem;
-            color: #0b2b4a;
-            font-weight: 700;
-        }
-        .footer-brand .brand-text .tagline {
-            font-size: 0.75rem;
-            color: #6a7e94;
-            font-weight: 500;
-            letter-spacing: 0.3px;
-        }
-        
-        .footer-slogan {
-            font-size: 0.85rem;
-            color: #4a5d74;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            margin: 4px 0;
-        }
-        
         .footer-copyright {
-            font-size: 0.8rem;
-            color: #6a7e94;
-            margin-top: 4px;
+            font-size: 0.78rem;
+            color: #7a8a9e;
         }
         
-        @media (max-width: 600px) {
-            .footer-brand {
-                flex-direction: column;
-                text-align: center;
-            }
-            .footer-brand a {
-                flex-direction: column;
-                text-align: center;
-            }
-            .footer-brand .brand-text {
-                align-items: center;
-            }
-        }
-        
-        /* Training schedule box */
+        /* ===== TRAINING SCHEDULE ===== */
         .schedule-box {
             background: white;
             padding: 30px;
             border-radius: 16px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             max-width: 800px;
             margin: 0 auto;
             text-align: center;
+            border: 1px solid #f0f2f5;
         }
         .schedule-box h3 {
             color: #0b2b4a;
-            font-size: 1.8rem;
-            margin-bottom: 10px;
+            font-size: 1.6rem;
+            margin-bottom: 8px;
         }
         .schedule-box .divider {
             border-bottom: 3px solid #c49a2b;
-            width: 60px;
-            margin: 0 auto 20px;
+            width: 50px;
+            margin: 0 auto 18px;
         }
         .schedule-box .main-date {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             font-weight: 600;
             color: #0b2b4a;
         }
@@ -371,13 +317,13 @@
             color: #c49a2b;
         }
         .schedule-box .schedule-details {
-            background: #f5f8fd;
-            padding: 20px;
+            background: #f8fafc;
+            padding: 18px;
             border-radius: 12px;
-            margin: 20px 0;
+            margin: 18px 0;
         }
         .schedule-box .schedule-details .label {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 600;
             color: #0b2b4a;
         }
@@ -386,7 +332,8 @@
         }
         .schedule-box .schedule-details .dates {
             color: #4a5d74;
-            margin: 8px 0;
+            margin: 6px 0;
+            font-size: 0.95rem;
         }
         .schedule-box .schedule-details .dates i {
             color: #c49a2b;
@@ -395,38 +342,40 @@
             color: #0b2b4a;
         }
         
-        /* Promise section */
+        /* ===== PROMISE SECTION ===== */
         .promise-section {
             background: #0b2b4a;
             color: white;
-            padding: 60px 0;
+            padding: 50px 0;
             text-align: center;
         }
         .promise-section h2 {
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: 700;
         }
         .promise-section p {
             max-width: 700px;
-            margin: 16px auto;
-            color: #a0b8cf;
-            font-size: 1.1rem;
+            margin: 14px auto;
+            color: #b0c4d8;
+            font-size: 1.05rem;
+            line-height: 1.6;
         }
         .promise-section .promise-quote {
-            margin-top: 20px;
-            font-size: 1.5rem;
+            margin-top: 18px;
+            font-size: 1.4rem;
             font-weight: 600;
             color: #c49a2b;
         }
         .promise-section .promise-sub {
-            font-size: 1.1rem;
-            color: #a0b8cf;
+            font-size: 1rem;
+            color: #b0c4d8;
         }
         
-        /* Active nav link style */
-        .nav-links .active {
-            color: #c49a2b;
-            font-weight: 600;
+        .hero-image {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.06);
         }
     </style>
 </head>
@@ -437,7 +386,7 @@
     <!-- ============================================ -->
     <header class="top-nav">
         <div class="container">
-            <!-- Logo + Brand Name - CLICKABLE (Stays on homepage) -->
+            <!-- Logo + Brand Name - Clicking STAYS ON HOMEPAGE -->
             <a href="index.html" class="nav-brand">
                 <img src="assets/images/logo.png" alt="Dharithri Logo" onerror="this.src='https://i.pinimg.com/736x/be/eb/de/beebde045a4edcad232669579860e12b.jpg'" />
                 <div class="brand-text">
@@ -446,9 +395,9 @@
                 </div>
             </a>
 
-            <!-- Navigation Links: Home | About | Courses | Training | Opportunities | Apply Now -->
+            <!-- Navigation: Home | About | Courses | Training | Opportunities | Apply Now -->
             <nav class="nav-links">
-                <a href="index.html" class="active">Home</a>
+                <a href="index.html">Home</a>
                 <a href="about.html">About</a>
                 <a href="courses.html">Courses</a>
                 <a href="#">Training</a>
@@ -478,7 +427,7 @@
                 </div>
             </div>
             <div>
-                <img src="assets/images/logo.png" alt="Dharithri Logo" style="width:100%; max-width:400px; border-radius:24px; box-shadow:0 20px 40px rgba(0,0,0,0.08);" onerror="this.src='https://i.pinimg.com/736x/be/eb/de/beebde045a4edcad232669579860e12b.jpg'" />
+                <img src="assets/images/logo.png" alt="Dharithri Logo" class="hero-image" onerror="this.src='https://i.pinimg.com/736x/be/eb/de/beebde045a4edcad232669579860e12b.jpg'" />
             </div>
         </div>
     </section>
@@ -486,7 +435,7 @@
     <!-- ============================================ -->
     <!-- ===== WHY DHARITHRI ===== -->
     <!-- ============================================ -->
-    <section class="container" style="padding: 60px 0;">
+    <section class="container" style="padding: 50px 0;">
         <h2 class="section-title">Why Dharithri?</h2>
         <p class="section-sub">"We do not provide jobs; we facilitate career opportunities and professional growth."</p>
         <div class="card-grid">
@@ -516,7 +465,7 @@
     <!-- ============================================ -->
     <!-- ===== TRAINING DATES ===== -->
     <!-- ============================================ -->
-    <section style="background:#f8f9fa; padding:60px 0;">
+    <section style="background:#f8fafc; padding:50px 0;">
         <div class="container">
             <div class="schedule-box">
                 <h3>📅 Upcoming Training Schedule</h3>
@@ -540,7 +489,7 @@
                         <strong>Sept 28th</strong>
                     </p>
                 </div>
-                <a href="apply.html" class="btn btn-gold" style="display:inline-block; margin-top:10px;">
+                <a href="apply.html" class="btn btn-gold" style="display:inline-block; margin-top:8px;">
                     Register Now <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
@@ -560,25 +509,10 @@
     </section>
 
     <!-- ============================================ -->
-    <!-- ===== FOOTER ===== -->
+    <!-- ===== FOOTER - ONLY COPYRIGHT ===== -->
     <!-- ============================================ -->
     <footer class="footer">
         <div class="container">
-            <!-- Logo + Company Name (Centered) -->
-            <div class="footer-brand">
-                <a href="index.html">
-                    <img src="assets/images/logo.png" alt="Dharithri Logo" onerror="this.src='https://i.pinimg.com/736x/be/eb/de/beebde045a4edcad232669579860e12b.jpg'" />
-                    <div class="brand-text">
-                        <span class="company-name">Dharithri Manpower Training & Supply Pvt. Ltd.</span>
-                        <span class="tagline">Building Worth. Inspiring Generations.</span>
-                    </div>
-                </a>
-            </div>
-
-            <!-- Slogan -->
-            <div class="footer-slogan">WE IMPROVE THE WORTH. WE SUPPLY THE WORTH.</div>
-
-            <!-- Copyright -->
             <div class="footer-copyright">© 2026 Dharithri. All rights reserved.</div>
         </div>
     </footer>
