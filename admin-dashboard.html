@@ -6,7 +6,6 @@
     <title>Admin Dashboard · Dharithri</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="css/style.css" />
     <style>
         /* ===== ADMIN STYLES ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -47,6 +46,10 @@
             border-radius: 40px;
             font-size: 0.8rem;
             font-weight: 600;
+        }
+        .admin-email {
+            color: #4a5d74;
+            font-size: 0.85rem;
         }
         .logout-btn {
             background: #d32f2f;
@@ -355,10 +358,6 @@
 <body>
 
     <!-- ============================================ -->
-    <!-- NAVBAR IS AUTO-LOADED BY navbar.js          -->
-    <!-- ============================================ -->
-
-    <!-- ============================================ -->
     <!-- DASHBOARD SECTION                           -->
     <!-- ============================================ -->
     <div id="dashboardSection">
@@ -367,6 +366,7 @@
             <div class="dashboard-header">
                 <h1>📊 Dharithri <span>Admin Dashboard</span></h1>
                 <div class="header-actions">
+                    <span class="admin-email" id="userEmail">Loading...</span>
                     <span class="admin-badge"><i class="fas fa-user-shield"></i> Admin</span>
                     <button class="logout-btn" onclick="logoutAdmin()"><i class="fas fa-sign-out-alt"></i> Logout</button>
                 </div>
@@ -420,7 +420,6 @@
                 <div class="action-bar">
                     <button class="action-btn primary" onclick="exportCSV()"><i class="fas fa-file-csv"></i> Export CSV</button>
                     <button class="action-btn secondary" onclick="refreshData()"><i class="fas fa-sync"></i> Refresh</button>
-                    <button class="action-btn danger" onclick="deleteAll()"><i class="fas fa-trash"></i> Delete All</button>
                 </div>
             </div>
         </div>
@@ -473,29 +472,41 @@
         const db = firebase.firestore();
         const auth = firebase.auth();
 
+        console.log('✅ Dashboard: Firebase initialized');
+
         let allApplications = [];
+        let currentUser = null;
 
         // ============================================
-        // 🔐 CHECK AUTH
+        // 🔐 CHECK AUTH - FIXED
         // ============================================
         auth.onAuthStateChanged((user) => {
+            console.log('🔐 Auth state changed:', user ? user.email : 'No user');
+            
             if (!user) {
+                console.log('❌ No user, redirecting to login');
                 window.location.href = 'admin-login.html';
             } else {
                 console.log('✅ Admin logged in:', user.email);
+                currentUser = user;
+                document.getElementById('userEmail').textContent = '👤 ' + user.email;
                 loadApplications();
             }
         });
 
         // ============================================
-        // 🚪 LOGOUT
+        // 🚪 LOGOUT - FIXED
         // ============================================
         function logoutAdmin() {
-            auth.signOut().then(() => {
-                window.location.href = 'admin-login.html';
-            }).catch((error) => {
-                showToast('Logout failed: ' + error.message, 'error');
-            });
+            if (confirm('Are you sure you want to logout?')) {
+                auth.signOut().then(() => {
+                    console.log('✅ Logged out successfully');
+                    window.location.href = 'admin-login.html';
+                }).catch((error) => {
+                    console.error('❌ Logout error:', error);
+                    showToast('Logout failed: ' + error.message, 'error');
+                });
+            }
         }
 
         // ============================================
@@ -519,7 +530,7 @@
             console.log('🔄 Loading applications from Firestore...');
 
             db.collection('applications')
-                .orderBy('applicationDate', 'desc')
+                .orderBy('applied_on', 'desc')
                 .get()
                 .then((snapshot) => {
                     console.log('📦 Query completed. Size:', snapshot.size);
@@ -546,8 +557,7 @@
                         console.log('📄 Document:', doc.id, data);
                         applications.push({ 
                             id: doc.id, 
-                            ...data,
-                            applicationDate: data.applicationDate || data.applied_on || data.created_at || new Date().toISOString()
+                            ...data
                         });
                     });
 
@@ -570,20 +580,10 @@
                             <button onclick="refreshData()" style="margin-top:12px; background:#c49a2b; border:none; color:#0b2b4a; padding:8px 24px; border-radius:40px; cursor:pointer; font-weight:600;">
                                 <i class="fas fa-sync"></i> Try Again
                             </button>
-                            <button onclick="checkRules()" style="margin-top:12px; margin-left:10px; background:#0b2b4a; border:none; color:white; padding:8px 24px; border-radius:40px; cursor:pointer; font-weight:600;">
-                                <i class="fas fa-shield-alt"></i> Check Rules
-                            </button>
                         </td></tr>
                     `;
                     showToast('Error loading applications: ' + error.message, 'error');
                 });
-        }
-
-        // ============================================
-        // 🔍 CHECK RULES - Helper function
-        // ============================================
-        function checkRules() {
-            alert('🔍 Checking Firestore Rules...\n\n1. Go to Firebase Console\n2. Click Firestore Database\n3. Click Rules tab\n4. Make sure rules allow read:\n\nrules_version = "2";\nservice cloud.firestore {\n  match /databases/{database}/documents {\n    match /applications/{document=**} {\n      allow read, write: if true;\n    }\n  }\n}\n\n5. Click Publish\n6. Wait 1 minute\n7. Refresh dashboard');
         }
 
         // ============================================
@@ -600,10 +600,9 @@
             const programs = new Set();
 
             applications.forEach(app => {
-                const dateStr = app.applicationDate || app.applied_on || app.created_at;
-                if (dateStr) {
+                if (app.applied_on) {
                     try {
-                        const appDate = new Date(dateStr);
+                        const appDate = new Date(app.applied_on);
                         if (appDate.toDateString() === todayStr) todayCount++;
                         if (appDate >= weekAgo) weekCount++;
                     } catch(e) {}
@@ -641,10 +640,9 @@
                 const bgColor = index % 2 === 0 ? '#ffffff' : '#f8f9fb';
                 
                 let dateStr = 'N/A';
-                const dateField = app.applicationDate || app.applied_on || app.created_at;
-                if (dateField) {
+                if (app.applied_on) {
                     try {
-                        dateStr = new Date(dateField).toLocaleString('en-IN', {
+                        dateStr = new Date(app.applied_on).toLocaleString('en-IN', {
                             day: '2-digit', month: 'short', year: 'numeric',
                             hour: '2-digit', minute: '2-digit'
                         });
@@ -657,12 +655,12 @@
                     <tr style="background:${bgColor};" id="row_${app.id}">
                         <td style="padding:10px 16px; font-weight:600;">${index + 1}</td>
                         <td style="padding:10px 16px; font-weight:600; color:#0b2b4a;">${app.name || 'N/A'}</td>
-                        <td style="padding:10px 16px;">${app.mobile || app.father_mobile || 'N/A'}</td>
+                        <td style="padding:10px 16px;">${app.mobile || 'N/A'}</td>
                         <td style="padding:10px 16px; font-size:0.85rem;">${app.email || 'N/A'}</td>
                         <td style="padding:10px 16px;">
-                            <span class="program-badge">${app.program || app.course || 'N/A'}</span>
+                            <span class="program-badge">${app.program || 'N/A'}</span>
                         </td>
-                        <td style="padding:10px 16px; font-size:0.85rem;">${app.career_goal || app.goal || 'N/A'}</td>
+                        <td style="padding:10px 16px; font-size:0.85rem;">${app.career_goal || 'N/A'}</td>
                         <td style="padding:10px 16px; font-size:0.8rem; white-space:nowrap;">${dateStr}</td>
                         <td style="padding:10px 16px;">
                             <div class="action-cell">
@@ -696,8 +694,8 @@
             const filtered = allApplications.filter(app => {
                 const name = (app.name || '').toLowerCase();
                 const email = (app.email || '').toLowerCase();
-                const mobile = (app.mobile || app.father_mobile || '').toString().toLowerCase();
-                const program = (app.program || app.course || '').toLowerCase();
+                const mobile = (app.mobile || '').toString().toLowerCase();
+                const program = (app.program || '').toLowerCase();
                 return name.includes(filter) || email.includes(filter) || 
                        mobile.includes(filter) || program.includes(filter);
             });
@@ -718,27 +716,26 @@
                         const fields = {
                             'Full Name': data.name,
                             'Aadhar Number': data.aadhar,
-                            'Mobile Number': data.mobile || data.father_mobile,
+                            'Mobile Number': data.mobile,
                             'Email': data.email,
                             'Gender': data.gender,
                             'Date of Birth': data.dob,
                             'Address': data.address,
                             'State': data.state,
                             'City': data.city,
-                            'Father\'s Name': data.father || data.father_name,
-                            'Mother\'s Name': data.mother || data.mother_name,
+                            'Father\'s Name': data.father_name,
+                            'Mother\'s Name': data.mother_name,
                             'Siblings': data.siblings,
                             'Religion': data.religion,
                             'Caste': data.caste,
-                            'Annual Income': data.income || data.annual_income,
+                            'Annual Income': data.annual_income,
                             'PG Course': data.pg_course,
-                            'Graduation Course': data.grad_course || data.graduation_course,
+                            'Graduation Course': data.graduation_course,
                             'Academic Year': data.academic_year,
-                            'Program Applied': data.program || data.course,
-                            'Career Goal': data.career_goal || data.goal,
-                            'How did you know?': data.source || data.how_did_you_know,
-                            'Applied On': data.applicationDate ? new Date(data.applicationDate).toLocaleString() : 
-                                      data.applied_on ? new Date(data.applied_on).toLocaleString() : 'N/A'
+                            'Program Applied': data.program,
+                            'Career Goal': data.career_goal,
+                            'How did you know?': data.how_did_you_know,
+                            'Applied On': data.applied_on ? new Date(data.applied_on).toLocaleString() : 'N/A'
                         };
 
                         for (const [key, value] of Object.entries(fields)) {
@@ -788,37 +785,6 @@
         }
 
         // ============================================
-        // 🗑️ DELETE ALL
-        // ============================================
-        function deleteAll() {
-            if (allApplications.length === 0) {
-                showToast('No applications to delete.', 'info');
-                return;
-            }
-
-            if (confirm(`⚠️ Delete ALL ${allApplications.length} applications?`)) {
-                if (confirm('⚠️ FINAL WARNING: This cannot be undone!')) {
-                    const batch = db.batch();
-                    allApplications.forEach(app => {
-                        const ref = db.collection('applications').doc(app.id);
-                        batch.delete(ref);
-                    });
-                    
-                    batch.commit()
-                        .then(() => {
-                            allApplications = [];
-                            updateStats([]);
-                            renderTable([]);
-                            showToast('✅ All applications deleted!', 'success');
-                        })
-                        .catch((error) => {
-                            showToast('Error: ' + error.message, 'error');
-                        });
-                }
-            }
-        }
-
-        // ============================================
         // ❌ MODAL
         // ============================================
         function closeModal() {
@@ -849,16 +815,14 @@
                     aadhar = `="${aadhar}"`;
                 }
                 
-                const dateField = app.applicationDate || app.applied_on || app.created_at || '';
-                
                 const row = [
                     `"${(app.name || '').replace(/"/g, '""')}"`,
                     `"${aadhar.replace(/"/g, '""')}"`,
-                    `"${(app.mobile || app.father_mobile || '').replace(/"/g, '""')}"`,
+                    `"${(app.mobile || '').replace(/"/g, '""')}"`,
                     `"${(app.email || '').replace(/"/g, '""')}"`,
-                    `"${(app.program || app.course || '').replace(/"/g, '""')}"`,
-                    `"${(app.career_goal || app.goal || '').replace(/"/g, '""')}"`,
-                    `"${dateField.replace(/"/g, '""')}"`
+                    `"${(app.program || '').replace(/"/g, '""')}"`,
+                    `"${(app.career_goal || '').replace(/"/g, '""')}"`,
+                    `"${(app.applied_on || '').replace(/"/g, '""')}"`
                 ];
                 csv += row.join(',') + '\n';
             });
