@@ -8,6 +8,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css" />
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            color: #1a2a3a;
+        }
+        /* ===== TOP HEADER WITH LOGO ===== */
         .top-header {
             background: #ffffff;
             padding: 10px 0;
@@ -40,6 +51,7 @@
             border-radius: 6px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
             transition: transform 0.2s ease;
+            cursor: pointer;
         }
         .header-brand img:hover {
             transform: scale(1.05);
@@ -84,6 +96,7 @@
             font-weight: 600;
             font-size: 0.9rem;
             transition: background 0.2s ease;
+            text-decoration: none;
         }
         .header-nav .btn-gold-small:hover {
             background: #a87d20;
@@ -105,6 +118,39 @@
             .header-brand img {
                 height: 45px;
             }
+        }
+        /* ===== HERO ===== */
+        .hero {
+            padding: 20px 0;
+        }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            padding: 20px 0;
+        }
+        @media (max-width: 768px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .hero-tag {
+            display: inline-block;
+            background: #f0f4fb;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            color: #0b2b4a;
+            margin-bottom: 12px;
+        }
+        .hero-tag i {
+            color: #c49a2b;
         }
         .hero-quote-block {
             background: #f0f4fb;
@@ -128,9 +174,63 @@
         .hero-quote-block .tagline span {
             color: #c49a2b;
         }
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            background: #0b2b4a;
+            color: white;
+            margin-right: 12px;
+            transition: background 0.2s ease;
+        }
+        .btn:hover {
+            background: #1a3a5a;
+        }
+        .btn-gold {
+            background: #c49a2b;
+            color: white;
+        }
+        .btn-gold:hover {
+            background: #a87d20;
+        }
+        /* ===== SECTIONS ===== */
+        .section-title {
+            font-size: 2.2rem;
+            text-align: center;
+            color: #0b2b4a;
+            margin-bottom: 8px;
+        }
+        .section-sub {
+            text-align: center;
+            color: #4a5d74;
+            margin-bottom: 20px;
+        }
+        .card {
+            background: white;
+            padding: 24px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            transition: transform 0.2s ease;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+        }
+        .card i {
+            color: #c49a2b;
+            font-size: 2rem;
+        }
         .card h4 {
             margin-top: 0.5rem;
+            color: #0b2b4a;
         }
+        .card p {
+            color: #4a5d74;
+            font-size: 0.95rem;
+        }
+        /* ===== FOOTER ===== */
         .footer-brand {
             display: flex;
             align-items: center;
@@ -155,10 +255,26 @@
             font-size: 0.75rem;
             color: #4a5d74;
         }
+        .footer-links a {
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .footer-links a:hover {
+            color: #c49a2b;
+        }
+        .social-links a {
+            color: #4a5d74;
+            text-decoration: none;
+        }
+        .social-links a:hover {
+            color: #c49a2b;
+        }
     </style>
 </head>
 <body>
 
+    <!-- ===== TOP HEADER WITH LOGO (CLICKABLE) ===== -->
     <header class="top-header">
         <div class="container">
             <a href="https://gulivindalasushmitha.github.io/dharithri-website/" target="_blank" rel="noopener noreferrer" class="header-brand">
@@ -170,7 +286,7 @@
             </a>
             <nav class="header-nav">
                 <a href="about.html">About</a>
-                <a href="#">Courses</a>
+                <a href="courses.html">Courses</a>
                 <a href="#">Training</a>
                 <a href="#">Opportunities</a>
                 <a href="apply.html" class="btn-gold-small">Apply Now</a>
@@ -178,6 +294,7 @@
         </div>
     </header>
 
+    <!-- ======== HERO SECTION ======== -->
     <section class="hero">
         <div class="container hero-grid">
             <div>
@@ -195,24 +312,26 @@
                 </div>
             </div>
             <div>
-                <a href="https://gulivindalasushmitha.github.io/dharithri-website/">
+                <a href="https://gulivindalasushmitha.github.io/dharithri-website/" target="_blank">
                     <img src="assets/images/logo.png" alt="Dharithri Logo" style="width:100%; max-width:400px; border-radius:24px; box-shadow:0 20px 40px rgba(0,0,0,0.08);" onerror="this.src='https://i.pinimg.com/736x/be/eb/de/beebde045a4edcad232669579860e12b.jpg'" />
                 </a>
             </div>
         </div>
     </section>
 
+    <!-- ======== WHY DHARITHRI ======== -->
     <section class="container" style="padding: 60px 0;">
         <h2 class="section-title">Why Dharithri?</h2>
         <p class="section-sub">"We do not provide jobs; we facilitate career opportunities and professional growth."</p>
         <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:24px; margin-top:24px;">
-            <div class="card"><i class="fas fa-check-circle" style="color:#c49a2b; font-size:2rem;"></i><h4>We don't sell dreams</h4><p>We build careers with real skills and discipline.</p></div>
-            <div class="card"><i class="fas fa-check-circle" style="color:#c49a2b; font-size:2rem;"></i><h4>We don't promise placements</h4><p>We prepare professionals who are ready for opportunities.</p></div>
-            <div class="card"><i class="fas fa-check-circle" style="color:#c49a2b; font-size:2rem;"></i><h4>Skills create opportunities</h4><p>Discipline creates leaders who inspire others.</p></div>
-            <div class="card"><i class="fas fa-check-circle" style="color:#c49a2b; font-size:2rem;"></i><h4>One Learner</h4><p>One Family. One Better Future. Together we grow.</p></div>
+            <div class="card"><i class="fas fa-check-circle"></i><h4>We don't sell dreams</h4><p>We build careers with real skills and discipline.</p></div>
+            <div class="card"><i class="fas fa-check-circle"></i><h4>We don't promise placements</h4><p>We prepare professionals who are ready for opportunities.</p></div>
+            <div class="card"><i class="fas fa-check-circle"></i><h4>Skills create opportunities</h4><p>Discipline creates leaders who inspire others.</p></div>
+            <div class="card"><i class="fas fa-check-circle"></i><h4>One Learner</h4><p>One Family. One Better Future. Together we grow.</p></div>
         </div>
     </section>
 
+    <!-- ======== TRAINING DATES SECTION ======== -->
     <section style="background:#f8f9fa; padding:60px 0;">
         <div class="container">
             <div style="background:white; padding:30px; border-radius:16px; box-shadow:0 4px 12px rgba(0,0,0,0.06); max-width:800px; margin:0 auto; text-align:center;">
@@ -244,6 +363,7 @@
         </div>
     </section>
 
+    <!-- ======== OUR PROMISE ======== -->
     <section style="background:#0b2b4a; color:white; padding:60px 0;">
         <div class="container" style="text-align:center;">
             <h2 style="font-size:2.2rem; font-weight:700;">Our Promise</h2>
@@ -253,6 +373,7 @@
         </div>
     </section>
 
+    <!-- ======== FOOTER ======== -->
     <footer style="background:#f0f4fb; padding:40px 0 20px; border-top:1px solid #dce3ec; margin-top:0;">
         <div class="container">
             <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:20px;">
@@ -265,25 +386,26 @@
                         </div>
                     </a>
                 </div>
-                <div style="display:flex; flex-wrap:wrap; gap:24px; align-items:center;">
-                    <a href="about.html" style="color:#2c3e50; text-decoration:none; font-weight:500;">About</a>
-                    <a href="apply.html" style="color:#2c3e50; text-decoration:none; font-weight:500;">Apply</a>
-                    <a href="#" style="color:#2c3e50; text-decoration:none; font-weight:500;">Contact</a>
-                    <a href="#" style="color:#2c3e50; text-decoration:none; font-weight:500;">Blog</a>
+                <div class="footer-links" style="display:flex; flex-wrap:wrap; gap:24px; align-items:center;">
+                    <a href="about.html">About</a>
+                    <a href="apply.html">Apply</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="#">Blog</a>
                 </div>
             </div>
             <div style="border-top:1px solid #dce3ec; margin-top:24px; padding-top:20px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-size:0.9rem; color:#4a5d74;">
                 <span>&copy; 2026 Dharithri Manpower Training & Supply Pvt. Ltd. All rights reserved.</span>
-                <span style="display:flex; gap:16px;">
-                    <a href="#" style="color:#4a5d74; text-decoration:none;"><i class="fab fa-linkedin"></i></a>
-                    <a href="#" style="color:#4a5d74; text-decoration:none;"><i class="fab fa-instagram"></i></a>
-                    <a href="#" style="color:#4a5d74; text-decoration:none;"><i class="fab fa-youtube"></i></a>
+                <span class="social-links" style="display:flex; gap:16px;">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
                 </span>
             </div>
         </div>
     </footer>
 
+    <!-- REMOVED navbar.js to prevent old header from loading -->
+    <!-- Only main.js is needed -->
     <script src="js/main.js"></script>
-    <script src="js/navbar.js"></script>
 </body>
 </html>
