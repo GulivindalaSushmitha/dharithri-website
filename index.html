@@ -3,523 +3,518 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dharithri · Building Worth. Inspiring Generations.</title>
+    <title>Dharithri Manpower Training & Supply Pvt. Ltd.</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css" />
     <style>
+        /* ============================================
+           NAVBAR STYLES (matching about page)
+           ============================================ */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
             font-family: 'Inter', sans-serif;
-            background: #ffffff;
-            color: #1a2a3a;
+            background: #f8f7f4;
+            color: #0b2b4a;
+            line-height: 1.6;
         }
-        
-        /* ===== TOP NAVIGATION BAR ===== */
-        .top-nav {
-            background: #ffffff;
-            padding: 12px 0;
-            border-bottom: 1px solid #e8ecf0;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            background: #0b2b4a;
+            padding: 12px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
             position: sticky;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
-        .top-nav .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 16px;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* ===== LOGO + BRAND NAME ===== */
-        .nav-brand {
+
+        .navbar .logo {
             display: flex;
             align-items: center;
             gap: 12px;
             text-decoration: none;
-            color: inherit;
-            cursor: pointer;
         }
-        .nav-brand img {
-            height: 48px;
+
+        .navbar .logo img {
+            height: 50px;
             width: auto;
             border-radius: 6px;
-            transition: transform 0.2s ease;
-            cursor: pointer;
         }
-        .nav-brand img:hover {
-            transform: scale(1.03);
-        }
-        .nav-brand .brand-text {
+
+        .navbar .logo-text {
             display: flex;
             flex-direction: column;
             line-height: 1.2;
-            cursor: pointer;
         }
-        .nav-brand .brand-text .company-name {
-            font-size: 1.05rem;
-            color: #0b2b4a;
+
+        .navbar .logo-text .brand {
+            font-size: 1.2rem;
             font-weight: 700;
+            color: #c49a2b;
+            letter-spacing: 0.5px;
         }
-        .nav-brand .brand-text .tagline {
-            font-size: 0.7rem;
-            color: #7a8a9e;
+
+        .navbar .logo-text .sub {
+            font-size: 0.6rem;
+            font-weight: 500;
+            color: #e8e0d0;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .navbar .logo-text .tagline {
+            font-size: 0.55rem;
             font-weight: 400;
-            letter-spacing: 0.2px;
+            color: #b8b0a0;
+            letter-spacing: 0.5px;
+            font-style: italic;
         }
-        
-        /* ===== NAVIGATION LINKS ===== */
+
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 28px;
-            flex-wrap: wrap;
+            gap: 30px;
+            list-style: none;
         }
+
         .nav-links a {
-            color: #2c3e50;
+            color: #e8e0d0;
             text-decoration: none;
             font-weight: 500;
-            font-size: 0.92rem;
-            transition: color 0.2s ease;
-            padding: 4px 0;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
         }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #c49a2b;
+            transition: width 0.3s ease;
+        }
+
         .nav-links a:hover {
             color: #c49a2b;
         }
-        .nav-links .btn-apply {
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: #c49a2b;
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-apply-btn {
             background: #c49a2b;
-            color: white;
-            padding: 8px 22px;
-            border-radius: 30px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            transition: background 0.2s ease;
+            color: #0b2b4a !important;
+            padding: 10px 28px;
+            border-radius: 40px;
+            font-weight: 700;
+            transition: all 0.3s ease;
         }
-        .nav-links .btn-apply:hover {
-            background: #a87d20;
-            color: white;
+
+        .nav-apply-btn::after {
+            display: none !important;
         }
-        
-        @media (max-width: 768px) {
-            .top-nav .container {
-                flex-direction: column;
-                align-items: flex-start;
+
+        .nav-apply-btn:hover {
+            background: #d4aa3b;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(196, 154, 43, 0.3);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 3px;
+            background: #e8e0d0;
+            border-radius: 3px;
+            transition: 0.3s ease;
+        }
+
+        /* ===== RESPONSIVE NAV ===== */
+        @media (max-width: 820px) {
+            .navbar {
+                padding: 12px 20px;
             }
+
+            .hamburger {
+                display: flex;
+            }
+
             .nav-links {
+                display: none;
                 width: 100%;
-                justify-content: flex-start;
-                gap: 16px;
+                flex-direction: column;
+                align-items: center;
+                gap: 18px;
+                padding: 20px 0 10px;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                margin-top: 12px;
             }
-            .nav-brand .brand-text .company-name {
-                font-size: 0.9rem;
+
+            .nav-links.open {
+                display: flex;
             }
-            .nav-brand img {
-                height: 38px;
+
+            .nav-links a {
+                font-size: 1.05rem;
+            }
+
+            .nav-apply-btn {
+                padding: 10px 40px;
+                width: 100%;
+                text-align: center;
+            }
+
+            .navbar .logo img {
+                height: 40px;
+            }
+
+            .navbar .logo-text .brand {
+                font-size: 1rem;
             }
         }
-        
-        /* ===== HERO SECTION ===== */
+
+        @media (max-width: 480px) {
+            .navbar .logo-text .sub {
+                font-size: 0.5rem;
+            }
+            .navbar .logo-text .tagline {
+                display: none;
+            }
+            .navbar .logo img {
+                height: 35px;
+            }
+        }
+
+        /* ===== HERO SECTION (sample) ===== */
         .hero {
-            padding: 40px 0 20px;
+            background: linear-gradient(135deg, #0b2b4a 0%, #1a3f62 100%);
+            padding: 80px 40px;
+            text-align: center;
+            color: #fff;
         }
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #c49a2b;
+            margin-bottom: 10px;
         }
-        @media (max-width: 768px) {
-            .hero-grid {
-                grid-template-columns: 1fr;
-            }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #d0d8e0;
+            max-width: 700px;
+            margin: 0 auto 20px;
         }
+
+        .hero .btn-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero .btn {
+            padding: 14px 40px;
+            border-radius: 40px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .hero .btn-primary {
+            background: #c49a2b;
+            color: #0b2b4a;
+        }
+
+        .hero .btn-primary:hover {
+            background: #d4aa3b;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(196, 154, 43, 0.4);
+        }
+
+        .hero .btn-outline {
+            border: 2px solid #c49a2b;
+            color: #c49a2b;
+        }
+
+        .hero .btn-outline:hover {
+            background: #c49a2b;
+            color: #0b2b4a;
+            transform: translateY(-3px);
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 60px 20px;
         }
-        
-        .hero-tag {
-            display: inline-block;
-            background: #f0f4fb;
-            padding: 5px 14px;
-            border-radius: 30px;
-            font-size: 0.8rem;
-            color: #0b2b4a;
-            margin-bottom: 10px;
-        }
-        .hero-tag i {
-            color: #c49a2b;
-        }
-        
-        .hero-quote-block {
-            background: #f5f8fc;
-            padding: 1.8rem 2rem 1.5rem;
-            border-radius: 20px;
-            margin-top: 0.8rem;
-            border-left: 5px solid #c49a2b;
-        }
-        .hero-quote-block .main-quote {
-            font-size: 1.7rem;
-            font-weight: 700;
-            color: #0b2b4a;
-            margin-bottom: 0.2rem;
-            line-height: 1.2;
-        }
-        .hero-quote-block .description {
-            font-size: 1.05rem;
-            margin: 0.5rem 0 0.8rem;
-            color: #2a3a4a;
-            line-height: 1.6;
-        }
-        .hero-quote-block .tagline {
-            font-weight: 700;
-            color: #0b2b4a;
-            font-size: 1.2rem;
-            margin-top: 0.3rem;
-            letter-spacing: -0.2px;
-        }
-        .hero-quote-block .tagline span {
-            color: #c49a2b;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 11px 28px;
-            border-radius: 30px;
-            font-weight: 600;
-            text-decoration: none;
-            background: #0b2b4a;
-            color: white;
-            margin-right: 12px;
-            transition: background 0.2s ease;
-            font-size: 0.95rem;
-        }
-        .btn:hover {
-            background: #1a3a5a;
-        }
-        .btn-gold {
-            background: #c49a2b;
-            color: white;
-        }
-        .btn-gold:hover {
-            background: #a87d20;
-        }
-        .btn-gold i {
-            margin-left: 8px;
-        }
-        
-        /* ===== SECTIONS ===== */
+
         .section-title {
-            font-size: 2rem;
-            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
             color: #0b2b4a;
-            margin-bottom: 6px;
+            text-align: center;
+            margin-bottom: 15px;
         }
+
         .section-sub {
             text-align: center;
-            color: #4a5d74;
-            margin-bottom: 20px;
-            font-size: 0.95rem;
+            font-size: 1.1rem;
+            color: #4a5a6e;
+            max-width: 700px;
+            margin: 0 auto 40px;
         }
-        
-        .card-grid {
+
+        .features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 24px;
-            margin-top: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
         }
-        .card {
-            background: white;
-            padding: 24px 18px;
-            border-radius: 16px;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            transition: transform 0.2s ease;
-            border: 1px solid #f0f2f5;
-        }
-        .card:hover {
-            transform: translateY(-3px);
-        }
-        .card i {
-            color: #c49a2b;
-            font-size: 1.8rem;
-        }
-        .card h4 {
-            margin-top: 0.5rem;
-            color: #0b2b4a;
-            font-size: 1rem;
-        }
-        .card p {
-            color: #4a5d74;
-            font-size: 0.9rem;
-            margin-top: 4px;
-        }
-        
-        /* ===== FOOTER - ONLY COPYRIGHT ===== */
-        .footer {
-            background: #f5f8fc;
-            padding: 30px 0 18px;
-            border-top: 1px solid #e8ecf0;
-            margin-top: 0;
-            text-align: center;
-        }
-        .footer .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        .footer-copyright {
-            font-size: 0.78rem;
-            color: #7a8a9e;
-        }
-        
-        /* ===== TRAINING SCHEDULE ===== */
-        .schedule-box {
-            background: white;
+
+        .feature-card {
+            background: #fff;
             padding: 30px;
             border-radius: 16px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            max-width: 800px;
-            margin: 0 auto;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
             text-align: center;
-            border: 1px solid #f0f2f5;
+            transition: 0.3s ease;
         }
-        .schedule-box h3 {
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 8px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card i {
+            font-size: 2.5rem;
+            color: #c49a2b;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h4 {
+            font-size: 1.2rem;
             color: #0b2b4a;
-            font-size: 1.6rem;
             margin-bottom: 8px;
         }
-        .schedule-box .divider {
-            border-bottom: 3px solid #c49a2b;
-            width: 50px;
-            margin: 0 auto 18px;
-        }
-        .schedule-box .main-date {
-            font-size: 1.15rem;
-            font-weight: 600;
-            color: #0b2b4a;
-        }
-        .schedule-box .main-date i {
-            color: #c49a2b;
-        }
-        .schedule-box .main-date span {
-            color: #c49a2b;
-        }
-        .schedule-box .schedule-details {
-            background: #f8fafc;
-            padding: 18px;
-            border-radius: 12px;
-            margin: 18px 0;
-        }
-        .schedule-box .schedule-details .label {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #0b2b4a;
-        }
-        .schedule-box .schedule-details .label i {
-            color: #c49a2b;
-        }
-        .schedule-box .schedule-details .dates {
-            color: #4a5d74;
-            margin: 6px 0;
+
+        .feature-card p {
+            color: #5a6a7e;
             font-size: 0.95rem;
         }
-        .schedule-box .schedule-details .dates i {
-            color: #c49a2b;
-        }
-        .schedule-box .schedule-details .dates strong {
-            color: #0b2b4a;
-        }
-        
-        /* ===== PROMISE SECTION ===== */
-        .promise-section {
+
+        .quote-block {
             background: #0b2b4a;
-            color: white;
-            padding: 50px 0;
-            text-align: center;
-        }
-        .promise-section h2 {
-            font-size: 2rem;
-            font-weight: 700;
-        }
-        .promise-section p {
-            max-width: 700px;
-            margin: 14px auto;
-            color: #b0c4d8;
-            font-size: 1.05rem;
-            line-height: 1.6;
-        }
-        .promise-section .promise-quote {
-            margin-top: 18px;
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: #c49a2b;
-        }
-        .promise-section .promise-sub {
-            font-size: 1rem;
-            color: #b0c4d8;
-        }
-        
-        .hero-image {
-            width: 100%;
-            max-width: 400px;
+            color: #fff;
+            padding: 50px 40px;
             border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .quote-block blockquote {
+            font-size: 1.4rem;
+            font-style: italic;
+            color: #c49a2b;
+            max-width: 700px;
+            margin: 0 auto 15px;
+        }
+
+        .quote-block cite {
+            color: #b0b8c0;
+            font-size: 0.95rem;
+            font-style: normal;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: #0b2b4a;
+            color: #b0b8c0;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 2px solid #c49a2b;
+        }
+
+        .footer .brand {
+            color: #c49a2b;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .footer p {
+            margin-top: 8px;
+            font-size: 0.9rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 640px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero {
+                padding: 50px 20px;
+            }
+            .container {
+                padding: 30px 15px;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
         }
     </style>
 </head>
 <body>
 
     <!-- ============================================ -->
-    <!-- ===== TOP NAVIGATION BAR ===== -->
+    <!-- NAVBAR (matching about page style)           -->
     <!-- ============================================ -->
-    <header class="top-nav">
-        <div class="container">
-            <!-- Logo + Brand Name - Clicking STAYS ON HOMEPAGE -->
-            <a href="index.html" class="nav-brand">
-                <img src="assets/images/logo.png" alt="Dharithri Logo" onerror="this.src='https://i.pinimg.com/736x/be/eb/de/beebde045a4edcad232669579860e12b.jpg'" />
-                <div class="brand-text">
-                    <span class="company-name">Dharithri Manpower Training & Supply Pvt. Ltd.</span>
-                    <span class="tagline">Building Worth. Inspiring Generations.</span>
-                </div>
-            </a>
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <!-- Logo image - update src to your actual logo path -->
+            <img src="logo.png" alt="Dharithri Logo" />
+            <div class="logo-text">
+                <span class="brand">DHARITHRI</span>
+                <span class="sub">MANPOWER TRAINING &amp; SUPPLY PVT. LTD.</span>
+                <span class="tagline">WE SUPPLY THE WORTH. WE IMPROVE THE WORTH.</span>
+            </div>
+        </a>
 
-            <!-- Navigation: Home | About | Courses | Training | Opportunities | Apply Now -->
-            <nav class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="courses.html">Courses</a>
-                <a href="#">Training</a>
-                <a href="#">Opportunities</a>
-                <a href="apply.html" class="btn-apply">Apply Now</a>
-            </nav>
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
-    </header>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="apply.html" class="nav-apply-btn"><i class="fas fa-paper-plane"></i> Apply Now</a></li>
+        </ul>
+    </nav>
 
     <!-- ============================================ -->
-    <!-- ===== HERO SECTION ===== -->
+    <!-- HERO SECTION                                -->
     <!-- ============================================ -->
     <section class="hero">
-        <div class="container hero-grid">
-            <div>
-                <div class="hero-tag"><i class="fas fa-star"></i> Building Worth. Inspiring Generations.</div>
-                <div class="hero-quote-block">
-                    <div class="main-quote">BUILDING PEOPLE.<br />STRENGTHENING BUSINESSES.</div>
-                    <p class="description">
-                        Dharithri Manpower Training & Supply Pvt. Ltd. helps individuals develop practical skills, professional confidence, workplace discipline, and leadership capability—while helping organizations access and develop valuable manpower.
-                    </p>
-                    <div class="tagline">Train. Develop. Perform. <span>Grow.</span></div>
-                </div>
-                <div style="margin-top: 1.2rem;">
-                    <a href="about.html" class="btn">Learn More</a>
-                    <a href="apply.html" class="btn btn-gold">Apply Now <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-            <div>
-                <img src="assets/images/logo.png" alt="Dharithri Logo" class="hero-image" onerror="this.src='https://i.pinimg.com/736x/be/eb/de/beebde045a4edcad232669579860e12b.jpg'" />
-            </div>
+        <h1>Building Worth. Inspiring Generations.</h1>
+        <p>Dharithri Manpower Training &amp; Supply Pvt. Ltd. helps individuals develop practical skills, professional confidence, workplace discipline, and leadership capability—while helping organizations access and develop valuable manpower.</p>
+        <div class="btn-group">
+            <a href="about.html" class="btn btn-primary">Learn More</a>
+            <a href="apply.html" class="btn btn-outline">Apply Now</a>
         </div>
     </section>
 
     <!-- ============================================ -->
-    <!-- ===== WHY DHARITHRI ===== -->
+    <!-- WHY DHARITHRI SECTION                       -->
     <!-- ============================================ -->
-    <section class="container" style="padding: 50px 0;">
+    <div class="container">
         <h2 class="section-title">Why Dharithri?</h2>
-        <p class="section-sub">"We do not provide jobs; we facilitate career opportunities and professional growth."</p>
-        <div class="card-grid">
-            <div class="card">
-                <i class="fas fa-check-circle"></i>
-                <h4>We don't sell dreams</h4>
-                <p>We build careers with real skills and discipline.</p>
+        <p class="section-sub">We do not provide jobs; we facilitate career opportunities and professional growth.</p>
+
+        <div class="features">
+            <div class="feature-card">
+                <i class="fas fa-user-graduate"></i>
+                <h4>Skill Development</h4>
+                <p>Practical, industry-relevant training that builds real-world capability.</p>
             </div>
-            <div class="card">
-                <i class="fas fa-check-circle"></i>
-                <h4>We don't promise placements</h4>
-                <p>We prepare professionals who are ready for opportunities.</p>
+            <div class="feature-card">
+                <i class="fas fa-handshake"></i>
+                <h4>Career Facilitation</h4>
+                <p>We connect talent with opportunity, not just jobs.</p>
             </div>
-            <div class="card">
-                <i class="fas fa-check-circle"></i>
-                <h4>Skills create opportunities</h4>
-                <p>Discipline creates leaders who inspire others.</p>
+            <div class="feature-card">
+                <i class="fas fa-chart-line"></i>
+                <h4>Professional Growth</h4>
+                <p>Continuous learning and leadership development for long-term success.</p>
             </div>
-            <div class="card">
-                <i class="fas fa-check-circle"></i>
-                <h4>One Learner</h4>
-                <p>One Family. One Better Future. Together we grow.</p>
+            <div class="feature-card">
+                <i class="fas fa-users"></i>
+                <h4>Workforce Solutions</h4>
+                <p>Helping organizations access and develop valuable manpower.</p>
             </div>
         </div>
-    </section>
 
-    <!-- ============================================ -->
-    <!-- ===== TRAINING DATES ===== -->
-    <!-- ============================================ -->
-    <section style="background:#f8fafc; padding:50px 0;">
-        <div class="container">
-            <div class="schedule-box">
-                <h3>📅 Upcoming Training Schedule</h3>
-                <div class="divider"></div>
-                <p class="main-date">
-                    <i class="fas fa-calendar-alt"></i> Training starts from <span>October 1st</span> (1st Batch)
-                </p>
-                <div class="schedule-details">
-                    <p class="label">
-                        <i class="fas fa-graduation-cap"></i> Try sessions for free!
-                    </p>
-                    <p class="dates">
-                        <i class="fas fa-calendar-check"></i> Session Dates: 
-                        <strong>Sept 1st</strong> · 
-                        <strong>Sept 7th</strong> · 
-                        <strong>Sept 15th</strong> · 
-                        <strong>Sept 21st</strong>
-                    </p>
-                    <p class="dates">
-                        <i class="fas fa-users"></i> Parent Meeting: 
-                        <strong>Sept 28th</strong>
-                    </p>
-                </div>
-                <a href="apply.html" class="btn btn-gold" style="display:inline-block; margin-top:8px;">
-                    Register Now <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
+        <!-- ============================================ -->
+        <!-- QUOTE / ABOUT SNIPPET                       -->
+        <!-- ============================================ -->
+        <div class="quote-block">
+            <blockquote>
+                "When one individual grows, an entire family grows. When families grow, society grows."
+            </blockquote>
+            <cite>— Dharithri Manpower Training &amp; Supply Pvt. Ltd.</cite>
         </div>
-    </section>
 
-    <!-- ============================================ -->
-    <!-- ===== OUR PROMISE ===== -->
-    <!-- ============================================ -->
-    <section class="promise-section">
-        <div class="container">
-            <h2>Our Promise</h2>
-            <p>We promise to stand beside every learner, every family, and every dream. We will continue to create opportunities, nurture talent, inspire confidence, and build a future where learning never ends.</p>
-            <div class="promise-quote">"Building Worth. Inspiring Generations."</div>
-            <div class="promise-sub">One Learner. One Family. One Better Future.</div>
+        <div style="text-align:center; margin-top:20px;">
+            <p style="font-size:1.1rem; color:#4a5a6e; max-width:700px; margin:0 auto;">
+                At Dharithri, we believe that every person carries hidden potential waiting to be discovered. 
+                Our purpose is not merely to train people—we transform confidence into capability, 
+                talent into opportunity, and dreams into meaningful careers.
+            </p>
+            <a href="about.html" style="display:inline-block; margin-top:25px; color:#c49a2b; font-weight:600; text-decoration:none; border-bottom:2px solid #c49a2b; padding-bottom:4px;">
+                Learn more about us <i class="fas fa-arrow-right"></i>
+            </a>
         </div>
-    </section>
+    </div>
 
     <!-- ============================================ -->
-    <!-- ===== FOOTER - ONLY COPYRIGHT ===== -->
+    <!-- FOOTER                                      -->
     <!-- ============================================ -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-copyright">© 2026 Dharithri. All rights reserved.</div>
-        </div>
+        <span class="brand">Dharithri Manpower Training &amp; Supply Pvt. Ltd.</span>
+        <p>Building Worth. Inspiring Generations.</p>
+        <p style="font-size:0.85rem; margin-top:12px; color:#7a8a9a;">
+            &copy; 2026 Dharithri Manpower Training &amp; Supply Pvt. Ltd. All rights reserved.
+        </p>
     </footer>
 
     <!-- ============================================ -->
-    <!-- SCRIPTS -->
+    <!-- HAMBURGER MENU TOGGLE                       -->
     <!-- ============================================ -->
-    <script src="js/main.js"></script>
+    <script>
+        function toggleMenu() {
+            const nav = document.getElementById('navLinks');
+            nav.classList.toggle('open');
+        }
+
+        // Close menu on link click (for mobile)
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('open');
+            });
+        });
+    </script>
+
 </body>
 </html>
