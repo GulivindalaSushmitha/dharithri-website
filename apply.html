@@ -3,10 +3,36 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Apply Now · Dharithri</title>
+    <title>Apply · Dharithri Manpower</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css" />
+    <style>
+        /* inline fallback styles */
+        .form-row { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 6px; }
+        .form-group { flex: 1; min-width: 200px; margin-bottom: 16px; }
+        .form-group label { display: block; font-weight: 600; font-size: 0.95rem; color: #0b2b4a; margin-bottom: 6px; }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%; padding: 12px 14px; border: 1.5px solid #dce1e8; border-radius: 12px;
+            font-size: 1rem; background: #fafafa; transition: 0.2s; font-family: 'Inter', sans-serif;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none; border-color: #c49a2b; background: #fff; box-shadow: 0 0 0 3px rgba(196,154,43,0.15);
+        }
+        .required { color: #c0392b; }
+        .alert { padding: 16px 20px; border-radius: 12px; margin-bottom: 20px; }
+        .alert-success { background: #e8f5e9; border: 2px solid #4caf50; color: #1e4a2a; }
+        .alert-error { background: #ffebee; border: 2px solid #e53935; color: #7f1d1d; }
+        .btn-gold { background: #c49a2b; border: none; color: #0b2b4a; font-weight: 700; border-radius: 40px; cursor: pointer; transition: 0.2s; }
+        .btn-gold:hover { background: #b0881f; transform: scale(1.01); }
+        .btn-gold:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
+        .text-center { text-align: center; }
+        .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+        .section-title { font-size: 2.2rem; font-weight: 700; color: #0b2b4a; margin-bottom: 6px; }
+        .section-sub { font-size: 1.1rem; color: #4a5a6e; max-width: 600px; }
+        .form-section { background: #ffffff; border-radius: 28px; padding: 35px 40px; box-shadow: 0 12px 40px rgba(0,0,0,0.05); }
+        @media (max-width: 640px) { .form-section { padding: 20px; } .form-row { flex-direction: column; gap: 0; } }
+    </style>
 </head>
 <body>
     <!-- ============================================ -->
@@ -15,7 +41,7 @@
 
     <section class="container" style="padding: 40px 0 60px;">
         <h1 class="section-title text-center">Application Form</h1>
-        <p class="section-sub text-center" style="margin:0 auto 30px;">Fill in all the details to start your journey with Dharithri.</p>
+        <p class="section-sub text-center" style="margin:0 auto 30px;">Fill in all the details to start your journey with Dharithri Manpower.</p>
 
         <div class="form-section">
             <form id="applicationForm">
@@ -50,7 +76,7 @@
                             <option value="">Select Gender</option>
                             <option>Male</option>
                             <option>Female</option>
-                            <option>Other</option>
+                            <!-- "Other" removed as requested -->
                         </select>
                     </div>
                     <div class="form-group">
@@ -69,14 +95,26 @@
 
                 <!-- Family Details -->
                 <h3 style="color:#0b2b4a; border-bottom:2px solid #c49a2b; padding-bottom:8px; margin:30px 0 20px;"><i class="fas fa-users"></i> Family Details</h3>
+                <!-- Separate row for Mother Name & Mother Occupation -->
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Mother Name & Occupation <span class="required">*</span></label>
-                        <input type="text" name="mother_name" id="mother_name" required placeholder="Mother's name and occupation" />
+                        <label>Mother Name <span class="required">*</span></label>
+                        <input type="text" name="mother_name" id="mother_name" required placeholder="Mother's full name" />
                     </div>
                     <div class="form-group">
-                        <label>Father Name & Occupation <span class="required">*</span></label>
-                        <input type="text" name="father_name" id="father_name" required placeholder="Father's name and occupation" />
+                        <label>Mother Occupation <span class="required">*</span></label>
+                        <input type="text" name="mother_occupation" id="mother_occupation" required placeholder="Mother's occupation" />
+                    </div>
+                </div>
+                <!-- Separate row for Father Name & Father Occupation -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Father Name <span class="required">*</span></label>
+                        <input type="text" name="father_name" id="father_name" required placeholder="Father's full name" />
+                    </div>
+                    <div class="form-group">
+                        <label>Father Occupation <span class="required">*</span></label>
+                        <input type="text" name="father_occupation" id="father_occupation" required placeholder="Father's occupation" />
                     </div>
                 </div>
                 <div class="form-row">
@@ -117,20 +155,41 @@
                     </div>
                 </div>
 
-                <!-- Education -->
+                <!-- Education Details -->
                 <h3 style="color:#0b2b4a; border-bottom:2px solid #c49a2b; padding-bottom:8px; margin:30px 0 20px;"><i class="fas fa-graduation-cap"></i> Education Details</h3>
+                <!-- College Name row -->
+                <div class="form-group">
+                    <label>College Name <span class="required">*</span></label>
+                    <input type="text" name="college_name" id="college_name" required placeholder="Name of your college / university" />
+                </div>
+
+                <!-- Graduate row: course + pass out year -->
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Post Graduate Course Name: <span class="required">*</span></label>
+                        <label>Graduation Course Name <span class="required">*</span></label>
+                        <input type="text" name="graduation_course" id="graduation_course" required placeholder="e.g. B.Tech, B.Com, etc." />
+                    </div>
+                    <div class="form-group">
+                        <label>Graduation Pass Out Year <span class="required">*</span></label>
+                        <input type="text" name="grad_passout_year" id="grad_passout_year" required placeholder="e.g. 2022" />
+                    </div>
+                </div>
+
+                <!-- Post Graduate row: course + pass out year -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Post Graduate Course Name <span class="required">*</span></label>
                         <input type="text" name="pg_course" id="pg_course" required placeholder="e.g. MBA, MCA, etc." />
                     </div>
                     <div class="form-group">
-                        <label>Graduation Course Name: <span class="required">*</span></label>
-                        <input type="text" name="graduation_course" id="graduation_course" required placeholder="e.g. B.Tech, B.Com, etc." />
+                        <label>Post Graduate Pass Out Year <span class="required">*</span></label>
+                        <input type="text" name="pg_passout_year" id="pg_passout_year" required placeholder="e.g. 2024" />
                     </div>
                 </div>
+
+                <!-- Academic year (kept as is) -->
                 <div class="form-group">
-                    <label>Academic year: <span class="required">*</span></label>
+                    <label>Academic year (overall) <span class="required">*</span></label>
                     <input type="text" name="academic_year" id="academic_year" placeholder="e.g. 2020-2024" required />
                 </div>
 
@@ -140,25 +199,29 @@
                     <label>Banking Training Program Selection <span class="required">*</span></label>
                     <select name="program" id="program" required>
                         <option value="">Select a program</option>
-                        <option>Sales Manager Training</option>
-                        <option>Operations Manager Training</option>
-                        <option>Risk Manager Training</option>
-                        <option>Credit Manager Training</option>
-                        <option>Legal Manager Training</option>
-                        <option>Technical Manager Training</option>
-                        <option>Accounts & Finance Training</option>
-                        <option>Branch Banking Training</option>
-                        <option>Liability Banking Training</option>
-                        <option>Asset Banking Training</option>
-                        <option>Team Supervisor Training</option>
+                        <!-- new first option -->
+                        <option>Market Manager & Finance Manager</option>
+                        <!-- removed the word "Training" from each option -->
+                        <option>Sales Manager</option>
+                        <option>Operations Manager</option>
+                        <option>Risk Manager</option>
+                        <option>Credit Manager</option>
+                        <option>Legal Manager</option>
+                        <option>Technical Manager</option>
+                        <option>Accounts & Finance</option>
+                        <option>Branch Banking</option>
+                        <option>Liability Banking</option>
+                        <option>Asset Banking</option>
+                        <option>Team Supervisor</option>
                     </select>
                 </div>
+
                 <div class="form-group">
                     <label>What is your main career goal? <span class="required">*</span></label>
                     <select name="career_goal" id="career_goal" required>
                         <option value="">Select Career Goal</option>
                         <option>Start a career in banking</option>
-                        <option>Change my career</option>
+                        <!-- "Change my career" removed -->
                         <option>Improving my banking skills</option>
                         <option>Learn Loan Processing</option>
                     </select>
@@ -174,7 +237,7 @@
                         <option>Facebook</option>
                         <option>Whatsapp</option>
                         <option>Youtube</option>
-                        <option>Website</option>
+                        <!-- "Website" removed -->
                         <option>Friend/Family</option>
                         <option>Newspaper</option>
                         <option>Other</option>
@@ -215,13 +278,12 @@
             measurementId: "G-NHEK585JRM"
         };
 
-        // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
         console.log('✅ Firebase initialized!');
 
         // =============================================
-        // FORM SUBMISSION - Instant Submit (No Resume)
+        // FORM SUBMISSION
         // =============================================
         document.getElementById('applicationForm').addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -229,16 +291,11 @@
             const submitBtn = this.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerHTML;
             
-            // Show loading state
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
             submitBtn.disabled = true;
-
             document.getElementById('formAlert').innerHTML = '';
 
             try {
-                // =============================================
-                // COLLECT FORM DATA
-                // =============================================
                 const formData = {
                     name: document.getElementById('name')?.value || '',
                     aadhar: document.getElementById('aadhar')?.value || '',
@@ -249,15 +306,20 @@
                     address: document.getElementById('address')?.value || '',
                     state: document.getElementById('state')?.value || '',
                     mother_name: document.getElementById('mother_name')?.value || '',
+                    mother_occupation: document.getElementById('mother_occupation')?.value || '',
                     father_name: document.getElementById('father_name')?.value || '',
+                    father_occupation: document.getElementById('father_occupation')?.value || '',
                     mother_mobile: document.getElementById('mother_mobile')?.value || '',
                     father_mobile: document.getElementById('father_mobile')?.value || '',
                     siblings: document.getElementById('siblings')?.value || '',
                     religion: document.getElementById('religion')?.value || '',
                     caste: document.getElementById('caste')?.value || '',
                     annual_income: document.getElementById('annual_income')?.value || '',
-                    pg_course: document.getElementById('pg_course')?.value || '',
+                    college_name: document.getElementById('college_name')?.value || '',
                     graduation_course: document.getElementById('graduation_course')?.value || '',
+                    grad_passout_year: document.getElementById('grad_passout_year')?.value || '',
+                    pg_course: document.getElementById('pg_course')?.value || '',
+                    pg_passout_year: document.getElementById('pg_passout_year')?.value || '',
                     academic_year: document.getElementById('academic_year')?.value || '',
                     program: document.getElementById('program')?.value || '',
                     career_goal: document.getElementById('career_goal')?.value || '',
@@ -267,9 +329,6 @@
                     status: 'pending'
                 };
 
-                // =============================================
-                // VALIDATE DECLARATION
-                // =============================================
                 if (!formData.declaration) {
                     document.getElementById('formAlert').innerHTML = `
                         <div class="alert alert-error">
@@ -282,9 +341,6 @@
                     return;
                 }
 
-                // =============================================
-                // VALIDATE REQUIRED FIELDS
-                // =============================================
                 const requiredFields = ['name', 'aadhar', 'mobile', 'email', 'program', 'career_goal'];
                 let missingFields = [];
                 requiredFields.forEach(field => {
@@ -305,16 +361,9 @@
                     return;
                 }
 
-                // =============================================
-                // SAVE TO FIRESTORE - INSTANT SUBMIT
-                // =============================================
                 const docRef = await db.collection('applications').add(formData);
-                
                 console.log('✅ Application saved! ID:', docRef.id);
 
-                // =============================================
-                // SUCCESS MESSAGE
-                // =============================================
                 document.getElementById('formAlert').innerHTML = `
                     <div class="alert alert-success" style="padding:30px; border-radius:16px; background:#e8f5e9; border:2px solid #4caf50;">
                         <div style="text-align:center;">
@@ -340,25 +389,14 @@
                     </div>
                 `;
 
-                // =============================================
-                // RESET FORM
-                // =============================================
                 document.getElementById('applicationForm').reset();
-                
-                // Scroll to top to show message
                 window.scrollTo({ top: 0, behavior: 'smooth' });
 
             } catch (error) {
                 console.error('❌ Error:', error);
-                
-                let errorMsg = error.message;
-                if (error.code === 'permission-denied') {
-                    errorMsg = 'Permission denied. Please check Firebase rules.';
-                } else if (error.code === 'unavailable') {
-                    errorMsg = 'Service unavailable. Please check your internet connection.';
-                } else {
-                    errorMsg = error.message || 'Unknown error occurred.';
-                }
+                let errorMsg = error.message || 'Unknown error occurred.';
+                if (error.code === 'permission-denied') errorMsg = 'Permission denied. Please check Firebase rules.';
+                else if (error.code === 'unavailable') errorMsg = 'Service unavailable. Please check your internet connection.';
                 
                 document.getElementById('formAlert').innerHTML = `
                     <div class="alert alert-error">
@@ -371,7 +409,6 @@
                     </div>
                 `;
             } finally {
-                // Re-enable button
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
             }
