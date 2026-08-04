@@ -1,394 +1,657 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home · Dharithri</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="css/style.css" />
-    <style>
-        /* ===== HOMEPAGE STYLES ===== */
-        .hero-section {
-            background: #f5f2ed;
-            padding: 50px 2rem 30px;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dharithri · people · value · capability</title>
+  <!-- Font & minimal reset -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+    body {
+      background-color: #ffffff;
+      font-family: 'Inter', sans-serif;
+      color: #1a1e24;
+      line-height: 1.5;
+    }
 
-        .hero-badge {
-            display: inline-block;
-            background: #e8e0d8;
-            color: #6b4f2e;
-            font-weight: 600;
-            font-size: 0.75rem;
-            padding: 0.3rem 1.2rem;
-            border-radius: 40px;
-            letter-spacing: 0.5px;
-            margin-bottom: 1.2rem;
-        }
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
 
-        .hero {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 3rem;
-        }
+    /* ----- NAVBAR (exactly as requested, unchanged) ----- */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 0;
+      border-bottom: 1px solid #eaeef2;
+      flex-wrap: wrap;
+    }
 
-        .hero-content {
-            flex: 1 1 450px;
-        }
+    .logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+      letter-spacing: -0.02em;
+      color: #0b1e2e;
+    }
+    .logo span {
+      color: #a67c4b;
+    }
 
-        .hero-content h1 {
-            font-size: 2.8rem;
-            font-weight: 700;
-            line-height: 1.2;
-            color: #1e2a3a;
-            margin-bottom: 0.8rem;
-        }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: #2c3a4b;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #2c3a4b;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover {
+      color: #a67c4b;
+    }
 
-        .hero-content h1 span {
-            color: #b88a5b;
-        }
+    .nav-cta {
+      background: #0b1e2e;
+      color: white !important;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .nav-cta:hover {
+      background: #a67c4b;
+      color: #0b1e2e !important;
+    }
 
-        .hero-content .subhead {
-            font-size: 1.05rem;
-            color: #3d4f64;
-            max-width: 550px;
-            margin-bottom: 1.8rem;
-            line-height: 1.7;
-        }
+    /* ----- HERO ----- */
+    .hero {
+      padding: 4rem 0 5rem 0;
+      border-bottom: 1px solid #eaedf0;
+    }
 
-        .hero-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            align-items: center;
-        }
+    .hero-tagline {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #a67c4b;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
 
-        .btn-primary {
-            background: #b88a5b;
-            color: white;
-            padding: 0.75rem 2.5rem;
-            border-radius: 40px;
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: background 0.2s;
-            border: none;
-            font-size: 0.95rem;
-        }
+    .hero h1 {
+      font-size: 3.8rem;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      max-width: 850px;
+      color: #0b1e2e;
+    }
+    .hero h1 .highlight {
+      color: #a67c4b;
+      border-bottom: 4px solid #e5d5c0;
+      display: inline-block;
+      padding-bottom: 0.1rem;
+    }
 
-        .btn-primary:hover {
-            background: #9e6d44;
-        }
+    .hero-sub {
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: #3f4d5e;
+      max-width: 600px;
+      margin-top: 1.2rem;
+      margin-bottom: 2.2rem;
+    }
 
-        .btn-outline {
-            background: transparent;
-            color: #1e2a3a;
-            border: 1.5px solid #b88a5b;
-            padding: 0.75rem 2.5rem;
-            border-radius: 40px;
-            text-decoration: none;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.2s;
-        }
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
 
-        .btn-outline:hover {
-            background: #b88a5b;
-            color: white;
-        }
+    .btn-primary {
+      background: #0b1e2e;
+      color: white;
+      padding: 0.9rem 2.5rem;
+      border-radius: 60px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.2s;
+      border: 1px solid #0b1e2e;
+    }
+    .btn-primary:hover {
+      background: #a67c4b;
+      border-color: #a67c4b;
+      color: #0b1e2e;
+    }
 
-        .hero-stats {
-            margin-top: 2.5rem;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2.5rem;
-        }
+    .btn-secondary {
+      background: transparent;
+      color: #0b1e2e;
+      padding: 0.9rem 2.5rem;
+      border-radius: 60px;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid #cbd5df;
+      transition: 0.2s;
+    }
+    .btn-secondary:hover {
+      border-color: #a67c4b;
+      background: #f8f4ef;
+    }
 
-        .stat-item {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-        }
+    .btn-outline {
+      background: transparent;
+      color: #0b1e2e;
+      padding: 0.9rem 2.5rem;
+      border-radius: 60px;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid #dce2e9;
+    }
+    .btn-outline:hover {
+      border-color: #0b1e2e;
+      background: #f2f5f8;
+    }
 
-        .stat-item i {
-            color: #b88a5b;
-            font-size: 1.3rem;
-        }
+    /* section headers */
+    .section-title {
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #0b1e2e;
+      margin-bottom: 0.5rem;
+    }
+    .section-sub {
+      font-size: 1.1rem;
+      color: #4a5a6b;
+      max-width: 700px;
+    }
 
-        .stat-item strong {
-            font-size: 1.3rem;
-            color: #1e2a3a;
-        }
+    .section-divider {
+      border: 0;
+      border-top: 1px solid #eaeef2;
+      margin: 4rem 0;
+    }
 
-        .stat-item span {
-            color: #5a6f82;
-            font-size: 0.9rem;
-        }
+    /* Unique concept */
+    .concept-block {
+      background: #f7f9fc;
+      padding: 3.5rem 3rem;
+      border-radius: 28px;
+      margin: 3rem 0 1rem 0;
+    }
+    .concept-block .title {
+      font-size: 1.9rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.2rem;
+    }
+    .concept-flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 2.5rem;
+      font-weight: 500;
+      font-size: 1.3rem;
+      color: #0b1e2e;
+      margin-top: 1.8rem;
+    }
+    .concept-flow span {
+      background: white;
+      padding: 0.4rem 1.6rem;
+      border-radius: 60px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+      border: 1px solid #dee6ed;
+    }
+    .concept-flow .arrow {
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      padding: 0 0.2rem;
+      color: #a67c4b;
+      font-weight: 300;
+    }
 
-        .hero-visual {
-            flex: 1 1 320px;
-            background: #ffffff;
-            border-radius: 32px;
-            padding: 2.5rem 1.8rem;
-            min-height: 220px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
-            border: 1px solid #e8e0d8;
-        }
+    /* two col layout */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
 
-        .hero-visual i {
-            font-size: 3rem;
-            color: #b88a5b;
-            margin-bottom: 0.8rem;
-        }
+    /* categories grid */
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.8rem;
+      margin-top: 2rem;
+    }
+    .cat-card {
+      background: #f7f9fc;
+      padding: 1.8rem 1.2rem 1.8rem 1.2rem;
+      border-radius: 20px;
+      transition: 0.2s;
+      border: 1px solid transparent;
+    }
+    .cat-card:hover {
+      border-color: #d3dce6;
+      background: #ffffff;
+    }
+    .cat-card h4 {
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+    }
+    .cat-card .meta {
+      font-size: 0.8rem;
+      color: #a67c4b;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+    .cat-card p {
+      font-size: 0.9rem;
+      color: #3d4d5e;
+      margin: 0.6rem 0 0.9rem 0;
+    }
+    .cat-card .cta-link {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #0b1e2e;
+      text-decoration: none;
+      border-bottom: 1.5px solid #a67c4b;
+      padding-bottom: 0.1rem;
+    }
 
-        .hero-visual .quote-text {
-            font-weight: 500;
-            color: #1e2a3a;
-            font-size: 1.05rem;
-            font-style: italic;
-        }
+    /* manager */
+    .manager-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px,1fr));
+      gap: 1.5rem;
+      margin: 2rem 0 0.5rem 0;
+    }
+    .manager-pill {
+      background: #f7f9fc;
+      padding: 0.6rem 1.2rem;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      display: inline-block;
+    }
 
-        .hero-visual .quote-author {
-            color: #6a7f94;
-            font-size: 0.85rem;
-            margin-top: 4px;
-        }
+    .process-steps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 2.2rem;
+      background: #f7f9fc;
+      padding: 2rem 2.5rem;
+      border-radius: 60px;
+      margin: 1.8rem 0 0.5rem 0;
+    }
+    .process-steps span {
+      font-weight: 600;
+      font-size: 1.2rem;
+      letter-spacing: -0.01em;
+    }
+    .process-steps .light {
+      font-weight: 300;
+      color: #5a6b7c;
+    }
 
-        .quote-block {
-            border-left: 4px solid #b88a5b;
-            padding: 22px 28px;
-            margin: 30px 0;
-            font-style: italic;
-            font-size: 1.1rem;
-            color: #0b1a2b;
-            background: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
-        }
+    .diff-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .diff-col {
+      background: #f7f9fc;
+      padding: 2rem 1.8rem;
+      border-radius: 20px;
+    }
+    .diff-col h4 {
+      font-weight: 700;
+      font-size: 1.2rem;
+      border-bottom: 2px solid #d3dce6;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.2rem;
+    }
+    .diff-item {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px dashed #dbe1e8;
+      padding: 0.6rem 0;
+      font-size: 0.95rem;
+    }
+    .diff-item .label {
+      color: #2f4053;
+    }
+    .diff-item .value {
+      font-weight: 600;
+      color: #0b1e2e;
+    }
 
-        .quote-block i {
-            color: #b88a5b;
-            margin-right: 8px;
-        }
+    .who-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px,1fr));
+      gap: 1rem;
+      margin: 1.8rem 0;
+    }
+    .who-tag {
+      background: #f2f5f8;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      text-align: center;
+    }
 
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin: 40px 0 30px;
-        }
+    .final-cta {
+      background: #0b1e2e;
+      color: white;
+      padding: 3.5rem 2.8rem;
+      border-radius: 40px;
+      margin: 3rem 0 1.5rem 0;
+    }
+    .final-cta h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      max-width: 700px;
+    }
+    .final-cta .btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      margin-top: 1.8rem;
+    }
+    .final-cta .btn-white {
+      background: white;
+      color: #0b1e2e;
+      padding: 0.8rem 2.2rem;
+      border-radius: 60px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .final-cta .btn-outline-white {
+      background: transparent;
+      color: white;
+      padding: 0.8rem 2.2rem;
+      border-radius: 60px;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+    .final-cta .btn-outline-white:hover {
+      background: rgba(255,255,255,0.05);
+      border-color: white;
+    }
 
-        .card {
-            background: #ffffff;
-            padding: 30px 24px;
-            border-radius: 20px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
-            border: 1px solid #e8e0d8;
-        }
+    .closing-statement {
+      font-size: 1.4rem;
+      font-weight: 600;
+      text-align: center;
+      padding: 2.5rem 0 0.5rem 0;
+      color: #0b1e2e;
+      border-top: 1px solid #eaeef2;
+      margin-top: 2.5rem;
+    }
+    .closing-statement span {
+      color: #a67c4b;
+    }
 
-        .card h3 {
-            color: #b88a5b;
-            font-size: 1.2rem;
-            margin-bottom: 0.8rem;
-        }
+    /* footer unchanged */
+    .footer {
+      padding: 2.5rem 0 1.5rem 0;
+      border-top: 1px solid #eaeef2;
+      margin-top: 3rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      color: #4d5f72;
+      font-size: 0.9rem;
+    }
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+    }
+    .footer-links a {
+      text-decoration: none;
+      color: #3f5266;
+    }
+    .footer-links a:hover {
+      color: #a67c4b;
+    }
 
-        .card h3 i {
-            margin-right: 10px;
-        }
-
-        .card p {
-            color: #3d4f64;
-            line-height: 1.6;
-        }
-
-        .card ul {
-            list-style: none;
-            margin-top: 14px;
-        }
-
-        .card ul li {
-            padding: 5px 0;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #1e2a3a;
-        }
-
-        .card ul li::before {
-            content: "✔";
-            color: #b88a5b;
-            font-weight: 700;
-        }
-
-        hr {
-            border: none;
-            border-top: 2px solid #e8e0d8;
-            margin: 30px 0;
-        }
-
-        .btn-dark {
-            background: #1e2a3a;
-            color: white;
-            padding: 0.75rem 2.5rem;
-            border-radius: 40px;
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: background 0.2s;
-            border: none;
-            font-size: 0.95rem;
-        }
-
-        .btn-dark:hover {
-            background: #0b1a2b;
-        }
-
-        @media (max-width: 900px) {
-            .hero-content h1 {
-                font-size: 2.2rem;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .hero-content h1 {
-                font-size: 1.8rem;
-            }
-            .hero {
-                padding: 20px 0;
-            }
-            .hero-stats {
-                gap: 1.5rem;
-            }
-        }
-    </style>
+    @media (max-width: 700px) {
+      .hero h1 { font-size: 2.6rem; }
+      .two-col { grid-template-columns: 1fr; }
+      .diff-grid { grid-template-columns: 1fr; }
+      .nav-links { gap: 1rem; flex-wrap: wrap; }
+    }
+  </style>
 </head>
 <body>
+  <!-- navbar (unchanged) -->
+  <div class="container">
+    <div class="navbar">
+      <div class="logo">Dharithri<span>.</span></div>
+      <div class="nav-links">
+        <a href="#">Training</a>
+        <a href="#">Manpower</a>
+        <a href="#">For Organizations</a>
+        <a href="#">About</a>
+        <a href="#" class="nav-cta">Contact</a>
+      </div>
+    </div>
+  </div>
 
-    <!-- ============================================================ -->
-    <!-- NAVBAR WILL BE LOADED BY navbar.js -->
-    <!-- ============================================================ -->
+  <!-- main content -->
+  <main>
 
-    <!-- ============================================================ -->
-    <!-- ===== HERO / MAIN CONTENT ===== -->
-    <!-- ============================================================ -->
-
-    <section class="hero-section">
-        <div class="container">
-
-            <div class="hero">
-                <div class="hero-content">
-                    <div class="hero-badge">
-                        <i class="fas fa-bolt" style="margin-right:6px;"></i> Building Worth. Inspiring Generations.
-                    </div>
-                    <h1>Transform <span>potential</span> into <span>career</span> excellence</h1>
-                    <p class="subhead">
-                        Dharithri Manpower Training &amp; Supply Pvt. Ltd. helps individuals develop practical skills,
-                        professional confidence, workplace discipline, and leadership capability — while helping
-                        organizations access and develop valuable manpower.
-                    </p>
-                    <div class="hero-actions">
-                        <a href="about.html" class="btn-primary"><i class="fas fa-arrow-right"></i> Learn More</a>
-                        <a href="apply.html" class="btn-outline"><i class="fas fa-pen"></i> Apply Now</a>
-                    </div>
-                    <div class="hero-stats">
-                        <div class="stat-item">
-                            <i class="fas fa-users"></i>
-                            <strong>500+</strong>
-                            <span>trained &amp; placed</span>
-                        </div>
-                        <div class="stat-item">
-                            <i class="fas fa-star"></i>
-                            <strong>92%</strong>
-                            <span>success rate</span>
-                        </div>
-                        <div class="stat-item">
-                            <i class="fas fa-building"></i>
-                            <strong>40+</strong>
-                            <span>partner companies</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="hero-visual">
-                    <i class="fas fa-quote-left"></i>
-                    <p class="quote-text">"When one individual grows,<br>an entire family grows."</p>
-                    <p class="quote-author">— Dharithri</p>
-                </div>
-            </div>
-
-            <!-- ===== QUOTE BLOCK ===== -->
-            <div class="quote-block">
-                <i class="fas fa-quote-left"></i>
-                Our purpose is not merely to train people — we transform confidence into capability,
-                talent into opportunity, and dreams into reality.
-            </div>
-
-            <!-- ===== MISSION / VISION ===== -->
-            <div class="card-grid">
-                <div class="card">
-                    <h3><i class="fas fa-bullseye"></i> Our Mission</h3>
-                    <p>Create a generation of skilled, disciplined, confident, and responsible professionals.</p>
-                    <ul>
-                        <li>Discovering hidden talent</li>
-                        <li>Building confidence through practical learning</li>
-                        <li>Encouraging discipline, integrity, and responsibility</li>
-                        <li>Providing career guidance</li>
-                        <li>Supporting deserving candidates with placement assistance</li>
-                        <li>Empowering youth with future-ready skills</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h3><i class="fas fa-eye"></i> Our Vision</h3>
-                    <p>To become India's most trusted organization for manpower development by creating opportunities that inspire not just talent but also a sense of purpose and fulfillment.</p>
-                    <ul>
-                        <li>Quality training and career guidance for all</li>
-                        <li>Opportunities for reskilling and growth</li>
-                        <li>Education as the foundation of success</li>
-                        <li>Trusted professionals for industry</li>
-                    </ul>
-                </div>
-                <div class="card" style="background:#f9f6f2;">
-                    <h3><i class="fas fa-handshake"></i> Why Dharithri?</h3>
-                    <p>We don't just train — we transform. Every learner gains practical skills, workplace discipline, and the confidence to lead.</p>
-                    <ul>
-                        <li>Industry-aligned curriculum</li>
-                        <li>Personalized mentorship</li>
-                        <li>Placement support</li>
-                        <li>Lifelong learning network</li>
-                    </ul>
-                </div>
-            </div>
-
-            <hr />
-
-            <div style="text-align:center; margin: 20px 0 10px;">
-                <a href="courses.html" class="btn-dark"><i class="fas fa-arrow-right"></i> Explore our programs</a>
-            </div>
-
-        </div>
+    <!-- HERO SECTION -->
+    <section class="hero container">
+      <div class="hero-tagline">✦ capability · value · people</div>
+      <h1>
+        Potential is everywhere.<br>
+        <span class="highlight">Professional value is developed.</span>
+      </h1>
+      <p class="hero-sub">We build the bridge from raw potential to real professional capability — for people and organizations.</p>
+      <div class="hero-buttons">
+        <a href="#" class="btn-primary">Explore Training</a>
+        <a href="#" class="btn-secondary">Talk to Dharithri</a>
+        <a href="#" class="btn-outline">Join Talent Network</a>
+      </div>
+      <!-- hero headline options (conceptual) – only main selected shown -->
+      <div style="margin-top: 2.2rem; font-size: 0.85rem; color: #6d7e91; border-top: 1px solid #e9edf2; padding-top: 1.2rem; display: flex; flex-wrap: wrap; gap: 0.5rem 1.8rem;">
+        <span>✧ Potential is everywhere. Professional value is developed.</span>
+        <span style="color:#a67c4b;">← main</span>
+      </div>
     </section>
 
-    <!-- ============================================================ -->
-    <!-- FOOTER WILL BE LOADED BY navbar.js -->
-    <!-- ============================================================ -->
+    <!-- UNIQUE CONCEPT: Potential → Capability → ... -->
+    <section class="container concept-block">
+      <div class="title">⟡ The capability journey</div>
+      <p style="font-size: 1.15rem; max-width: 800px; color: #1f3143;">A person may have potential, but organizations need capability. Dharithri works on the journey between the two — from inherent ability to applied professional worth.</p>
+      <div class="concept-flow">
+        <span>Potential</span>
+        <span class="arrow">→</span>
+        <span>Clarity</span>
+        <span class="arrow">→</span>
+        <span>Capability</span>
+        <span class="arrow">→</span>
+        <span>Confidence</span>
+        <span class="arrow">→</span>
+        <span>Professional Value</span>
+      </div>
+      <p style="margin-top: 1.2rem; color: #3f566b; font-weight: 400;">Not just skills — but the professional discipline, judgment, and accountability that organizations trust.</p>
+    </section>
 
-    <script src="js/main.js"></script>
-    <script src="js/navbar.js"></script>
+    <!-- “What We Actually Do” -->
+    <section class="container" style="margin-top: 2.5rem;">
+      <h2 class="section-title">What we actually do</h2>
+      <p class="section-sub">We design and deliver professional capability across training, development, and manpower readiness.</p>
+      <div class="two-col" style="margin-top: 2rem;">
+        <div>
+          <h3 style="font-weight:700; margin-bottom:0.5rem;">Professional Training</h3>
+          <p style="color:#3f5468;">Manager development · Banking & finance · Accounts & branch banking · workplace skills.</p>
+          <h3 style="font-weight:700; margin:1.5rem 0 0.5rem 0;">Manager Development</h3>
+          <p style="color:#3f5468;">Decision-making, leadership, team handling, business risk, performance & communication.</p>
+          <h3 style="font-weight:700; margin:1.5rem 0 0.5rem 0;">Manpower Supply</h3>
+          <p style="color:#3f5468;">We facilitate suitable, prepared, and responsible talent — not just numbers.</p>
+        </div>
+        <div>
+          <h3 style="font-weight:700; margin-bottom:0.5rem;">Talent Readiness</h3>
+          <p style="color:#3f5468;">Bridging academic knowledge to workplace application through structured capability building.</p>
+          <h3 style="font-weight:700; margin:1.5rem 0 0.5rem 0;">Organizational Support</h3>
+          <p style="color:#3f5468;">Custom solutions for business teams, employers, and aspiring managers.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRAINING CATEGORIES -->
+    <section class="container" style="margin-top: 2.5rem;">
+      <h2 class="section-title">Training categories</h2>
+      <div class="cat-grid">
+        <div class="cat-card"><h4>Banking & Finance Manager</h4><div class="meta">for managers</div><p>Strategic financial decision-making, risk & leadership.</p><a href="#" class="cta-link">Explore →</a></div>
+        <div class="cat-card"><h4>Accounts & Finance</h4><div class="meta">for professionals</div><p>Core finance, reporting, compliance & business acumen.</p><a href="#" class="cta-link">Explore →</a></div>
+        <div class="cat-card"><h4>Branch Banking</h4><div class="meta">for officers</div><p>Operations, customer service, sales & team coordination.</p><a href="#" class="cta-link">Explore →</a></div>
+        <div class="cat-card"><h4>Liability Banking</h4><div class="meta">for specialists</div><p>Deposit growth, relationship management & cross-selling.</p><a href="#" class="cta-link">Explore →</a></div>
+        <div class="cat-card"><h4>Professional & Workplace Skills</h4><div class="meta">for all</div><p>Communication, etiquette, problem-solving & adaptability.</p><a href="#" class="cta-link">Explore →</a></div>
+      </div>
+    </section>
+
+    <!-- MANAGER DEVELOPMENT -->
+    <section class="container" style="margin-top: 3rem;">
+      <h2 class="section-title">Manager development</h2>
+      <p style="font-size: 1.3rem; font-weight: 600; color:#0b1e2e; max-width:700px;">“A designation gives you a title. Capability makes you a manager.”</p>
+      <p style="color:#3f5368; max-width:700px; margin: 0.2rem 0 1rem 0;">True management is built on responsibility, leadership, and business insight.</p>
+      <div class="manager-grid">
+        <span class="manager-pill">Decision-making</span>
+        <span class="manager-pill">Responsibility</span>
+        <span class="manager-pill">Leadership</span>
+        <span class="manager-pill">Team handling</span>
+        <span class="manager-pill">Business understanding</span>
+        <span class="manager-pill">Risk awareness</span>
+        <span class="manager-pill">Customer management</span>
+        <span class="manager-pill">Performance management</span>
+        <span class="manager-pill">Professional communication</span>
+      </div>
+    </section>
+
+    <!-- FROM LEARNING TO WORKPLACE -->
+    <section class="container" style="margin-top: 3rem;">
+      <h2 class="section-title">From learning to workplace</h2>
+      <p class="section-sub">Practical professional capability, not just theory. Our process builds applied competence.</p>
+      <div class="process-steps">
+        <span>Understand</span> <span class="light">→</span>
+        <span>Practice</span> <span class="light">→</span>
+        <span>Perform</span> <span class="light">→</span>
+        <span>Improve</span>
+      </div>
+      <p style="margin-top:1.2rem; color:#3f566b;">Every module is designed to translate into workplace readiness — from day one.</p>
+    </section>
+
+    <!-- MANPOWER SOLUTIONS -->
+    <section class="container" style="margin-top: 3.5rem;">
+      <h2 class="section-title">Manpower solutions</h2>
+      <p class="section-sub">Organisations need people who are suitable, prepared, responsible, and capable. Dharithri facilitates exactly that.</p>
+      <div style="background:#f7f9fc; padding:2rem 2.2rem; border-radius:28px; margin-top:1.5rem;">
+        <p style="font-size:1.05rem; color:#1a2b3d;">We connect employers with professionals who have undergone structured capability development — not just candidates, but contributors.</p>
+      </div>
+    </section>
+
+    <!-- WHY DHARITHRI -->
+    <section class="container" style="margin-top: 3rem;">
+      <h2 class="section-title">Why Dharithri</h2>
+      <div style="display:flex; flex-wrap:wrap; gap:1rem 2.5rem; margin:1.8rem 0 0.5rem 0;">
+        <span style="background:#f0f3f7; padding:0.4rem 1.4rem; border-radius:40px;">Practical orientation</span>
+        <span style="background:#f0f3f7; padding:0.4rem 1.4rem; border-radius:40px;">Industry-relevant training</span>
+        <span style="background:#f0f3f7; padding:0.4rem 1.4rem; border-radius:40px;">Professional discipline</span>
+        <span style="background:#f0f3f7; padding:0.4rem 1.4rem; border-radius:40px;">Capability-focused</span>
+        <span style="background:#f0f3f7; padding:0.4rem 1.4rem; border-radius:40px;">Banking & finance specialization</span>
+        <span style="background:#f0f3f7; padding:0.4rem 1.4rem; border-radius:40px;">Human-centered</span>
+        <span style="background:#f0f3f7; padding:0.4rem 1.4rem; border-radius:40px;">Employer-oriented</span>
+        <span style="background:#f0f3f7; padding:0.4rem 1.4rem; border-radius:40px;">Continuous improvement</span>
+      </div>
+    </section>
+
+    <!-- THE DHARITHRI DIFFERENCE -->
+    <section class="container" style="margin-top: 3rem;">
+      <h2 class="section-title">The Dharithri difference</h2>
+      <div class="diff-grid">
+        <div class="diff-col"><h4>Ordinary Training</h4>
+          <div class="diff-item"><span class="label">Theory</span><span class="value">⬤</span></div>
+          <div class="diff-item"><span class="label">Certificate</span><span class="value">⬤</span></div>
+          <div class="diff-item"><span class="label">Job title</span><span class="value">⬤</span></div>
+          <div class="diff-item"><span class="label">Learning</span><span class="value">⬤</span></div>
+          <div class="diff-item"><span class="label">Candidate</span><span class="value">⬤</span></div>
+          <div class="diff-item"><span class="label">Manpower quantity</span><span class="value">⬤</span></div>
+        </div>
+        <div class="diff-col" style="background:#0b1e2e; color:white;"><h4 style="color:white; border-bottom-color:#a67c4b;">Dharithri Approach</h4>
+          <div class="diff-item" style="border-bottom-color:#334a5e;"><span class="label" style="color:#c7d5e3;">Practical capability</span><span class="value" style="color:#f0e9df;">✦</span></div>
+          <div class="diff-item" style="border-bottom-color:#334a5e;"><span class="label" style="color:#c7d5e3;">Competence</span><span class="value" style="color:#f0e9df;">✦</span></div>
+          <div class="diff-item" style="border-bottom-color:#334a5e;"><span class="label" style="color:#c7d5e3;">Responsibility</span><span class="value" style="color:#f0e9df;">✦</span></div>
+          <div class="diff-item" style="border-bottom-color:#334a5e;"><span class="label" style="color:#c7d5e3;">Application</span><span class="value" style="color:#f0e9df;">✦</span></div>
+          <div class="diff-item" style="border-bottom-color:#334a5e;"><span class="label" style="color:#c7d5e3;">Professional</span><span class="value" style="color:#f0e9df;">✦</span></div>
+          <div class="diff-item" style="border-bottom-color:#334a5e;"><span class="label" style="color:#c7d5e3;">Manpower value</span><span class="value" style="color:#f0e9df;">✦</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHO WE WORK WITH -->
+    <section class="container" style="margin-top: 3rem;">
+      <h2 class="section-title">Who we work with</h2>
+      <div class="who-grid">
+        <span class="who-tag">Students</span>
+        <span class="who-tag">Graduates</span>
+        <span class="who-tag">Working professionals</span>
+        <span class="who-tag">Aspiring managers</span>
+        <span class="who-tag">Banking & finance aspirants</span>
+        <span class="who-tag">Organizations</span>
+        <span class="who-tag">Employers</span>
+        <span class="who-tag">Business teams</span>
+      </div>
+    </section>
+
+    <!-- STRONG CTA FINAL -->
+    <section class="container final-cta">
+      <h2>Your potential is the beginning. Your professional value is the outcome.</h2>
+      <div class="btns">
+        <a href="#" class="btn-white">Explore Our Training</a>
+        <a href="#" class="btn-outline-white">Connect With Us</a>
+      </div>
+    </section>
+
+    <!-- CLOSING STATEMENT -->
+    <div class="container closing-statement">
+      <span>Dharithri</span> — where potential meets professional capability, and people become value.
+    </div>
+
+  </main>
+
+  <!-- FOOTER (unchanged) -->
+  <footer class="container footer">
+    <div>© 2026 Dharithri Manpower Training & Supply Pvt. Ltd.</div>
+    <div class="footer-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Support</a>
+    </div>
+  </footer>
+
 </body>
 </html>
