@@ -8,10 +8,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css" />
     <style>
-        /* ===== HOMEPAGE STYLES ===== */
+        /* ===== HOMEPAGE STYLES (refined & attractive) ===== */
         .hero-section {
-            background: #f5f2ed;
+            background: linear-gradient(145deg, #f7f3ee 0%, #efeae4 100%);
             padding: 50px 2rem 30px;
+            border-bottom: 1px solid rgba(184, 138, 91, 0.15);
         }
 
         .container {
@@ -20,15 +21,18 @@
         }
 
         .hero-badge {
-            display: inline-block;
-            background: #e8e0d8;
-            color: #6b4f2e;
+            display: inline-flex;
+            align-items: center;
+            background: #dccfc2;
+            color: #4f3a26;
             font-weight: 600;
             font-size: 0.75rem;
-            padding: 0.3rem 1.2rem;
+            padding: 0.3rem 1.4rem 0.3rem 1.2rem;
             border-radius: 40px;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.4px;
             margin-bottom: 1.2rem;
+            gap: 6px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
         }
 
         .hero {
@@ -43,23 +47,41 @@
         }
 
         .hero-content h1 {
-            font-size: 2.8rem;
+            font-size: 3rem;
             font-weight: 700;
-            line-height: 1.2;
-            color: #1e2a3a;
+            line-height: 1.15;
+            color: #1c2a3a;
             margin-bottom: 0.8rem;
+            letter-spacing: -0.02em;
         }
 
         .hero-content h1 span {
             color: #b88a5b;
+            position: relative;
+        }
+        .hero-content h1 span::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 4px;
+            width: 100%;
+            height: 8px;
+            background: rgba(184, 138, 91, 0.2);
+            border-radius: 20px;
+            z-index: -1;
         }
 
         .hero-content .subhead {
-            font-size: 1.05rem;
+            font-size: 1.08rem;
             color: #3d4f64;
             max-width: 550px;
-            margin-bottom: 1.8rem;
+            margin-bottom: 2rem;
             line-height: 1.7;
+            background: rgba(255,255,255,0.5);
+            padding: 0.8rem 1.6rem;
+            border-radius: 60px;
+            backdrop-filter: blur(2px);
+            border: 1px solid rgba(255,255,255,0.7);
         }
 
         .hero-actions {
@@ -72,43 +94,48 @@
         .btn-primary {
             background: #b88a5b;
             color: white;
-            padding: 0.75rem 2.5rem;
+            padding: 0.8rem 2.8rem;
             border-radius: 40px;
             text-decoration: none;
             font-weight: 600;
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            transition: background 0.2s;
+            gap: 0.6rem;
+            transition: all 0.25s ease;
             border: none;
             font-size: 0.95rem;
+            box-shadow: 0 8px 18px rgba(184, 138, 91, 0.25);
         }
 
         .btn-primary:hover {
             background: #9e6d44;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(184, 138, 91, 0.35);
         }
 
         .btn-outline {
             background: transparent;
             color: #1e2a3a;
             border: 1.5px solid #b88a5b;
-            padding: 0.75rem 2.5rem;
+            padding: 0.8rem 2.8rem;
             border-radius: 40px;
             text-decoration: none;
             font-weight: 500;
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            transition: all 0.2s;
+            gap: 0.6rem;
+            transition: all 0.25s ease;
         }
 
         .btn-outline:hover {
             background: #b88a5b;
             color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(184, 138, 91, 0.2);
         }
 
         .hero-stats {
-            margin-top: 2.5rem;
+            margin-top: 2.8rem;
             display: flex;
             flex-wrap: wrap;
             gap: 2.5rem;
@@ -118,72 +145,94 @@
             display: flex;
             align-items: center;
             gap: 0.6rem;
+            background: rgba(255,255,255,0.6);
+            padding: 0.4rem 1.2rem 0.4rem 0.8rem;
+            border-radius: 40px;
+            backdrop-filter: blur(2px);
+            border: 1px solid rgba(255,255,255,0.8);
         }
 
         .stat-item i {
             color: #b88a5b;
             font-size: 1.3rem;
+            width: 2rem;
+            text-align: center;
         }
 
         .stat-item strong {
-            font-size: 1.3rem;
-            color: #1e2a3a;
+            font-size: 1.2rem;
+            color: #1c2a3a;
+            margin-right: 4px;
         }
 
         .stat-item span {
             color: #5a6f82;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            font-weight: 500;
         }
 
         .hero-visual {
-            flex: 1 1 320px;
-            background: #ffffff;
-            border-radius: 32px;
-            padding: 2.5rem 1.8rem;
-            min-height: 220px;
+            flex: 1 1 300px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(6px);
+            border-radius: 40px;
+            padding: 2.2rem 1.8rem;
+            min-height: 200px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
-            border: 1px solid #e8e0d8;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(255,255,255,0.8);
+            transition: transform 0.3s ease;
+        }
+        .hero-visual:hover {
+            transform: scale(1.01);
         }
 
         .hero-visual i {
-            font-size: 3rem;
+            font-size: 2.8rem;
             color: #b88a5b;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.6rem;
+            opacity: 0.9;
         }
 
         .hero-visual .quote-text {
             font-weight: 500;
-            color: #1e2a3a;
-            font-size: 1.05rem;
+            color: #1c2a3a;
+            font-size: 1.1rem;
             font-style: italic;
+            line-height: 1.5;
         }
 
         .hero-visual .quote-author {
             color: #6a7f94;
             font-size: 0.85rem;
-            margin-top: 4px;
+            margin-top: 6px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
         }
 
         .quote-block {
-            border-left: 4px solid #b88a5b;
-            padding: 22px 28px;
-            margin: 30px 0;
+            border-left: 5px solid #b88a5b;
+            padding: 24px 32px;
+            margin: 40px 0 30px;
             font-style: italic;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             color: #0b1a2b;
-            background: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(4px);
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            border: 1px solid rgba(255,255,255,0.8);
+            border-left-width: 6px;
         }
 
         .quote-block i {
             color: #b88a5b;
-            margin-right: 8px;
+            margin-right: 12px;
+            font-size: 1.3rem;
         }
 
         .card-grid {
@@ -194,99 +243,163 @@
         }
 
         .card {
-            background: #ffffff;
-            padding: 30px 24px;
-            border-radius: 20px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
-            border: 1px solid #e8e0d8;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(4px);
+            padding: 30px 26px;
+            border-radius: 28px;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            transition: all 0.25s ease;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.04);
+            background: rgba(255, 255, 255, 0.9);
         }
 
         .card h3 {
             color: #b88a5b;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .card h3 i {
-            margin-right: 10px;
+            font-size: 1.4rem;
+            opacity: 0.9;
         }
 
         .card p {
             color: #3d4f64;
-            line-height: 1.6;
+            line-height: 1.7;
+            font-weight: 450;
         }
 
         .card ul {
             list-style: none;
-            margin-top: 14px;
+            margin-top: 16px;
         }
 
         .card ul li {
-            padding: 5px 0;
+            padding: 6px 0;
             display: flex;
             align-items: center;
-            gap: 10px;
-            color: #1e2a3a;
+            gap: 12px;
+            color: #1c2a3a;
+            font-weight: 450;
+            border-bottom: 1px solid rgba(0,0,0,0.02);
         }
+        .card ul li:last-child { border-bottom: none; }
 
         .card ul li::before {
-            content: "✔";
+            content: "✓";
             color: #b88a5b;
             font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .card-highlight {
+            background: linear-gradient(145deg, #fcf8f4, #f5eee8);
+            border: 1px solid #e8ddd2;
         }
 
         hr {
             border: none;
-            border-top: 2px solid #e8e0d8;
+            border-top: 2px solid rgba(184, 138, 91, 0.2);
             margin: 30px 0;
+            width: 80px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .btn-dark {
-            background: #1e2a3a;
+            background: #1c2a3a;
             color: white;
-            padding: 0.75rem 2.5rem;
+            padding: 0.8rem 2.8rem;
             border-radius: 40px;
             text-decoration: none;
             font-weight: 600;
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            transition: background 0.2s;
+            gap: 0.6rem;
+            transition: all 0.25s ease;
             border: none;
             font-size: 0.95rem;
+            box-shadow: 0 6px 18px rgba(28, 42, 58, 0.15);
         }
 
         .btn-dark:hover {
             background: #0b1a2b;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(28, 42, 58, 0.25);
+        }
+
+        /* specialized role-grid (compact & elegant) */
+        .role-highlight {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(4px);
+            border-radius: 40px;
+            padding: 2rem 2rem 1.5rem;
+            margin: 30px 0 20px;
+            border: 1px solid rgba(255,255,255,0.8);
+        }
+        .role-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 14px 20px;
+            margin-top: 12px;
+        }
+        .role-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.92rem;
+            color: #1c2a3a;
+            font-weight: 450;
+            padding: 6px 8px;
+            border-radius: 40px;
+            background: rgba(255,255,255,0.3);
+            transition: 0.15s;
+        }
+        .role-item i {
+            color: #b88a5b;
+            width: 1.4rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        .role-item:hover {
+            background: rgba(184, 138, 91, 0.08);
+        }
+        .role-title {
+            font-weight: 600;
+            color: #4f3a26;
+            font-size: 0.9rem;
+            letter-spacing: 0.4px;
+            margin-bottom: 6px;
+            display: block;
         }
 
         @media (max-width: 900px) {
-            .hero-content h1 {
-                font-size: 2.2rem;
-            }
+            .hero-content h1 { font-size: 2.5rem; }
         }
-
         @media (max-width: 600px) {
-            .hero-content h1 {
-                font-size: 1.8rem;
-            }
-            .hero {
-                padding: 20px 0;
-            }
-            .hero-stats {
-                gap: 1.5rem;
-            }
+            .hero-content h1 { font-size: 2rem; }
+            .hero { padding: 10px 0; }
+            .hero-stats { gap: 1rem; }
+            .stat-item { padding: 0.2rem 0.8rem 0.2rem 0.4rem; }
+            .stat-item strong { font-size: 1rem; }
+            .role-grid { grid-template-columns: 1fr 1fr; }
         }
     </style>
 </head>
 <body>
+    <!-- ===== NAVBAR (unchanged) ===== -->
+    <div id="navbar-container"></div>
 
     <!-- ============================================================ -->
-    <!-- NAVBAR WILL BE LOADED BY navbar.js -->
-    <!-- ============================================================ -->
-
-    <!-- ============================================================ -->
-    <!-- ===== HERO / MAIN CONTENT ===== -->
+    <!-- ===== HERO / MAIN CONTENT (refreshed & attractive) ===== -->
     <!-- ============================================================ -->
 
     <section class="hero-section">
@@ -295,13 +408,12 @@
             <div class="hero">
                 <div class="hero-content">
                     <div class="hero-badge">
-                        <i class="fas fa-bolt" style="margin-right:6px;"></i> Building Worth. Inspiring Generations.
+                        <i class="fas fa-bolt"></i> Building Worth. Inspiring Generations.
                     </div>
                     <h1>Transform <span>potential</span> into <span>career</span> excellence</h1>
                     <p class="subhead">
-                        Dharithri Manpower Training &amp; Supply Pvt. Ltd. helps individuals develop practical skills,
-                        professional confidence, workplace discipline, and leadership capability — while helping
-                        organizations access and develop valuable manpower.
+                        <i class="fas fa-gem" style="color:#b88a5b; margin-right:8px;"></i>
+                        Dharithri Manpower Training &amp; Supply Pvt. Ltd. — practical, role-ready training for banking &amp; finance professionals.
                     </p>
                     <div class="hero-actions">
                         <a href="about.html" class="btn-primary"><i class="fas fa-arrow-right"></i> Learn More</a>
@@ -332,14 +444,31 @@
                 </div>
             </div>
 
-            <!-- ===== QUOTE BLOCK ===== -->
+            <!-- ===== QUOTE BLOCK (updated) ===== -->
             <div class="quote-block">
                 <i class="fas fa-quote-left"></i>
                 Our purpose is not merely to train people — we transform confidence into capability,
                 talent into opportunity, and dreams into reality.
             </div>
 
-            <!-- ===== MISSION / VISION ===== -->
+            <!-- ===== SPECIALIZED ROLE TRAINING (new section) ===== -->
+            <div class="role-highlight">
+                <span class="role-title"><i class="fas fa-briefcase" style="margin-right:8px; color:#b88a5b;"></i> Role‑ready training for banking &amp; finance</span>
+                <div class="role-grid">
+                    <span class="role-item"><i class="fas fa-chart-line"></i> Credit &amp; Risk</span>
+                    <span class="role-item"><i class="fas fa-file-signature"></i> Ops &amp; KYC</span>
+                    <span class="role-item"><i class="fas fa-gavel"></i> Legal &amp; Technical</span>
+                    <span class="role-item"><i class="fas fa-hand-holding-usd"></i> Collections &amp; Recovery</span>
+                    <span class="role-item"><i class="fas fa-piggy-bank"></i> Liability &amp; CASA</span>
+                    <span class="role-item"><i class="fas fa-calculator"></i> Accounts &amp; Audit</span>
+                    <span class="role-item"><i class="fas fa-users-cog"></i> Team Leadership</span>
+                    <span class="role-item"><i class="fas fa-store-alt"></i> Branch Operations</span>
+                    <span class="role-item"><i class="fas fa-handshake"></i> MSME / Business Banking</span>
+                    <span class="role-item"><i class="fas fa-truck"></i> Asset &amp; Portfolio</span>
+                </div>
+            </div>
+
+            <!-- ===== MISSION / VISION / WHY (enhanced cards) ===== -->
             <div class="card-grid">
                 <div class="card">
                     <h3><i class="fas fa-bullseye"></i> Our Mission</h3>
@@ -353,7 +482,7 @@
                         <li>Empowering youth with future-ready skills</li>
                     </ul>
                 </div>
-                <div class="card">
+                <div class="card card-highlight">
                     <h3><i class="fas fa-eye"></i> Our Vision</h3>
                     <p>To become India's most trusted organization for manpower development by creating opportunities that inspire not just talent but also a sense of purpose and fulfillment.</p>
                     <ul>
@@ -363,7 +492,7 @@
                         <li>Trusted professionals for industry</li>
                     </ul>
                 </div>
-                <div class="card" style="background:#f9f6f2;">
+                <div class="card">
                     <h3><i class="fas fa-handshake"></i> Why Dharithri?</h3>
                     <p>We don't just train — we transform. Every learner gains practical skills, workplace discipline, and the confidence to lead.</p>
                     <ul>
@@ -385,8 +514,9 @@
     </section>
 
     <!-- ============================================================ -->
-    <!-- FOOTER WILL BE LOADED BY navbar.js -->
+    <!-- FOOTER (unchanged) -->
     <!-- ============================================================ -->
+    <div id="footer-container"></div>
 
     <script src="js/main.js"></script>
     <script src="js/navbar.js"></script>
