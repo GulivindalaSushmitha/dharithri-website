@@ -176,7 +176,7 @@
             background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(6px);
             border-radius: 40px;
-            padding: 2.2rem 1.8rem;
+            padding: 1.8rem 1.5rem;
             min-height: 200px;
             display: flex;
             flex-direction: column;
@@ -191,11 +191,15 @@
             transform: scale(1.01);
         }
 
-        .hero-visual i {
-            font-size: 2.8rem;
-            color: #b88a5b;
+        .hero-visual img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 24px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.05);
             margin-bottom: 0.6rem;
-            opacity: 0.9;
+            max-height: 200px;
+            object-fit: cover;
+            width: 100%;
         }
 
         .hero-visual .quote-text {
@@ -204,12 +208,13 @@
             font-size: 1.1rem;
             font-style: italic;
             line-height: 1.5;
+            margin: 0.4rem 0 0.2rem;
         }
 
         .hero-visual .quote-author {
             color: #6a7f94;
             font-size: 0.85rem;
-            margin-top: 6px;
+            margin-top: 2px;
             font-weight: 500;
             letter-spacing: 0.3px;
         }
@@ -381,6 +386,24 @@
             display: block;
         }
 
+        /* creative tagline above heading */
+        .creative-tagline {
+            display: inline-block;
+            background: rgba(184, 138, 91, 0.12);
+            color: #4f3a26;
+            font-weight: 500;
+            font-size: 0.85rem;
+            padding: 0.2rem 1.2rem 0.2rem 1rem;
+            border-radius: 40px;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.6rem;
+            border: 1px solid rgba(184, 138, 91, 0.15);
+        }
+        .creative-tagline i {
+            color: #b88a5b;
+            margin-right: 6px;
+        }
+
         @media (max-width: 900px) {
             .hero-content h1 { font-size: 2.5rem; }
         }
@@ -391,6 +414,7 @@
             .stat-item { padding: 0.2rem 0.8rem 0.2rem 0.4rem; }
             .stat-item strong { font-size: 1rem; }
             .role-grid { grid-template-columns: 1fr 1fr; }
+            .hero-visual img { max-height: 140px; }
         }
     </style>
 </head>
@@ -407,8 +431,9 @@
 
             <div class="hero">
                 <div class="hero-content">
-                    <div class="hero-badge">
-                        <i class="fas fa-bolt"></i> Building Worth. Inspiring Generations.
+                    <!-- CREATIVE & UNIQUE TAGLINE ADDED HERE -->
+                    <div class="creative-tagline">
+                        <i class="fas fa-feather-alt"></i> Where ambition meets expertise
                     </div>
                     <h1>Transform <span>potential</span> into <span>career</span> excellence</h1>
                     <p class="subhead">
@@ -438,7 +463,8 @@
                     </div>
                 </div>
                 <div class="hero-visual">
-                    <i class="fas fa-quote-left"></i>
+                    <!-- IMAGE ADDED HERE (right side) -->
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRX07kwrSN2GuL_2G5YfOe-UVeIQOxEBzRv67jERCtFwA&s=10" alt="Dharithri training & growth" />
                     <p class="quote-text">"When one individual grows,<br>an entire family grows."</p>
                     <p class="quote-author">— Dharithri</p>
                 </div>
