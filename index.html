@@ -39,6 +39,12 @@
             gap: 0.8rem;
         }
 
+        .nav-brand .logo-img {
+            height: 55px;
+            width: auto;
+            object-fit: contain;
+        }
+
         .nav-brand .brand-text {
             display: flex;
             flex-direction: column;
@@ -336,75 +342,97 @@
             font-weight: 700;
         }
 
-        .section-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #1e2a3a;
-            margin: 40px 0 10px;
-        }
-
         hr {
             border: none;
             border-top: 2px solid #e8e0d8;
             margin: 30px 0;
         }
 
-        /* ===== FOUNDER SECTION ===== */
-        .founder-box {
+        /* ===== FOOTER - EXACT SAME AS ABOUT PAGE ===== */
+        .footer {
             background: #ffffff;
-            padding: 30px;
-            border-radius: 20px;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 20px;
-            border: 1px solid #e8e0d8;
-            margin: 40px 0 20px;
-        }
-
-        .founder-box .founder-icon {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .founder-box .founder-icon i {
-            font-size: 3rem;
-            color: #b88a5b;
-        }
-
-        .founder-box .founder-icon h3 {
-            color: #1e2a3a;
-        }
-
-        .founder-box .founder-icon p {
-            color: #4a5d74;
-        }
-
-        .founder-box .founder-quote {
-            flex: 1;
-            border-left: 2px solid #e8e0d8;
-            padding-left: 20px;
-        }
-
-        .founder-box .founder-quote p {
-            font-style: italic;
-            color: #0b1a2b;
-        }
-
-        /* ===== FOOTER ===== */
-        .footer-note {
-            text-align: center;
-            padding: 30px 0 20px;
-            color: #6a7f94;
-            font-size: 0.85rem;
-            border-top: 2px solid #e8e0d8;
+            padding: 40px 2rem 20px;
+            border-top: 2px solid #b88a5b;
             margin-top: 40px;
         }
 
-        .footer-note i {
+        .footer .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-top {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #e8e0d8;
+        }
+
+        .footer-brand .brand-name {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: #0b1a2b;
+            letter-spacing: 1px;
+        }
+
+        .footer-brand .brand-sub {
+            font-size: 0.65rem;
+            color: #6a7f94;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+
+        .footer-brand .brand-tagline {
+            font-size: 0.6rem;
             color: #b88a5b;
-            margin-right: 6px;
+            letter-spacing: 0.8px;
+            font-weight: 600;
+            margin-top: 2px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-links .col h4 {
+            font-size: 0.9rem;
+            color: #1e2a3a;
+            margin-bottom: 10px;
+        }
+
+        .footer-links .col a {
+            display: block;
+            text-decoration: none;
+            color: #6a7f94;
+            font-size: 0.85rem;
+            padding: 4px 0;
+            transition: color 0.2s;
+        }
+
+        .footer-links .col a:hover {
+            color: #b88a5b;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            color: #6a7f94;
+            font-size: 0.8rem;
+        }
+
+        .footer-bottom .tagline {
+            color: #b88a5b;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 4px;
+        }
+
+        .footer-bottom .copy {
+            color: #6a7f94;
         }
 
         /* ===== RESPONSIVE ===== */
@@ -417,6 +445,13 @@
             .nav-links {
                 justify-content: center;
                 gap: 1.2rem;
+            }
+            .footer-top {
+                flex-direction: column;
+                text-align: center;
+            }
+            .footer-links {
+                justify-content: center;
             }
         }
 
@@ -433,15 +468,8 @@
             .nav-brand .brand-text .tagline {
                 font-size: 0.45rem;
             }
-            .founder-box {
-                flex-direction: column;
-                text-align: center;
-            }
-            .founder-box .founder-quote {
-                border-left: none;
-                padding-left: 0;
-                border-top: 2px solid #e8e0d8;
-                padding-top: 16px;
+            .nav-brand .logo-img {
+                height: 40px;
             }
         }
     </style>
@@ -454,6 +482,8 @@
 
     <nav class="navbar">
         <div class="nav-brand">
+            <!-- LOGO IMAGE - place your logo.png in the same folder -->
+            <img src="logo.png" alt="Dharithri Logo" class="logo-img" />
             <div class="brand-text">
                 <span class="main-name">DHARITHRI</span>
                 <span class="sub-name">MANPOWER TRAINING &amp; SUPPLY PVT. LTD.</span>
@@ -564,20 +594,6 @@
 
             <hr />
 
-            <!-- ===== FOUNDER ===== -->
-            <div class="founder-box">
-                <div class="founder-icon">
-                    <i class="fas fa-user-tie"></i>
-                    <div>
-                        <h3>Mr. Prasanna Kumar</h3>
-                        <p>MBA (HR &amp; International Business) · Founder &amp; MD</p>
-                    </div>
-                </div>
-                <div class="founder-quote">
-                    <p>“Every individual has the potential to achieve greatness when given the right guidance, the right skills, and the right opportunities.”</p>
-                </div>
-            </div>
-
             <div style="text-align:center; margin: 20px 0 10px;">
                 <a href="#" class="btn-primary" style="background:#1e2a3a;"><i class="fas fa-arrow-right"></i> Explore our programs</a>
             </div>
@@ -585,13 +601,51 @@
         </div>
     </section>
 
-    <!-- ===== FOOTER ===== -->
-    <div class="container">
-        <div class="footer-note">
-            <i class="fas fa-seedling"></i>
-            Dharithri Manpower Training &amp; Supply Pvt. Ltd. · Building Worth. Inspiring Generations.
+    <!-- ============================================================ -->
+    <!-- ===== FOOTER - EXACT SAME AS ABOUT PAGE ===== -->
+    <!-- ============================================================ -->
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="brand-name">DHARITHRI</div>
+                    <div class="brand-sub">MANPOWER TRAINING &amp; SUPPLY PVT. LTD.</div>
+                    <div class="brand-tagline">WE IMPROVE THE WORTH. WE SUPPLY THE WORTH.</div>
+                    <div style="margin-top:10px; font-size:0.85rem; color:#b88a5b; font-weight:600;">Building Worth. Inspiring Generations.</div>
+                </div>
+                <div class="footer-links">
+                    <div class="col">
+                        <h4>Quick Links</h4>
+                        <a href="#">Home</a>
+                        <a href="#">About</a>
+                        <a href="#">Courses</a>
+                        <a href="#">Training</a>
+                    </div>
+                    <div class="col">
+                        <h4>Resources</h4>
+                        <a href="#">Opportunities</a>
+                        <a href="#">Questionnaire</a>
+                        <a href="#">Contact</a>
+                        <a href="#">Apply Now</a>
+                    </div>
+                    <div class="col">
+                        <h4>Connect</h4>
+                        <a href="#"><i class="fas fa-phone"></i> +91 98765 43210</a>
+                        <a href="#"><i class="fas fa-envelope"></i> info@dharithri.com</a>
+                        <a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="#"><i class="fab fa-youtube"></i> YouTube</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="tagline">Dharithri Manpower Training &amp; Supply Pvt. Ltd.</div>
+                <div style="font-size:0.75rem; color:#b88a5b; margin-bottom:4px;">WE IMPROVE THE WORTH. WE SUPPLY THE WORTH.</div>
+                <div style="font-size:0.75rem; color:#b88a5b; margin-bottom:8px;">Building Worth. Inspiring Generations.</div>
+                <div class="copy">© 2026 Dharithri. All rights reserved.</div>
+            </div>
         </div>
-    </div>
+    </footer>
 
 </body>
 </html>
