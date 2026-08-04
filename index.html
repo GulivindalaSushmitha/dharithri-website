@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css" />
     <style>
-        /* ===== HOMEPAGE STYLES (refined & attractive) ===== */
+        /* ===== HOMEPAGE STYLES ===== */
         .hero-section {
             background: linear-gradient(145deg, #f7f3ee 0%, #efeae4 100%);
             padding: 50px 2rem 30px;
@@ -74,7 +74,7 @@
         .hero-content .subhead {
             font-size: 1.08rem;
             color: #3d4f64;
-            max-width: 550px;
+            max-width: 600px;
             margin-bottom: 2rem;
             line-height: 1.7;
             background: rgba(255,255,255,0.5);
@@ -205,7 +205,7 @@
         .hero-visual .quote-text {
             font-weight: 500;
             color: #1c2a3a;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-style: italic;
             line-height: 1.5;
             margin: 0.4rem 0 0.2rem;
@@ -341,7 +341,6 @@
             box-shadow: 0 12px 28px rgba(28, 42, 58, 0.25);
         }
 
-        /* specialized role-grid (compact & elegant) */
         .role-highlight {
             background: rgba(255, 255, 255, 0.5);
             backdrop-filter: blur(4px);
@@ -386,22 +385,10 @@
             display: block;
         }
 
-        /* creative tagline above heading */
-        .creative-tagline {
-            display: inline-block;
-            background: rgba(184, 138, 91, 0.12);
-            color: #4f3a26;
-            font-weight: 500;
-            font-size: 0.85rem;
-            padding: 0.2rem 1.2rem 0.2rem 1rem;
-            border-radius: 40px;
-            letter-spacing: 0.5px;
-            margin-bottom: 0.6rem;
-            border: 1px solid rgba(184, 138, 91, 0.15);
-        }
-        .creative-tagline i {
-            color: #b88a5b;
-            margin-right: 6px;
+        /* Override old creative tagline - now using badge */
+        .hero-badge {
+            font-size: 0.8rem;
+            padding: 0.4rem 1.6rem;
         }
 
         @media (max-width: 900px) {
@@ -423,7 +410,7 @@
     <div id="navbar-container"></div>
 
     <!-- ============================================================ -->
-    <!-- ===== HERO / MAIN CONTENT (refreshed & attractive) ===== -->
+    <!-- ===== HERO / MAIN CONTENT (updated with new text) ===== -->
     <!-- ============================================================ -->
 
     <section class="hero-section">
@@ -431,14 +418,16 @@
 
             <div class="hero">
                 <div class="hero-content">
-                    <!-- CREATIVE & UNIQUE TAGLINE ADDED HERE -->
-                    <div class="creative-tagline">
-                        <i class="fas fa-feather-alt"></i> Where ambition meets expertise
+                    <!-- NEW BADGE TEXT: "Shaping the future of banking talent" -->
+                    <div class="hero-badge">
+                        <i class="fas fa-bolt" style="margin-right:6px;"></i> Shaping the future of banking talent
                     </div>
-                    <h1>Transform <span>potential</span> into <span>career</span> excellence</h1>
+                    <!-- NEW HEADLINE: "Build skilled professionals for modern banking" -->
+                    <h1>Build skilled <span>professionals</span> for modern banking</h1>
+                    <!-- NEW DESCRIPTION: "Dharithri Manpower Training & Supply Pvt. Ltd. — practical training that combines modern banking skills with the trust of conventional banking." -->
                     <p class="subhead">
                         <i class="fas fa-gem" style="color:#b88a5b; margin-right:8px;"></i>
-                        Dharithri Manpower Training &amp; Supply Pvt. Ltd. — practical, role-ready training for banking &amp; finance professionals.
+                        Dharithri Manpower Training &amp; Supply Pvt. Ltd. — practical training that combines modern banking skills with the trust of conventional banking.
                     </p>
                     <div class="hero-actions">
                         <a href="about.html" class="btn-primary"><i class="fas fa-arrow-right"></i> Learn More</a>
@@ -463,21 +452,21 @@
                     </div>
                 </div>
                 <div class="hero-visual">
-                    <!-- IMAGE ADDED HERE (right side) -->
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRX07kwrSN2GuL_2G5YfOe-UVeIQOxEBzRv67jERCtFwA&s=10" alt="Dharithri training & growth" />
-                    <p class="quote-text">"When one individual grows,<br>an entire family grows."</p>
+                    <!-- NEW QUOTE UNDER PICTURE -->
+                    <p class="quote-text">"Modern convenience. Traditional trust. Skilled people make banking better."</p>
                     <p class="quote-author">— Dharithri</p>
                 </div>
             </div>
 
-            <!-- ===== QUOTE BLOCK (updated) ===== -->
+            <!-- ===== QUOTE BLOCK (unchanged) ===== -->
             <div class="quote-block">
                 <i class="fas fa-quote-left"></i>
                 Our purpose is not merely to train people — we transform confidence into capability,
                 talent into opportunity, and dreams into reality.
             </div>
 
-            <!-- ===== SPECIALIZED ROLE TRAINING (new section) ===== -->
+            <!-- ===== SPECIALIZED ROLE TRAINING ===== -->
             <div class="role-highlight">
                 <span class="role-title"><i class="fas fa-briefcase" style="margin-right:8px; color:#b88a5b;"></i> Role‑ready training for banking &amp; finance</span>
                 <div class="role-grid">
@@ -494,7 +483,7 @@
                 </div>
             </div>
 
-            <!-- ===== MISSION / VISION / WHY (enhanced cards) ===== -->
+            <!-- ===== MISSION / VISION / WHY ===== -->
             <div class="card-grid">
                 <div class="card">
                     <h3><i class="fas fa-bullseye"></i> Our Mission</h3>
