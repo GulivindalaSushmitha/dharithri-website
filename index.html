@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css" />
     <style>
-        /* ===== ADDITIONAL STYLES FOR HOMEPAGE ===== */
+        /* ===== HOMEPAGE STYLES ===== */
         .hero-section {
             background: #f5f2ed;
             padding: 50px 2rem 30px;
@@ -241,126 +241,40 @@
             margin: 30px 0;
         }
 
-        .footer {
-            background: #ffffff;
-            padding: 40px 2rem 20px;
-            border-top: 2px solid #b88a5b;
-            margin-top: 40px;
-        }
-
-        .footer .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .footer-top {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 30px;
-            padding-bottom: 30px;
-            border-bottom: 1px solid #e8e0d8;
-        }
-
-        .footer-brand .brand-name {
-            font-weight: 700;
-            font-size: 1.3rem;
-            color: #0b1a2b;
-            letter-spacing: 1px;
-        }
-
-        .footer-brand .brand-sub {
-            font-size: 0.65rem;
-            color: #6a7f94;
-            letter-spacing: 1px;
-            font-weight: 500;
-        }
-
-        .footer-brand .brand-tagline {
-            font-size: 0.6rem;
-            color: #b88a5b;
-            letter-spacing: 0.8px;
-            font-weight: 600;
-            margin-top: 2px;
-        }
-
-        .footer-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-        }
-
-        .footer-links .col h4 {
-            font-size: 0.9rem;
-            color: #1e2a3a;
-            margin-bottom: 10px;
-        }
-
-        .footer-links .col a {
-            display: block;
+        .btn-dark {
+            background: #1e2a3a;
+            color: white;
+            padding: 0.75rem 2.5rem;
+            border-radius: 40px;
             text-decoration: none;
-            color: #6a7f94;
-            font-size: 0.85rem;
-            padding: 4px 0;
-            transition: color 0.2s;
-        }
-
-        .footer-links .col a:hover {
-            color: #b88a5b;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 20px;
-            color: #6a7f94;
-            font-size: 0.8rem;
-        }
-
-        .footer-bottom .tagline {
-            color: #b88a5b;
             font-weight: 600;
-            font-size: 0.85rem;
-            margin-bottom: 4px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background 0.2s;
+            border: none;
+            font-size: 0.95rem;
         }
 
-        .footer-bottom .copy {
-            color: #6a7f94;
+        .btn-dark:hover {
+            background: #0b1a2b;
         }
 
         @media (max-width: 900px) {
-            .navbar {
-                flex-direction: column;
-                gap: 12px;
-                padding: 1rem 1.5rem;
-            }
-            .nav-links {
-                justify-content: center;
-                gap: 1.2rem;
-            }
-            .footer-top {
-                flex-direction: column;
-                text-align: center;
-            }
-            .footer-links {
-                justify-content: center;
+            .hero-content h1 {
+                font-size: 2.2rem;
             }
         }
 
         @media (max-width: 600px) {
             .hero-content h1 {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
             .hero {
                 padding: 20px 0;
             }
-            .nav-brand .brand-text .sub-name {
-                font-size: 0.5rem;
-            }
-            .nav-brand .brand-text .tagline {
-                font-size: 0.45rem;
-            }
-            .nav-brand .logo-img {
-                height: 40px;
+            .hero-stats {
+                gap: 1.5rem;
             }
         }
     </style>
@@ -368,29 +282,8 @@
 <body>
 
     <!-- ============================================================ -->
-    <!-- ===== NAVBAR - EXACT SAME AS ABOUT PAGE ===== -->
+    <!-- NAVBAR WILL BE LOADED BY navbar.js -->
     <!-- ============================================================ -->
-
-    <nav class="navbar">
-        <div class="nav-brand">
-            <img src="logo.png" alt="Dharithri Logo" class="logo-img" />
-            <div class="brand-text">
-                <span class="main-name">DHARITHRI</span>
-                <span class="sub-name">MANPOWER TRAINING &amp; SUPPLY PVT. LTD.</span>
-                <span class="tagline">WE IMPROVE THE WORTH. WE SUPPLY THE WORTH.</span>
-            </div>
-        </div>
-        <div class="nav-links">
-            <a href="index.html" class="active">Home</a>
-            <a href="about.html">About</a>
-            <a href="courses.html">Courses</a>
-            <a href="training.html">Training</a>
-            <a href="opportunities.html">Opportunities</a>
-            <a href="questionnaire.html">Questionnaire</a>
-            <a href="contact.html">Contact</a>
-            <a href="apply.html" class="nav-cta">Apply Now</a>
-        </div>
-    </nav>
 
     <!-- ============================================================ -->
     <!-- ===== HERO / MAIN CONTENT ===== -->
@@ -485,57 +378,17 @@
             <hr />
 
             <div style="text-align:center; margin: 20px 0 10px;">
-                <a href="courses.html" class="btn-primary" style="background:#1e2a3a;"><i class="fas fa-arrow-right"></i> Explore our programs</a>
+                <a href="courses.html" class="btn-dark"><i class="fas fa-arrow-right"></i> Explore our programs</a>
             </div>
 
         </div>
     </section>
 
     <!-- ============================================================ -->
-    <!-- ===== FOOTER - EXACT SAME AS ABOUT PAGE ===== -->
+    <!-- FOOTER WILL BE LOADED BY navbar.js -->
     <!-- ============================================================ -->
 
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-top">
-                <div class="footer-brand">
-                    <div class="brand-name">DHARITHRI</div>
-                    <div class="brand-sub">MANPOWER TRAINING &amp; SUPPLY PVT. LTD.</div>
-                    <div class="brand-tagline">WE IMPROVE THE WORTH. WE SUPPLY THE WORTH.</div>
-                    <div style="margin-top:10px; font-size:0.85rem; color:#b88a5b; font-weight:600;">Building Worth. Inspiring Generations.</div>
-                </div>
-                <div class="footer-links">
-                    <div class="col">
-                        <h4>Quick Links</h4>
-                        <a href="index.html">Home</a>
-                        <a href="about.html">About</a>
-                        <a href="courses.html">Courses</a>
-                        <a href="training.html">Training</a>
-                    </div>
-                    <div class="col">
-                        <h4>Resources</h4>
-                        <a href="opportunities.html">Opportunities</a>
-                        <a href="questionnaire.html">Questionnaire</a>
-                        <a href="contact.html">Contact</a>
-                        <a href="apply.html">Apply Now</a>
-                    </div>
-                    <div class="col">
-                        <h4>Connect</h4>
-                        <a href="#"><i class="fas fa-phone"></i> +91 98765 43210</a>
-                        <a href="#"><i class="fas fa-envelope"></i> info@dharithri.com</a>
-                        <a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                        <a href="#"><i class="fab fa-youtube"></i> YouTube</a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <div class="tagline">Dharithri Manpower Training &amp; Supply Pvt. Ltd.</div>
-                <div style="font-size:0.75rem; color:#b88a5b; margin-bottom:4px;">WE IMPROVE THE WORTH. WE SUPPLY THE WORTH.</div>
-                <div style="font-size:0.75rem; color:#b88a5b; margin-bottom:8px;">Building Worth. Inspiring Generations.</div>
-                <div class="copy">© 2026 Dharithri. All rights reserved.</div>
-            </div>
-        </div>
-    </footer>
-
+    <script src="js/main.js"></script>
+    <script src="js/navbar.js"></script>
 </body>
 </html>
