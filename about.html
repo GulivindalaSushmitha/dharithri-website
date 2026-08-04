@@ -8,6 +8,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css" />
     <style>
+        /* ===== RESET NAVBAR HEIGHT ISSUE ===== */
+        .navbar {
+            min-height: auto !important;
+            height: auto !important;
+        }
+        .navbar .container {
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+        }
+        
+        /* ===== ABOUT PAGE STYLES ===== */
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -119,25 +130,23 @@
     <!-- Navbar auto-loaded by navbar.js -->
     <div id="navbar-container"></div>
 
-    <section class="container">
-        <!-- ===== TITLE UPDATED ===== -->
+    <section class="container" style="padding-top: 30px;">
+        <!-- ===== TITLE ===== -->
         <h1 class="section-title">About Dharithri Manpower</h1>
         <p class="section-sub">At Dharithri Manpower Training & Supply Pvt. Ltd., we believe that every person carries hidden potential waiting to be discovered.</p>
 
         <div class="about-grid">
-            <!-- LEFT COLUMN - UPDATED CONTENT -->
+            <!-- LEFT COLUMN -->
             <div>
                 <p style="font-size:1.05rem; line-height:1.8;">Our purpose is not merely to train people—we transform confidence into capability, talent into opportunity, and dreams into meaningful careers. We are committed to identifying genuine talent, nurturing discipline, developing practical skills, and preparing individuals to thrive in today's competitive world.</p>
                 <br />
-                <!-- ===== NEW REPLACEMENT TEXT ===== -->
                 <p style="font-size:1.05rem; line-height:1.8;">At Dharithri, every learner is guided through structured training that builds practical skills, professional discipline, and career readiness.</p>
                 <p style="font-size:1.05rem; line-height:1.8; margin-top:12px;">We focus on clear learning outcomes, industry-relevant knowledge, and continuous improvement so that individuals can perform confidently in real workplace roles.</p>
                 <p style="font-size:1.05rem; line-height:1.8; margin-top:12px;">Whether you are a fresh graduate starting your career or a working professional upgrading your skills, Dharithri provides focused training and support to help you move forward with clarity and purpose.</p>
             </div>
 
-            <!-- RIGHT COLUMN - UPDATED MISSION & VISION -->
+            <!-- RIGHT COLUMN - MISSION & VISION -->
             <div style="background:#f5f8fd; padding:30px; border-radius:24px;">
-                <!-- ===== UPDATED MISSION ===== -->
                 <h3 style="color:#b88a5b;">Our Mission</h3>
                 <ul>
                     <li>Create a generation of skilled, disciplined, confident, and responsible professionals.</li>
@@ -148,7 +157,6 @@
                     <li>We believe in long-term sustainability.</li>
                 </ul>
                 <br />
-                <!-- ===== UPDATED VISION ===== -->
                 <h3 style="color:#b88a5b;">Our Vision</h3>
                 <ul>
                     <li>To become India's most trusted organization for manpower development by creating opportunities that inspire not just individuals but entire generations.</li>
@@ -159,7 +167,7 @@
             </div>
         </div>
 
-        <!-- ======== FOUNDER - UPDATED WITH POINTS ======== -->
+        <!-- ======== FOUNDER ======== -->
         <div style="margin-top:60px;">
             <h2 class="section-title">Founder & Managing Director</h2>
             <div class="founder-card">
@@ -169,7 +177,6 @@
                     <p style="color:#4a5d74;">MBA (HR & International Business) · Andhra University</p>
                     <p style="margin:8px 0; color:#2f4057;">Former: Eastern Zone Head – Marketing at Sundaram Direct, Kolkata | Manager – Infrastructure Finance at HDFC Bank Ltd., Visakhapatnam | General Manager at Varun JCB, Visakhapatnam</p>
                     <br />
-                    <!-- ===== UPDATED FOUNDER STORY IN POINTS ===== -->
                     <div class="highlight-box">
                         <p class="founder-quote">
                             "Every individual has the potential to achieve greatness when given the right guidance, the right skills, and the right opportunities. At Dharithri, we are not just preparing people for jobs—we are shaping confident professionals, inspiring families, and building a future where talent, discipline, and integrity create lasting success."
