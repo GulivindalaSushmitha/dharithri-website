@@ -7,48 +7,159 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css" />
+    <style>
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 40px 0;
+        }
+        .about-grid ul {
+            list-style: none;
+            padding: 0;
+        }
+        .about-grid ul li {
+            padding: 6px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            color: #1c2a3a;
+        }
+        .about-grid ul li::before {
+            content: "✔";
+            color: #b88a5b;
+            font-weight: 700;
+        }
+        .founder-card {
+            display: flex;
+            gap: 30px;
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(4px);
+            padding: 30px;
+            border-radius: 28px;
+            border: 1px solid rgba(255,255,255,0.8);
+            margin: 30px 0;
+            align-items: flex-start;
+        }
+        .founder-img {
+            font-size: 4rem;
+            color: #b88a5b;
+            background: #f5f0ea;
+            padding: 20px;
+            border-radius: 50%;
+            min-width: 100px;
+            text-align: center;
+        }
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #1c2a3a;
+            margin-bottom: 0.5rem;
+        }
+        .section-sub {
+            font-size: 1.1rem;
+            color: #3d4f64;
+            max-width: 700px;
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 2rem;
+        }
+        .highlight-box {
+            background: #f5f8fd;
+            padding: 20px 24px;
+            border-radius: 16px;
+            border-left: 4px solid #b88a5b;
+            margin-top: 16px;
+        }
+        .highlight-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0 0 0;
+        }
+        .highlight-box ul li {
+            padding: 5px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            color: #0b2b4a;
+        }
+        .highlight-box ul li::before {
+            content: "◆";
+            color: #b88a5b;
+            font-weight: 700;
+            font-size: 0.8rem;
+        }
+        .highlight-box .founder-quote {
+            font-style: italic;
+            color: #0b2b4a;
+            margin-bottom: 12px;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+        .highlight-box .founder-sign {
+            font-weight: 600;
+            margin-top: 8px;
+        }
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            .founder-card {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navbar auto-loaded by navbar.js -->
+    <div id="navbar-container"></div>
 
-    <section class="container" style="padding: 60px 0;">
-        <h1 class="section-title">About Dharithri</h1>
+    <section class="container">
+        <!-- ===== TITLE UPDATED ===== -->
+        <h1 class="section-title">About Dharithri Manpower</h1>
         <p class="section-sub">At Dharithri Manpower Training & Supply Pvt. Ltd., we believe that every person carries hidden potential waiting to be discovered.</p>
 
         <div class="about-grid">
+            <!-- LEFT COLUMN - UPDATED CONTENT -->
             <div>
                 <p style="font-size:1.05rem; line-height:1.8;">Our purpose is not merely to train people—we transform confidence into capability, talent into opportunity, and dreams into meaningful careers. We are committed to identifying genuine talent, nurturing discipline, developing practical skills, and preparing individuals to thrive in today's competitive world.</p>
                 <br />
-                <p style="font-size:1.05rem; line-height:1.8;"><strong>Every learner who joins Dharithri</strong> begins a journey of personal growth, professional excellence, and lifelong learning.</p>
-                <br />
-                <blockquote style="border-left:4px solid #c49a2b; padding-left:20px; font-style:italic; font-size:1.1rem; color:#0b2b4a;">"When one individual grows, an entire family grows. When families grow, society grows."</blockquote>
-                <br />
-                <p style="font-size:1.05rem; line-height:1.8;">A young graduate searching for a career... A working professional looking to upgrade skills... A parent wishing for their child's success... Even a grandparent who dreams of seeing their grandchildren build a better future... <strong>Everyone has a place in the Dharithri family.</strong></p>
+                <!-- ===== NEW REPLACEMENT TEXT ===== -->
+                <p style="font-size:1.05rem; line-height:1.8;">At Dharithri, every learner is guided through structured training that builds practical skills, professional discipline, and career readiness.</p>
+                <p style="font-size:1.05rem; line-height:1.8; margin-top:12px;">We focus on clear learning outcomes, industry-relevant knowledge, and continuous improvement so that individuals can perform confidently in real workplace roles.</p>
+                <p style="font-size:1.05rem; line-height:1.8; margin-top:12px;">Whether you are a fresh graduate starting your career or a working professional upgrading your skills, Dharithri provides focused training and support to help you move forward with clarity and purpose.</p>
             </div>
+
+            <!-- RIGHT COLUMN - UPDATED MISSION & VISION -->
             <div style="background:#f5f8fd; padding:30px; border-radius:24px;">
-                <h3 style="color:#c49a2b;">Our Mission</h3>
-                <p>Create a generation of skilled, disciplined, confident, and responsible professionals.</p>
-                <ul style="list-style:none; margin-top:16px;">
-                    <li>✔ Discovering hidden talent</li>
-                    <li>✔ Building confidence through practical learning</li>
-                    <li>✔ Encouraging discipline, integrity, and responsibility</li>
-                    <li>✔ Providing career guidance</li>
-                    <li>✔ Supporting deserving candidates with placement assistance</li>
-                    <li>✔ Empowering youth with future-ready skills</li>
+                <!-- ===== UPDATED MISSION ===== -->
+                <h3 style="color:#b88a5b;">Our Mission</h3>
+                <ul>
+                    <li>Create a generation of skilled, disciplined, confident, and responsible professionals.</li>
+                    <li>We are committed to high ethical standards and professional honesty.</li>
+                    <li>Our work is based on excellence in solutions.</li>
+                    <li>We focus on solving problems.</li>
+                    <li>We build strong customer relationships.</li>
+                    <li>We believe in long-term sustainability.</li>
                 </ul>
                 <br />
-                <h3 style="color:#c49a2b;">Our Vision</h3>
-                <p>To become India's most trusted organization for manpower development by creating opportunities that inspire not just individuals but entire generations.</p>
-                <ul style="list-style:none; margin-top:12px;">
-                    <li>✔ Quality training and career guidance for all</li>
-                    <li>✔ Opportunities for reskilling and growth</li>
-                    <li>✔ Education as the foundation of success</li>
-                    <li>✔ Trusted professionals for industry</li>
+                <!-- ===== UPDATED VISION ===== -->
+                <h3 style="color:#b88a5b;">Our Vision</h3>
+                <ul>
+                    <li>To become India's most trusted organization for manpower development by creating opportunities that inspire not just individuals but entire generations.</li>
+                    <li>To become a world-class debt advisory service provider.</li>
+                    <li>To be the preferred choice for startups.</li>
+                    <li>To achieve steady growth in profit and expansion.</li>
                 </ul>
             </div>
         </div>
 
-        <!-- ======== FOUNDER ======== -->
+        <!-- ======== FOUNDER - UPDATED WITH POINTS ======== -->
         <div style="margin-top:60px;">
             <h2 class="section-title">Founder & Managing Director</h2>
             <div class="founder-card">
@@ -58,15 +169,34 @@
                     <p style="color:#4a5d74;">MBA (HR & International Business) · Andhra University</p>
                     <p style="margin:8px 0; color:#2f4057;">Former: Eastern Zone Head – Marketing at Sundaram Direct, Kolkata | Manager – Infrastructure Finance at HDFC Bank Ltd., Visakhapatnam | General Manager at Varun JCB, Visakhapatnam</p>
                     <br />
-                    <div style="background:#f5f8fd; padding:20px; border-radius:16px; border-left:4px solid #c49a2b;">
-                        <p style="font-style:italic; color:#0b2b4a;">"Every individual has the potential to achieve greatness when given the right guidance, the right skills, and the right opportunities. At Dharithri, we are not just preparing people for jobs—we are shaping confident professionals, inspiring families, and building a future where talent, discipline, and integrity create lasting success. Together, let us learn, grow, and build a better tomorrow."</p>
-                        <p style="margin-top:8px; font-weight:600;">— Mr. Prasanna Kumar</p>
-                        <p style="color:#4a5d74; font-size:0.9rem;">Founder & Managing Director, Dharithri Manpower Training & Supply Pvt. Ltd.</p>
+                    <!-- ===== UPDATED FOUNDER STORY IN POINTS ===== -->
+                    <div class="highlight-box">
+                        <p class="founder-quote">
+                            "Every individual has the potential to achieve greatness when given the right guidance, the right skills, and the right opportunities. At Dharithri, we are not just preparing people for jobs—we are shaping confident professionals, inspiring families, and building a future where talent, discipline, and integrity create lasting success."
+                        </p>
+                        <p style="font-weight:600; color:#b88a5b; margin-bottom:10px;">— Mr. Prasanna Kumar</p>
+                        <hr style="border:none; border-top:1px solid #e0d6cc; margin:12px 0;" />
+                        <ul>
+                            <li>Managing Director and Founder of Dharithri Manpower Training & Supply Pvt. Ltd.</li>
+                            <li>MBA in HR and International Business from Andhra University</li>
+                            <li>Worked as Eastern Zone Head (Marketing) for Sundaram Direct in Kolkata</li>
+                            <li>Served as Manager at HDFC Bank Ltd. for Infrastructure Finance in Visakhapatnam</li>
+                            <li>Worked as General Manager at Varun JCB in Visakhapatnam</li>
+                            <li>In 2013, left employment to start an organization focused on creating more jobs and building a better society</li>
+                            <li>Started the DSA business as a partnership firm under the name Dharithri Economic Advisory Abet in 2013</li>
+                            <li>Registered as Dharithri Economic Advisory Abet Private Limited in 2015</li>
+                            <li>Served more than 1,000 customers in and around Visakhapatnam through various lending organizations</li>
+                            <li>Business reached break-even in 2023</li>
+                            <li>Planning to expand across India with a target of more than 100 branches by 2028</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Footer auto-loaded -->
+    <div id="footer-container"></div>
 
     <script src="js/main.js"></script>
     <script src="js/navbar.js"></script>
