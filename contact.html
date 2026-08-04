@@ -7,85 +7,238 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css" />
+    <style>
+        /* ===== CONTACT PAGE STYLES ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #1e2a3a;
+            margin: 40px 0 10px;
+        }
+
+        .section-sub {
+            font-size: 1.1rem;
+            color: #4a5d74;
+            margin-bottom: 30px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+            border: 1px solid #e8e0d8;
+        }
+
+        .contact-card h3 {
+            color: #0b2b4a;
+            margin-bottom: 20px;
+        }
+
+        .contact-card h3 i {
+            color: #b88a5b;
+            margin-right: 10px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: #f5f8fd;
+            border-radius: 12px;
+            margin-bottom: 12px;
+        }
+
+        .contact-item i {
+            color: #b88a5b;
+            font-size: 1.2rem;
+            width: 24px;
+        }
+
+        .contact-item span {
+            color: #1e2a3a;
+        }
+
+        .social-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .social-btn {
+            padding: 10px 16px;
+            border-radius: 12px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            font-weight: 500;
+            transition: opacity 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .social-btn:hover {
+            opacity: 0.85;
+        }
+
+        .social-btn.facebook { background: #1877f2; }
+        .social-btn.instagram { background: #E4405F; }
+        .social-btn.linkedin { background: #0A66C2; }
+        .social-btn.youtube { background: #FF0000; }
+        .social-btn.whatsapp { background: #25D366; }
+
+        .right-card {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .right-card .icon-big {
+            font-size: 3.5rem;
+            color: #b88a5b;
+            margin-bottom: 16px;
+        }
+
+        .right-card h3 {
+            color: #0b2b4a;
+            margin: 12px 0;
+        }
+
+        .right-card p {
+            color: #4a5d74;
+            margin-bottom: 20px;
+        }
+
+        .right-card .quote-box {
+            background: #f5f8fd;
+            padding: 16px 24px;
+            border-radius: 12px;
+            border-left: 4px solid #b88a5b;
+            margin-bottom: 20px;
+        }
+
+        .right-card .quote-box p {
+            color: #0b2b4a;
+            font-weight: 600;
+            margin-bottom: 0;
+        }
+
+        .btn-gold {
+            background: #b88a5b;
+            color: white;
+            padding: 14px 40px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: background 0.2s;
+            font-size: 1.1rem;
+        }
+
+        .btn-gold:hover {
+            background: #9e6d44;
+        }
+
+        @media (max-width: 900px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .section-title {
+                font-size: 1.6rem;
+            }
+            .contact-card {
+                padding: 24px;
+            }
+            .social-buttons {
+                flex-direction: column;
+            }
+            .social-btn {
+                justify-content: center;
+            }
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar"><div class="container nav-flex">
-        <div class="logo-area">
-            <img src="assets/images/logo.png" alt="Logo" onerror="this.style.display='none'" />
-            <div class="logo-text">Dharithri<span>.</span></div>
-        </div>
-        <div class="nav-links" id="navLinks">
-            <a href="index.html">Home</a><a href="about.html">About</a><a href="courses.html">Courses</a>
-            <a href="training.html">Training</a><a href="questionnaire.html">Questionnaire</a><a href="contact.html" class="active">Contact</a>
-            <a href="apply.html" class="btn btn-gold" style="padding:8px 22px;">Apply Now</a>
-        </div>
-        <div class="hamburger" onclick="toggleNav()"><i class="fas fa-bars"></i></div>
-    </div></nav>
 
+    <!-- ============================================================ -->
+    <!-- NAVBAR WILL BE LOADED BY navbar.js -->
+    <!-- ============================================================ -->
+
+    <!-- ===== MAIN CONTENT ===== -->
     <section class="container" style="padding: 60px 0;">
         <h1 class="section-title">Contact Us</h1>
         <p class="section-sub">Connect with us through our social channels or apply for training programs.</p>
 
-        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:40px;">
+        <div class="contact-grid">
+
             <!-- Left Column: Contact Info -->
-            <div style="background:white; padding:40px; border-radius:24px; box-shadow:0 4px 16px rgba(0,0,0,0.03);">
-                <h3 style="color:#0b2b4a; margin-bottom:20px;"><i class="fas fa-address-card" style="color:#c49a2b;"></i> Get in Touch</h3>
-                <div style="display:flex; flex-direction:column; gap:16px;">
-                    <div style="display:flex; align-items:center; gap:12px; padding:12px; background:#f5f8fd; border-radius:12px;">
-                        <i class="fas fa-map-marker-alt" style="color:#c49a2b; font-size:1.2rem;"></i>
+            <div class="contact-card">
+                <h3><i class="fas fa-address-card"></i> Get in Touch</h3>
+                <div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
                         <span>Visakhapatnam, Andhra Pradesh, India</span>
                     </div>
-                    <div style="display:flex; align-items:center; gap:12px; padding:12px; background:#f5f8fd; border-radius:12px;">
-                        <i class="fas fa-phone" style="color:#c49a2b; font-size:1.2rem;"></i>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
                         <span>+91-XXXXXXXXXX</span>
                     </div>
-                    <div style="display:flex; align-items:center; gap:12px; padding:12px; background:#f5f8fd; border-radius:12px;">
-                        <i class="fas fa-envelope" style="color:#c49a2b; font-size:1.2rem;"></i>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
                         <span>info@dharithri.com</span>
                     </div>
                 </div>
-                <div style="margin-top:24px;">
-                    <h4 style="margin-bottom:12px;">Follow Us</h4>
-                    <div style="display:flex; gap:16px; flex-wrap:wrap;">
-                        <a href="#" target="_blank" style="background:#1877f2; color:white; padding:12px 16px; border-radius:12px; text-decoration:none; display:flex; align-items:center; gap:8px;"><i class="fab fa-facebook"></i> Facebook</a>
-                        <a href="#" target="_blank" style="background:#E4405F; color:white; padding:12px 16px; border-radius:12px; text-decoration:none; display:flex; align-items:center; gap:8px;"><i class="fab fa-instagram"></i> Instagram</a>
-                        <a href="#" target="_blank" style="background:#0A66C2; color:white; padding:12px 16px; border-radius:12px; text-decoration:none; display:flex; align-items:center; gap:8px;"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                        <a href="#" target="_blank" style="background:#FF0000; color:white; padding:12px 16px; border-radius:12px; text-decoration:none; display:flex; align-items:center; gap:8px;"><i class="fab fa-youtube"></i> YouTube</a>
-                        <a href="#" target="_blank" style="background:#25D366; color:white; padding:12px 16px; border-radius:12px; text-decoration:none; display:flex; align-items:center; gap:8px;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                <div style="margin-top: 24px;">
+                    <h4 style="margin-bottom: 12px; color:#1e2a3a;">Follow Us</h4>
+                    <div class="social-buttons">
+                        <a href="#" target="_blank" class="social-btn facebook"><i class="fab fa-facebook"></i> Facebook</a>
+                        <a href="#" target="_blank" class="social-btn instagram"><i class="fab fa-instagram"></i> Instagram</a>
+                        <a href="#" target="_blank" class="social-btn linkedin"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="#" target="_blank" class="social-btn youtube"><i class="fab fa-youtube"></i> YouTube</a>
+                        <a href="#" target="_blank" class="social-btn whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Right Column: Ready to Begin with Image -->
-            <div style="background:white; padding:40px; border-radius:24px; box-shadow:0 4px 16px rgba(0,0,0,0.03); text-align:center; display:flex; flex-direction:column; justify-content:center; align-items:center;">
-                <!-- IMAGE: Ready to Begin -->
-                <img src="assets/images/classroom2.jpg" alt="Ready to Begin" style="width:100%; max-width:350px; border-radius:16px; margin-bottom:20px; box-shadow:0 8px 24px rgba(0,0,0,0.08);" onerror="this.src='https://i.pinimg.com/736x/a0/be/97/a0be97578c8ffcdf9fce8702a3f7a708.jpg'" />
-                
-                <i class="fas fa-file-signature" style="font-size:3rem; color:#c49a2b;"></i>
-                <h3 style="color:#0b2b4a; margin:16px 0;">Ready to Begin?</h3>
-                <p style="color:#4a5d74; margin-bottom:20px;">Fill out the application form and start your journey toward a rewarding banking career.</p>
-                
-                <div style="background:#f5f8fd; padding:16px 24px; border-radius:12px; margin-bottom:20px; border-left:4px solid #c49a2b;">
-                    <p style="color:#0b2b4a; font-weight:600;">"Your future in banking starts here!"</p>
+            <!-- Right Column: Ready to Begin -->
+            <div class="contact-card right-card">
+                <i class="fas fa-file-signature icon-big"></i>
+                <h3>Ready to Begin?</h3>
+                <p>Fill out the application form and start your journey toward a rewarding banking career.</p>
+                <div class="quote-box">
+                    <p>"Your future in banking starts here!"</p>
                 </div>
-                
-                <a href="apply.html" class="btn btn-gold" style="padding:14px 40px; font-size:1.1rem;">Apply Now <i class="fas fa-arrow-right"></i></a>
+                <a href="apply.html" class="btn-gold">Apply Now <i class="fas fa-arrow-right"></i></a>
             </div>
+
         </div>
     </section>
 
-    <footer style="background:#061c2f; color:white; padding:40px 0; margin-top:40px;">
-        <div class="container" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:20px;">
-            <div><h4>Dharithri Manpower Training & Supply Pvt. Ltd.</h4><p style="color:#7a94ae;">Building Worth. Inspiring Generations.</p></div>
-            <div>
-                <a href="#" style="color:#7a94ae; margin:0 10px; font-size:1.4rem;"><i class="fab fa-facebook"></i></a>
-                <a href="#" style="color:#7a94ae; margin:0 10px; font-size:1.4rem;"><i class="fab fa-instagram"></i></a>
-                <a href="#" style="color:#7a94ae; margin:0 10px; font-size:1.4rem;"><i class="fab fa-linkedin"></i></a>
-                <a href="#" style="color:#7a94ae; margin:0 10px; font-size:1.4rem;"><i class="fab fa-youtube"></i></a>
-                <a href="#" style="color:#7a94ae; margin:0 10px; font-size:1.4rem;"><i class="fab fa-whatsapp"></i></a>
-            </div>
-        </div>
-    </footer>
+    <!-- ============================================================ -->
+    <!-- FOOTER WILL BE LOADED BY navbar.js -->
+    <!-- ============================================================ -->
+
     <script src="js/main.js"></script>
+    <script src="js/navbar.js"></script>
 </body>
 </html>
