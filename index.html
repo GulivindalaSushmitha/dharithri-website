@@ -6,114 +6,9 @@
     <title>Home · Dharithri</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
     <style>
-        /* ===== RESET & BASE ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background: #f5f2ed;
-            color: #1e1e2a;
-            line-height: 1.5;
-        }
-
-        /* ===== NAVBAR - EXACT SAME AS ABOUT PAGE ===== */
-        .navbar {
-            background: #ffffff;
-            padding: 0.8rem 2.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            border-bottom: 2px solid #b88a5b;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        }
-
-        .nav-brand {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-
-        .nav-brand .logo-img {
-            height: 55px;
-            width: auto;
-            object-fit: contain;
-        }
-
-        .nav-brand .brand-text {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .nav-brand .brand-text .main-name {
-            font-weight: 700;
-            font-size: 1.3rem;
-            color: #0b1a2b;
-            letter-spacing: 1px;
-        }
-
-        .nav-brand .brand-text .sub-name {
-            font-size: 0.65rem;
-            color: #6a7f94;
-            letter-spacing: 1px;
-            font-weight: 500;
-        }
-
-        .nav-brand .brand-text .tagline {
-            font-size: 0.6rem;
-            color: #b88a5b;
-            letter-spacing: 0.8px;
-            font-weight: 600;
-            margin-top: 1px;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 1.8rem;
-            flex-wrap: wrap;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #1e2a3a;
-            font-weight: 500;
-            font-size: 0.88rem;
-            transition: color 0.2s;
-            letter-spacing: 0.3px;
-        }
-
-        .nav-links a:hover {
-            color: #b88a5b;
-        }
-
-        .nav-links a.active {
-            color: #b88a5b;
-            border-bottom: 2px solid #b88a5b;
-            padding-bottom: 4px;
-        }
-
-        .nav-cta {
-            background: #b88a5b;
-            color: white !important;
-            padding: 0.5rem 1.8rem;
-            border-radius: 40px;
-            font-weight: 600;
-            transition: background 0.2s;
-            font-size: 0.85rem !important;
-        }
-
-        .nav-cta:hover {
-            background: #9e6d44 !important;
-            color: white !important;
-        }
-
-        /* ===== HERO SECTION ===== */
+        /* ===== ADDITIONAL STYLES FOR HOMEPAGE ===== */
         .hero-section {
             background: #f5f2ed;
             padding: 50px 2rem 30px;
@@ -274,7 +169,6 @@
             margin-top: 4px;
         }
 
-        /* ===== QUOTE BLOCK ===== */
         .quote-block {
             border-left: 4px solid #b88a5b;
             padding: 22px 28px;
@@ -292,7 +186,6 @@
             margin-right: 8px;
         }
 
-        /* ===== MISSION / VISION CARDS ===== */
         .card-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -348,7 +241,6 @@
             margin: 30px 0;
         }
 
-        /* ===== FOOTER - EXACT SAME AS ABOUT PAGE ===== */
         .footer {
             background: #ffffff;
             padding: 40px 2rem 20px;
@@ -435,7 +327,6 @@
             color: #6a7f94;
         }
 
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 900px) {
             .navbar {
                 flex-direction: column;
@@ -482,23 +373,22 @@
 
     <nav class="navbar">
         <div class="nav-brand">
-            <!-- LOGO IMAGE - place your logo.png in the same folder -->
             <img src="logo.png" alt="Dharithri Logo" class="logo-img" />
             <div class="brand-text">
                 <span class="main-name">DHARITHRI</span>
                 <span class="sub-name">MANPOWER TRAINING &amp; SUPPLY PVT. LTD.</span>
-                <span class="tagline">WE SUPPLY THE WORTH. WE IMPROVE THE WORTH.</span>
+                <span class="tagline">WE IMPROVE THE WORTH. WE SUPPLY THE WORTH.</span>
             </div>
         </div>
         <div class="nav-links">
             <a href="index.html" class="active">Home</a>
             <a href="about.html">About</a>
-            <a href="#">Courses</a>
-            <a href="#">Training</a>
-            <a href="#">Opportunities</a>
-            <a href="#">Questionnaire</a>
-            <a href="#">Contact</a>
-            <a href="#" class="nav-cta">Apply Now</a>
+            <a href="courses.html">Courses</a>
+            <a href="training.html">Training</a>
+            <a href="opportunities.html">Opportunities</a>
+            <a href="questionnaire.html">Questionnaire</a>
+            <a href="contact.html">Contact</a>
+            <a href="apply.html" class="nav-cta">Apply Now</a>
         </div>
     </nav>
 
@@ -521,8 +411,8 @@
                         organizations access and develop valuable manpower.
                     </p>
                     <div class="hero-actions">
-                        <a href="#" class="btn-primary"><i class="fas fa-arrow-right"></i> Learn More</a>
-                        <a href="#" class="btn-outline"><i class="fas fa-pen"></i> Apply Now</a>
+                        <a href="about.html" class="btn-primary"><i class="fas fa-arrow-right"></i> Learn More</a>
+                        <a href="apply.html" class="btn-outline"><i class="fas fa-pen"></i> Apply Now</a>
                     </div>
                     <div class="hero-stats">
                         <div class="stat-item">
@@ -595,7 +485,7 @@
             <hr />
 
             <div style="text-align:center; margin: 20px 0 10px;">
-                <a href="#" class="btn-primary" style="background:#1e2a3a;"><i class="fas fa-arrow-right"></i> Explore our programs</a>
+                <a href="courses.html" class="btn-primary" style="background:#1e2a3a;"><i class="fas fa-arrow-right"></i> Explore our programs</a>
             </div>
 
         </div>
@@ -617,17 +507,17 @@
                 <div class="footer-links">
                     <div class="col">
                         <h4>Quick Links</h4>
-                        <a href="#">Home</a>
-                        <a href="#">About</a>
-                        <a href="#">Courses</a>
-                        <a href="#">Training</a>
+                        <a href="index.html">Home</a>
+                        <a href="about.html">About</a>
+                        <a href="courses.html">Courses</a>
+                        <a href="training.html">Training</a>
                     </div>
                     <div class="col">
                         <h4>Resources</h4>
-                        <a href="#">Opportunities</a>
-                        <a href="#">Questionnaire</a>
-                        <a href="#">Contact</a>
-                        <a href="#">Apply Now</a>
+                        <a href="opportunities.html">Opportunities</a>
+                        <a href="questionnaire.html">Questionnaire</a>
+                        <a href="contact.html">Contact</a>
+                        <a href="apply.html">Apply Now</a>
                     </div>
                     <div class="col">
                         <h4>Connect</h4>
