@@ -15,10 +15,10 @@ document.addEventListener('DOMContentLoaded', function() {
 const navbarHTML = `
 <nav class="navbar">
     <div class="container nav-flex">
-        <a href="index.html" style="text-decoration:none; display:flex; align-items:center; gap:12px;">
-            <div class="logo-area" style="display:flex; align-items:center; gap:12px;">
-                <img src="assets/images/logo.png" alt="Dharithri Logo" style="height:55px; width:auto;" onerror="this.style.display='none'" />
-                <div style="display:flex; flex-direction:column; line-height:1.1;">
+        <a href="assets/images/logo.png" target="_blank" style="text-decoration:none; display:flex; align-items:center; gap:12px;">
+            <div class="logo-area" style="display:flex; align-items:center; gap:12px; cursor:pointer;">
+                <img src="assets/images/logo.png" alt="Dharithri Logo" style="height:55px; width:auto; pointer-events:none;" onerror="this.style.display='none'" />
+                <div style="display:flex; flex-direction:column; line-height:1.1; pointer-events:none;">
                     <span style="font-weight:800; font-size:1.1rem; color:#0b2b4a; letter-spacing:0.5px;">DHARITHRI</span>
                     <span style="font-size:0.55rem; color:#4a5d74; font-weight:600; letter-spacing:0.3px;">MANPOWER TRAINING & SUPPLY PVT. LTD.</span>
                     <span style="font-size:0.5rem; color:#c49a2b; font-weight:700; letter-spacing:0.5px;">WE IMPROVE THE WORTH. WE SUPPLY THE WORTH.</span>
